@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="level3"
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level3" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:minHeight="40dp"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="0dp"
+            android:layout_weight=".8"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="13sp"
+            android:textColor="@color/gray5"
+            android:button="@drawable/rb_bg2"
+            android:text='@{lang.equals("ar")?level3.ar_title:level3.en_title}'
+
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/color_second"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:clickable="false"
+            android:longClickable="false"
+            />
+    </LinearLayout>
+
+</layout>

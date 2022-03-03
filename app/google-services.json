@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "14155728106",
+    "firebase_url": "https://washsquad-58f13.firebaseio.com",
+    "project_id": "washsquad-58f13",
+    "storage_bucket": "washsquad-58f13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14155728106:android:fb80f7ace0c6f18a5c4393",
+        "android_client_info": {
+          "package_name": "com.creative.share.apps.wash_squad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQuMsygViK2qgTKgnvhj9tEyXpkDj0zu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14155728106:android:8ce26e80af86a9b75c4393",
+        "android_client_info": {
+          "package_name": "com.creative.share.apps.wash_squad_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQuMsygViK2qgTKgnvhj9tEyXpkDj0zu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

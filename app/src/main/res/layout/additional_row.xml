@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="additionalModel"
+            type="com.creative.share.apps.wash_squad.models.ItemToUpload.SubServiceModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:minHeight="40dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".8"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/gray5"
+            android:textSize="13sp"
+            android:text='@{lang.equals("ar")?additionalModel.service_name_ar:additionalModel.service_name_en}'
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/color_second"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:text='@{additionalModel.price+" "+@string/sar}'
+            android:clickable="false"
+            android:longClickable="false"
+            />
+    </LinearLayout>
+
+</layout>

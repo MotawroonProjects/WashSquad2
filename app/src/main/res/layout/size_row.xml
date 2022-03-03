@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <data>
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="carSizeModel"
+            type="com.creative.share.apps.wash_squad.models.CarSizeDataModel.CarSizeModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="4dp"
+        >
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/expand_bg"
+
+            >
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                serviceImage="@{carSizeModel.image}"
+
+                />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/gray5"
+                android:textSize="15sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text='@{lang.equals("ar")?carSizeModel.ar_title:carSizeModel.en_title}'
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>
