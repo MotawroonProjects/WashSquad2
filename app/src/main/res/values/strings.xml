@@ -166,6 +166,15 @@
     <string name="address">Address</string>
     <string name="not_available">Not available</string>
     <string name="cash">Cash</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="subscriptions">Subscriptions</string>
+    <string name="application">Application</string>
+    <string name="help_and_support">Help and support</string>
+    <string name="start_date">Start Date</string>
+    <string name="time_day">Time/Day</string>
+    <string name="residual">Residual</string>
+    <string name="subscription_request">subscription Request</string>
+    <string name="subscription_details">Subscription Details</string>
 
 
 </resources>

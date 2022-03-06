@@ -3,8 +3,11 @@ package com.creative.share.apps.wash_squad.activities_fragments.activity_home.fr
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -97,27 +100,61 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
         userModel = preferences.getUserData(activity);
 
+        binding.cardRate.setOnClickListener(view -> {
+            String appId = activity.getPackageName();
+            Intent rateIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + appId));
+            boolean marketFound = false;
 
-        if (userModel!=null)
-        {
-            binding.setUsermodel(userModel);
-            binding.edtName.setText(userModel.getFull_name());
+            final List<ResolveInfo> otherApps =activity. getPackageManager()
+                    .queryIntentActivities(rateIntent, 0);
+            for (ResolveInfo otherApp : otherApps) {
+                if (otherApp.activityInfo.applicationInfo.packageName
+                        .equals("com.android.vending")) {
 
-            edit_profile_model = new EditProfileModel(userModel.getFull_name());
+                    ActivityInfo otherAppActivity = otherApp.activityInfo;
+                    ComponentName componentName = new ComponentName(
+                            otherAppActivity.applicationInfo.packageName,
+                            otherAppActivity.name
+                    );
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    rateIntent.setComponent(componentName);
+                    startActivity(rateIntent);
+                    marketFound = true;
+                    break;
 
-            binding.setEditprofilemodel(edit_profile_model);
-            binding.setEditprofilelistener(this);
-            binding.tvCode.setText(userModel.getPhone_code().replaceFirst("00", "+"));
-            binding.edtPhone.setText(userModel.getPhone());
-            code = userModel.getPhone_code();
+                }
+            }
 
-            createCountryDialog();
+            if (!marketFound) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=" + appId));
+                startActivity(webIntent);
+            }
 
-        }
+        });
+//        if (userModel!=null)
+//        {
+//            binding.setUsermodel(userModel);
+//            binding.edtName.setText(userModel.getFull_name());
+//
+//            edit_profile_model = new EditProfileModel(userModel.getFull_name());
+//
+//            binding.setEditprofilemodel(edit_profile_model);
+//            binding.setEditprofilelistener(this);
+//            binding.tvCode.setText(userModel.getPhone_code().replaceFirst("00", "+"));
+//            binding.edtPhone.setText(userModel.getPhone());
+//            code = userModel.getPhone_code();
+//
+//            createCountryDialog();
+//
+//        }
 
         binding.image.setOnClickListener(view -> CreateImageAlertDialog());
-        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
-        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
+//        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
+//        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
 
     }
 
@@ -351,7 +388,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
     private void updatePhoneCode(Country country) {
         code = country.getDialCode();
-        binding.tvCode.setText(country.getDialCode());
+//        binding.tvCode.setText(country.getDialCode());
 
     }
 
@@ -364,7 +401,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         if (edit_profile_model.isDataValid(activity)) {
             editProfile(name);
         } else {
-            binding.edtName.setError(getString(R.string.field_req));
+  //          binding.edtName.setError(getString(R.string.field_req));
 
         }
     }
