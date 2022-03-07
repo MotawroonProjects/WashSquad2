@@ -36,8 +36,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Fragment_Code_Verification extends Fragment {
-    private static final String TAG ="DATA";
-    private static final String TAG2 ="Type";
+    private static final String TAG = "DATA";
+    private static final String TAG2 = "Type";
 
     private SignInActivity activity;
     private FragmentCodeVerificationBinding binding;
@@ -50,17 +50,16 @@ public class Fragment_Code_Verification extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_code_verification, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_code_verification, container, false);
         View view = binding.getRoot();
         initView();
         return view;
     }
 
-    public static Fragment_Code_Verification newInstance(UserModel userModel, int type)
-    {
+    public static Fragment_Code_Verification newInstance(UserModel userModel, int type) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(TAG,userModel);
-        bundle.putInt(TAG2,type);
+        bundle.putSerializable(TAG, userModel);
+        bundle.putInt(TAG2, type);
         Fragment_Code_Verification fragment_code_verification = new Fragment_Code_Verification();
         fragment_code_verification.setArguments(bundle);
         return fragment_code_verification;
@@ -68,10 +67,9 @@ public class Fragment_Code_Verification extends Fragment {
 
     private void initView() {
         Bundle bundle = getArguments();
-        if (bundle!=null)
-        {
+        if (bundle != null) {
             userModel = (UserModel) bundle.getSerializable(TAG);
-            type=bundle.getInt(TAG2);
+            type = bundle.getInt(TAG2);
         }
 
         activity = (SignInActivity) getActivity();
@@ -85,15 +83,14 @@ public class Fragment_Code_Verification extends Fragment {
 
         binding.btnResend.setOnClickListener(v -> {
 
-            Log.e("ddd","ddd");
-            if (canResend)
-            {
-               if(type==2){
-                reSendSMSCode();}
+            Log.e("ddd", "ddd");
+            if (canResend) {
+                if (type == 2) {
+                    reSendSMSCode();
+                }
 
             }
         });
-
 
 
         startCounter();
@@ -102,47 +99,41 @@ public class Fragment_Code_Verification extends Fragment {
 
     private void checkData() {
         String code = binding.edtCode.getText().toString().trim();
-        if (!TextUtils.isEmpty(code))
-        {
-            Common.CloseKeyBoard(activity,binding.edtCode);
-if(type==2){
-            ValidateCode(code);}
-
-else {
-    ValidateCodepass(code);
-}
-        }else
-            {
-                binding.edtCode.setError(getString(R.string.field_req));
+        if (!TextUtils.isEmpty(code)) {
+            Common.CloseKeyBoard(activity, binding.edtCode);
+            if (type == 2) {
+                ValidateCode(code);
+            } else {
+                ValidateCodepass(code);
             }
+        } else {
+            binding.edtCode.setError(getString(R.string.field_req));
+        }
     }
 
-    private void ValidateCode(String code)
-    {
+    private void ValidateCode(String code) {
         try {
-            ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
+            ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .confirmCode(userModel.getId(),code)
+                    .confirmCode(userModel.getId(), code)
                     .enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             dialog.dismiss();
-                            if (response.isSuccessful()&&response.body()!=null)
-                            {
-                                preferences.create_update_userData(activity,userModel);
+                            if (response.isSuccessful() && response.body() != null) {
+                                preferences.create_update_userData(activity, userModel);
                                 preferences.createSession(activity, Tags.session_login);
                                 Intent intent = new Intent(activity, HomeActivity.class);
                                 startActivity(intent);
                                 activity.finish();
 
-                            }else
-                            {
+                            } else {
 
                                 try {
 
-                                    Log.e("error",response.code()+"_"+response.errorBody().string());
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -153,12 +144,10 @@ else {
                                     Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
 
-                                }else if (response.code()==401)
-                                {
+                                } else if (response.code() == 401) {
                                     Toast.makeText(activity, R.string.inc_code, Toast.LENGTH_SHORT).show();
 
-                                }else
-                                {
+                                } else {
                                     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
@@ -172,45 +161,42 @@ else {
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             try {
                                 dialog.dismiss();
-                                if (t.getMessage()!=null)
-                                {
-                                    Log.e("error",t.getMessage());
-                                    if (t.getMessage().toLowerCase().contains("failed to connect")||t.getMessage().toLowerCase().contains("unable to resolve host"))
-                                    {
-                                        Toast.makeText(activity,R.string.something, Toast.LENGTH_SHORT).show();
-                                    }else
-                                    {
-                                        Toast.makeText(activity,t.getMessage(), Toast.LENGTH_SHORT).show();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
                         }
                     });
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
-    private void ValidateCodepass(String code)
-    {
+
+    private void ValidateCodepass(String code) {
         try {
-            ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
+            ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .confirmCodepass(userModel.getId(),code)
+                    .confirmCodepass(userModel.getId(), code)
                     .enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             dialog.dismiss();
-                            if (response.isSuccessful()&&response.body()!=null)
-                            {
-                               CreateAlertDialog(userModel);
+                            if (response.isSuccessful() && response.body() != null) {
+                                CreateAlertDialog(userModel);
 
-                            }else
-                            {
+                            } else {
 
                                 try {
 
-                                    Log.e("error",response.code()+"_"+response.errorBody().string());
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -221,12 +207,10 @@ else {
                                     Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
 
-                                }else if (response.code()==401)
-                                {
+                                } else if (response.code() == 401) {
                                     Toast.makeText(activity, R.string.inc_code, Toast.LENGTH_SHORT).show();
 
-                                }else
-                                {
+                                } else {
                                     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
@@ -240,25 +224,24 @@ else {
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             try {
                                 dialog.dismiss();
-                                if (t.getMessage()!=null)
-                                {
-                                    Log.e("error",t.getMessage());
-                                    if (t.getMessage().toLowerCase().contains("failed to connect")||t.getMessage().toLowerCase().contains("unable to resolve host"))
-                                    {
-                                        Toast.makeText(activity,R.string.something, Toast.LENGTH_SHORT).show();
-                                    }else
-                                    {
-                                        Toast.makeText(activity,t.getMessage(), Toast.LENGTH_SHORT).show();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
                         }
                     });
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
-    private void CreateAlertDialog(UserModel userModel)
-    {
+
+    private void CreateAlertDialog(UserModel userModel) {
         final AlertDialog dialog = new AlertDialog.Builder(activity)
                 .create();
 
@@ -278,8 +261,8 @@ else {
         dialog.setView(binding.getRoot());
         dialog.show();
     }
-    private void startCounter()
-    {
+
+    private void startCounter() {
         countDownTimer = new CountDownTimer(60000, 1000) {
 
             @Override
@@ -287,18 +270,18 @@ else {
                 canResend = false;
 
                 int AllSeconds = (int) (millisUntilFinished / 1000);
-                int seconds= AllSeconds%60;
+                int seconds = AllSeconds % 60;
 
 
-                binding.btnResend.setText("00:"+seconds);
+                binding.btnResend.setText("00:" + seconds);
             }
 
             @Override
             public void onFinish() {
-                if(type==2){
-                canResend = true;
-                binding.btnResend.setText(getString(R.string.resend));}
-                else {
+                if (type == 2) {
+                    canResend = true;
+                    binding.btnResend.setText(getString(R.string.resend));
+                } else {
                     activity.back();
                 }
             }
@@ -306,7 +289,7 @@ else {
     }
 
     private void reSendSMSCode() {
-        final ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
+        final ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
         Api.getService(Tags.base_url)
@@ -317,25 +300,20 @@ else {
 
                         dialog.dismiss();
 
-                        if (response.isSuccessful())
-                        {
+                        if (response.isSuccessful()) {
                             startCounter();
 
-                        }else
-                        {
+                        } else {
                             try {
-                                Log.e("error_code",response.code()+"_"+response.errorBody().string());
+                                Log.e("error_code", response.code() + "_" + response.errorBody().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            if (response.code()==422)
-                            {
-                                Common.CreateDialogAlert(activity,getString(R.string.inc_code_verification));
-                            }else if (response.code()==500)
-                            {
+                            if (response.code() == 422) {
+                                Common.CreateDialogAlert(activity, getString(R.string.inc_code_verification));
+                            } else if (response.code() == 500) {
                                 Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
-                            }else 
-                            {
+                            } else {
                                 Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -346,10 +324,11 @@ else {
                         try {
                             dialog.dismiss();
                             Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
-                            Log.e("Error",t.getMessage());
+                            Log.e("Error", t.getMessage());
 
 
-                        }catch (Exception e){}
+                        } catch (Exception e) {
+                        }
                     }
                 });
     }
@@ -358,8 +337,7 @@ else {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (countDownTimer!=null)
-        {
+        if (countDownTimer != null) {
             countDownTimer.cancel();
         }
     }

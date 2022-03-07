@@ -68,7 +68,7 @@
                 android:longClickable="false"
                 android:padding="6dp"
                 android:src="@drawable/correct"
-                app:tint="@color/dot_light_screen2" />
+                app:tint="@color/dot_dark_screen2" />
 
             <TextView
                 android:layout_width="wrap_content"

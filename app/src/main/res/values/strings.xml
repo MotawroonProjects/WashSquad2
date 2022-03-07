@@ -206,6 +206,9 @@
     <string name="washing_delay">washing delay</string>
     <string name="washing_can_only_be_postponed_once">Washing can only be postponed once</string>
     <string name="delay">Delay</string>
+    <string name="your_appointment_has_been_successfully_postponed">Your appointment has been successfully postponed</string>
+    <string name="you_can_t_postpone">You can\'t postpone</string>
+    <string name="each_customer_has_the_right_to_postpone_only_once">Each customer has the right to postpone only once</string>
 
 
 </resources>
