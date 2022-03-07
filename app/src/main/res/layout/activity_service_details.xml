@@ -50,36 +50,37 @@
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:onClick="@{()->backListener.back()}"
-                >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <ImageView
+                    android:id="@+id/llBack"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_arrow_left"
-                    android:tint="@color/white"
-                    android:padding="8dp"
                     android:clickable="false"
                     android:longClickable="false"
+                    android:padding="8dp"
                     android:rotation='@{lang.equals("ar")?180:0}'
-                    />
+                    android:src="@drawable/ic_arrow_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
                 <TextView
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:text='@{lang.equals("ar")?level2.ar_title:level2.en_title}'
                     android:textColor="@color/white"
-                    android:clickable="false"
-                    android:longClickable="false"
-                    android:textSize="18sp"
-                    android:text="@string/back"
-                    />
-            </LinearLayout>
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

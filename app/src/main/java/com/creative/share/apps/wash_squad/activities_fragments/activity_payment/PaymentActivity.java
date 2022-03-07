@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityPaymentBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
@@ -42,7 +43,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PaymentActivity extends AppCompatActivity implements Listeners.BackListener {
+public class PaymentActivity extends AppCompatActivity {
     private ActivityPaymentBinding binding;
     private String lang;
     private ItemToUpload itemToUpload;
@@ -90,7 +91,7 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
-        binding.setBackListener(this);
+
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM",Locale.ENGLISH);
@@ -113,6 +114,9 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
 //                binding.tvNoAdditionalServices.setVisibility(View.VISIBLE);
 //
 //            }
+        binding.tvEdit.setOnClickListener(view -> {
+           finish();
+        });
         binding.rb1.setOnClickListener(view ->
         {
             binding.flCash.setVisibility(View.VISIBLE);
@@ -372,11 +376,6 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
 
         }
 
-    }
-
-    @Override
-    public void back() {
-        finish();
     }
 
 }

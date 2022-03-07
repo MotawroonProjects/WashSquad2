@@ -124,6 +124,7 @@
     <string name="service_price">سعر الخدمة</string>
     <string name="service_price2">سعر الخدمة : </string>
     <string name="payment">طريقة الدفع</string>
+    <string name="payment2">الدفع</string>
     <string name="no_additional_services">لا توجد خدمات إضافية</string>
     <string name="total">الإجمالي</string>
     <string name="cache">كاش</string>
@@ -210,6 +211,7 @@
     <string name="your_appointment_has_been_successfully_postponed">تم تاجيل موعدك بنجاح</string>
     <string name="you_can_t_postpone">لا يمكنك التاجيل</string>
     <string name="each_customer_has_the_right_to_postpone_only_once">لكل عميل حق التاجيل مره واحده فقط</string>
+    <string name="edit">تعديل</string>
 
 
 </resources>

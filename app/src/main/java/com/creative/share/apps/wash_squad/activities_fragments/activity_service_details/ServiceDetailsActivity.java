@@ -54,7 +54,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceDetailsActivity extends AppCompatActivity implements Listeners.BackListener {
+public class ServiceDetailsActivity extends AppCompatActivity{
     private ActivityServiceDetailsBinding binding;
     private String lang;
     private SelectedLocation selectedLocation;
@@ -141,8 +141,8 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
-        binding.setBackListener(this);
-       binding.setLevel2(serviceModel);
+        binding.llBack.setOnClickListener(view -> finish());
+        binding.setLevel2(serviceModel);
         if (lang.equals("ar")) {
             if (serviceModel.getAr_des() != null && !TextUtils.isEmpty(serviceModel.getAr_des())) {
                 binding.tvDetails.setVisibility(View.VISIBLE);
@@ -762,11 +762,6 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
             }
         }
         return position;
-    }
-
-    @Override
-    public void back() {
-        finish();
     }
 
 

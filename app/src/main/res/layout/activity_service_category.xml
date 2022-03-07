@@ -44,12 +44,11 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@drawable/ic_arrow_left"
-                    android:tint="@color/white"
                     android:padding="8dp"
                     android:clickable="false"
                     android:longClickable="false"
                     android:rotation='@{lang.equals("ar")?180:0}'
-                    />
+                    app:tint="@color/white" />
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"

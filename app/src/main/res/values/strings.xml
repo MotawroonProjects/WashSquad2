@@ -126,6 +126,7 @@
     <string name="service_price">Service price</string>
     <string name="service_price2">Service price : </string>
     <string name="payment">Payment</string>
+    <string name="payment2">Payment</string>
     <string name="no_additional_services">No additional services</string>
     <string name="total">Total</string>
     <string name="cache">Cash</string>
@@ -212,6 +213,7 @@
     <string name="each_customer_has_the_right_to_postpone_only_once">Each customer has the right to postpone only once</string>
     <string name="your_wallet_balance_is_not_enough">Your wallet balance is not enough</string>
     <string name="you_can_benefit_from_your_wallet_balance">You can benefit from your wallet balance when your balance reaches 100 riyals or more</string>
+    <string name="edit">Edit</string>
 
 
 </resources>
