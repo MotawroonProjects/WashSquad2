@@ -201,6 +201,9 @@
     <string name="washing_number">رقم الغسله</string>
     <string name="washing_date">تاريخ الغسله</string>
     <string name="washing_status">حالة الغسله</string>
+    <string name="need_change_money">تحتاج فكة نقود؟</string>
+    <string name="your_wallet_balance_is_not_enough">رصيد محفظتك غير كافي</string>
+    <string name="you_can_benefit_from_your_wallet_balance">يمكنك الاستفادة من رصيد محفظتك عند وصول رصيدك 100 ريال فأكثر</string>
     <string name="washing_delay">تاجيل الغسله</string>
     <string name="washing_can_only_be_postponed_once">يمكن تأجيل الغسله مرة واحدة فقط</string>
     <string name="delay">تاجيل</string>

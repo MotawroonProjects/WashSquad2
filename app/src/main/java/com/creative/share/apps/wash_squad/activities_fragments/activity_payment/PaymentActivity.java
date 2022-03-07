@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -114,9 +115,15 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
 //            }
         binding.rb1.setOnClickListener(view ->
         {
-            itemToUpload.setPayment_method(1);
-            binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.cache);
+            binding.flCash.setVisibility(View.VISIBLE);
+            binding.rbNo.setOnClickListener(view1 -> binding.flCash.setVisibility(View.GONE));
+            binding.rbYes.setOnClickListener(view12 -> {
+                itemToUpload.setPayment_method(1);
+                binding.setItemModel(itemToUpload);
+                binding.tvPayment.setText(R.string.cache);
+                binding.flCash.setVisibility(View.GONE);
+            });
+
         });
         binding.rb2.setOnClickListener(view ->
         {
@@ -124,6 +131,12 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.mada);
 
+        });
+        binding.rb4.setOnClickListener(view -> {
+            binding.flMyWallet.setVisibility(View.VISIBLE);
+            itemToUpload.setPayment_method(4);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.my_wallet_balance);
         });
 
         binding.btnSend.setOnClickListener(view -> {
@@ -183,6 +196,7 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
         updateTotalPrice(coupon_value);
 
     }
+
 
     private void updateTotalPrice(double coupon_value)
     {

@@ -200,6 +200,7 @@
     <string name="package_price">Package price</string>
     <string name="request_to_postpone_an_appointment">Request to postpone an appointment</string>
     <string name="washing_details">Washing Details</string>
+    <string name="need_change_money">Need change money?</string>
     <string name="washing_number">washing number</string>
     <string name="washing_date">washing date</string>
     <string name="washing_status">washing status</string>
@@ -209,6 +210,8 @@
     <string name="your_appointment_has_been_successfully_postponed">Your appointment has been successfully postponed</string>
     <string name="you_can_t_postpone">You can\'t postpone</string>
     <string name="each_customer_has_the_right_to_postpone_only_once">Each customer has the right to postpone only once</string>
+    <string name="your_wallet_balance_is_not_enough">Your wallet balance is not enough</string>
+    <string name="you_can_benefit_from_your_wallet_balance">You can benefit from your wallet balance when your balance reaches 100 riyals or more</string>
 
 
 </resources>
