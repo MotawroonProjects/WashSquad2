@@ -181,15 +181,23 @@
     <string name="by_completing_the_order_you_agree_to">بإتمام الطلب أنت توافق على</string>
     <string name="policies_and_terms_of_service">سياسات وشروط الخدمة</string>
     <string name="my_wallet_balance">رصيد محفظتي</string>
-    <string name="my_wallet">My Wallet</string>
-    <string name="subscriptions">Subscriptions</string>
-    <string name="application">Application</string>
-    <string name="help_and_support">Help and support</string>
-    <string name="start_date">Start Date</string>
-    <string name="time_day">Time/Day</string>
-    <string name="residual">Residual</string>
-    <string name="subscription_request">subscription Request</string>
-    <string name="subscription_details">Subscription Details</string>
+    <string name="my_wallet">محفظتى</string>
+    <string name="subscriptions">الاشتراكات</string>
+    <string name="application">التطبيق</string>
+    <string name="help_and_support">المساعدة والدعم</string>
+    <string name="start_date">تاريخ البدايه</string>
+    <string name="time_day">الوقت / اليوم</string>
+    <string name="residual">المتبقى</string>
+    <string name="subscription_request">طلب اشتراك</string>
+    <string name="subscription_details">تفاصيل الاشتراك</string>
+    <string name="profile2">حسابى</string>
+    <string name="share_and_connect_with_us"> شارك وتواصل معنا </string>
+    <string name="use_of_cache">الاستفاده من الكاش</string>
+    <string name="cashback_balance">رصيد الكاش باك</string>
+    <string name="the_wallet_balance_is_not_enough_to_request_the_service">The wallet balance is not enough to request the service</string>
+    <string name="package_price">Package price</string>
+    <string name="request_to_postpone_an_appointment">طلب تاجيل موقع</string>
+    <string name="washing_details">Washing Details</string>
 
 
 </resources>

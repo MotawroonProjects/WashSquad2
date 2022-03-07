@@ -263,6 +263,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_home, "fragment_home").addToBackStack("fragment_home").commit();
 
             }
+            binding.toolbar.setVisibility(View.VISIBLE);
+
         } catch (Exception e) {
         }
 
@@ -293,6 +295,7 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_main, "fragment_main").addToBackStack("fragment_main").commit();
 
             }
+            binding.toolbar.setVisibility(View.VISIBLE);
 
             binding.setTitle(getString(R.string.services));
             binding.imageHelp.setVisibility(View.GONE);
@@ -329,8 +332,9 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_profile, "fragment_profile").addToBackStack("fragment_profile").commit();
 
             }
-            binding.setTitle(getString(R.string.profile));
-            binding.imageHelp.setVisibility(View.VISIBLE);
+            binding.toolbar.setVisibility(View.GONE);
+            //binding.setTitle(getString(R.string.profile));
+           // binding.imageHelp.setVisibility(View.VISIBLE);
             if (fragment_home != null && fragment_home.isAdded()) {
                 fragment_home.updateBottomNavigationPosition(0);
             }
@@ -364,6 +368,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_offer, "fragment_offer").addToBackStack("fragment_offer").commit();
 
             }
+            binding.toolbar.setVisibility(View.VISIBLE);
+
             binding.setTitle(getString(R.string.offer));
             binding.imageHelp.setVisibility(View.GONE);
             if (fragment_home != null && fragment_home.isAdded()) {
@@ -401,6 +407,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_cart, "fragment_cart").addToBackStack("fragment_cart").commit();
 
             }
+            binding.toolbar.setVisibility(View.VISIBLE);
+
             binding.setTitle(getString(R.string.cart));
             binding.imageHelp.setVisibility(View.GONE);
 
@@ -434,6 +442,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_order, "fragment_order").addToBackStack("fragment_order").commit();
 
             }
+            binding.toolbar.setVisibility(View.VISIBLE);
+
             binding.setTitle(getString(R.string.my_order));
             binding.imageHelp.setVisibility(View.GONE);
             if (fragment_home != null && fragment_home.isAdded()) {

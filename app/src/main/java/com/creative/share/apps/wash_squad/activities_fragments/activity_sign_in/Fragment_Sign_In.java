@@ -97,10 +97,12 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         }else if (telephonyManager!=null&&countryPicker.getCountryByISO(telephonyManager.getNetworkCountryIso())!=null)
         {
             updatePhoneCode(countryPicker.getCountryByISO(telephonyManager.getNetworkCountryIso()));
-        }else if (countryPicker.getCountryByLocale(Locale.getDefault())!=null)
-        {
-            updatePhoneCode(countryPicker.getCountryByLocale(Locale.getDefault()));
-        }else
+        }
+//        else if (countryPicker.getCountryByLocale(Locale.getDefault())!=null)
+//        {
+//            updatePhoneCode(countryPicker.getCountryByLocale(Locale.getDefault()));
+//        }
+        else
             {
                 String code = "+966";
                 binding.tvCode.setText(code);

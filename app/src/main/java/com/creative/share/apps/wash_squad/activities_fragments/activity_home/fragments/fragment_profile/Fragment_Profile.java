@@ -31,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion.SubscribtionActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_wallet.WalletActivity;
 import com.creative.share.apps.wash_squad.adapters.MyOrderAdapter;
 import com.creative.share.apps.wash_squad.databinding.DialogSelectImageBinding;
 import com.creative.share.apps.wash_squad.databinding.FragmentProfileBinding;
@@ -99,14 +101,28 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         binding.setShowCountryListener(this);
 
         userModel = preferences.getUserData(activity);
-
+        binding.setUsermodel(userModel);
+        binding.cardSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(activity, SubscribtionActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.cardWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(activity, WalletActivity.class);
+                startActivity(intent);
+            }
+        });
         binding.cardRate.setOnClickListener(view -> {
             String appId = activity.getPackageName();
             Intent rateIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("market://details?id=" + appId));
             boolean marketFound = false;
 
-            final List<ResolveInfo> otherApps =activity. getPackageManager()
+            final List<ResolveInfo> otherApps = activity.getPackageManager()
                     .queryIntentActivities(rateIntent, 0);
             for (ResolveInfo otherApp : otherApps) {
                 if (otherApp.activityInfo.applicationInfo.packageName
@@ -401,7 +417,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         if (edit_profile_model.isDataValid(activity)) {
             editProfile(name);
         } else {
-  //          binding.edtName.setError(getString(R.string.field_req));
+            //          binding.edtName.setError(getString(R.string.field_req));
 
         }
     }
@@ -478,7 +494,6 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
         }
     }
-
 
 
 //    public void refreshOrders() {
