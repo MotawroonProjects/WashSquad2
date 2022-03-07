@@ -275,7 +275,10 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="40dp"
+                                            android:layout_height="30dp"
+                                            android:layout_gravity="center"
+                                            android:background="@color/unselected"
+                                            android:gravity="center"
                                             android:orientation="horizontal">
 
                                             <TextView
@@ -285,8 +288,8 @@
                                                 android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:lines="1"
-                                                android:text="@string/package_price"
-                                                android:textColor="@color/white"
+                                                android:text="@string/washing_number"
+                                                android:textColor="@color/colorPrimary"
                                                 android:textSize="12sp" />
 
                                             <TextView
@@ -296,7 +299,7 @@
                                                 android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:lines="1"
-                                                android:text="@string/start_date"
+                                                android:text="@string/washing_date"
                                                 android:textColor="@color/colorPrimary"
                                                 android:textSize="12sp" />
 
@@ -318,11 +321,16 @@
                                                 android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:lines="1"
-                                                android:text="@string/residual"
+                                                android:text="@string/washing_status"
                                                 android:textColor="@color/colorPrimary"
                                                 android:textSize="12sp" />
                                         </LinearLayout>
 
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recView"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/white" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
                             </LinearLayout>
@@ -357,7 +365,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_trans"
-            android:visibility="gone">
+           >
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -372,51 +380,62 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:minHeight="140dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:id="@+id/imClose"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="16dp"
-                        android:clickable="false"
-                        android:longClickable="false"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_close" />
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="7dp"
-                        android:clickable="false"
-                        android:longClickable="false"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_close2" />
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/msg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:text="@string/the_wallet_balance_is_not_enough_to_request_the_service"
+                        android:text="@string/washing_delay"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="@string/washing_can_only_be_postponed_once"
                         android:textColor="@color/gray3"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
+                        <Button
+                            android:id="@+id/btnIssue"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_send"
+                            android:paddingLeft="40dp"
+                            android:paddingRight="40dp"
+                            android:text="@string/delay"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
 
+                        <Button
+                            android:id="@+id/btNo"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_white_strock_primary"
+                            android:paddingLeft="40dp"
+                            android:paddingRight="40dp"
+                            android:text="@string/cancel"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
                 </LinearLayout>
-
             </androidx.cardview.widget.CardView>
 
 

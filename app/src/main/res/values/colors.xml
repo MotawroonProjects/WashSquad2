@@ -15,6 +15,7 @@
     <color name="gray5">#c3c3c3</color>
     <color name="red">#E73939</color>
     <color name="orange">#FDD835</color>
+    <color name="unselected">#D6B5D5</color>
 
     <color name="transparent">#00000000</color>
     <color name="primary_dark">#5C014B</color>

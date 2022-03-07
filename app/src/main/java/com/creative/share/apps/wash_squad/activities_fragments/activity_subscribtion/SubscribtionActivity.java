@@ -5,13 +5,16 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.adapters.WashAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivitySubscriptionDetialsBinding;
 import com.creative.share.apps.wash_squad.databinding.ActivityWalletBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -41,7 +44,8 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.setBackListener(this);
-
+binding.recView.setLayoutManager(new LinearLayoutManager(this));
+binding.recView.setAdapter(new WashAdapter(new ArrayList<>(),this));
 
     }
 

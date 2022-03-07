@@ -200,6 +200,12 @@
     <string name="package_price">Package price</string>
     <string name="request_to_postpone_an_appointment">Request to postpone an appointment</string>
     <string name="washing_details">Washing Details</string>
+    <string name="washing_number">washing number</string>
+    <string name="washing_date">washing date</string>
+    <string name="washing_status">washing status</string>
+    <string name="washing_delay">washing delay</string>
+    <string name="washing_can_only_be_postponed_once">Washing can only be postponed once</string>
+    <string name="delay">Delay</string>
 
 
 </resources>
