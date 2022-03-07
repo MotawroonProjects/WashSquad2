@@ -3,6 +3,7 @@ package com.creative.share.apps.wash_squad.activities_fragments.activity_payment
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -84,6 +85,7 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
         singleTon = SingleTon.newInstance();
         binding.setItemModel(itemToUpload);
 
+        binding.tvPoliciesAndTerms.setPaintFlags(binding.tvPoliciesAndTerms.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
@@ -96,20 +98,20 @@ public class PaymentActivity extends AppCompatActivity implements Listeners.Back
         binding.tvDate.setText(String.format("%s %s %s",m_date,itemToUpload.getTime(),itemToUpload.getTime_type()));
 
 
-        if (itemToUpload.getSub_services().size()>0)
-        {
-            manager = new LinearLayoutManager(this);
-            adapter = new AdditionalAdapter(itemToUpload.getSub_services(),this);
-            binding.recView.setLayoutManager(manager);
-            binding.recView.setAdapter(adapter);
-
-
-            binding.tvNoAdditionalServices.setVisibility(View.GONE);
-        }else
-            {
-                binding.tvNoAdditionalServices.setVisibility(View.VISIBLE);
-
-            }
+//        if (itemToUpload.getSub_services().size()>0)
+//        {
+//            manager = new LinearLayoutManager(this);
+//            adapter = new AdditionalAdapter(itemToUpload.getSub_services(),this);
+//            binding.recView.setLayoutManager(manager);
+//            binding.recView.setAdapter(adapter);
+//
+//
+//            binding.tvNoAdditionalServices.setVisibility(View.GONE);
+//        }else
+//            {
+//                binding.tvNoAdditionalServices.setVisibility(View.VISIBLE);
+//
+//            }
         binding.rb1.setOnClickListener(view ->
         {
             itemToUpload.setPayment_method(1);

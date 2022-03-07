@@ -21,7 +21,7 @@
 
         <variable
             name="level2"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.ServiceModel" />
         <variable
             name="price"
             type="Double" />
@@ -110,18 +110,21 @@
                         android:layout_marginBottom="5dp"
 
                         >
+
                         <ImageView
                             android:id="@+id/image"
+                            serviceImage="@{level2.image}"
                             android:layout_width="90dp"
                             android:layout_height="90dp"
-                            serviceImage="@{level2.image}"
-                            />
+                            android:layout_gravity="center_vertical"/>
+
                         <TextView
                             android:id="@+id/tvServiceName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
+                            android:layout_gravity="center_vertical"
                             android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             android:text='@{lang.equals("ar")?level2.ar_title:level2.en_title}'
@@ -156,6 +159,7 @@
                         android:text="@string/more_details"
                         android:layout_marginTop="8dp"
                         android:paddingTop="5dp"
+                        android:layout_gravity="end"
                         android:paddingBottom="5dp"
                         />
                 </LinearLayout>
@@ -293,58 +297,58 @@
                     </Spinner>
                 </FrameLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/consMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/expand_bg"
-                    >
-                    <ImageView
-                        android:id="@+id/icon_map"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:src="@drawable/ic_map"
-                        android:padding="8dp"
-                        android:tint="@color/color_second"
-                        android:clickable="false"
-                        android:longClickable="false"
-                        />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/icon_map"
-                        android:textColor="@color/color_second"
-                        android:textSize="13sp"
-                        android:textColorHint="@color/color_second"
-                        android:hint="@string/location_on_map"
-                        android:clickable="false"
-                        android:longClickable="false"
-                        app:layout_constraintEnd_toStartOf="@id/arrow1"
-                        android:text="@{location.address}"
-                        android:singleLine="true"
-                        error="@{itemModel.address_error}"
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/consMap"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="35dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/expand_bg"-->
+<!--                    >-->
+<!--                    <ImageView-->
+<!--                        android:id="@+id/icon_map"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        android:src="@drawable/ic_map"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:tint="@color/color_second"-->
+<!--                        android:clickable="false"-->
+<!--                        android:longClickable="false"-->
+<!--                        />-->
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@id/icon_map"-->
+<!--                        android:textColor="@color/color_second"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textColorHint="@color/color_second"-->
+<!--                        android:hint="@string/location_on_map"-->
+<!--                        android:clickable="false"-->
+<!--                        android:longClickable="false"-->
+<!--                        app:layout_constraintEnd_toStartOf="@id/arrow1"-->
+<!--                        android:text="@{location.address}"-->
+<!--                        android:singleLine="true"-->
+<!--                        error="@{itemModel.address_error}"-->
 
 
 
-                        />
+<!--                        />-->
 
-                    <ImageView
-                        android:id="@+id/arrow1"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/ic_arrow_right"
-                        android:padding="12dp"
-                        android:tint="@color/gray5"
-                        android:rotation='@{lang.equals("ar")?180:0}'
-                        android:clickable="false"
-                        android:longClickable="false"
-                        />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/arrow1"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        android:src="@drawable/ic_arrow_right"-->
+<!--                        android:padding="12dp"-->
+<!--                        android:tint="@color/gray5"-->
+<!--                        android:rotation='@{lang.equals("ar")?180:0}'-->
+<!--                        android:clickable="false"-->
+<!--                        android:longClickable="false"-->
+<!--                        />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/consDate"
                     android:layout_width="match_parent"

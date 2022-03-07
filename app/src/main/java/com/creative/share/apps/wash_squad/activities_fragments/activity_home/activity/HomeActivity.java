@@ -123,17 +123,17 @@ public class HomeActivity extends AppCompatActivity {
 
         });
 
-        binding.imageCart.setOnClickListener(view -> DisplayFragmentCart());
-
-        binding.imageLogout.setOnClickListener(view -> {
-            if (userModel != null) {
-                //logout();
-                DeleteTokenFireBase();
-            } else {
-                navigateToSinInActivity();
-            }
-
-        });
+//        binding.imageCart.setOnClickListener(view -> DisplayFragmentCart());
+//
+//        binding.imageLogout.setOnClickListener(view -> {
+//            if (userModel != null) {
+//                //logout();
+//                DeleteTokenFireBase();
+//            } else {
+//                navigateToSinInActivity();
+//            }
+//
+//        });
 
     }
 
@@ -211,14 +211,14 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         int cart_count = singleTon.getItemsCount();
-        updateCount(cart_count);
+//        updateCount(cart_count);
     }
 
-    public void updateCount(int cart_count) {
-        if (fragment_home != null && fragment_home.isAdded()) {
-            binding.tvCartCount.setText(String.valueOf(cart_count));
-        }
-    }
+//    public void updateCount(int cart_count) {
+//        if (fragment_home != null && fragment_home.isAdded()) {
+//            binding.tvCartCount.setText(String.valueOf(cart_count));
+//        }
+//    }
 
     private void updateVisit(String now, long time) {
         /*Api.getService(Tags.base_url)

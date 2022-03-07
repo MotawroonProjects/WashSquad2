@@ -11,7 +11,9 @@
     <string name="do_you_have_a_new_account">Do you have a new account?</string>
     <string name="create_an_account">Create a new account</string>
     <string name="user_name">Name</string>
+    <string name="name">Name : </string>
     <string name="phone">Phone Number</string>
+    <string name="phone2">Phone Number : </string>
     <string name="you_already_have_an_account_log_in">You already have an account! log in</string>
     <string name="home">Home</string>
     <string name="notifications">Notifications</string>
@@ -58,7 +60,7 @@
     <string name="subject">Subject</string>
     <string name="message">Message</string>
     <string name="inv_now">Invalid now</string>
-    <string name="forget_password">Forget Password</string>
+    <string name="forget_password">Forget Password?</string>
     <string name="recov_msg">Recover your account.We will send you a link to change your password</string>
     <string name="enter_code">Enter code</string>
     <string name="we_ll_never_share_or_sell_your_phone_number_your_privacy_is_100_guaranteed">We\'ll never share or sell your phone number your privacy is 100% guaranteed.</string>
@@ -119,8 +121,10 @@
     <string name="am">Am</string>
     <string name="pm">Pm</string>
     <string name="car_type">Car type</string>
+    <string name="car_type2">Car type : </string>
     <string name="service_type">Service type</string>
     <string name="service_price">Service price</string>
+    <string name="service_price2">Service price : </string>
     <string name="payment">Payment</string>
     <string name="no_additional_services">No additional services</string>
     <string name="total">Total</string>
@@ -146,7 +150,7 @@
     <string name="start_app">Start App</string>
     <string name="num_exceed">The maximum number of requests for the selected service has been exceeded</string>
     <string name="next">Next</string>
-    <string name="Start">start</string>
+    <string name="Start">Start</string>
     <string name="sign_in_to_be_able_to_view_orders">Sign In To Be Able To View Orders</string>
     <string name="sign_in_to_view_profile">Sign In To View Profile</string>
     <string name="current">Current</string>
@@ -175,6 +179,19 @@
     <string name="residual">Residual</string>
     <string name="subscription_request">subscription Request</string>
     <string name="subscription_details">Subscription Details</string>
+    <string name="renew_it_with_wash_squad">Renew it with Wash Squad</string>
+    <string name="steam_car_wash_mobile_service">Steam car wash mobile service</string>
+    <string name="quick_order">Quick order</string>
+    <string name="the_quick_order">The Quick order</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="a_copy_of_the_invoice">A copy of the invoice</string>
+    <string name="tax_value">Tax value</string>
+    <string name="visa">Visa</string>
+    <string name="add_another_vehicle">Add another vehicle</string>
+    <string name="by_completing_the_order_you_agree_to">By completing the order, you agree to</string>
+    <string name="policies_and_terms_of_service">Policies and Terms of Service</string>
+    <string name="my_wallet_balance">My wallet balance</string>
 
 
 </resources>

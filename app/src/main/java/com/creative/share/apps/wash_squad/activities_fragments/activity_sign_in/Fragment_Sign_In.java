@@ -41,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Sign_In extends Fragment implements Listeners.LoginListener,Listeners.CreateAccountListener, Listeners.ShowCountryDialogListener,Listeners.SkipListener, OnCountryPickerListener, Listeners.ForgetListner {
+public class Fragment_Sign_In extends Fragment implements Listeners.LoginListener,Listeners.CreateAccountListener, Listeners.ShowCountryDialogListener, OnCountryPickerListener, Listeners.ForgetListner {
     private FragmentSignInBinding binding;
     private SignInActivity activity;
     private String lang;
@@ -72,7 +72,6 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         binding.setLoginModel(loginModel);
         binding.setCreateAccountListener(this);
         binding.setLoginListener(this);
-        binding.setSkipListener(this);
         binding.setForgetlistener(this);
         binding.setShowCountryListener(this);
         createCountryDialog();
@@ -127,17 +126,6 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         {
             login(phone_code,phone,password);
         }
-    }
-
-
-    @Override
-    public void skip() {
-        binding.tvSkip.setEnabled(false);
-        Intent intent = new Intent(activity, HomeActivity.class);
-        startActivity(intent);
-        activity.finish();
-
-
     }
 
     @Override

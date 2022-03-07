@@ -3,6 +3,7 @@ package com.creative.share.apps.wash_squad.activities_fragments.activity_service
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -57,7 +58,7 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
     private ActivityServiceDetailsBinding binding;
     private String lang;
     private SelectedLocation selectedLocation;
-    private ServiceDataModel.Level2 serviceModel;
+    private ServiceDataModel.ServiceModel serviceModel;
     private long date = 0;
     private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
     private List<CarTypeDataModel.CarTypeModel> carTypeModelList;
@@ -102,7 +103,7 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            serviceModel = (ServiceDataModel.Level2) intent.getSerializableExtra("data");
+            serviceModel = (ServiceDataModel.ServiceModel) intent.getSerializableExtra("data");
             service_id = intent.getIntExtra("service_id", 0);
             service_name_ar = intent.getStringExtra("service_name_ar");
             service_name_en = intent.getStringExtra("service_name_en");
@@ -124,13 +125,14 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
         itemToUpload.setService_id(service_id);
         itemToUpload.setAr_service_type(service_name_ar);
         itemToUpload.setEn_service_type(service_name_en);
-        itemToUpload.setLevel2(serviceModel);
+       // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
         itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         carSizeModelList = new ArrayList<>();
         carTypeModelList = new ArrayList<>();
         carTypeModelList.add(new CarTypeDataModel.CarTypeModel("نوع السيارة", "Car type"));
+        binding.tvDetails.setPaintFlags(binding.tvDetails.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         carBrandAdapter = new CarBrandAdapter(this, carBrandModelList);
         binding.spinnerBrand.setAdapter(carBrandAdapter);
@@ -140,7 +142,7 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.setBackListener(this);
-        binding.setLevel2(serviceModel);
+       binding.setLevel2(serviceModel);
         if (lang.equals("ar")) {
             if (serviceModel.getAr_des() != null && !TextUtils.isEmpty(serviceModel.getAr_des())) {
                 binding.tvDetails.setVisibility(View.VISIBLE);
@@ -291,21 +293,21 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
 
         manager2 = new LinearLayoutManager(this);
         binding.recViewService.setLayoutManager(manager2);
+//
+//        if (serviceModel.getLevel3().size() > 0) {
+//            binding.llAdditional.setVisibility(View.VISIBLE);
+//            additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel3(), this);
+//            binding.recViewService.setAdapter(additionalServiceAdapter);
+//
+//        } else {
+//            binding.llAdditional.setVisibility(View.GONE);
+//        }
 
-        if (serviceModel.getLevel3().size() > 0) {
-            binding.llAdditional.setVisibility(View.VISIBLE);
-            additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel3(), this);
-            binding.recViewService.setAdapter(additionalServiceAdapter);
 
-        } else {
-            binding.llAdditional.setVisibility(View.GONE);
-        }
-
-
-        binding.consMap.setOnClickListener(view -> {
-            Intent intent = new Intent(ServiceDetailsActivity.this, MapActivity.class);
-            startActivityForResult(intent, 1);
-        });
+//        binding.consMap.setOnClickListener(view -> {
+//            Intent intent = new Intent(ServiceDetailsActivity.this, MapActivity.class);
+//            startActivityForResult(intent, 1);
+//        });
         binding.consDate.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, CalendarActivity.class);
@@ -345,21 +347,24 @@ public class ServiceDetailsActivity extends AppCompatActivity implements Listene
         });
 
         binding.btnSendOrder.setOnClickListener(view -> {
-            if (itemToUpload.isDataValidStep1(this)) {
-                if (userModel != null) {
-                    itemToUpload.setUser_id(userModel.getId());
-                    itemToUpload.setUser_name(userModel.getFull_name());
-                    itemToUpload.setUser_phone(userModel.getPhone());
-                    itemToUpload.setTotal_price(final_total);
-                    Intent intent = new Intent(this, PaymentActivity.class);
-                    intent.putExtra("item", itemToUpload);
-                    startActivityForResult(intent, 4);
-                } else {
-                    Common.CreateNoSignAlertDialog(this);
-                }
-
-
-            }
+//            if (itemToUpload.isDataValidStep1(this)) {
+//                if (userModel != null) {
+//                    itemToUpload.setUser_id(userModel.getId());
+//                    itemToUpload.setUser_name(userModel.getFull_name());
+//                    itemToUpload.setUser_phone(userModel.getPhone());
+//                    itemToUpload.setTotal_price(final_total);
+//                    Intent intent = new Intent(this, PaymentActivity.class);
+//                    intent.putExtra("item", itemToUpload);
+//                    startActivityForResult(intent, 4);
+//                } else {
+//                    Common.CreateNoSignAlertDialog(this);
+//                }
+//
+//
+//            }
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra("item", itemToUpload);
+            startActivityForResult(intent, 4);
         });
 
         binding.imageIncrease.setOnClickListener(view -> {

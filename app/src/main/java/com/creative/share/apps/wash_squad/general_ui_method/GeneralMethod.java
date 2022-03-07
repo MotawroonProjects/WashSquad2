@@ -48,26 +48,26 @@ public class GeneralMethod {
     public static void serviceImage(ImageView imageView,String endPoint)
     {
         Log.e("path",Tags.IMAGE_URL+endPoint);
-        Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
+        Picasso.get().load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
     }
 
     @BindingAdapter("profileImage")
     public static void profileImage(CircleImageView imageView, String endPoint)
     {
-        Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).placeholder(R.drawable.user_profile).fit().into(imageView);
+        Picasso.get().load(Uri.parse(Tags.IMAGE_URL+endPoint)).placeholder(R.drawable.user_profile).fit().into(imageView);
     }
 
     @BindingAdapter("offerImage")
     public static void offerImage(RoundedImageView imageView, String endPoint)
     {
-        Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
+        Picasso.get().load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
     }
 
 
     @BindingAdapter("couponImage")
     public static void couponImage(RoundedImageView imageView, String endPoint)
     {
-        Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
+        Picasso.get().load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
     }
 
 

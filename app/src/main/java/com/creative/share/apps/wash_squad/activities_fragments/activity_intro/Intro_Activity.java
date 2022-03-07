@@ -28,6 +28,7 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_login_option.LoginOptionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_sign_in.SignInActivity;
 import com.creative.share.apps.wash_squad.databinding.ActivityIntroBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
@@ -82,7 +83,7 @@ public class Intro_Activity extends AppCompatActivity {
                         }
                     } else {
                         preferences.create_first_time(Intro_Activity.this, false);
-                        Intent i = new Intent(Intro_Activity.this, SignInActivity.class);
+                        Intent i = new Intent(Intro_Activity.this, LoginOptionActivity.class);
                         startActivity(i);
                         finish();
                     }
@@ -119,7 +120,7 @@ public class Intro_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     preferences.create_first_time(Intro_Activity.this, false);
-                    Intent i = new Intent(Intro_Activity.this, SignInActivity.class);
+                    Intent i = new Intent(Intro_Activity.this, LoginOptionActivity.class);
                     startActivity(i);
                     finish();
                 }
@@ -146,7 +147,7 @@ public class Intro_Activity extends AppCompatActivity {
                 view = layoutInflater.inflate(layouts[position], container, false);
                 ImageView imageView = view.findViewById(R.id.item_image);
                 //    Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+intro_activity.getPackageName()+"/drawable/" + getResources().getDrawable(image[position]));
-                Picasso.with(intro_activity).load(images[position]).placeholder(R.drawable.slider1).fit().memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                Picasso.get().load(images[position]).placeholder(R.drawable.slider1).fit().memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
                 container.addView(view);
 
 

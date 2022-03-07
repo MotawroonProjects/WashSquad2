@@ -95,7 +95,6 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image"
-                        user_image="@{usermodel.logo}"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
 

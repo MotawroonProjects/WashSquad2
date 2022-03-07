@@ -106,7 +106,7 @@ public class Fragment_Cart extends Fragment {
                             {
                                 itemToUploadList.remove(adapterPosition);
                                 adapter.notifyDataSetChanged();
-                                activity.updateCount(itemToUploadList.size());
+//                                activity.updateCount(itemToUploadList.size());
                                 if (itemToUploadList.size()==0)
                                 {
                                     binding.btnOtherOrder.setVisibility(View.GONE);

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.adapters.MainServiceAdapter;
 import com.creative.share.apps.wash_squad.databinding.FragmentMainBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
@@ -145,8 +146,9 @@ public class Fragment_Main extends Fragment {
 
 
     public void setItemData(ServiceDataModel.ServiceModel serviceModel) {
-        Intent intent = new Intent(activity, ServiceCategoryActivity.class);
+        Intent intent = new Intent(activity, ServiceDetailsActivity.class);
         intent.putExtra("data",serviceModel);
+
         startActivityForResult(intent,1000);
 
     }

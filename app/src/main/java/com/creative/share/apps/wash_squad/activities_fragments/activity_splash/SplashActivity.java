@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_intro.Intro_Activity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_login_option.LoginOptionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_sign_in.SignInActivity;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
@@ -61,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
                         startActivity(i);
 
                     } else {
-                        Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
+                        Intent intent = new Intent(SplashActivity.this, LoginOptionActivity.class);
                         startActivity(intent);
                     }
                     finish();
