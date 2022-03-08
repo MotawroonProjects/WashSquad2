@@ -24,6 +24,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity
+            android:name=".activities_fragments.activity_choose_service.ChooseServiceSentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_quick_order.QuickOrderActivity"
             android:exported="false" />
         <activity
@@ -97,8 +100,8 @@
         <activity
             android:name=".activities_fragments.activity_splash.SplashActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

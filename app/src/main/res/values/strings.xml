@@ -214,6 +214,7 @@
     <string name="your_wallet_balance_is_not_enough">Your wallet balance is not enough</string>
     <string name="you_can_benefit_from_your_wallet_balance">You can benefit from your wallet balance when your balance reaches 100 riyals or more</string>
     <string name="edit">Edit</string>
+    <string name="add_request_to_waiting_list">Add request to waiting list</string>
 
 
 </resources>

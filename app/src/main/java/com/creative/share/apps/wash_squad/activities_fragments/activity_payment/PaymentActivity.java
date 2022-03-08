@@ -129,13 +129,6 @@ public class PaymentActivity extends AppCompatActivity {
             });
 
         });
-        binding.rb2.setOnClickListener(view ->
-        {
-            itemToUpload.setPayment_method(2);
-            binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.mada);
-
-        });
         binding.rb4.setOnClickListener(view -> {
             binding.flMyWallet.setVisibility(View.VISIBLE);
             itemToUpload.setPayment_method(4);

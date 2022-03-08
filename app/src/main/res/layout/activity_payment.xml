@@ -53,14 +53,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/edit"
-                        android:textSize="16sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/payment2"
@@ -406,14 +407,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:gravity="end"
                         android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:padding="3dp"
-                            android:src="@drawable/ic_pdf" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -424,6 +419,14 @@
                             android:text="@string/a_copy_of_the_invoice"
                             android:textColor="@color/colorPrimary"
                             android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_pdf" />
+
+
                     </LinearLayout>
 
                     <!--                <androidx.cardview.widget.CardView-->
@@ -568,18 +571,6 @@
                                         android:paddingLeft="8dp"
                                         android:paddingRight="8dp"
                                         android:text="@string/cache"
-                                        android:textColor="@color/gray5"
-                                        android:textSize="15sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/rb2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:button="@drawable/rb_bg4"
-                                        android:paddingLeft="8dp"
-                                        android:paddingRight="8dp"
-                                        android:text="@string/mada"
                                         android:textColor="@color/gray5"
                                         android:textSize="15sp" />
 
@@ -1084,6 +1075,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_trans"
+            android:clickable="true"
+            android:longClickable="true"
+            android:focusable="true"
             android:visibility="gone">
 
             <androidx.cardview.widget.CardView

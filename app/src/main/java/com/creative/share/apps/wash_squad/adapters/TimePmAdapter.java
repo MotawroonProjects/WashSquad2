@@ -42,33 +42,33 @@ public class TimePmAdapter extends RecyclerView.Adapter<TimePmAdapter.MyHolder> 
 
         TimeDataModel.TimeModel timeModel = timeModelList.get(position);
         holder.timeRowBinding.setTime(timeModel);
-        if (selected_pos==position)
-        {
-            holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg2);
-            holder.timeRowBinding.rb.setChecked(true);
-            holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));
-
-
-        }else
-        {
-
-            if (timeModel.getStatus_en().equals("active"))
-            {
-                holder.timeRowBinding.rb.setChecked(false);
-                holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.gray5));
-                holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg2);
-
-
-            }else
-            {
-                holder.timeRowBinding.rb.setChecked(false);
-                holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.gray3));
-                holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg3);
-            }
-
-
-
-        }
+//        if (selected_pos==position)
+//        {
+//            holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg2);
+//            holder.timeRowBinding.rb.setChecked(true);
+//            holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));
+//
+//
+//        }else
+//        {
+//
+//            if (timeModel.getStatus_en().equals("active"))
+//            {
+//                holder.timeRowBinding.rb.setChecked(false);
+//                holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.gray5));
+//                holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg2);
+//
+//
+//            }else
+//            {
+//                holder.timeRowBinding.rb.setChecked(false);
+//                holder.timeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.gray3));
+//                holder.timeRowBinding.rb.setButtonDrawable(R.drawable.rb_bg3);
+//            }
+//
+//
+//
+//        }
 
 
         holder.itemView.setOnClickListener(view -> {

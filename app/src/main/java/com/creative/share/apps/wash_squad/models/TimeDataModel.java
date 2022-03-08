@@ -17,7 +17,15 @@ public class TimeDataModel implements Serializable {
         private String time_text;
         private String type;
         private String status_en;
+        private boolean isSelected = false;
 
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
 
         public int getId() {
             return id;

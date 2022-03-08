@@ -212,6 +212,7 @@
     <string name="you_can_t_postpone">لا يمكنك التاجيل</string>
     <string name="each_customer_has_the_right_to_postpone_only_once">لكل عميل حق التاجيل مره واحده فقط</string>
     <string name="edit">تعديل</string>
+    <string name="add_request_to_waiting_list">إضافة الطلب الى قائمة الانتظار</string>
 
 
 </resources>

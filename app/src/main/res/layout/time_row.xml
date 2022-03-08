@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="time"
             type="com.creative.share.apps.wash_squad.models.TimeDataModel.TimeModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center"
-        >
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray5"
-            android:textSize="13sp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@{time.time_text}"
-            />
-        <RadioButton
-            android:id="@+id/rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/rb_bg2"
-            android:clickable="false"
-            android:longClickable="false"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:background='@{time.selected?@drawable/btn_bg:@drawable/select_time}'
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text='@{time.time_text+time.type}'
+                android:textSize="14sp"
+                android:textColor='@{time.selected?@color/white:@color/black}'/>
 
-            />
+        </LinearLayout>
 
-    </LinearLayout>
 </layout>
