@@ -89,7 +89,7 @@ public class GeneralMethod {
     @BindingAdapter({"orderDate"})
     public static void displayOrderDate (TextView textView,long orderDate)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy",Locale.ENGLISH);
         String m_date = dateFormat.format(new Date(orderDate*1000));
         textView.setText(m_date);
 
@@ -106,7 +106,18 @@ public class GeneralMethod {
         builder.start();
     }
 
+    @BindingAdapter({"startTime2","date2"})
+    public static void displayTime2(TextView textView, long start_time,long date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String sTime = dateFormat.format(new Date(start_time * 1000));
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyy", Locale.getDefault());
+        String d = dateFormat1.format(new Date(date * 1000));
+        //   SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
 
+        //  String eTime = dateFormat2.format(new Date(Long.parseLong(end_time)*1000));
+
+        textView.setText(d+" "+sTime);
+    }
     @BindingAdapter({"startTime","date"})
     public static void displayTime(TextView textView, long start_time,long date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
@@ -120,7 +131,22 @@ public class GeneralMethod {
         textView.setText(d+"\n"+sTime);
     }
 
+    @BindingAdapter({"startTime","timechose","type"})
+    public static void displayTime(TextView textView, long start_time,String timechose,String type) {
 
+        if (start_time == 0) {
+            textView.setText(timechose + " " + type);
 
+        } else {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
+            String sTime = dateFormat.format(new Date(start_time * 1000));
+
+            //   SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
+
+            //  String eTime = dateFormat2.format(new Date(Long.parseLong(end_time)*1000));
+
+            textView.setText(sTime);
+        }
+    }
 
 }

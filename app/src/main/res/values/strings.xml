@@ -158,7 +158,7 @@
     <string name="prevoius">previous</string>
     <string name="coupons">Coupons</string>
     <string name="no_coupons_to_show">No coupons to show</string>
-    <string name="order_num">Order-num #</string>
+    <string name="order_num">Order-num </string>
     <string name="sent">sent</string>
     <string name="in_location">In Location</string>
     <string name="in_way">In Way</string>
@@ -215,6 +215,12 @@
     <string name="you_can_benefit_from_your_wallet_balance">You can benefit from your wallet balance when your balance reaches 100 riyals or more</string>
     <string name="edit">Edit</string>
     <string name="add_request_to_waiting_list">Add request to waiting list</string>
+    <string name="date_time">Date/Time</string>
+    <string name="tax">Tax:</string>
+    <string name="total2">Total:</string>
+    <string name="addition">Addition</string>
+    <string name="language">Language</string>
+    <string name="change_password2">Change Password ?</string>
 
 
 </resources>

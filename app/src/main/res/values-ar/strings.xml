@@ -156,7 +156,7 @@
     <string name="prevoius">السابقة</string>
     <string name="coupons">الكوبون</string>
     <string name="no_coupons_to_show">لا توجد كوبونات لعرضها</string>
-    <string name="order_num">رقم الطلب #</string>
+    <string name="order_num">رقم الطلب </string>
     <string name="sent">تم الإرسال</string>
     <string name="in_location">في موقعك</string>
     <string name="in_way">الفريق قادم</string>
@@ -211,6 +211,12 @@
     <string name="your_appointment_has_been_successfully_postponed">تم تاجيل موعدك بنجاح</string>
     <string name="you_can_t_postpone">لا يمكنك التاجيل</string>
     <string name="each_customer_has_the_right_to_postpone_only_once">لكل عميل حق التاجيل مره واحده فقط</string>
+    <string name="date_time">تاريخ/وقت</string>
+    <string name="tax">الضريبه:</string>
+    <string name="total2">المجموع:</string>
+    <string name="addition">الإضافات</string>
+    <string name="language">اللغه</string>
+    <string name="change_password2">تغيير كلمة المرور ؟ </string>
     <string name="edit">تعديل</string>
     <string name="add_request_to_waiting_list">إضافة الطلب الى قائمة الانتظار</string>
 

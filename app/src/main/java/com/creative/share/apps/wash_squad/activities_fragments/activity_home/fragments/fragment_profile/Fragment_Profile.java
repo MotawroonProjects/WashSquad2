@@ -1,5 +1,7 @@
 package com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_profile;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_help.HelpActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion.SubscribtionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_wallet.WalletActivity;
@@ -102,6 +106,11 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
         userModel = preferences.getUserData(activity);
         binding.setUsermodel(userModel);
+        binding.imageHelp.setOnClickListener(view -> {
+            Intent intent = new Intent(activity, HelpActivity.class);
+            startActivityForResult(intent, 11);
+
+        });
         binding.cardSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -280,7 +289,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMG_REQ2 && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == IMG_REQ2 && resultCode == RESULT_OK && data != null) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 
@@ -289,7 +298,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             // edit_profile_model.editImageProfile(userModel.getUser().getId(),imgUri1.toString());
             editImageProfile(userModel.getId(), userModel.getFull_name(), imgUri1.toString());
 
-        } else if (requestCode == IMG_REQ1 && resultCode == Activity.RESULT_OK && data != null) {
+        } else if (requestCode == IMG_REQ1 && resultCode == RESULT_OK && data != null) {
 
             imgUri1 = data.getData();
             editImageProfile(userModel.getId(), userModel.getFull_name(), imgUri1.toString());
@@ -551,4 +560,5 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 //
 //        }
 //    }
+
 }

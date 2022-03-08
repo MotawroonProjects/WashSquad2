@@ -69,20 +69,18 @@ public class MyOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             if (fragment instanceof Fragment_Current_Order)
             {
-                myHolder.binding.btnDetails.setVisibility(View.VISIBLE);
-                myHolder.binding.btnResend.setVisibility(View.GONE);
 
-                myHolder.binding.btnDetails.setOnClickListener(v -> {
+
+                myHolder.binding.btnDetials.setOnClickListener(v -> {
                     Fragment_Current_Order fragment_current_order = (Fragment_Current_Order) fragment;
                     fragment_current_order.setItemData(orderModelList.get(holder.getAdapterPosition()));
                 });
 
             }else if (fragment instanceof Fragment_Previous_Order)
             {
-                myHolder.binding.btnDetails.setVisibility(View.VISIBLE);
-                myHolder.binding.btnResend.setVisibility(View.GONE);
 
-                myHolder.binding.btnDetails.setOnClickListener(v -> {
+
+                myHolder.binding.btnDetials.setOnClickListener(v -> {
                     Fragment_Previous_Order fragment_previous_order = (Fragment_Previous_Order) fragment;
                     fragment_previous_order.setItemData(orderModelList.get(holder.getAdapterPosition()));
                 });
@@ -95,19 +93,19 @@ public class MyOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 });*/
             }
-/*
-        eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notifyDataSetChanged();
-                if (orderModelList.get(eventHolder.getLayoutPosition()).getRating() > 0&& orderModelList.get(eventHolder.getLayoutPosition()).getStatus()!=3) {
-                    activity.DisplayFragmentOrderDetials(orderModelList.get(eventHolder.getLayoutPosition()));
-                } else {
-                    activity.DisplayFragmentOrderDetialsEvaluation(orderModelList.get(eventHolder.getLayoutPosition()));
-                }
-            }
-        });
-*/
+///*
+//        ((MyHolder) holder).binding.btnDetials.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                notifyDataSetChanged();
+//                if (orderModelList.get(holder.getLayoutPosition()).getRating() > 0&& orderModelList.get(holder.getLayoutPosition()).getStatus()!=3) {
+//                    activity.DisplayFragmentOrderDetials(orderModelList.get(eventHolder.getLayoutPosition()));
+//                } else {
+//                    activity.DisplayFragmentOrderDetialsEvaluation(orderModelList.get(eventHolder.getLayoutPosition()));
+//                }
+//            }
+//        });
+
 
 
         } else {

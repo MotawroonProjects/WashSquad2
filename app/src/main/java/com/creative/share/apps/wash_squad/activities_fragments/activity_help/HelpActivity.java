@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -47,21 +48,39 @@ public class HelpActivity extends AppCompatActivity implements Listeners.BackLis
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.setBackListener(this);
-        binding.btnLang.setOnClickListener(view -> CreateLangDialog());
-        binding.btnQuestions.setOnClickListener(view -> {
-            Intent intent = new Intent(this, QuestionsActivity.class);
-            startActivity(intent);
+        binding.llLanguage.setOnClickListener(view -> CreateLangDialog());
+        binding.llLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.flLogout.setVisibility(View.VISIBLE);
+            }
         });
+        binding.btYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.flLogout.setVisibility(View.GONE);
+            }
+        });
+        binding.btNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.flLogout.setVisibility(View.GONE);
+            }
+        });
+//        binding.btnQuestions.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, QuestionsActivity.class);
+//            startActivity(intent);
+//        });
 
-        binding.btnTerms.setOnClickListener(view -> {
+        binding.llTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
         });
 
-        binding.btnContact.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ContactUsActivity.class);
-            startActivity(intent);
-        });
+//        binding.btnContact.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, ContactUsActivity.class);
+//            startActivity(intent);
+//        });
 
 
     }
@@ -85,10 +104,9 @@ public class HelpActivity extends AppCompatActivity implements Listeners.BackLis
         binding.rbAr.setOnClickListener(view -> {
             dialog.dismiss();
             Intent intent = getIntent();
-            if (intent!=null)
-            {
-                intent.putExtra("lang","ar");
-                setResult(RESULT_OK,intent);
+            if (intent != null) {
+                intent.putExtra("lang", "ar");
+                setResult(RESULT_OK, intent);
             }
             finish();
 
@@ -96,10 +114,9 @@ public class HelpActivity extends AppCompatActivity implements Listeners.BackLis
         binding.rbEn.setOnClickListener(view -> {
             dialog.dismiss();
             Intent intent = getIntent();
-            if (intent!=null)
-            {
-                intent.putExtra("lang","en");
-                setResult(RESULT_OK,intent);
+            if (intent != null) {
+                intent.putExtra("lang", "en");
+                setResult(RESULT_OK, intent);
             }
             finish();
 

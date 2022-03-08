@@ -1,182 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
     >
 
     <data>
+
         <variable
             name="model"
             type="com.creative.share.apps.wash_squad.models.Order_Data_Model.OrderModel" />
+
         <variable
             name="lang"
             type="String" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="3dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
-        app:contentPadding="10dp"
-        >
-        <LinearLayout
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/fl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-
-                >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:text='@{@string/order_num +" "+model.id}'
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    />
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray4"
-                    android:textSize="13sp"
-                    android:gravity="center"
-                    orderDate="@{model.order_date}"
-
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:text='@{model.total_price+" "+@string/sar}'
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:layout_marginTop="10dp"
-
-                >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1.5"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:text='@{@string/car_type+": "+(lang.equals("ar")?model.carType__ar_title:model.carType_en_title)}'
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    />
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1.5"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray4"
-                    android:textSize="13sp"
-                    android:text='@{@string/service_type+": "+(lang.equals("ar")?model.service_ar_title:model.service_en_title)}'
-                    android:gravity="start"
-
-                    />
-
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_white_strock_primary"
+            android:paddingLeft="7dp"
+            android:paddingTop="16dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
-                <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/car2"
+                android:layout_height="wrap_content">
 
-                    />
-
-                <FrameLayout
+                <LinearLayout
+                    android:id="@+id/ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/car2"
+                        tools:ignore="RtlCompat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ll"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    >
-                    <Button
-                        android:id="@+id/btnDetails"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/btn_discount"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="@string/details"
-                        android:textAllCaps="false"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text='@{@string/service_type+":"+( lang.equals("ar")?model.service_ar_title:model.service_en_title)}'
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
                     <LinearLayout
-                        android:id="@+id/btnResend"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/btn_discount"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:visibility="gone"
-                        >
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_resend"
-                            android:tint="@color/white"
-                            android:padding="3dp"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textColor="@color/white"
-                            android:text="@string/resend"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            />
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text='@{@string/order_num +" : "+model.id}'
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            startTime="@{model.start_time_work}"
+                            timechose="@{model.work_time_choosen}"
+                            type='@{lang.equals("ar")?model.work_time_ar_title:model.work_time_en_title}'
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:textColor="@color/gray3"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            orderDate="@{model.order_date}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:layout_weight="1"
+                            android:textColor="@color/gray3"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text='@{model.total_price+" "+@string/sar}'
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"/>
                     </LinearLayout>
-                </FrameLayout>
-
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnDetials"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/btn_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/details"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fl"
+            app:layout_constraintEnd_toEndOf="@+id/fl"
+            app:layout_constraintTop_toBottomOf="@+id/fl" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:layout_marginTop="2dp"-->
+    <!--        android:layout_marginBottom="3dp"-->
+    <!--        app:cardBackgroundColor="@color/white"-->
+    <!--        app:cardCornerRadius="5dp"-->
+    <!--        app:cardElevation="3dp"-->
+    <!--        app:contentPadding="10dp"-->
+    <!--        >-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:orientation="vertical"-->
+    <!--            >-->
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:weightSum="3"-->
+
+    <!--                >-->
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:textColor="@color/colorPrimary"-->
+    <!--                    android:textSize="15sp"-->
+    <!--                    android:text='@{@string/order_num +" "+model.id}'-->
+    <!--                    android:gravity="start"-->
+    <!--                    android:textAlignment="textStart"-->
+    <!--                    />-->
+
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:textColor="@color/gray4"-->
+    <!--                    android:textSize="13sp"-->
+    <!--                    android:gravity="center"-->
+    <!--                    orderDate="@{model.order_date}"-->
+
+    <!--                    />-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:textColor="@color/colorPrimary"-->
+    <!--                    android:textSize="15sp"-->
+    <!--                    android:text='@{model.total_price+" "+@string/sar}'-->
+    <!--                    android:gravity="start"-->
+    <!--                    android:textAlignment="textStart"-->
+    <!--                    />-->
+    <!--            </LinearLayout>-->
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:weightSum="3"-->
+    <!--                android:layout_marginTop="10dp"-->
+
+    <!--                >-->
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_weight="1.5"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:textColor="@color/colorPrimary"-->
+    <!--                    android:textSize="15sp"-->
+    <!--                    android:text='@{@string/car_type+": "+(lang.equals("ar")?model.carType__ar_title:model.carType_en_title)}'-->
+    <!--                    android:gravity="start"-->
+    <!--                    android:textAlignment="textStart"-->
+    <!--                    />-->
+
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_weight="1.5"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:textColor="@color/gray4"-->
+    <!--                    android:textSize="13sp"-->
+    <!--                    android:text='@{@string/service_type+": "+(lang.equals("ar")?model.service_ar_title:model.service_en_title)}'-->
+    <!--                    android:gravity="start"-->
+
+    <!--                    />-->
+
+
+    <!--            </LinearLayout>-->
+
+    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                >-->
+    <!--                <ImageView-->
+    <!--                    android:layout_width="65dp"-->
+    <!--                    android:layout_height="65dp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent"-->
+    <!--                    android:src="@drawable/car2"-->
+
+    <!--                    />-->
+
+    <!--                <FrameLayout-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+
+    <!--                    >-->
+    <!--                    <Button-->
+    <!--                        android:id="@+id/btnDetails"-->
+    <!--                        android:layout_width="150dp"-->
+    <!--                        android:layout_height="30dp"-->
+    <!--                        android:background="@drawable/btn_discount"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="15sp"-->
+    <!--                        android:text="@string/details"-->
+    <!--                        android:textAllCaps="false"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:visibility="gone"-->
+    <!--                        />-->
+    <!--                    <LinearLayout-->
+    <!--                        android:id="@+id/btnResend"-->
+    <!--                        android:layout_width="150dp"-->
+    <!--                        android:layout_height="30dp"-->
+    <!--                        android:orientation="horizontal"-->
+    <!--                        android:background="@drawable/btn_discount"-->
+    <!--                        android:paddingLeft="20dp"-->
+    <!--                        android:paddingRight="20dp"-->
+    <!--                        android:visibility="gone"-->
+    <!--                        >-->
+    <!--                        <ImageView-->
+    <!--                            android:layout_width="25dp"-->
+    <!--                            android:layout_height="25dp"-->
+    <!--                            android:layout_gravity="center_vertical"-->
+    <!--                            android:src="@drawable/ic_resend"-->
+    <!--                            android:tint="@color/white"-->
+    <!--                            android:padding="3dp"-->
+    <!--                            android:clickable="false"-->
+    <!--                            android:longClickable="false"-->
+    <!--                            />-->
+    <!--                        <TextView-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:textSize="15sp"-->
+    <!--                            android:textColor="@color/white"-->
+    <!--                            android:text="@string/resend"-->
+    <!--                            android:layout_gravity="center_vertical"-->
+    <!--                            android:layout_marginStart="5dp"-->
+    <!--                            android:layout_marginEnd="5dp"-->
+    <!--                            android:clickable="false"-->
+    <!--                            android:longClickable="false"-->
+    <!--                            />-->
+    <!--                    </LinearLayout>-->
+    <!--                </FrameLayout>-->
+
+    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--        </LinearLayout>-->
+    <!--    </androidx.cardview.widget.CardView>-->
 
 </layout>

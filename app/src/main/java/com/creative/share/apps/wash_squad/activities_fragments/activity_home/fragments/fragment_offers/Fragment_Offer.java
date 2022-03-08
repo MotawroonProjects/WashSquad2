@@ -47,9 +47,9 @@ public class Fragment_Offer extends Fragment {
         binding.pager.setOffscreenPageLimit(2);
 
         fragmentList.add(Fragment_Offers.newInstance());
-        fragmentList.add(Fragment_Coupon.newInstance());
+       // fragmentList.add(Fragment_Coupon.newInstance());
         title.add(getString(R.string.offer));
-        title.add(getString(R.string.coupons));
+        //title.add(getString(R.string.coupons));
         adapter = new ViewPagerAdapter(getChildFragmentManager(),1);
         adapter.addFragment(fragmentList);
         adapter.addTitles(title);

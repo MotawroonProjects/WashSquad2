@@ -160,10 +160,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     private void updateUi(Order_Data_Model.OrderModel orderModel) {
         fragmentList.clear();
-        fragmentList.add(Fragment_Order_Products.newInstance(orderModel));
         fragmentList.add(Fragment_Product_Details.newInstance(orderModel));
-        title.add(getString(R.string.products));
+        fragmentList.add(Fragment_Order_Products.newInstance(orderModel));
         title.add(getString(R.string.info));
+        title.add(getString(R.string.addition));
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), 1);
         adapter.addFragment(fragmentList);
         adapter.addTitles(title);
@@ -174,7 +174,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             params.setMargins(10, 0, 10, 0);
         }
-        Log.e("ldlfllf",orderModel.getStatus()+"");
+        Log.e("ldlfllf", orderModel.getStatus() + "");
         if (orderModel.getStatus() == 0) {
             binding.img1.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_gray));

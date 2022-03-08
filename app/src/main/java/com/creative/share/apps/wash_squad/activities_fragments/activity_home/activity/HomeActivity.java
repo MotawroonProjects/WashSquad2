@@ -506,7 +506,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshActivity(String lang) {
+    public void refreshActivity(String lang) {
         preferences.selectedLanguage(this, lang);
         Paper.book().write("lang", lang);
         LanguageHelper.setNewLocale(this, lang);
