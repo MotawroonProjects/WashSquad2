@@ -11,7 +11,7 @@ public class UserModel implements Serializable {
     private String full_name;
     private String logo;
     private int user_type;
-private String password_token;
+    private String password_token;
 
     public String getPassword_token() {
         return password_token;

@@ -148,5 +148,16 @@ public class GeneralMethod {
             textView.setText(sTime);
         }
     }
+    @BindingAdapter("order_status")
+    public static void orderStatus(TextView textView, String status) {
+        if (status.equals("new")) {
+            textView.setText(textView.getContext().getString(R.string.next1));
+        } else if (status.equals("wait")) {
+            textView.setText(textView.getContext().getString(R.string.delayed));
 
+        } else if (status.equals("done")) {
+            textView.setText(textView.getContext().getString(R.string.service_done));
+
+        }
+    }
 }

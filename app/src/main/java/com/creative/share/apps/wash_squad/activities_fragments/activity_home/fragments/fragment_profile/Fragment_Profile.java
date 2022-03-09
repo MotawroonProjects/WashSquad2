@@ -38,12 +38,15 @@ import com.creative.share.apps.wash_squad.activities_fragments.activity_help.Hel
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion.SubscribtionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_wallet.WalletActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.questions_activity.QuestionsActivity;
 import com.creative.share.apps.wash_squad.adapters.MyOrderAdapter;
 import com.creative.share.apps.wash_squad.databinding.DialogSelectImageBinding;
 import com.creative.share.apps.wash_squad.databinding.FragmentProfileBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
+import com.creative.share.apps.wash_squad.models.CouponDataModel;
 import com.creative.share.apps.wash_squad.models.EditProfileModel;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -81,6 +84,8 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private final String camera_permission = Manifest.permission.CAMERA;
     private final int IMG_REQ1 = 1, IMG_REQ2 = 2;
     private Uri imgUri1 = null;
+    private int count;
+    private int status;
 
 
     public static Fragment_Profile newInstance() {
@@ -107,6 +112,10 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
         userModel = preferences.getUserData(activity);
         binding.setUsermodel(userModel);
+        binding.cardSupport.setOnClickListener(view -> {
+            Intent intent = new Intent(activity, QuestionsActivity.class);
+            startActivity(intent);
+        });
         binding.editUser.setOnClickListener(view -> {
             Intent intent = new Intent(activity, EditProfileActivity.class);
             startActivityForResult(intent, 12);
@@ -117,17 +126,34 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             startActivityForResult(intent, 11);
 
         });
+        binding.btnDetials.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, SubscribtionActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.btnSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (status == 0) {
+
+                } else {
+
+                }
+            }
+        });
         binding.cardSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(activity, SubscribtionActivity.class);
+                Intent intent = new Intent(activity, SubscribtionActivity.class);
                 startActivity(intent);
             }
         });
         binding.cardWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(activity, WalletActivity.class);
+                Intent intent = new Intent(activity, WalletActivity.class);
                 startActivity(intent);
             }
         });
@@ -182,7 +208,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 //            createCountryDialog();
 //
 //        }
-
+        getSubscribtion();
         binding.image.setOnClickListener(view -> CreateImageAlertDialog());
 //        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
 //        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
@@ -312,18 +338,14 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             //  edit_profile_view_model.editImageProfile(userModel.getUser().getId(),imgUri1.toString());
 
 
-        }
-        else if (requestCode == 11 && resultCode == RESULT_OK && data != null) {
+        } else if (requestCode == 11 && resultCode == RESULT_OK && data != null) {
             if (data.hasExtra("lang")) {
                 String lang = data.getStringExtra("lang");
                 new Handler()
                         .postDelayed(() -> activity.refreshActivity(lang), 1000);
 
-            }
-            else if (data.hasExtra("data")) {
-                String lang = data.getStringExtra("data");
-                new Handler()
-                        .postDelayed(() -> activity.DeleteTokenFireBase(), 1000);
+            } else if (data.hasExtra("data")) {
+                activity.DeleteTokenFireBase();
 
             }
         } else if (requestCode == 12) {
@@ -528,7 +550,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     }
 
 
-//    public void refreshOrders() {
+    //    public void refreshOrders() {
 //
 //        try {
 //
@@ -584,4 +606,90 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 //        }
 //    }
 
+    private void getSubscribtion() {
+        ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Log.e("data", "ddd");
+        Api.getService(Tags.base_url)
+                .getSubscribtion(userModel.getId() + "")
+                .enqueue(new Callback<SubscribtionDataModel>() {
+                    @Override
+                    public void onResponse(Call<SubscribtionDataModel> call, Response<SubscribtionDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            updateui(response.body());
+
+                        } else {
+                            if (response.code() == 201) {
+                                binding.llData.setVisibility(View.GONE);
+                                binding.tvNoDetails.setVisibility(View.VISIBLE);
+                            }
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                                //   binding.llNoCoupon.setVisibility(View.VISIBLE);
+                            } else if (response.code() == 500) {
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SubscribtionDataModel> call, Throwable t) {
+                        try {
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //     Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+    }
+
+    private void updateui(SubscribtionDataModel body) {
+        status = 0;
+        count = 0;
+        binding.llData.setVisibility(View.VISIBLE);
+        binding.tvNoDetails.setVisibility(View.GONE);
+
+        for (int i = 0; i < body.getWash_sub().size(); i++) {
+            if (body.getWash_sub().get(i).getStatus().equals("done")) {
+                count += 1;
+            } else {
+                binding.setModel(body.getWash_sub().get(i));
+                status = 1;
+
+            }
+        }
+        if (status == 1) {
+            binding.btnDetials.setVisibility(View.VISIBLE);
+            binding.btnSubscribe.setText(getResources().getString(R.string.postpone_an_appointment));
+        } else {
+            binding.btnDetials.setVisibility(View.GONE);
+        }
+        binding.setCount((body.getWash_sub().size() - count) + "");
+
+    }
 }

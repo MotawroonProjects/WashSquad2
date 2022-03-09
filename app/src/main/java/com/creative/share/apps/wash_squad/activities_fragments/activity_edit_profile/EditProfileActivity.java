@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_change_password.PasswordActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
 import com.creative.share.apps.wash_squad.databinding.ActivityEditProfileBinding;
@@ -111,7 +112,10 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
 //        }
 
             binding.image.setOnClickListener(view -> CreateImageAlertDialog());
-//        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
+            binding.llChange.setOnClickListener(view -> {
+                Intent intent = new Intent(this, PasswordActivity.class);
+                startActivity(intent);
+            });
 //        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
 
 

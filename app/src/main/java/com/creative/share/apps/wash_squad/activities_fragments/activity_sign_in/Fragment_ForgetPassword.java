@@ -169,7 +169,7 @@ public class Fragment_ForgetPassword extends Fragment implements Listeners.Creat
 
                             if (response.isSuccessful())
                             {
-                                Log.e("data",response.body().getPassword_token());
+                                //Log.e("data",response.body().getPassword_token());
                                 CreateAlertDialog(response.body());
                             }
                             else

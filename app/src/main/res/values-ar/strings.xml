@@ -219,6 +219,20 @@
     <string name="change_password2">تغيير كلمة المرور ؟ </string>
     <string name="edit">تعديل</string>
     <string name="add_request_to_waiting_list">إضافة الطلب الى قائمة الانتظار</string>
+    <string name="wash">الغسله</string>
+    <string name="service_done">تمت الخدمه</string>
+    <string name="delayed">مؤجله</string>
+    <string name="next1">التاليه</string>
+    <string name="wash1">غسله</string>
+    <string name="no_subscribtion">لا يوجد اشتراك</string>
+    <string name="postpone_an_appointment">طلب تاجيل موعد</string>
+    <string name="new_password">كلمة المرور الجديده</string>
+    <string name="enter_your_new_password">ادخل كلمة المرور الجديده</string>
+    <string name="at_least_6_letters_or_numbers">على الاقل 6 حروف او ارقام</string>
+    <string name="confirm_password">تاكيد كلمة المرور</string>
+    <string name="must_equal">يجب ان تساوى كلمة المرور تاكيد كلمة المرور</string>
+    <string name="faqs">اسئله متكرره</string>
+    <string name="for_support_and_help">للمساعده والخدمه</string>
 
 
 </resources>

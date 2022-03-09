@@ -68,7 +68,16 @@ public class QuestionsActivity extends AppCompatActivity implements Listeners.Ba
         binding.recView.setAdapter(adapter);
 
         getQuestion();
-
+        binding.llQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.expandLayout.isExpanded()) {
+                    binding.expandLayout.collapse(true);
+                } else {
+                    binding.expandLayout.expand(true);
+                }
+            }
+        });
 
     }
 

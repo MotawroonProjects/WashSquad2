@@ -5,20 +5,24 @@
     >
 
     <data>
+
         <variable
             name="model"
-            type="com.creative.share.apps.wash_squad.models.Order_Data_Model.OrderModel" />
+            type="com.creative.share.apps.wash_squad.models.SubscribtionDataModel.WashSub" />
+
         <variable
             name="lang"
             type="String" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:gravity="center"
         android:layout_marginTop="3dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
@@ -28,7 +32,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"
-            android:text="الغسله 1"
+            android:text='@{@string/wash+(model.status.equals("wait")?" "+@string/delayed:model.number_of_wash)}'
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -39,7 +43,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"
-            android:text="2/8/2021"
+            android:text='@{model.status.equals("wait")?model.will_wash_date:model.wash_date}'
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -53,13 +57,15 @@
             android:text="الاثنين / 5 مساءا"
             android:textColor="@color/black"
             android:textSize="12sp" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="1">
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -67,16 +73,17 @@
                 android:clickable="false"
                 android:longClickable="false"
                 android:padding="6dp"
-                android:src="@drawable/correct"
-                app:tint="@color/dot_dark_screen2" />
+                android:src='@{model.status.equals("done")?@drawable/correct:@drawable/ic_close2}'
+                android:visibility='@{model.status.equals("done")||model.status.equals("wait")?View.VISIBLE:View.GONE,default=gone}' />
 
             <TextView
-                android:layout_width="wrap_content"
+                order_status="@{model.status}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:lines="1"
-                android:text="تمت الخدمه"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>

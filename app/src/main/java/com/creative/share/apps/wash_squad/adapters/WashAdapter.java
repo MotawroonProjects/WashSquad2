@@ -12,6 +12,7 @@ import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.databinding.AdditionalRowBinding;
 import com.creative.share.apps.wash_squad.databinding.WashRowBinding;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
+import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 
 import java.util.List;
 import java.util.Locale;
@@ -20,11 +21,11 @@ import io.paperdb.Paper;
 
 public class WashAdapter extends RecyclerView.Adapter<WashAdapter.MyHolder> {
 
-    private List<Object> subServiceModelList;
+    private List<SubscribtionDataModel.WashSub> subServiceModelList;
     private Context context;
     private String lang;
 
-    public WashAdapter(List<Object> subServiceModelList, Context context) {
+    public WashAdapter(List<SubscribtionDataModel.WashSub> subServiceModelList, Context context) {
         this.subServiceModelList = subServiceModelList;
         this.context = context;
         Paper.init(context);
@@ -40,6 +41,8 @@ public class WashAdapter extends RecyclerView.Adapter<WashAdapter.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        holder.additionalRowBinding.setLang(lang);
+        holder.additionalRowBinding.setModel(subServiceModelList.get(position));
         if (position % 2 == 0) {
             holder.additionalRowBinding.ll.setBackgroundColor(context.getResources().getColor(R.color.gray2));
         }
@@ -49,7 +52,7 @@ public class WashAdapter extends RecyclerView.Adapter<WashAdapter.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return 9;
+        return subServiceModelList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

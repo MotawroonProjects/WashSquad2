@@ -172,7 +172,7 @@
     <string name="not_available">Not available</string>
     <string name="cash">Cash</string>
     <string name="my_wallet">My Wallet</string>
-    <string name="subscriptions">Subscriptions</string>
+    <string name="subscriptions">Subscribtions</string>
     <string name="application">Application</string>
     <string name="help_and_support">Help and support</string>
     <string name="start_date">Start Date</string>
@@ -221,6 +221,20 @@
     <string name="addition">Addition</string>
     <string name="language">Language</string>
     <string name="change_password2">Change Password ?</string>
+    <string name="wash">Wash</string>
+    <string name="service_done">Service Done</string>
+    <string name="delayed">Delayed</string>
+    <string name="next1">Next</string>
+    <string name="wash1">Wash</string>
+    <string name="no_subscribtion">No Subscribtion</string>
+    <string name="postpone_an_appointment">Request to postpone an appointment</string>
+    <string name="new_password">New Password</string>
+    <string name="enter_your_new_password">Enter your new password</string>
+    <string name="at_least_6_letters_or_numbers">At least 6 letters or numbers</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="must_equal">Password Must Equal Confirm Password</string>
+    <string name="faqs">FAQs</string>
+    <string name="for_support_and_help">For Support and help</string>
 
 
 </resources>
