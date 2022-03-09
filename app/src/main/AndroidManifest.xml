@@ -27,6 +27,9 @@
             android:name=".activities_fragments.activity_choose_service.ChooseServiceSentActivity"
             android:exported="false" />
         <activity
+            android:name=".activities_fragments.activity_edit_profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_quick_order.QuickOrderActivity"
             android:exported="false" />
         <activity

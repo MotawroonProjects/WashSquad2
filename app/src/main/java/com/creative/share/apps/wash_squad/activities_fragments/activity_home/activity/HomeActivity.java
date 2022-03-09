@@ -334,7 +334,7 @@ public class HomeActivity extends AppCompatActivity {
             }
             binding.toolbar.setVisibility(View.GONE);
             //binding.setTitle(getString(R.string.profile));
-           // binding.imageHelp.setVisibility(View.VISIBLE);
+            // binding.imageHelp.setVisibility(View.VISIBLE);
             if (fragment_home != null && fragment_home.isAdded()) {
                 fragment_home.updateBottomNavigationPosition(0);
             }
@@ -503,6 +503,9 @@ public class HomeActivity extends AppCompatActivity {
                         .postDelayed(() -> refreshActivity(lang), 1000);
 
             }
+        } else if (requestCode == 12) {
+            userModel = preferences.getUserData(this);
+            refreshprofile(userModel);
         }
     }
 
@@ -613,7 +616,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-    private void DeleteTokenFireBase() {
+
+    public void DeleteTokenFireBase() {
 
 
         FirebaseInstanceId.getInstance()
@@ -631,7 +635,7 @@ public class HomeActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.isSuccessful() && response.body() != null) {
-                                           logout();
+                                            logout();
                                         } else {
                                             try {
 

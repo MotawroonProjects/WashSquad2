@@ -211,7 +211,7 @@ public interface Service {
     );
 
     @FormUrlEncoded
-    @POST("api/driver/logout")
+    @POST("api/client/logout")
     Call<ResponseBody> logout(
             @Field("user_id") int user_id
     );

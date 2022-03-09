@@ -103,7 +103,7 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
         } else {
             String code = "+966";
             signUpModel.setPhone_code(code.replace("+", "00966"));
-            binding.tvPhoneCode.setText(code);
+            binding.tvCode.setText(code);
 
         }
 
@@ -118,7 +118,7 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
     private void updateUi(Country country) {
         String code = country.getDialCode();
         signUpModel.setPhone_code(code.replace("+", "00"));
-        binding.tvPhoneCode.setText(code);
+        binding.tvCode.setText(code);
     }
 
     @Override

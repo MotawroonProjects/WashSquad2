@@ -59,6 +59,13 @@ public class HelpActivity extends AppCompatActivity implements Listeners.BackLis
             @Override
             public void onClick(View view) {
                 binding.flLogout.setVisibility(View.GONE);
+                Intent intent = getIntent();
+                if (intent != null) {
+                    intent.putExtra("data", "logout");
+                    setResult(RESULT_OK, intent);
+                }
+                finish();
+
             }
         });
         binding.btNo.setOnClickListener(new View.OnClickListener() {

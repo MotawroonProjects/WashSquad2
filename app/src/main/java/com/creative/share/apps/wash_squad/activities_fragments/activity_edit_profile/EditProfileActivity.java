@@ -1,49 +1,37 @@
-package com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_profile;
-
-import static android.app.Activity.RESULT_OK;
+package com.creative.share.apps.wash_squad.activities_fragments.activity_edit_profile;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_edit_profile.EditProfileActivity;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_help.HelpActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion.SubscribtionActivity;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_wallet.WalletActivity;
-import com.creative.share.apps.wash_squad.adapters.MyOrderAdapter;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
+import com.creative.share.apps.wash_squad.databinding.ActivityEditProfileBinding;
+import com.creative.share.apps.wash_squad.databinding.ActivityHelpBinding;
+import com.creative.share.apps.wash_squad.databinding.DialogLanguageBinding;
 import com.creative.share.apps.wash_squad.databinding.DialogSelectImageBinding;
-import com.creative.share.apps.wash_squad.databinding.FragmentProfileBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
+import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.EditProfileModel;
-import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -55,8 +43,6 @@ import com.mukesh.countrypicker.listeners.OnCountryPickerListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -66,14 +52,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Profile extends Fragment implements Listeners.EditProfileListener, Listeners.ShowCountryDialogListener, OnCountryPickerListener {
-
-    private HomeActivity activity;
-    private FragmentProfileBinding binding;
+public class EditProfileActivity extends AppCompatActivity implements Listeners.BackListener, Listeners.EditProfileListener, Listeners.ShowCountryDialogListener, OnCountryPickerListener {
+    private ActivityEditProfileBinding binding;
+    private String lang;
     private Preferences preferences;
     private UserModel userModel;
     private CountryPicker countryPicker;
-    private String lang;
     private String code;
     private EditProfileModel edit_profile_model;
     private final String READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -82,120 +66,65 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private final int IMG_REQ1 = 1, IMG_REQ2 = 2;
     private Uri imgUri1 = null;
 
-
-    public static Fragment_Profile newInstance() {
-
-        return new Fragment_Profile();
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        Paper.init(newBase);
+        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
         initView();
 
-        return binding.getRoot();
     }
 
+
     private void initView() {
-        activity = (HomeActivity) getActivity();
+
+        Paper.init(this);
+        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
+        binding.setLang(lang);
+        binding.setBackListener(this);
         preferences = Preferences.newInstance();
-        Paper.init(activity);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.setShowCountryListener(this);
 
-        userModel = preferences.getUserData(activity);
+        userModel = preferences.getUserData(this);
         binding.setUsermodel(userModel);
-        binding.editUser.setOnClickListener(view -> {
-            Intent intent = new Intent(activity, EditProfileActivity.class);
-            startActivityForResult(intent, 12);
+        if (userModel != null) {
+            binding.setUsermodel(userModel);
+            binding.edtName.setText(userModel.getFull_name());
 
-        });
-        binding.imageHelp.setOnClickListener(view -> {
-            Intent intent = new Intent(activity, HelpActivity.class);
-            startActivityForResult(intent, 11);
+            edit_profile_model = new EditProfileModel(userModel.getFull_name());
 
-        });
-        binding.cardSubscribe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(activity, SubscribtionActivity.class);
-                startActivity(intent);
-            }
-        });
-        binding.cardWallet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(activity, WalletActivity.class);
-                startActivity(intent);
-            }
-        });
-        binding.cardRate.setOnClickListener(view -> {
-            String appId = activity.getPackageName();
-            Intent rateIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + appId));
-            boolean marketFound = false;
+            binding.setEditprofilemodel(edit_profile_model);
+            binding.setEditprofilelistener(this);
+            binding.tvCode.setText(userModel.getPhone_code().replaceFirst("00", "+"));
+            binding.edtPhone.setText(userModel.getPhone());
+            code = userModel.getPhone_code();
 
-            final List<ResolveInfo> otherApps = activity.getPackageManager()
-                    .queryIntentActivities(rateIntent, 0);
-            for (ResolveInfo otherApp : otherApps) {
-                if (otherApp.activityInfo.applicationInfo.packageName
-                        .equals("com.android.vending")) {
+            createCountryDialog();
 
-                    ActivityInfo otherAppActivity = otherApp.activityInfo;
-                    ComponentName componentName = new ComponentName(
-                            otherAppActivity.applicationInfo.packageName,
-                            otherAppActivity.name
-                    );
-                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    rateIntent.setComponent(componentName);
-                    startActivity(rateIntent);
-                    marketFound = true;
-                    break;
-
-                }
-            }
-
-            if (!marketFound) {
-                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=" + appId));
-                startActivity(webIntent);
-            }
-
-        });
-//        if (userModel!=null)
-//        {
-//            binding.setUsermodel(userModel);
-//            binding.edtName.setText(userModel.getFull_name());
-//
-//            edit_profile_model = new EditProfileModel(userModel.getFull_name());
-//
-//            binding.setEditprofilemodel(edit_profile_model);
-//            binding.setEditprofilelistener(this);
-//            binding.tvCode.setText(userModel.getPhone_code().replaceFirst("00", "+"));
-//            binding.edtPhone.setText(userModel.getPhone());
-//            code = userModel.getPhone_code();
-//
-//            createCountryDialog();
-//
 //        }
 
-        binding.image.setOnClickListener(view -> CreateImageAlertDialog());
+            binding.image.setOnClickListener(view -> CreateImageAlertDialog());
 //        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
 //        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
 
+
+        }
     }
 
     private void CreateImageAlertDialog() {
 
-        final AlertDialog dialog = new AlertDialog.Builder(activity)
+        final androidx.appcompat.app.AlertDialog dialog = new AlertDialog.Builder(this)
                 .setCancelable(true)
                 .create();
 
-        DialogSelectImageBinding binding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.dialog_select_image, null, false);
+        DialogSelectImageBinding binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_select_image, null, false);
 
 
         binding.btnCamera.setOnClickListener(v -> {
@@ -220,16 +149,16 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     }
 
     private void CheckReadPermission() {
-        if (ActivityCompat.checkSelfPermission(activity, READ_PERM) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{READ_PERM}, IMG_REQ1);
+        if (ActivityCompat.checkSelfPermission(this, READ_PERM) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{READ_PERM}, IMG_REQ1);
         } else {
             SelectImage(IMG_REQ1);
         }
     }
 
     private void Check_CameraPermission() {
-        if (ContextCompat.checkSelfPermission(activity, camera_permission) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(activity, write_permission) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{camera_permission, write_permission}, IMG_REQ2);
+        if (ContextCompat.checkSelfPermission(this, camera_permission) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, write_permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{camera_permission, write_permission}, IMG_REQ2);
         } else {
             SelectImage(IMG_REQ2);
 
@@ -259,9 +188,9 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, img_req);
             } catch (SecurityException e) {
-                Toast.makeText(activity, R.string.perm_image_denied, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, R.string.perm_image_denied, Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
-                Toast.makeText(activity, R.string.perm_image_denied, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, R.string.perm_image_denied, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -278,14 +207,14 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 SelectImage(IMG_REQ1);
             } else {
-                Toast.makeText(activity, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
             }
 
         } else if (requestCode == IMG_REQ2) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 SelectImage(IMG_REQ2);
             } else {
-                Toast.makeText(activity, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -313,35 +242,18 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
 
         }
-        else if (requestCode == 11 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("lang")) {
-                String lang = data.getStringExtra("lang");
-                new Handler()
-                        .postDelayed(() -> activity.refreshActivity(lang), 1000);
-
-            }
-            else if (data.hasExtra("data")) {
-                String lang = data.getStringExtra("data");
-                new Handler()
-                        .postDelayed(() -> activity.DeleteTokenFireBase(), 1000);
-
-            }
-        } else if (requestCode == 12) {
-            userModel = preferences.getUserData(activity);
-            update(userModel);
-        }
 
     }
 
     private void editImageProfile(int user_id, String full_name, String image) {
-        ProgressDialog dialog = Common.createProgressDialog(activity, activity.getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(this, this.getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
 
         RequestBody id_part = Common.getRequestBodyText(String.valueOf(user_id));
         RequestBody name_part = Common.getRequestBodyText(String.valueOf(full_name));
 
-        MultipartBody.Part image_part = Common.getMultiPart(activity, Uri.parse(image), "logo");
+        MultipartBody.Part image_part = Common.getMultiPart(this, Uri.parse(image), "logo");
 
         Api.getService(Tags.base_url)
                 .editUserImage(id_part, name_part, image_part)
@@ -352,13 +264,13 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                         if (response.isSuccessful() && response.body() != null) {
                             //listener.onSuccess(response.body());
 
-                            Toast.makeText(activity, getString(R.string.suc), Toast.LENGTH_SHORT).show();
-                            update(response.body());
+                            Toast.makeText(EditProfileActivity.this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
+                            finish();
 
                         } else {
                             Log.e("codeimage", response.code() + "_");
                             try {
-                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 Log.e("respons", response.errorBody().string());
                             } catch (IOException e) {
@@ -372,7 +284,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                     public void onFailure(Call<UserModel> call, Throwable t) {
                         try {
                             dialog.dismiss();
-                            Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
 
                         } catch (Exception e) {
                         }
@@ -383,7 +295,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     public void update(UserModel body) {
 
         userModel = body;
-        preferences.create_update_userData(activity, userModel);
+        preferences.create_update_userData(this, userModel);
         edit_profile_model = new EditProfileModel(userModel.getFull_name());
         binding.setUsermodel(userModel);
 
@@ -395,14 +307,14 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            path = MediaStore.Images.Media.insertImage(activity.getContentResolver(), bitmap, "title", null);
+            path = MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "title", null);
             return Uri.parse(path);
 
         } catch (SecurityException e) {
-            Toast.makeText(activity, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toast.makeText(activity, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
 
         }
         return null;
@@ -413,7 +325,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 .canSearch(true)
                 .listener(this)
                 .theme(CountryPicker.THEME_NEW)
-                .with(activity)
+                .with(this)
                 .build();
 
 
@@ -425,7 +337,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     @Override
     public void showDialog() {
 
-        countryPicker.showDialog(activity);
+        countryPicker.showDialog(this);
     }
 
     @Override
@@ -446,7 +358,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         edit_profile_model = new EditProfileModel(name);
         binding.setEditprofilelistener(this);
 
-        if (edit_profile_model.isDataValid(activity)) {
+        if (edit_profile_model.isDataValid(this)) {
             editProfile(name);
         } else {
             //          binding.edtName.setError(getString(R.string.field_req));
@@ -455,7 +367,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     }
 
     private void editProfile(String name) {
-        ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
         try {
@@ -468,12 +380,12 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 userModel = response.body();
-                                preferences.create_update_userData(activity, userModel);
+                                preferences.create_update_userData(EditProfileActivity.this, userModel);
                                 edit_profile_model = new EditProfileModel(userModel.getFull_name());
 
                                 binding.setEditprofilemodel(edit_profile_model);
-                                Toast.makeText(activity, getString(R.string.suc), Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(EditProfileActivity.this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
+                                finish();
 
                             } else {
                                 try {
@@ -483,21 +395,21 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                                     e.printStackTrace();
                                 }
                                 if (response.code() == 422) {
-                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 } else if (response.code() == 403) {
-                                    Toast.makeText(activity, R.string.user_not_active, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, R.string.user_not_active, Toast.LENGTH_SHORT).show();
 
                                 } else if (response.code() == 404) {
-                                    Toast.makeText(activity, R.string.inc_phone_pas, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, R.string.inc_phone_pas, Toast.LENGTH_SHORT).show();
 
                                 } else if (response.code() == 405) {
-                                    Toast.makeText(activity, R.string.not_active_phone, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, R.string.not_active_phone, Toast.LENGTH_SHORT).show();
 
                                 } else if (response.code() == 500) {
-                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                                 }
@@ -511,9 +423,9 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -583,5 +495,10 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 //
 //        }
 //    }
+
+    @Override
+    public void back() {
+        finish();
+    }
 
 }

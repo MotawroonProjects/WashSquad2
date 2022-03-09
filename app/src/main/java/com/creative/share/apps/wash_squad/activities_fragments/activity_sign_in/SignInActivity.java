@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.databinding.ActivitySignInBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 
@@ -29,6 +30,7 @@ public class SignInActivity extends AppCompatActivity {
     private Preferences preferences;
     private Fragment_ForgetPassword fragment_forgetpass;
     private Fragment_Newpass fragment_newpass;
+    private String type;
 
 
     @Override
@@ -43,10 +45,14 @@ public class SignInActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in);
         manager = getSupportFragmentManager();
         preferences = Preferences.newInstance();
+        getDatafromintent();
         if (savedInstanceState == null) {
             if (preferences.isLangSelected(this)) {
-                displayFragmentSignIn();
-
+                if (type.equals("quick")) {
+                    displayFragmentSignUp();
+                } else {
+                    displayFragmentSignIn();
+                }
             } else {
                 displayFragmentLanguage();
             }
@@ -59,27 +65,31 @@ public class SignInActivity extends AppCompatActivity {
         manager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_language, "fragment_language").addToBackStack("fragment_language").commit();
 
     }
+
     public void displayFragmentForgetpass() {
-        fragment_count ++;
+        fragment_count++;
         fragment_forgetpass = Fragment_ForgetPassword.newInstance();
 
         manager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_forgetpass, "fragment_forgetpass").addToBackStack("fragment_forgetpass").commit();
 
     }
-    public void displayFragmentCodeVerification(UserModel userModel,int type) {
-        fragment_count ++;
-        fragment_code_verification = Fragment_Code_Verification.newInstance(userModel,type);
+
+    public void displayFragmentCodeVerification(UserModel userModel, int type) {
+        fragment_count++;
+        fragment_code_verification = Fragment_Code_Verification.newInstance(userModel, type);
 
         manager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_code_verification, "fragment_code_verification").addToBackStack("fragment_code_verification").commit();
 
     }
+
     public void displayFragmentNewpass(UserModel userModel) {
-        fragment_count ++;
-        fragment_newpass = Fragment_Newpass.newInstance(userModel,1);
+        fragment_count++;
+        fragment_newpass = Fragment_Newpass.newInstance(userModel, 1);
 
         manager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_newpass, "fragment_newpass").addToBackStack("fragment_newpass").commit();
 
     }
+
     public void displayFragmentSignIn() {
         fragment_count++;
         fragment_sign_in = Fragment_Sign_In.newInstance();
@@ -121,4 +131,15 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             finish();
         }
-    }}
+    }
+
+    public void getDatafromintent() {
+        Intent intent = getIntent();
+        if (intent != null && intent.getStringExtra("data") != null) {
+            type = intent.getStringExtra("data");
+
+
+        }
+    }
+
+}
