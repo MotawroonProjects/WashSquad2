@@ -24,6 +24,12 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity
+            android:name=".activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities_fragments.activity_choose_service.ChooseServiceSentActivity"
             android:exported="false" />
         <activity

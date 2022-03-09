@@ -219,6 +219,11 @@
     <string name="change_password2">تغيير كلمة المرور ؟ </string>
     <string name="edit">تعديل</string>
     <string name="add_request_to_waiting_list">إضافة الطلب الى قائمة الانتظار</string>
+    <string name="receiver_name">اسم المرسل إليه</string>
+    <string name="receiver_name2">الاسم المرسل إليه:</string>
+    <string name="sender_name">اسم المرسل</string>
+    <string name="sender_name2">الاسم المرسل:</string>
+    <string name="type_of_service_provided">نوع الخدمة المقدمة:</string>
     <string name="wash">الغسله</string>
     <string name="service_done">تمت الخدمه</string>
     <string name="delayed">مؤجله</string>
@@ -233,6 +238,7 @@
     <string name="must_equal">يجب ان تساوى كلمة المرور تاكيد كلمة المرور</string>
     <string name="faqs">اسئله متكرره</string>
     <string name="for_support_and_help">للمساعده والخدمه</string>
+    <string name="choose_sent_service">اختر الخدمه المرسله</string>
 
 
 </resources>

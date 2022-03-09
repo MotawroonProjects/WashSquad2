@@ -221,6 +221,11 @@
     <string name="addition">Addition</string>
     <string name="language">Language</string>
     <string name="change_password2">Change Password ?</string>
+    <string name="receiver_name">Receiver name</string>
+    <string name="receiver_name2">Receiver name:</string>
+    <string name="sender_name">Sender name</string>
+    <string name="sender_name2">Sender name:</string>
+    <string name="type_of_service_provided">Type of Service Provided:</string>
     <string name="wash">Wash</string>
     <string name="service_done">Service Done</string>
     <string name="delayed">Delayed</string>
@@ -235,6 +240,7 @@
     <string name="must_equal">Password Must Equal Confirm Password</string>
     <string name="faqs">FAQs</string>
     <string name="for_support_and_help">For Support and help</string>
+    <string name="choose_sent_service">Choose Sent Service</string>
 
 
 </resources>

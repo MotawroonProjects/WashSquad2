@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity;
 import com.creative.share.apps.wash_squad.databinding.SizeRowBinding;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 
@@ -24,13 +25,11 @@ public class CarSizeAdapter extends RecyclerView.Adapter<CarSizeAdapter.MyHolder
     private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
     private Context context;
     private String lang;
-    private ServiceDetailsActivity activity;
     private int selected_pos = -1;
 
     public CarSizeAdapter(List<CarSizeDataModel.CarSizeModel> carSizeModelList, Context context) {
         this.carSizeModelList = carSizeModelList;
         this.context = context;
-        activity = (ServiceDetailsActivity) context;
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
     }
@@ -40,6 +39,7 @@ public class CarSizeAdapter extends RecyclerView.Adapter<CarSizeAdapter.MyHolder
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         SizeRowBinding sizeRowBinding = DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.size_row,parent,false);
         return new MyHolder(sizeRowBinding);
+
     }
 
     @Override
@@ -50,6 +50,11 @@ public class CarSizeAdapter extends RecyclerView.Adapter<CarSizeAdapter.MyHolder
         holder.sizeRowBinding.setLang(lang);
         holder.sizeRowBinding.setCarSizeModel(carSizeModel);
 
+         if (context instanceof ServiceDetailsActivity){
+            ServiceDetailsActivity activity=(ServiceDetailsActivity) context;
+        }else if (context instanceof ServiceSentDetailsActivity){
+            ServiceSentDetailsActivity activity=(ServiceSentDetailsActivity) context;
+        }
         if (selected_pos==position)
         {
             holder.sizeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_second));

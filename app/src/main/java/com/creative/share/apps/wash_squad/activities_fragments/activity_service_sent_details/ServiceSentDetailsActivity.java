@@ -1,4 +1,10 @@
-package com.creative.share.apps.wash_squad.activities_fragments.activity_service_details;
+package com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,29 +17,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.creative.share.apps.wash_squad.R;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_time.TimeActivity;
-import com.creative.share.apps.wash_squad.activities_fragments.calendar_activity.CalendarActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarSizeAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarTypeAdapter;
 import com.creative.share.apps.wash_squad.adapters.TimeAdapter;
-import com.creative.share.apps.wash_squad.databinding.ActivityServiceDetailsBinding;
-import com.creative.share.apps.wash_squad.interfaces.Listeners;
+import com.creative.share.apps.wash_squad.databinding.ActivityServiceSentDetailsBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.SelectedLocation;
+import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
@@ -55,11 +54,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceDetailsActivity extends AppCompatActivity {
-    private ActivityServiceDetailsBinding binding;
+public class ServiceSentDetailsActivity extends AppCompatActivity {
+    private ActivityServiceSentDetailsBinding binding;
     private String lang;
     private SelectedLocation selectedLocation;
-    private ServiceDataModel.ServiceModel serviceModel;
     private long date = 0;
     private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
     private List<CarTypeDataModel.CarTypeModel> carTypeModelList;
@@ -72,20 +70,20 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     private LinearLayoutManager manager2;
     private TimeDataModel.TimeModel timeModel;
     private String d;
-    private List<ServiceDataModel.Level3> additional_service;
-    private ItemToUpload itemToUpload;
+    private SendServiceModel sendServiceModel;
     private int service_id;
     private String service_name_ar, service_name_en;
     private UserModel userModel;
     private Preferences preferences;
-    private List<ItemToUpload.SubServiceModel> subServiceModelList;
     private int count = 1;
     private int size_id = 0;
     private double total = 0.0, final_total = 0.0;
     private TimeAdapter timeAdapter;
-    private List<TimeDataModel.TimeModel> timeModelList;
     private String selected_date;
-
+    private ServiceDataModel.ServiceModel serviceModel;
+    private List<ServiceDataModel.Level3> additional_service;
+    private List<ItemToUpload.SubServiceModel> subServiceModelList;
+    private List<TimeDataModel.TimeModel> timeModelList;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -93,16 +91,14 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_service_details);
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_service_sent_details);
         getDataFromIntent();
         initView();
-
-
     }
-
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -114,9 +110,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         }
     }
 
-
     private void initView() {
-        binding.consTime.setEnabled(false);
 
         timeModelList = new ArrayList<>();
         timeAdapter = new TimeAdapter(timeModelList, this);
@@ -127,14 +121,18 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         binding.setPrice(0.0);
         binding.setTotal(total);
         userModel = preferences.getUserData(this);
-        itemToUpload = new ItemToUpload();
-        itemToUpload.setSub_services(subServiceModelList);
-        itemToUpload.setService_id(service_id);
-        itemToUpload.setAr_service_type(service_name_ar);
-        itemToUpload.setEn_service_type(service_name_en);
+        sendServiceModel = new SendServiceModel();
+        if(userModel!=null){
+            sendServiceModel.setUser_name(userModel.getFull_name());
+            sendServiceModel.setUser_phone(userModel.getPhone());
+        }
+        sendServiceModel.setSub_services(subServiceModelList);
+        sendServiceModel.setService_id(service_id);
+        sendServiceModel.setAr_service_type(service_name_ar);
+        sendServiceModel.setEn_service_type(service_name_en);
         // itemToUpload.setLevel2(serviceModel.getLevel2());
-        binding.setItemModel(itemToUpload);
-        itemToUpload.setSub_serv_id(serviceModel.getId());
+        binding.setSendServiceModel(sendServiceModel);
+        sendServiceModel.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         carSizeModelList = new ArrayList<>();
         carTypeModelList = new ArrayList<>();
@@ -187,11 +185,11 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
                     binding.setPrice(0.0);
                     binding.tvCount.setText(String.valueOf(count));
-                    itemToUpload.setCarType_id(0);
-                    itemToUpload.setAr_car_type("");
-                    itemToUpload.setEn_car_type("");
-                    itemToUpload.setBrand_id(0);
-                    binding.setItemModel(itemToUpload);
+                    sendServiceModel.setCarType_id(0);
+                    sendServiceModel.setAr_car_type("");
+                    sendServiceModel.setEn_car_type("");
+                    sendServiceModel.setBrand_id(0);
+                    binding.setSendServiceModel(sendServiceModel);
                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
                     carBrandAdapter.notifyDataSetChanged();
 
@@ -211,11 +209,11 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     carBrandModelList.clear();
                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
 
-                    itemToUpload.setCarType_id(carTypeModelList.get(i).getId());
-                    itemToUpload.setAr_car_type(carTypeModelList.get(i).getAr_title());
-                    itemToUpload.setEn_car_type(carTypeModelList.get(i).getEn_title());
+                    sendServiceModel.setCarType_id(carTypeModelList.get(i).getId());
+                    sendServiceModel.setAr_car_type(carTypeModelList.get(i).getAr_title());
+                    sendServiceModel.setEn_car_type(carTypeModelList.get(i).getEn_title());
 
-                    binding.setItemModel(itemToUpload);
+                    binding.setSendServiceModel(sendServiceModel);
 
                     carBrandModelList.addAll(carTypeModelList.get(i).getLevel2());
                     carBrandAdapter.notifyDataSetChanged();
@@ -242,12 +240,12 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     binding.setPrice(0.0);
                     binding.tvCount.setText(String.valueOf(count));
 
-                    itemToUpload.setCarSize_id(0);
-                    itemToUpload.setService_price(0);
-                    itemToUpload.setBrand_id(0);
-                    itemToUpload.setEn_brand_name("");
-                    itemToUpload.setAr_brand_name("");
-                    binding.setItemModel(itemToUpload);
+                    sendServiceModel.setCarSize_id(0);
+                    sendServiceModel.setService_price(0);
+                    sendServiceModel.setBrand_id(0);
+                    sendServiceModel.setEn_brand_name("");
+                    sendServiceModel.setAr_brand_name("");
+                    binding.setSendServiceModel(sendServiceModel);
                     if (carSizeAdapter != null) {
                         carSizeAdapter.setSelection(-1);
                     }
@@ -257,12 +255,12 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    itemToUpload.setService_price(carBrandModelList.get(i).getSize_price());
-                    itemToUpload.setBrand_id(carBrandModelList.get(i).getId());
-                    itemToUpload.setEn_brand_name(carBrandModelList.get(i).getEn_title());
-                    itemToUpload.setAr_brand_name(carBrandModelList.get(i).getAr_title());
+                    sendServiceModel.setService_price(carBrandModelList.get(i).getSize_price());
+                    sendServiceModel.setBrand_id(carBrandModelList.get(i).getId());
+                    sendServiceModel.setEn_brand_name(carBrandModelList.get(i).getEn_title());
+                    sendServiceModel.setAr_brand_name(carBrandModelList.get(i).getAr_title());
 
-                    binding.setItemModel(itemToUpload);
+                    binding.setSendServiceModel(sendServiceModel);
 
                     int pos = getCarSizeItemPos(carBrandModelList.get(i).getSize());
 
@@ -271,7 +269,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             carSizeAdapter.setSelection(-1);
                         }
                         size_id = 0;
-                        itemToUpload.setCarSize_id(0);
+                        sendServiceModel.setCarSize_id(0);
 
                     } else {
                         if (carSizeAdapter != null) {
@@ -281,7 +279,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                         additional_service.clear();
                         size_id = carSizeModelList.get(pos).getId();
                         getPrice(serviceModel.getId(), carSizeModelList.get(pos).getId());
-                        itemToUpload.setCarSize_id(carSizeModelList.get(pos).getId());
+                        sendServiceModel.setCarSize_id(carSizeModelList.get(pos).getId());
 
                     }
 
@@ -313,20 +311,17 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 //            startActivityForResult(intent, 1);
 //        });
         binding.closeCalender.setOnClickListener(view -> binding.flCalender.setVisibility(View.GONE));
-        binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
+//        binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
 
         binding.consDate.setOnClickListener(view -> openCalender());
-        binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
-        binding.recViewTime.setAdapter(timeAdapter);
-        binding.consTime.setOnClickListener(view -> {
-            binding.flTime.setVisibility(View.VISIBLE);
+//        binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
+//        binding.recViewTime.setAdapter(timeAdapter);
 
-        });
-        binding.tvDone.setOnClickListener(view -> {
-            binding.flTime.setVisibility(View.GONE);
-            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
-
-        });
+//        binding.tvDone.setOnClickListener(view -> {
+//            binding.flTime.setVisibility(View.GONE);
+//            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
+//
+//        });
         binding.tvDetails.setOnClickListener(view -> {
             if (binding.expandLayout.isExpanded()) {
                 binding.expandLayout.collapse(true);
@@ -339,14 +334,15 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         });
 
         binding.btnSendOrder.setOnClickListener(view -> {
-            if (itemToUpload.isDataValidStep1(this)) {
+            if (sendServiceModel.isDataValidStep1(this)) {
                 if (userModel != null) {
-                    itemToUpload.setUser_id(userModel.getId());
-                    itemToUpload.setUser_name(userModel.getFull_name());
-                    itemToUpload.setUser_phone(userModel.getPhone());
-                    itemToUpload.setTotal_price(final_total);
-                    Intent intent = new Intent(this, PaymentActivity.class);
-                    intent.putExtra("item", itemToUpload);
+                    sendServiceModel.setUser_id(userModel.getId());
+                    sendServiceModel.setUser_name(userModel.getFull_name());
+                    sendServiceModel.setUser_phone(userModel.getPhone());
+
+                    sendServiceModel.setTotal_price(final_total);
+                    Intent intent = new Intent(this, ServiceSentPaymentActivity.class);
+                    intent.putExtra("item", sendServiceModel);
                     startActivityForResult(intent, 4);
                 } else {
                     Common.CreateNoSignAlertDialog(this);
@@ -361,7 +357,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
         binding.imageIncrease.setOnClickListener(view -> {
             count++;
-            itemToUpload.setAmount(count);
+            sendServiceModel.setAmount(count);
             binding.tvCount.setText(String.valueOf(count));
             final_total = total * count;
 
@@ -371,7 +367,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
                 count--;
-                itemToUpload.setAmount(count);
+                sendServiceModel.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
@@ -405,7 +401,6 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             selected_date = dateFormat.format(new Date(calendar.getTimeInMillis()));
             binding.flCalender.setVisibility(View.GONE);
             binding.tvDate.setText(selected_date);
-            binding.consTime.setEnabled(true);
             getTime();
         });
     }
@@ -416,7 +411,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         total = 0.0;
         binding.setTotal(total);
 
-        ProgressDialog dialog = Common.createProgressDialog(ServiceDetailsActivity.this, getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(ServiceSentDetailsActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
 
@@ -442,10 +437,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                                Toast.makeText(ServiceDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(ServiceDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -459,9 +454,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(ServiceDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ServiceDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -473,7 +468,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
     private void getPriceForAdditionalService(ServiceDataModel.Level3 level3, int size_id) {
 
-        ProgressDialog dialog = Common.createProgressDialog(ServiceDetailsActivity.this, getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(ServiceSentDetailsActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
 
@@ -502,7 +497,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
                             }
 
-                            itemToUpload.setSub_services(subServiceModelList);
+                            sendServiceModel.setSub_services(subServiceModelList);
                         } else {
                             try {
 
@@ -512,10 +507,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                                Toast.makeText(ServiceDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(ServiceDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -529,9 +524,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(ServiceDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ServiceDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -544,7 +539,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
     private void getCarSize() {
 
-        ProgressDialog dialog = Common.createProgressDialog(ServiceDetailsActivity.this, getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(ServiceSentDetailsActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
 
@@ -568,10 +563,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                                Toast.makeText(ServiceDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(ServiceDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -585,9 +580,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(ServiceDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ServiceDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -598,7 +593,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     }
 
     private void getCarType() {
-        ProgressDialog dialog = Common.createProgressDialog(ServiceDetailsActivity.this, getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(ServiceSentDetailsActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
 
@@ -621,10 +616,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                                Toast.makeText(ServiceDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(ServiceDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -638,9 +633,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(ServiceDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ServiceDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -650,62 +645,62 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("location")) {
-                selectedLocation = (SelectedLocation) data.getSerializableExtra("location");
-                binding.setLocation(selectedLocation);
-                itemToUpload.setLatitude(String.valueOf(selectedLocation.getLat()));
-                itemToUpload.setLongitude(String.valueOf(selectedLocation.getLng()));
-                itemToUpload.setAddress(selectedLocation.getAddress());
-                binding.setItemModel(itemToUpload);
-
-            }
-        } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("date")) {
-                binding.tvTime.setText("");
-                timeModel = null;
-                itemToUpload.setTime("");
-                itemToUpload.setTime_type("");
-                itemToUpload.setOrder_time_id(0);
-                date = data.getLongExtra("date", 0);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                d = dateFormat.format(new Date(date));
-                binding.tvDate.setText(d);
-                itemToUpload.setOrder_date(d);
-                binding.setItemModel(itemToUpload);
-
-
-            }
-        } else if (requestCode == 3 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("data")) {
-                timeModel = (TimeDataModel.TimeModel) data.getSerializableExtra("data");
-                String am_pm = timeModel.getType().equals("1") ? getString(R.string.am) : getString(R.string.pm);
-                String time = timeModel.getTime_text();
-                binding.tvTime.setText(String.format("%s %s", time, am_pm));
-
-                itemToUpload.setOrder_time_id(timeModel.getId());
-                itemToUpload.setTime(time);
-                itemToUpload.setTime_type(am_pm);
-                binding.setItemModel(itemToUpload);
-            }
-        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
-            Intent intent = getIntent();
-            if (intent != null) {
-
-                setResult(RESULT_OK, intent);
-
-            }
-            finish();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+//            if (data.hasExtra("location")) {
+//                selectedLocation = (SelectedLocation) data.getSerializableExtra("location");
+//                binding.setLocation(selectedLocation);
+//                itemToUpload.setLatitude(String.valueOf(selectedLocation.getLat()));
+//                itemToUpload.setLongitude(String.valueOf(selectedLocation.getLng()));
+//                itemToUpload.setAddress(selectedLocation.getAddress());
+//                binding.setItemModel(itemToUpload);
+//
+//            }
+//        } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+//            if (data.hasExtra("date")) {
+//                binding.tvTime.setText("");
+//                timeModel = null;
+//                itemToUpload.setTime("");
+//                itemToUpload.setTime_type("");
+//                itemToUpload.setOrder_time_id(0);
+//                date = data.getLongExtra("date", 0);
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//                d = dateFormat.format(new Date(date));
+//                binding.tvDate.setText(d);
+//                itemToUpload.setOrder_date(d);
+//                binding.setItemModel(itemToUpload);
+//
+//
+//            }
+//        } else if (requestCode == 3 && resultCode == RESULT_OK && data != null) {
+//            if (data.hasExtra("data")) {
+//                timeModel = (TimeDataModel.TimeModel) data.getSerializableExtra("data");
+//                String am_pm = timeModel.getType().equals("1") ? getString(R.string.am) : getString(R.string.pm);
+//                String time = timeModel.getTime_text();
+//                binding.tvTime.setText(String.format("%s %s", time, am_pm));
+//
+//                itemToUpload.setOrder_time_id(timeModel.getId());
+//                itemToUpload.setTime(time);
+//                itemToUpload.setTime_type(am_pm);
+//                binding.setItemModel(itemToUpload);
+//            }
+//        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
+//            Intent intent = getIntent();
+//            if (intent != null) {
+//
+//                setResult(RESULT_OK, intent);
+//
+//            }
+//            finish();
+//        }
+//    }
 
     public void setItemCarSizeSelected(CarSizeDataModel.CarSizeModel carSizeModel) {
-        itemToUpload.setCarSize_id(carSizeModel.getId());
-        itemToUpload.setService_price(Double.parseDouble(carSizeModel.getPrice()));
-        binding.setItemModel(itemToUpload);
+        sendServiceModel.setCarSize_id(carSizeModel.getId());
+        sendServiceModel.setService_price(Double.parseDouble(carSizeModel.getPrice()));
+        binding.setSendServiceModel(sendServiceModel);
     }
 
 
@@ -744,7 +739,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             subServiceModelList.add(subServiceModel);
 
         }
-        itemToUpload.setSub_services(subServiceModelList);
+        sendServiceModel.setSub_services(subServiceModelList);
     }
 
     private boolean hasItem(ServiceDataModel.Level3 serviceModel) {
@@ -798,10 +793,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                                Toast.makeText(ServiceDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(ServiceDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ServiceSentDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -814,9 +809,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(ServiceDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ServiceDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ServiceSentDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -827,4 +822,3 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     }
 
 }
-

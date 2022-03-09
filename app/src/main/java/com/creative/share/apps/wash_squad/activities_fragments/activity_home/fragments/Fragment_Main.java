@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service.ChooseServiceSentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
@@ -160,4 +161,12 @@ public class Fragment_Main extends Fragment {
         {
         }
     }
+
+    public void setItemData2(ServiceDataModel.ServiceModel serviceModel1) {
+        Intent intent=new Intent(activity, ChooseServiceSentActivity.class);
+        intent.putExtra("data",serviceModel1);
+        startActivityForResult(intent,1000);
+    }
+
+
 }
