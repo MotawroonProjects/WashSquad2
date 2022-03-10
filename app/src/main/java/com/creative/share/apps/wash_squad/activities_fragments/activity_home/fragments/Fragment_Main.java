@@ -24,6 +24,7 @@ import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_s
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
 import com.creative.share.apps.wash_squad.adapters.MainServiceAdapter;
 import com.creative.share.apps.wash_squad.databinding.FragmentMainBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
@@ -169,4 +170,9 @@ public class Fragment_Main extends Fragment {
     }
 
 
+    public void setItemData3(ServiceDataModel.ServiceModel serviceModel1) {
+        Intent intent=new Intent(activity, SubscriptionServiceActivity.class);
+        intent.putExtra("data",serviceModel1);
+        startActivityForResult(intent,1000);
+    }
 }

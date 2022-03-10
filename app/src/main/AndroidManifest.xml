@@ -24,6 +24,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity
+            android:name=".activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity"
             android:exported="false" />
         <activity
@@ -49,6 +52,7 @@
             android:name=".activities_fragments.activity_change_password.PasswordActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />

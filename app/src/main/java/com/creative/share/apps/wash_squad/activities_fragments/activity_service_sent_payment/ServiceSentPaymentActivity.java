@@ -24,6 +24,7 @@ import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.CouponModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -44,7 +45,7 @@ import retrofit2.Response;
 public class ServiceSentPaymentActivity extends AppCompatActivity {
     private ActivityServiceSentPaymentBinding binding;
     private String lang;
-    private ItemToUpload itemToUpload;
+    private SendServiceModel sendServiceModel;
     private SingleTon singleTon;
     private LinearLayoutManager manager;
     private AdditionalAdapter adapter;
@@ -72,7 +73,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent!=null)
         {
-            itemToUpload = (ItemToUpload) intent.getSerializableExtra("item");
+            sendServiceModel = (SendServiceModel) intent.getSerializableExtra("item");
         }
     }
 
@@ -80,7 +81,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(this);
         singleTon = SingleTon.newInstance();
-        binding.setItemModel(itemToUpload);
+        binding.setSendServiceModel(sendServiceModel);
 
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -90,7 +91,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM",Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
-        String m_date=itemToUpload.getOrder_date();
+        String m_date=sendServiceModel.getOrder_date();
 
 
 
@@ -98,19 +99,19 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
             finish();
         });
 
-        binding.btnSend.setOnClickListener(view -> {
-            if (itemToUpload.isDataValidStep2(this))
-            {
-                if (couponModel==null)
-                {
-                    itemToUpload.setCoupon_serial(null);
-                }else
-                {
-                    itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
-                }
-                uploadOrder(itemToUpload);
-            }
-        });
+//        binding.btnSend.setOnClickListener(view -> {
+//            if (itemToUpload.isDataValidStep2(this))
+//            {
+//                if (couponModel==null)
+//                {
+//                    itemToUpload.setCoupon_serial(null);
+//                }else
+//                {
+//                    itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
+//                }
+//                uploadOrder(itemToUpload);
+//            }
+//        });
 
 /*
         binding.btnOther.setOnClickListener(view -> {
@@ -171,10 +172,10 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
 
             }*/
 
-        total = itemToUpload.getTotal_price()-((itemToUpload.getTotal_price()*coupon_value)/100);
+        total = sendServiceModel.getTotal_price()-((sendServiceModel.getTotal_price()*coupon_value)/100);
 
 
-        itemToUpload.setTotal_price(total);
+        sendServiceModel.setTotal_price(total);
     }
 
 

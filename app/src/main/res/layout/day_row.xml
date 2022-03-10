@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+      <variable
+          name="day"
+          type="com.creative.share.apps.wash_squad.models.DayModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:background='@{day.selected?@drawable/btn_bg:@drawable/select_time}'
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text='@{day.day_text}'
+            android:textSize="14sp"
+            android:textColor='@{day.selected?@color/white:@color/black}'/>
+
+    </LinearLayout>
+
+</layout>

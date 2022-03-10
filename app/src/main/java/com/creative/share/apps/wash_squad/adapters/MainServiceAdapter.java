@@ -50,7 +50,9 @@ public class MainServiceAdapter extends RecyclerView.Adapter<MainServiceAdapter.
         holder.itemView.setOnClickListener(view -> {
             ServiceDataModel.ServiceModel serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
 
-            if (holder.getAdapterPosition()==4){
+            if (holder.getAdapterPosition()==2){
+                fragment.setItemData3(serviceModel1);
+            }else if (holder.getAdapterPosition()==4){
                 fragment.setItemData2(serviceModel1);
             }else {
                 fragment.setItemData(serviceModel1);

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
 import com.creative.share.apps.wash_squad.databinding.TimeRowBinding;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 
@@ -67,6 +68,10 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.MyHolder> {
             oldPos=currentPos;
             if (context instanceof ServiceDetailsActivity){
                 ServiceDetailsActivity activity=(ServiceDetailsActivity) context;
+                activity.setTimeItem(model);
+            }
+            if (context instanceof SubscriptionServiceActivity){
+                SubscriptionServiceActivity activity=(SubscriptionServiceActivity) context;
                 activity.setTimeItem(model);
             }
 

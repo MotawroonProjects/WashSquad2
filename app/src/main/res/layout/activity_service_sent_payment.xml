@@ -14,13 +14,14 @@
         <variable
             name="usermodel"
             type="com.creative.share.apps.wash_squad.models.UserModel" />
+
         <variable
             name="lang"
             type="String" />
 
         <variable
-            name="itemModel"
-            type="com.creative.share.apps.wash_squad.models.ItemToUpload" />
+            name="sendServiceModel"
+            type="com.creative.share.apps.wash_squad.models.SendServiceModel" />
 
 
     </data>
@@ -55,10 +56,10 @@
                         android:id="@+id/tvEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:text="@string/edit"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:layout_marginEnd="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -218,6 +219,7 @@
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -247,11 +249,13 @@
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:background="@color/gray5" />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -277,7 +281,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="محمد خالد"
+                                    android:text="@{sendServiceModel.receiver_name}"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -307,7 +311,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="01234567891"
+                                    android:text="@{sendServiceModel.receiver_phone}"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -337,7 +341,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="كامري/صغيرة"
+                                    android:text='@{lang.equals("ar")?sendServiceModel.ar_car_type:sendServiceModel.en_car_type}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -364,12 +368,13 @@
                                     android:layout_weight="1" />
 
                                 <TextView
+
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="كامري/صغيرة"
+                                    android:text='@{lang.equals("ar")?sendServiceModel.ar_service_type:sendServiceModel.en_service_type}'
                                     android:textColor="@color/gray5"
-                                    android:textSize="15sp" />
+                                android:textSize="15sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -397,7 +402,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="100 ريال"
+                                    android:text='@{sendServiceModel.service_price+""+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -457,7 +462,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="20.0 ريال"
+                                    android:text="20.0"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -491,7 +496,7 @@
                                     android:gravity="center_vertical|end"
                                     android:paddingLeft="8dp"
                                     android:paddingRight="8dp"
-                                    android:text='@{itemModel.total_price+" "+@string/sar}'
+                                    android:text='@{sendServiceModel.total_price+" "+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="14sp" />
                             </LinearLayout>
@@ -515,6 +520,7 @@
                             android:text="@string/a_copy_of_the_invoice"
                             android:textColor="@color/colorPrimary"
                             android:textSize="14sp" />
+
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
@@ -530,8 +536,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/btn_send"
                         android:paddingLeft="25dp"
