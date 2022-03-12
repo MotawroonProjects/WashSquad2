@@ -550,7 +550,6 @@
 
 
         </FrameLayout>
-
         <FrameLayout
             android:id="@+id/flTime"
             android:layout_width="match_parent"
