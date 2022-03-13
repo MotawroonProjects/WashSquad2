@@ -211,7 +211,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="محمد خالد"
+                                    android:text="@{itemModel.user_name}"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -241,7 +241,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="01234567891"
+                                    android:text="@{itemModel.user_phone}"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -271,7 +271,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="كامري/صغيرة"
+                                    android:text='@{lang.equals("ar")?itemModel.ar_car_type:itemModel.en_car_type}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -301,7 +301,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="100 ريال"
+                                    android:text='@{itemModel.service_price+" "+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -331,7 +331,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="تلميع كرسي اطفال "
+                                    android:text="@{"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -361,7 +361,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="20.0 ريال"
+                                    android:text="@{itemModel"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>

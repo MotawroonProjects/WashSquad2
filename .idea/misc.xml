@@ -11,7 +11,30 @@
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/circle_primary.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/custom_bg.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/dialog_window_bg.xml" value="0.25555555555555554" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/expand_bg.xml" value="0.23981481481481481" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_calender.xml" value="0.25555555555555554" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_close.xml" value="0.24722222222222223" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_close2.xml" value="0.24722222222222223" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_notification.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_offer.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_paper.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_pdf.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_phone_call.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_plus.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_resend.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_setting.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_shopping_cart.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_terms.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_time.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_user.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_wallet.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_world.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/image_user_bg.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/image_user_bg_color.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/profile_bg.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/profile_detials_bg.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rb_bg2.xml" value="0.23981481481481481" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rb_bg4.xml" value="0.23981481481481481" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rounded_white.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rounded_white_strock_primary.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/select.xml" value="0.25555555555555554" />
@@ -30,9 +53,14 @@
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml" value="0.24010416666666667" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_subscription_service.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_time.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/bouquet_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/cart_type_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/day_row.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_alert.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_cash.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_select_image.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_forgetpassword.xml" value="0.21296296296296297" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_home.xml" value="0.19074074074074074" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_main.xml" value="0.25416666666666665" />
@@ -40,6 +68,7 @@
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml" value="0.21296296296296297" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/main_service_row.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/size_row.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/time_row.xml" value="0.25416666666666665" />
         <entry key="..\:/WashSquad2/app/src/main/res/drawable/correct.xml" value="0.15885416666666666" />
         <entry key="..\:/WashSquad2/app/src/main/res/drawable/ic_car.xml" value="0.12685185185185185" />
@@ -60,13 +89,11 @@
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_questions.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_service_details.xml" value="0.14270833333333333" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_subscribe_detials.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml" value="0.309255079006772" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_terms.xml" value="0.1390625" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_time.xml" value="0.1390625" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_wallet.xml" value="0.28541666666666665" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/additional_service_row.xml" value="0.19427083333333334" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_forgetpassword.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_home.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_main.xml" value="0.27291666666666664" />

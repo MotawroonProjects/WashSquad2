@@ -30,10 +30,9 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private String longitude;
     private String latitude;
     private String address;
-    private String time;
-    private String time_type;
-    private String order_day;
-    private int order_time_id;
+
+    private String day;
+    private String order_date;
     private int payment_method;
     private double service_price;
     private double total_price;
@@ -48,7 +47,6 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> day_error = new ObservableField<>();
-    public ObservableField<String> time_error = new ObservableField<>();
     public ObservableField<String> car_plate_number_error = new ObservableField<>();
 
     public boolean isDataValidStep1(Context context) {
@@ -59,14 +57,12 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
                 brand_id != 0 &&
 
                 !TextUtils.isEmpty(address) &&
-                order_time_id != 0 &&
-                !order_day.isEmpty() &&
+                !day.isEmpty() &&
                 !car_plate_number.isEmpty()
 
 
         ) {
             address_error.set(null);
-            time_error.set(null);
             day_error.set(null);
             car_plate_number_error.set(null);
 
@@ -93,14 +89,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
             }
 
-            if (order_time_id == 0) {
-                time_error.set(context.getString(R.string.field_req));
-            } else {
-                time_error.set(null);
-
-            }
-
-            if (order_day.isEmpty()) {
+            if (day.isEmpty()) {
                 day_error.set(context.getString(R.string.field_req));
             } else {
                 day_error.set(null);
@@ -128,8 +117,6 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         this.carSize_id = 0;
         notifyPropertyChanged(BR.carSize_id);
 
-        this.order_time_id = 0;
-        notifyPropertyChanged(BR.order_time_id);
         this.latitude = "";
         notifyPropertyChanged(BR.latitude);
 
@@ -145,10 +132,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         this.address = "";
         notifyPropertyChanged(BR.address);
 
-        this.time = "";
-        notifyPropertyChanged(BR.time);
-
-        this.order_day = "";
+        this.day = "";
         notifyPropertyChanged(BR.order_date);
 
         this.car_plate_number = "";
@@ -180,6 +164,14 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     public void setCar_plate_number(String car_plate_number) {
         this.car_plate_number = car_plate_number;
         notifyPropertyChanged(BR.car_plate_number);
+    }
+
+    public String getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(String order_date) {
+        this.order_date = order_date;
     }
 
     @Bindable
@@ -334,43 +326,13 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     }
 
     @Bindable
-    public String getTime() {
-        return time;
+    public String getday() {
+        return day;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-        notifyPropertyChanged(BR.time);
-    }
-
-
-    public String getTime_type() {
-        return time_type;
-    }
-
-    public void setTime_type(String time_type) {
-        this.time_type = time_type;
-
-    }
-
-    @Bindable
-    public String getOrder_day() {
-        return order_day;
-    }
-
-    public void setOrder_day(String order_day) {
-        this.order_day = order_day;
-        notifyPropertyChanged(BR.order_day);
-    }
-
-    @Bindable
-    public int getOrder_time_id() {
-        return order_time_id;
-    }
-
-    public void setOrder_time_id(int order_time_id) {
-        this.order_time_id = order_time_id;
-        notifyPropertyChanged(BR.order_time_id);
+    public void setday(String day) {
+        this.day = day;
+        notifyPropertyChanged(BR.day);
     }
 
     @Bindable

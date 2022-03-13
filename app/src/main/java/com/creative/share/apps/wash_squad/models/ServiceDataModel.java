@@ -118,6 +118,16 @@ public class ServiceDataModel implements Serializable {
         private String created_at;
         private String updated_at;
         private List<Level3> level3;
+        private boolean isSelected = false;
+
+
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
 
         public int getId() {
             return id;

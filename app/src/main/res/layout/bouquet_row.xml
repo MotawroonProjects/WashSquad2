@@ -23,7 +23,8 @@
             android:layout_height="180dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:background="@drawable/expand_bg">
+            android:background='@{level2.selected?@drawable/selected_car_size_bg:@drawable/expand_bg}'
+            >
 
             <ImageView
                 android:id="@+id/image"
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/primary_dark"
+                android:textColor='@{level2.selected?@color/color_second:@color/primary_dark}'
                 android:textSize="15sp"
                 android:maxLines="2"
                 android:ellipsize="end"

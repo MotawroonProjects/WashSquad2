@@ -129,12 +129,14 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         userModel = preferences.getUserData(this);
         itemToUpload = new ItemToUpload();
         itemToUpload.setSub_services(subServiceModelList);
-        itemToUpload.setService_id(service_id);
+        itemToUpload.setService_id(serviceModel.getId());
         itemToUpload.setAr_service_type(service_name_ar);
         itemToUpload.setEn_service_type(service_name_en);
+
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
-        itemToUpload.setSub_serv_id(serviceModel.getId());
+
+     //   itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         carSizeModelList = new ArrayList<>();
         carTypeModelList = new ArrayList<>();
@@ -325,6 +327,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         binding.tvDone.setOnClickListener(view -> {
             binding.flTime.setVisibility(View.GONE);
             binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
+            itemToUpload.setTime(timeModel.getTime_text()+timeModel.getType());
+            itemToUpload.setOrder_time_id(timeModel.getId());
 
         });
         binding.tvDetails.setOnClickListener(view -> {
@@ -405,6 +409,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             selected_date = dateFormat.format(new Date(calendar.getTimeInMillis()));
             binding.flCalender.setVisibility(View.GONE);
             binding.tvDate.setText(selected_date);
+            itemToUpload.setOrder_date(selected_date);
             binding.consTime.setEnabled(true);
             getTime();
         });

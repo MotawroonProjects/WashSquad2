@@ -65,6 +65,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private List<ServiceDataModel.Level2> level2List;
     private List<CarTypeDataModel.CarTypeModel> carTypeModelList;
     private List<CarTypeDataModel.CarBrandModel> carBrandModelList;
+    private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
+
     private AdditionalServiceAdapter additionalServiceAdapter;
     private BouquetAdapter bouquetAdapter;
     private CarTypeAdapter carTypeAdapter;
@@ -73,6 +75,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private LinearLayoutManager manager2;
     private TimeDataModel.TimeModel timeModel;
     private DayModel dayModel;
+    private ServiceDataModel.Level2 level2Model;
     private String d;
     private List<ServiceDataModel.Level3> additional_service;
     private ItemSubscribeToUpload itemToUpload;
@@ -89,6 +92,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private List<TimeDataModel.TimeModel> timeModelList;
     private List<DayModel> dayModelList;
     private String selected_day;
+    private String selected_date;
 
 
     @Override
@@ -118,11 +122,12 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     private void initView() {
 
-        binding.consTime.setEnabled(false);
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        selected_date = dateFormat.format(new Date(System.currentTimeMillis()));
         timeModelList = new ArrayList<>();
         dayModelList = new ArrayList<>();
         dayModelList.add(new DayModel("SATURDAY"));
@@ -132,6 +137,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         dayModelList.add(new DayModel("WEDNESDAY"));
         dayModelList.add(new DayModel("THURSDAY"));
         dayModelList.add(new DayModel("FRIDAY"));
+        carSizeModelList = new ArrayList<>();
+
 //        dayAdapter.updateList(dayModelList);
         timeAdapter = new TimeAdapter(timeModelList, this);
         dayAdapter = new DayAdapter(dayModelList, this);
@@ -147,12 +154,17 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         itemToUpload.setService_id(service_id);
         itemToUpload.setAr_service_type(service_name_ar);
         itemToUpload.setEn_service_type(service_name_en);
+        itemToUpload.setOrder_date(selected_date);
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
         itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         level2List = new ArrayList<>();
         level2List.addAll(serviceModel.getLevel2());
+        if(level2List.size()>0){
+            level2Model=level2List.get(0);
+
+        }
         carTypeModelList = new ArrayList<>();
         carTypeModelList.add(new CarTypeDataModel.CarTypeModel("نوع السيارة", "Car type"));
         binding.tvDetails.setPaintFlags(binding.tvDetails.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -290,9 +302,10 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                         }
 
                         additional_service.clear();
-                        size_id = level2List.get(pos).getId();
-//                        getPrice(serviceModel.getId(), carSizeModelList.get(pos).getId());
-                        itemToUpload.setCarSize_id(level2List.get(pos).getId());
+                        size_id = carSizeModelList.get(pos).getId();
+                        if(level2Model!=null){
+                        getPrice(level2Model.getId(), carSizeModelList.get(pos).getId());}
+                        itemToUpload.setCarSize_id(carSizeModelList.get(pos).getId());
 
                     }
 
@@ -319,23 +332,15 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         binding.recViewDay.setAdapter(dayAdapter);
         binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
         binding.recViewTime.setAdapter(timeAdapter);
-        binding.consTime.setOnClickListener(view -> {
-            binding.flTime.setVisibility(View.VISIBLE);
 
-        });
 
         binding.tvDone1.setOnClickListener(view -> {
             binding.flDay.setVisibility(View.GONE);
             binding.tvDay.setText(dayModel.getDay_text());
             selected_day=dayModel.getDay_text();
-            binding.consTime.setEnabled(true);
-            getTime();
-        });
-        binding.tvDone.setOnClickListener(view -> {
-            binding.flTime.setVisibility(View.GONE);
-            binding.tvTime.setText(timeModel.getTime_text() + timeModel.getType());
 
         });
+
 
         binding.tvDetails.setOnClickListener(view -> {
             if (binding.expandLayout.isExpanded()) {
@@ -388,10 +393,128 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             }
 
         });
-//        getCarSize();
+      getCarSize();
         getCarType();
 
 
+    }
+
+    private void getCarSize() {
+
+        ProgressDialog dialog = Common.createProgressDialog(SubscriptionServiceActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Api.getService(Tags.base_url)
+                .getCarSizes()
+                .enqueue(new Callback<CarSizeDataModel>() {
+                    @Override
+                    public void onResponse(Call<CarSizeDataModel> call, Response<CarSizeDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+                            carSizeModelList.clear();
+                            carSizeModelList.addAll(response.body().getData());
+
+
+                        } else {
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                            } else if (response.code() == 500) {
+                                Toast.makeText(SubscriptionServiceActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(SubscriptionServiceActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CarSizeDataModel> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(SubscriptionServiceActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SubscriptionServiceActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+    }
+
+    private void getPrice(int service_id, int size_id) {
+
+
+        total = 0.0;
+        binding.setTotal(total);
+
+        ProgressDialog dialog = Common.createProgressDialog(SubscriptionServiceActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Api.getService(Tags.base_url)
+                .getPrice(service_id, size_id)
+                .enqueue(new Callback<Double>() {
+                    @Override
+                    public void onResponse(Call<Double> call, Response<Double> response) {
+                        dialog.dismiss();
+                        Log.e("error", response.code() + "_"+service_id+" "+size_id );
+
+                        if (response.isSuccessful() && response.body() != null) {
+                            binding.setPrice(response.body());
+                            total = total + response.body();
+                            final_total = total * count;
+                            binding.setTotal(final_total);
+
+                        } else {
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                            } else if (response.code() == 500) {
+                                Toast.makeText(SubscriptionServiceActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(SubscriptionServiceActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Double> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(SubscriptionServiceActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SubscriptionServiceActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
     }
 
 
@@ -588,16 +711,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             }
         } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             if (data.hasExtra("date")) {
-                binding.tvTime.setText("");
-                timeModel = null;
-                itemToUpload.setTime("");
-                itemToUpload.setTime_type("");
-                itemToUpload.setOrder_time_id(0);
                 date = data.getLongExtra("date", 0);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 d = dateFormat.format(new Date(date));
                 binding.tvDay.setText(d);
-                itemToUpload.setOrder_day(d);
+                itemToUpload.setday(d);
                 binding.setItemModel(itemToUpload);
 
 
@@ -607,11 +725,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                 timeModel = (TimeDataModel.TimeModel) data.getSerializableExtra("data");
                 String am_pm = timeModel.getType().equals("1") ? getString(R.string.am) : getString(R.string.pm);
                 String time = timeModel.getTime_text();
-                binding.tvTime.setText(String.format("%s %s", time, am_pm));
 
-                itemToUpload.setOrder_time_id(timeModel.getId());
-                itemToUpload.setTime(time);
-                itemToUpload.setTime_type(am_pm);
                 binding.setItemModel(itemToUpload);
             }
         } else if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
@@ -691,8 +805,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     private int getCarSizeItemPos(String id) {
         int position = -1;
-        for (int pos = 0; pos < level2List.size(); pos++) {
-            if (Integer.parseInt(id) == level2List.get(pos).getId()) {
+        for (int pos = 0; pos < carSizeModelList.size(); pos++) {
+            if (Integer.parseInt(id) == carSizeModelList.get(pos).getId()) {
                 return pos;
             }
         }
@@ -757,5 +871,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     public void setDayItem(DayModel model) {
         binding.tvDone1.setVisibility(View.VISIBLE);
         this.dayModel = model;
+    }
+
+    public void setBouquetItem(ServiceDataModel.Level2 model) {
+        this.level2Model=model;
+        if(size_id!=0){
+            getPrice(level2Model.getId(), size_id);}
     }
 }

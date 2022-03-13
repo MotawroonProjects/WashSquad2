@@ -376,57 +376,6 @@
                             android:longClickable="false"
                             app:tint="@color/gray5" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/consTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="10dp"
-
-                        android:background="@drawable/expand_bg"
-                        >
-                        <ImageView
-                            android:id="@+id/icon_time"
-                            android:layout_width="35dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:src="@drawable/ic_time"
-                            android:padding="8dp"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            app:tint="@color/color_second" />
-                        <TextView
-                            android:id="@+id/tvTime"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/icon_time"
-                            android:textColor="@color/color_second"
-                            android:textColorHint="@color/color_second"
-                            android:textSize="13sp"
-                            android:hint="@string/time"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            android:singleLine="true"
-                            app:layout_constraintEnd_toStartOf="@id/arrow3"
-                            android:gravity="center_vertical"
-                            error="@{itemModel.time_error}"
-
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/arrow3"
-                            android:layout_width="35dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:src="@drawable/ic_arrow_right"
-                            android:padding="12dp"
-                            android:rotation='@{lang.equals("ar")?180:0}'
-                            android:clickable="false"
-                            android:longClickable="false"
-                            app:tint="@color/gray5" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:id="@+id/llAdditional"

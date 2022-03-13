@@ -54,12 +54,12 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     public boolean isDataValidStep1(Context context) {
         if (service_id != 0 &&
-                sub_serv_id != 0 &&
+//                sub_serv_id != 0 &&
                 carSize_id != 0 &&
                 carType_id != 0 &&
                 brand_id != 0 &&
 
-                !TextUtils.isEmpty(address) &&
+//                !TextUtils.isEmpty(address) &&
                 order_time_id != 0 &&
                 !order_date.isEmpty()
 
@@ -84,13 +84,13 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
 
-
-            if (TextUtils.isEmpty(address)) {
-                address_error.set(context.getString(R.string.field_req));
-            } else {
-                address_error.set(null);
-
-            }
+//
+//        /    if (TextUtils.isEmpty(address)) {
+//                address_error.set(context.getString(R.string.field_req));
+//            } else {
+//                address_error.set(null);
+//
+//            }
 
             if (order_time_id == 0) {
                 time_error.set(context.getString(R.string.field_req));
@@ -431,12 +431,14 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     }
 
+    @Bindable
     public List<SubServiceModel> getSub_services() {
         return sub_services;
     }
 
     public void setSub_services(List<SubServiceModel> sub_services) {
         this.sub_services = sub_services;
+        notifyPropertyChanged(BR.sub_services);
     }
 
     public ServiceDataModel.Level2 getLevel2() {

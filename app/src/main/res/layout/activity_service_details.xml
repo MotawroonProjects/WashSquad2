@@ -600,7 +600,7 @@
                             android:id="@+id/tvDone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/done"
+                            android:text="@string/done2"
                             android:textSize="16sp"
                             android:textColor="@color/colorPrimary"
                             android:layout_gravity="center_vertical"

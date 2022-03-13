@@ -29,6 +29,10 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String receiver_name;
     private String receiver_phone;
     private String order_date;
+
+
+
+    private String time;
     private int order_time_id;
     private int payment_method;
 
@@ -59,6 +63,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 !sender_phone.isEmpty() &&
                 !receiver_name.isEmpty() &&
                 !receiver_phone.isEmpty() &&
+                !time.isEmpty()&&
                 order_time_id != 0 &&
                 !order_date.isEmpty()
 
@@ -84,6 +89,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             if (brand_id == 0) {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
+
             if (order_time_id == 0) {
                 time_error.set(context.getString(R.string.field_req));
             } else {
@@ -116,6 +122,11 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             } else {
                 date_error.set(null);
 
+            }
+            if (time.isEmpty()){
+                time_error.set(context.getString(R.string.field_req));
+            }else {
+                time_error.set(null);
             }
 
             return false;
@@ -159,7 +170,11 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.receiver_phone);
         this.order_date = "";
         notifyPropertyChanged(BR.order_date);
+        this.time="";
+        notifyPropertyChanged(BR.time);
 
+        this.order_time_id=0;
+        notifyPropertyChanged(BR.order_time_id);
         this.ar_service_type = "";
         notifyPropertyChanged(BR.ar_service_type);
 
@@ -174,6 +189,26 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         this.en_brand_name = "";
         notifyPropertyChanged(BR.en_brand_name);
 
+    }
+
+    @Bindable
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+        notifyPropertyChanged(BR.time);
+    }
+
+    @Bindable
+    public int getOrder_time_id() {
+        return order_time_id;
+    }
+
+    public void setOrder_time_id(int order_time_id) {
+        this.order_time_id = order_time_id;
+        notifyPropertyChanged(BR.order_time_id);
     }
 
     @Bindable

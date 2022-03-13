@@ -109,6 +109,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        binding.consTime.setEnabled(false);
 
         timeModelList = new ArrayList<>();
         timeAdapter = new TimeAdapter(timeModelList, this);
@@ -309,17 +310,20 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 //            startActivityForResult(intent, 1);
 //        });
         binding.closeCalender.setOnClickListener(view -> binding.flCalender.setVisibility(View.GONE));
-//        binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
+        binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
 
         binding.consDate.setOnClickListener(view -> openCalender());
-//        binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
-//        binding.recViewTime.setAdapter(timeAdapter);
+        binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
+        binding.recViewTime.setAdapter(timeAdapter);
 
-//        binding.tvDone.setOnClickListener(view -> {
-//            binding.flTime.setVisibility(View.GONE);
-//            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
-//
-//        });
+        binding.tvDone.setOnClickListener(view -> {
+            binding.flTime.setVisibility(View.GONE);
+            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
+            sendServiceModel.setTime(timeModel.getTime_text()+timeModel.getType());
+            sendServiceModel.setOrder_time_id(timeModel.getId());
+
+
+        });
         binding.tvDetails.setOnClickListener(view -> {
             if (binding.expandLayout.isExpanded()) {
                 binding.expandLayout.collapse(true);
@@ -381,7 +385,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     }
 
     public void setTimeItem(TimeDataModel.TimeModel model) {
-        //timeAdapter.updateList(model);
+//        timeAdapter.updateList(model);
         binding.tvDone.setVisibility(View.VISIBLE);
         this.timeModel = model;
     }
@@ -399,6 +403,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
             selected_date = dateFormat.format(new Date(calendar.getTimeInMillis()));
             binding.flCalender.setVisibility(View.GONE);
             binding.tvDate.setText(selected_date);
+            sendServiceModel.setOrder_date(selected_date);
             getTime();
         });
     }

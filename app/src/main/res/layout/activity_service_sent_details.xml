@@ -346,7 +346,7 @@
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
                                 android:singleLine="true"
-                                android:text="@={sendServiceModel.setSender_name}"
+                                android:text="@={sendServiceModel.sender_name}"
                                 error="@{sendServiceModel.user_name_error}"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray4"
@@ -398,7 +398,7 @@
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
                                 android:singleLine="true"
-                                android:text="@={sendServiceModel.setSender_phone}"
+                                android:text="@={sendServiceModel.sender_phone}"
                                 error="@{sendServiceModel.user_phone_error}"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray4"
@@ -552,12 +552,64 @@
 
                             app:layout_constraintTop_toTopOf="parent"
 
-                            error="@{itemModel.date_error}"
+                            error="@{sendServiceModel.date_error}"
 
                             />
 
                         <ImageView
                             android:id="@+id/arrow2"
+                            android:layout_width="35dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="12dp"
+                            android:rotation='@{lang.equals("ar")?180:0}'
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:tint="@color/gray5" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/consTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
+
+                        android:background="@drawable/expand_bg"
+                        >
+                        <ImageView
+                            android:id="@+id/icon_time"
+                            android:layout_width="35dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:src="@drawable/ic_time"
+                            android:padding="8dp"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:tint="@color/color_second" />
+                        <TextView
+                            android:id="@+id/tvTime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icon_time"
+                            android:textColor="@color/color_second"
+                            android:textColorHint="@color/color_second"
+                            android:textSize="13sp"
+                            android:hint="@string/time"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            android:singleLine="true"
+                            app:layout_constraintEnd_toStartOf="@id/arrow3"
+                            android:gravity="center_vertical"
+                            error="@{sendServiceModel.time_error}"
+
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/arrow3"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -764,7 +816,7 @@
                             android:id="@+id/tvDone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/done"
+                            android:text="@string/done2"
                             android:textSize="16sp"
                             android:textColor="@color/colorPrimary"
                             android:layout_gravity="center_vertical"
