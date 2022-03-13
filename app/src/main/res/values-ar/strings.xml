@@ -53,7 +53,7 @@
     <string name="camera">كاميرا</string>
     <string name="gallery">البوم صور</string>
     <string name="perm_image_denied">الوصول لصور غير مسموح</string>
-    <string name="done">تم</string>
+    <string name="done">تمت الخدمه</string>
     <string name="pass_short">كلمة المرور قصيرة جدا</string>
     <string name="new_order">طلب جديد</string>
 
@@ -157,7 +157,7 @@
     <string name="coupons">الكوبون</string>
     <string name="no_coupons_to_show">لا توجد كوبونات لعرضها</string>
     <string name="order_num">رقم الطلب </string>
-    <string name="sent">تم الإرسال</string>
+    <string name="sent">تم قبول الطلب</string>
     <string name="in_location">في موقعك</string>
     <string name="in_way">الفريق قادم</string>
     <string name="order">الطلب</string>

@@ -159,9 +159,9 @@
     <string name="coupons">Coupons</string>
     <string name="no_coupons_to_show">No coupons to show</string>
     <string name="order_num">Order-num </string>
-    <string name="sent">sent</string>
+    <string name="sent">Order Accepeted</string>
     <string name="in_location">In Location</string>
-    <string name="in_way">In Way</string>
+    <string name="in_way">The team is coming</string>
     <string name="order">Order</string>
     <string name="price2">Price</string>
     <string name="driver_name">Driver name</string>

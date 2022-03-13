@@ -7,7 +7,7 @@
             type="String" />
         <variable
             name="level3"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level3" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

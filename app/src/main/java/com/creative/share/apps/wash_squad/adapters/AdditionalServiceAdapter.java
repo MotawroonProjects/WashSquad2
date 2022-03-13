@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity;
 import com.creative.share.apps.wash_squad.databinding.AdditionalServiceRowBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 
@@ -22,16 +23,14 @@ import io.paperdb.Paper;
 
 public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalServiceAdapter.MyHolder> {
 
-    private List<ServiceDataModel.Level3> serviceModelList;
+    private List<ServiceDataModel.Level2> serviceModelList;
     private Context context;
     private String lang;
-    private ServiceDetailsActivity activity;
     private SparseBooleanArray sparseBooleanArray;
 
-    public AdditionalServiceAdapter(List<ServiceDataModel.Level3> serviceModelList, Context context) {
+    public AdditionalServiceAdapter(List<ServiceDataModel.Level2> serviceModelList, Context context) {
         this.serviceModelList = serviceModelList;
         this.context = context;
-        activity = (ServiceDetailsActivity) context;
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         sparseBooleanArray = new SparseBooleanArray();
@@ -47,7 +46,7 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
 
-        ServiceDataModel.Level3 serviceModel = serviceModelList.get(position);
+        ServiceDataModel.Level2 serviceModel = serviceModelList.get(position);
         holder.additionalServiceRowBinding.setLang(lang);
         holder.additionalServiceRowBinding.setLevel3(serviceModel);
 
@@ -65,9 +64,16 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
                 Log.e("ddd","tttt");
                 sparseBooleanArray.put(holder.getAdapterPosition(),true);
 
-                ServiceDataModel.Level3 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
-                activity.setItemAdditionService(serviceModel1);
+                ServiceDataModel.Level2 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
+                if(context instanceof  ServiceDetailsActivity){
+                    ServiceDetailsActivity activity=(ServiceDetailsActivity)context;
+                activity.setItemAdditionService(serviceModel1);}
+                else if(context instanceof  ServiceSentDetailsActivity){
+                    ServiceSentDetailsActivity activity=(ServiceSentDetailsActivity)context;
+                        activity.setItemAdditionService(serviceModel1);}
+
                 notifyDataSetChanged();
+
 
 
             } else {
@@ -76,9 +82,15 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
 
                 sparseBooleanArray.put(holder.getAdapterPosition(),false);
 
-                ServiceDataModel.Level3 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
-
-                activity.removeAdditionalItem(serviceModel1);
+                ServiceDataModel.Level2 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
+                if(context instanceof  ServiceDetailsActivity){
+                    ServiceDetailsActivity activity=(ServiceDetailsActivity)context;
+                    activity.removeAdditionalItem(serviceModel1);
+                }
+                else if(context instanceof  ServiceSentDetailsActivity){
+                    ServiceSentDetailsActivity activity=(ServiceSentDetailsActivity)context;
+                    activity.removeAdditionalItem(serviceModel1);
+                }
                 notifyDataSetChanged();
 
             }

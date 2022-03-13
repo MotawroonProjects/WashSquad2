@@ -186,6 +186,10 @@ public class ServiceDataModel implements Serializable {
         public List<Level3> getLevel3() {
             return level3;
         }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
     }
     public class Level3 implements Serializable
     {

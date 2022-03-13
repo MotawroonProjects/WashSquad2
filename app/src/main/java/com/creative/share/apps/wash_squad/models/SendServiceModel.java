@@ -1,7 +1,6 @@
 package com.creative.share.apps.wash_squad.models;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -25,11 +24,13 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String ar_brand_name;
     private String ar_car_type;
     private String en_car_type;
-    private String user_name;
-    private String user_phone;
+    private String sender_name;
+    private String sender_phone;
     private String receiver_name;
     private String receiver_phone;
     private String order_date;
+    private int order_time_id;
+    private int payment_method;
 
     private double service_price;
     private double total_price;
@@ -46,75 +47,73 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public ObservableField<String> receiver_name_error = new ObservableField<>();
     public ObservableField<String> receiver_phone_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
+    public ObservableField<String> time_error = new ObservableField<>();
 
-    public boolean isDataValidStep1(Context context)
-    {
-        if (service_id!=0&&
-                sub_serv_id!=0&&
-                carSize_id!=0&&
-                carType_id!=0&&
-                brand_id!=0&&
-                !user_name.isEmpty()&&
-                !user_phone.isEmpty()&&
-                !receiver_name.isEmpty()&&
-                !receiver_phone.isEmpty()&&
+    public boolean isDataValidStep1(Context context) {
+        if (service_id != 0 &&
+                sub_serv_id != 0 &&
+                carSize_id != 0 &&
+                carType_id != 0 &&
+                brand_id != 0 &&
+                !sender_name.isEmpty() &&
+                !sender_phone.isEmpty() &&
+                !receiver_name.isEmpty() &&
+                !receiver_phone.isEmpty() &&
+                order_time_id != 0 &&
                 !order_date.isEmpty()
 
 
-
-        )
-        {
+        ) {
             user_name_error.set(null);
             user_phone_error.set(null);
             receiver_name_error.set(null);
             receiver_phone_error.set(null);
             date_error.set(null);
-
+            time_error.set(null);
 
             return true;
-        }else
-        {
-            if (carSize_id==0)
-            {
+        } else {
+            if (carSize_id == 0) {
                 Toast.makeText(context, R.string.ch_car_size, Toast.LENGTH_SHORT).show();
             }
 
-            if (carType_id==0)
-            {
+            if (carType_id == 0) {
                 Toast.makeText(context, R.string.ch_car_type, Toast.LENGTH_SHORT).show();
             }
 
-            if (brand_id==0)
-            {
+            if (brand_id == 0) {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
+            if (order_time_id == 0) {
+                time_error.set(context.getString(R.string.field_req));
+            } else {
+                time_error.set(null);
 
-            if (user_name.isEmpty()){
+            }
+            if (sender_name.isEmpty()) {
                 user_name_error.set(context.getString(R.string.field_req));
-            }else {
+            } else {
                 user_name_error.set(null);
             }
-            if (user_phone.isEmpty()){
+            if (sender_phone.isEmpty()) {
                 user_phone_error.set(context.getString(R.string.field_req));
-            }else {
+            } else {
                 user_phone_error.set(null);
             }
-            if (receiver_name.isEmpty()){
+            if (receiver_name.isEmpty()) {
                 receiver_name_error.set(context.getString(R.string.field_req));
-            }else {
+            } else {
                 receiver_name_error.set(null);
             }
-            if (receiver_phone.isEmpty()){
+            if (receiver_phone.isEmpty()) {
                 receiver_phone_error.set(context.getString(R.string.field_req));
-            }else {
+            } else {
                 receiver_phone_error.set(null);
             }
 
-            if (order_date.isEmpty())
-            {
+            if (order_date.isEmpty()) {
                 date_error.set(context.getString(R.string.field_req));
-            }else
-            {
+            } else {
                 date_error.set(null);
 
             }
@@ -122,36 +121,46 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             return false;
         }
     }
+    public boolean isDataValidStep2(Context context) {
+        if (payment_method != 0) {
+
+            return true;
+        } else {
+            Toast.makeText(context, R.string.ch_payment, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     public SendServiceModel() {
-        this.service_id=0;
+        this.service_id = 0;
         notifyPropertyChanged(BR.service_id);
-        this.sub_serv_id=0;
+        this.sub_serv_id = 0;
         notifyPropertyChanged(BR.sub_serv_id);
 
-        this.carType_id=0;
+        this.carType_id = 0;
         notifyPropertyChanged(BR.carType_id);
 
-        this.carSize_id=0;
+        this.carSize_id = 0;
         notifyPropertyChanged(BR.carSize_id);
 
 
-        this.ar_car_type="";
+        this.ar_car_type = "";
         notifyPropertyChanged(BR.ar_car_type);
 
-        this.en_car_type="";
+        this.en_car_type = "";
         notifyPropertyChanged(BR.en_car_type);
-        this.user_name="";
+        this.sender_name = "";
         notifyPropertyChanged(BR.user_name);
-        this.user_phone="";
+        this.sender_phone = "";
         notifyPropertyChanged(BR.user_phone);
-        this.receiver_name="";
+        this.receiver_name = "";
         notifyPropertyChanged(BR.receiver_name);
-        this.receiver_phone="";
+        this.receiver_phone = "";
         notifyPropertyChanged(BR.receiver_phone);
-        this.order_date="";
+        this.order_date = "";
         notifyPropertyChanged(BR.order_date);
 
-        this.ar_service_type="";
+        this.ar_service_type = "";
         notifyPropertyChanged(BR.ar_service_type);
 
         this.en_service_type = "";
@@ -160,9 +169,9 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         this.brand_id = 0;
         notifyPropertyChanged(BR.brand_id);
 
-        this.ar_brand_name="";
+        this.ar_brand_name = "";
         notifyPropertyChanged(BR.ar_brand_name);
-        this.en_brand_name="";
+        this.en_brand_name = "";
         notifyPropertyChanged(BR.en_brand_name);
 
     }
@@ -268,22 +277,22 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public String getUser_name() {
-        return user_name;
+    public String getSender_name() {
+        return sender_name;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setSender_name(String sender_name) {
+        this.sender_name = sender_name;
         notifyPropertyChanged(BR.user_name);
     }
 
     @Bindable
-    public String getUser_phone() {
-        return user_phone;
+    public String getSender_phone() {
+        return sender_phone;
     }
 
-    public void setUser_phone(String user_phone) {
-        this.user_phone = user_phone;
+    public void setSender_phone(String sender_phone) {
+        this.sender_phone = sender_phone;
         notifyPropertyChanged(BR.user_phone);
     }
 
@@ -390,5 +399,15 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     public void setSub_services(List<ItemToUpload.SubServiceModel> sub_services) {
         this.sub_services = sub_services;
+    }
+    @Bindable
+    public int getPayment_method() {
+        return payment_method;
+    }
+
+    public void setPayment_method(int payment_method) {
+        this.payment_method = payment_method;
+        notifyPropertyChanged(BR.payment_method);
+
     }
 }
