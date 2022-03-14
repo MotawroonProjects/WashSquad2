@@ -18,6 +18,7 @@ import com.creative.share.apps.wash_squad.databinding.ActivityQuestionsBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.QuestionDataModel;
+import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.remote.Api;
 import com.creative.share.apps.wash_squad.tags.Tags;
 
@@ -37,6 +38,7 @@ public class QuestionsActivity extends AppCompatActivity implements Listeners.Ba
     private QuestionsAdapter adapter;
     private List<QuestionDataModel.QuestionModel> questionModelList;
     private LinearLayoutManager manager;
+    private SettingModel settingModel;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -131,6 +133,26 @@ public class QuestionsActivity extends AppCompatActivity implements Listeners.Ba
 
                         } catch (Exception e) {
                         }
+                    }
+                });
+    }
+    private void getSetting() {
+
+        Api.getService(Tags.base_url)
+                .getStting()
+                .enqueue(new Callback<SettingModel>() {
+                    @Override
+                    public void onResponse(Call<SettingModel> call, Response<SettingModel> response) {
+
+                        if (response.isSuccessful() && response.body() != null) {
+                            settingModel = response.body();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SettingModel> call, Throwable t) {
+                        Log.e("error", t.getMessage());
                     }
                 });
     }

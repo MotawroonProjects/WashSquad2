@@ -132,7 +132,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textSize="14sp" />
 
-                        <Space
+                        <androidx.legacy.widget.Space
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
@@ -209,39 +209,53 @@
                         android:orientation="horizontal">
 
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:padding="5dp"
-                            android:src="@drawable/snapchat"
+                        <LinearLayout
+                            android:id="@+id/llCall"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/circle_primary">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_phone"
+                                android:padding="10dp"
+                                app:tint="@color/white" />
+                        </LinearLayout>
 
-                            />
-
-                        <Space
+                        <androidx.legacy.widget.Space
                             android:layout_width="12dp"
                             android:layout_height="0dp" />
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:padding="5dp"
-                            android:src="@drawable/twitter"
+                        <LinearLayout
+                            android:id="@+id/llContactUs"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/circle_primary">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_contact_us"
+                                android:padding="10dp"
+                                app:tint="@color/white" />
+                        </LinearLayout>
 
-
-                            />
-
-                        <Space
+                        <androidx.legacy.widget.Space
                             android:layout_width="12dp"
                             android:layout_height="0dp" />
 
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:padding="4dp"
-                            android:src="@drawable/instagram"
-
-                            />
+                        <LinearLayout
+                            android:id="@+id/llWhats"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/circle_primary">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_whatts"
+                                android:padding="10dp"
+                                 />
+                        </LinearLayout>
 
                     </LinearLayout>
 

@@ -47,6 +47,7 @@ import com.creative.share.apps.wash_squad.models.CouponDataModel;
 import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.EditProfileModel;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
@@ -89,6 +90,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private int status;
     private ArrayList<DayModel> dayModelList;
     private ArrayList<String> dayModelList2;
+    private SettingModel settingModel;
 
     public static Fragment_Profile newInstance() {
 
@@ -146,6 +148,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 }
             }
         });
+        getSetting();
         binding.cardSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -715,5 +718,26 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         dayModelList2.add("THURSDAY");
         dayModelList2.add("FRIDAY");
     }
+    private void getSetting() {
+
+        Api.getService(Tags.base_url)
+                .getStting()
+                .enqueue(new Callback<SettingModel>() {
+                    @Override
+                    public void onResponse(Call<SettingModel> call, Response<SettingModel> response) {
+
+                        if (response.isSuccessful() && response.body() != null) {
+                            settingModel = response.body();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SettingModel> call, Throwable t) {
+                        Log.e("error", t.getMessage());
+                    }
+                });
+    }
+
 
 }
