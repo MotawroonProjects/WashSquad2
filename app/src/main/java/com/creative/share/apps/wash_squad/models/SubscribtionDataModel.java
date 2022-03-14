@@ -201,7 +201,7 @@ public class SubscribtionDataModel implements Serializable {
         return wash_sub;
     }
 
-    public class WashSub implements Serializable{
+    public class WashSub implements Serializable {
         private String id;
         private String number_of_wash;
         private String order_id;
@@ -211,6 +211,7 @@ public class SubscribtionDataModel implements Serializable {
         private String time_dealy;
         private String created_at;
         private String updated_at;
+        private String day;
 
         public String getId() {
             return id;
@@ -246,6 +247,10 @@ public class SubscribtionDataModel implements Serializable {
 
         public String getUpdated_at() {
             return updated_at;
+        }
+
+        public String getDay() {
+            return day;
         }
     }
 }

@@ -16,6 +16,7 @@ import com.creative.share.apps.wash_squad.databinding.ActivitySubscriptionDetial
 import com.creative.share.apps.wash_squad.databinding.ActivityWalletBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
@@ -40,6 +41,8 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
     private UserModel userModel;
     private WashAdapter washAdapter;
     private int count, status;
+    private ArrayList<DayModel> dayModelList;
+    private ArrayList<String> dayModelList2;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -60,6 +63,7 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(this);
         washSubList = new ArrayList<>();
+       setDays();
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
@@ -90,6 +94,25 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                 binding.flData.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void setDays() {
+        dayModelList = new ArrayList<>();
+        dayModelList.add(new DayModel(getString(R.string.Saturday)));
+        dayModelList.add(new DayModel(getString(R.string.sunday)));
+        dayModelList.add(new DayModel(getString(R.string.monday)));
+        dayModelList.add(new DayModel(getString(R.string.tuesday)));
+        dayModelList.add(new DayModel(getString(R.string.wendesday)));
+        dayModelList.add(new DayModel(getString(R.string.thursday)));
+        dayModelList.add(new DayModel(getString(R.string.friday)));
+        dayModelList2 = new ArrayList<>();
+        dayModelList2.add("SATURDAY");
+        dayModelList2.add("SUNDAY");
+        dayModelList2.add("MONDAY");
+        dayModelList2.add("TUESDAY");
+        dayModelList2.add("WEDNESDAY");
+        dayModelList2.add("THURSDAY");
+        dayModelList2.add("FRIDAY");
     }
 
 
@@ -171,6 +194,7 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                 count += 1;
             } else {
                 binding.setModel(washSubList.get(i));
+                binding.setDay(dayModelList.get(dayModelList2.indexOf(washSubList.get(i).getDay().toUpperCase())).getDay_text());
                 status = 1;
             }
         }

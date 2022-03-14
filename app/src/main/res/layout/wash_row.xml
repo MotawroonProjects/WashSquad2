@@ -11,6 +11,10 @@
             type="com.creative.share.apps.wash_squad.models.SubscribtionDataModel.WashSub" />
 
         <variable
+            name="day"
+            type="String" />
+
+        <variable
             name="lang"
             type="String" />
 
@@ -54,7 +58,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"
-            android:text="الاثنين / 5 مساءا"
+            android:text="@{day}"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -80,8 +84,8 @@
                 order_status="@{model.status}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
                 android:layout_weight="1"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
                 android:textColor="@color/black"

@@ -243,6 +243,13 @@
     <string name="choose_sent_service">Choose Sent Service</string>
     <string name="car_plate_number">Car plate number</string>
     <string name="done2">Done</string>
+    <string name="Saturday">SATURDAY</string>
+    <string name="sunday">SUNDAY</string>
+    <string name="monday">MONDAY</string>
+    <string name="tuesday">TUESDAY</string>
+    <string name="wendesday">WEDNESDAY</string>
+    <string name="thursday">THURSDAY</string>
+    <string name="friday">FRIDAY</string>
 
 
 </resources>

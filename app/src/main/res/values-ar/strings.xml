@@ -241,6 +241,13 @@
     <string name="choose_sent_service">اختر الخدمه المرسله</string>
     <string name="car_plate_number">رقم لوحة السيارة</string>
     <string name="done2">تم</string>
+    <string name="Saturday">السبت</string>
+    <string name="sunday">الاحد</string>
+    <string name="monday">الاثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wendesday">الاربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعه</string>
 
 
 </resources>

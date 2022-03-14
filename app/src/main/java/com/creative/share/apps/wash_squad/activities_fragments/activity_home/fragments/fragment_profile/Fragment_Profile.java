@@ -44,6 +44,7 @@ import com.creative.share.apps.wash_squad.databinding.DialogSelectImageBinding;
 import com.creative.share.apps.wash_squad.databinding.FragmentProfileBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.models.CouponDataModel;
+import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.EditProfileModel;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
@@ -86,7 +87,8 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private Uri imgUri1 = null;
     private int count;
     private int status;
-
+    private ArrayList<DayModel> dayModelList;
+    private ArrayList<String> dayModelList2;
 
     public static Fragment_Profile newInstance() {
 
@@ -106,6 +108,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         activity = (HomeActivity) getActivity();
         preferences = Preferences.newInstance();
         Paper.init(activity);
+        setDays();
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.setShowCountryListener(this);
@@ -679,6 +682,8 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 count += 1;
             } else {
                 binding.setModel(body.getWash_sub().get(i));
+                binding.setDay(dayModelList.get(dayModelList2.indexOf(body.getWash_sub().get(i).getDay().toUpperCase())).getDay_text());
+
                 status = 1;
 
             }
@@ -692,4 +697,23 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         binding.setCount((body.getWash_sub().size() - count) + "");
 
     }
+    private void setDays() {
+        dayModelList = new ArrayList<>();
+        dayModelList.add(new DayModel(getString(R.string.Saturday)));
+        dayModelList.add(new DayModel(getString(R.string.sunday)));
+        dayModelList.add(new DayModel(getString(R.string.monday)));
+        dayModelList.add(new DayModel(getString(R.string.tuesday)));
+        dayModelList.add(new DayModel(getString(R.string.wendesday)));
+        dayModelList.add(new DayModel(getString(R.string.thursday)));
+        dayModelList.add(new DayModel(getString(R.string.friday)));
+        dayModelList2 = new ArrayList<>();
+        dayModelList2.add("SATURDAY");
+        dayModelList2.add("SUNDAY");
+        dayModelList2.add("MONDAY");
+        dayModelList2.add("TUESDAY");
+        dayModelList2.add("WEDNESDAY");
+        dayModelList2.add("THURSDAY");
+        dayModelList2.add("FRIDAY");
+    }
+
 }
