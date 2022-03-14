@@ -130,8 +130,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         itemToUpload = new ItemToUpload();
         itemToUpload.setSub_services(subServiceModelList);
         itemToUpload.setService_id(serviceModel.getId());
-        itemToUpload.setAr_service_type(service_name_ar);
-        itemToUpload.setEn_service_type(service_name_en);
+        itemToUpload.setAr_service_type(serviceModel.getAr_title());
+        itemToUpload.setEn_service_type(serviceModel.getEn_title());
 
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
@@ -299,7 +299,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
         manager2 = new LinearLayoutManager(this);
         binding.recViewService.setLayoutManager(manager2);
-//
+
         if (serviceModel.getLevel2().size() > 0) {
             binding.llAdditional.setVisibility(View.VISIBLE);
             additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel2(), this);
@@ -327,7 +327,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         binding.tvDone.setOnClickListener(view -> {
             binding.flTime.setVisibility(View.GONE);
             binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
-            itemToUpload.setTime(timeModel.getTime_text()+timeModel.getType());
+            itemToUpload.setTime(timeModel.getTime_text());
+            itemToUpload.setTime_type(timeModel.getType());
             itemToUpload.setOrder_time_id(timeModel.getId());
 
         });

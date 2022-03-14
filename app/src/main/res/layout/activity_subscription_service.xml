@@ -326,6 +326,57 @@
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/consMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/expand_bg"
+                        >
+                        <ImageView
+                            android:id="@+id/icon_map"
+                            android:layout_width="35dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:src="@drawable/ic_map"
+                            android:padding="8dp"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:tint="@color/color_second" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icon_map"
+                            android:textColor="@color/color_second"
+                            android:textSize="13sp"
+                            android:textColorHint="@color/color_second"
+                            android:hint="@string/location_on_map"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:layout_constraintEnd_toStartOf="@id/arrow1"
+                            android:text="@{location.address}"
+                            android:singleLine="true"
+                            error="@{itemModel.address_error}"
+
+
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/arrow1"
+                            android:layout_width="35dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="12dp"
+                            android:rotation='@{lang.equals("ar")?180:0}'
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:tint="@color/gray5" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/consDay"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -521,7 +572,7 @@
                             android:id="@+id/tvDone1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/done"
+                            android:text="@string/done2"
                             android:textSize="16sp"
                             android:textColor="@color/colorPrimary"
                             android:layout_gravity="center_vertical"

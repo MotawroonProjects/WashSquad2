@@ -6,12 +6,14 @@ import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
 import com.creative.share.apps.wash_squad.models.CouponDataModel;
 import com.creative.share.apps.wash_squad.models.CouponModel;
+import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.OfferDataModel;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.PlaceGeocodeData;
 import com.creative.share.apps.wash_squad.models.PlaceMapDetailsData;
 import com.creative.share.apps.wash_squad.models.QuestionDataModel;
+import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
@@ -174,7 +176,8 @@ public interface Service {
 
     @POST("api/order/add")
     Call<Order_Data_Model.OrderModel> addOrder(@Body ItemToUpload itemToUpload);
-
+    @POST("api/order/add")
+    Call<Order_Data_Model.OrderModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
 
     @GET("api/offers")
     Call<OfferDataModel> getOffers();
@@ -222,5 +225,9 @@ public interface Service {
 
     @GET("api/setting")
     Call<SettingModel> getStting();
+
+    @POST("api/order/send-gift")
+    Call<Order_Data_Model.OrderModel> sendGift(@Body SendServiceModel sendServiceModel);
+
 
 }

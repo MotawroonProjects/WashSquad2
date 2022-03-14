@@ -126,9 +126,9 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
             sendServiceModel.setSender_phone(userModel.getPhone());
         }
         sendServiceModel.setSub_services(subServiceModelList);
-        sendServiceModel.setService_id(service_id);
-        sendServiceModel.setAr_service_type(service_name_ar);
-        sendServiceModel.setEn_service_type(service_name_en);
+        sendServiceModel.setService_id(serviceModel.getId());
+        sendServiceModel.setAr_service_type(serviceModel.getAr_title());
+        sendServiceModel.setEn_service_type(serviceModel.getEn_title());
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setSendServiceModel(sendServiceModel);
         sendServiceModel.setSub_serv_id(serviceModel.getId());
@@ -294,7 +294,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         manager2 = new LinearLayoutManager(this);
         binding.recViewService.setLayoutManager(manager2);
-//
+
         if (serviceModel.getLevel2().size() > 0) {
             binding.llAdditional.setVisibility(View.VISIBLE);
             additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel2(), this);
@@ -313,13 +313,18 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
 
         binding.consDate.setOnClickListener(view -> openCalender());
+        binding.consTime.setOnClickListener(view -> {
+            binding.flTime.setVisibility(View.VISIBLE);
+
+        });
         binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
         binding.recViewTime.setAdapter(timeAdapter);
 
         binding.tvDone.setOnClickListener(view -> {
             binding.flTime.setVisibility(View.GONE);
             binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
-            sendServiceModel.setTime(timeModel.getTime_text()+timeModel.getType());
+            sendServiceModel.setTime(timeModel.getTime_text());
+            sendServiceModel.setTime_type(timeModel.getType());
             sendServiceModel.setOrder_time_id(timeModel.getId());
 
 
@@ -352,28 +357,33 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
 
             }
-//            Intent intent = new Intent(this, PaymentActivity.class);
-//            intent.putExtra("item", itemToUpload);
-//            startActivityForResult(intent, 4);
+
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
+            double service_price=sendServiceModel.getService_price()/count;
+
             count++;
             sendServiceModel.setAmount(count);
             binding.tvCount.setText(String.valueOf(count));
             final_total = total * count;
 
             binding.setTotal(final_total);
+            sendServiceModel.setService_price(service_price*count);
+
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
+                double service_price=sendServiceModel.getService_price()/count;
                 count--;
                 sendServiceModel.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-                binding.setTotal(total);
+                sendServiceModel.setService_price(service_price*count);
+
+                // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
             }
 
@@ -404,6 +414,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
             binding.flCalender.setVisibility(View.GONE);
             binding.tvDate.setText(selected_date);
             sendServiceModel.setOrder_date(selected_date);
+            binding.consTime.setEnabled(true);
             getTime();
         });
     }
@@ -428,6 +439,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
+                            sendServiceModel.setService_price(response.body()*count);
                             binding.setTotal(final_total);
 
                         } else {
@@ -824,5 +836,6 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

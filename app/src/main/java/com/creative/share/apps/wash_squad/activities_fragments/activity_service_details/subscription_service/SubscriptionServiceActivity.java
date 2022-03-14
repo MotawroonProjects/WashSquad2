@@ -18,8 +18,10 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion_payment.PaymentSubscribtionActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.BouquetAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
@@ -151,7 +153,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         userModel = preferences.getUserData(this);
         itemToUpload = new ItemSubscribeToUpload();
         itemToUpload.setSub_services(subServiceModelList);
-        itemToUpload.setService_id(service_id);
+        itemToUpload.setService_id(serviceModel.getId());
         itemToUpload.setAr_service_type(service_name_ar);
         itemToUpload.setEn_service_type(service_name_en);
         itemToUpload.setOrder_date(selected_date);
@@ -322,6 +324,10 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         manager2 = new LinearLayoutManager(this);
         binding.recViewService.setLayoutManager(manager2);
 
+        binding.consMap.setOnClickListener(view -> {
+            Intent intent = new Intent(SubscriptionServiceActivity.this, MapActivity.class);
+            startActivityForResult(intent, 1);
+        });
         binding.closeDay.setOnClickListener(view -> binding.flDay.setVisibility(View.GONE));
         binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
         binding.consDay.setOnClickListener(view -> {
@@ -338,6 +344,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             binding.flDay.setVisibility(View.GONE);
             binding.tvDay.setText(dayModel.getDay_text());
             selected_day=dayModel.getDay_text();
+            itemToUpload.setday(selected_day);
+
 
         });
 
@@ -360,7 +368,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setUser_name(userModel.getFull_name());
                     itemToUpload.setUser_phone(userModel.getPhone());
                     itemToUpload.setTotal_price(final_total);
-                    Intent intent = new Intent(this, PaymentActivity.class);
+                    Intent intent = new Intent(this, PaymentSubscribtionActivity.class);
                     intent.putExtra("item", itemToUpload);
                     startActivityForResult(intent, 4);
                 } else {

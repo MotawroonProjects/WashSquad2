@@ -1,4 +1,4 @@
-package com.creative.share.apps.wash_squad.activities_fragments.activity_payment;
+package com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion_payment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,12 +17,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
-import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityPaymentBinding;
-import com.creative.share.apps.wash_squad.interfaces.Listeners;
+import com.creative.share.apps.wash_squad.databinding.ActivityPaymentSubscribtionBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.CouponModel;
+import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.SettingModel;
@@ -44,10 +43,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PaymentActivity extends AppCompatActivity {
-    private ActivityPaymentBinding binding;
+public class PaymentSubscribtionActivity extends AppCompatActivity {
+    private ActivityPaymentSubscribtionBinding binding;
     private String lang;
-    private ItemToUpload itemToUpload;
+    private ItemSubscribeToUpload itemToUpload;
     private SingleTon singleTon;
     private LinearLayoutManager manager;
     private AdditionalAdapter adapter;
@@ -69,7 +68,7 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_payment);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_payment_subscribtion);
         getDataFromIntent();
         initView();
 
@@ -78,7 +77,7 @@ public class PaymentActivity extends AppCompatActivity {
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            itemToUpload = (ItemToUpload) intent.getSerializableExtra("item");
+            itemToUpload = (ItemSubscribeToUpload) intent.getSerializableExtra("item");
         }
     }
 
@@ -100,7 +99,7 @@ public class PaymentActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s %s", m_date, itemToUpload.getTime(), itemToUpload.getTime_type()));
+        binding.tvDate.setText(String.format("%s %s", m_date, itemToUpload.getday()));
 
 
 //        if (itemToUpload.getSub_services().size()>0)
@@ -143,19 +142,19 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         binding.btnSend.setOnClickListener(view -> {
-            if (itemToUpload.isDataValidStep2(this)) {
+           // if (itemToUpload.isDataValidStep2(this)) {
                 if (couponModel == null) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
                 }
                 uploadOrder(itemToUpload);
-            }
+           // }
         });
 
 
         binding.btnOther.setOnClickListener(view -> {
-            if (itemToUpload.isDataValidStep2(this)) {
+           // if (itemToUpload.isDataValidStep2(this)) {
 
                 if (couponModel == null) {
                     itemToUpload.setCoupon_serial(null);
@@ -164,13 +163,13 @@ public class PaymentActivity extends AppCompatActivity {
                 }
 
 
-                singleTon.addItem(itemToUpload);
+              //  singleTon.addItem(itemToUpload);
                 Intent intent = getIntent();
                 if (intent != null) {
                     setResult(RESULT_OK, intent);
                 }
                 finish();
-            }
+           // }
         });
 
 
@@ -232,7 +231,7 @@ public class PaymentActivity extends AppCompatActivity {
                             updateTotalPrice(couponModel.getRatio());
                             binding.tvCoupon.setText(String.format(Locale.ENGLISH, "%s %s", String.valueOf(couponModel.getRatio() / 100.0), getString(R.string.discount)));
                             binding.iconChecked.setVisibility(View.VISIBLE);
-                            Common.CreateDialogAlert(PaymentActivity.this, getString(R.string.cong) + " " + (couponModel.getRatio() / 100) + " " + getString(R.string.disc));
+                            Common.CreateDialogAlert(PaymentSubscribtionActivity.this, getString(R.string.cong) + " " + (couponModel.getRatio() / 100) + " " + getString(R.string.disc));
 
                         } else {
 
@@ -243,12 +242,12 @@ public class PaymentActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             if (response.code() == 422) {
-                                Common.CreateDialogAlert(PaymentActivity.this, getString(R.string.inv_coupon));
+                                Common.CreateDialogAlert(PaymentSubscribtionActivity.this, getString(R.string.inv_coupon));
                             } else if (response.code() == 500) {
-                                Toast.makeText(PaymentActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PaymentSubscribtionActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(PaymentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -263,9 +262,9 @@ public class PaymentActivity extends AppCompatActivity {
 
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(PaymentActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(PaymentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -285,7 +284,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
-    private void uploadOrder(ItemToUpload itemToUpload) {
+    private void uploadOrder(ItemSubscribeToUpload itemToUpload) {
 
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
@@ -294,13 +293,13 @@ public class PaymentActivity extends AppCompatActivity {
 
 
             Api.getService(Tags.base_url)
-                    .addOrder(itemToUpload)
+                    .addOrderSubscribe(itemToUpload)
                     .enqueue(new Callback<Order_Data_Model.OrderModel>() {
                         @Override
                         public void onResponse(Call<Order_Data_Model.OrderModel> call, Response<Order_Data_Model.OrderModel> response) {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
-                                Toast.makeText(PaymentActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
+                                Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
                                 Intent intent = getIntent();
                                 if (intent != null) {
                                     setResult(RESULT_OK, intent);
@@ -314,16 +313,16 @@ public class PaymentActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 if (response.code() == 422) {
-                                    Toast.makeText(PaymentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 } else if (response.code() == 402) {
-                                    Toast.makeText(PaymentActivity.this, R.string.num_exceed, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, R.string.num_exceed, Toast.LENGTH_SHORT).show();
 
                                 } else if (response.code() == 500) {
-                                    Toast.makeText(PaymentActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    Toast.makeText(PaymentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                                 }
@@ -337,9 +336,9 @@ public class PaymentActivity extends AppCompatActivity {
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(PaymentActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PaymentSubscribtionActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(PaymentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PaymentSubscribtionActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

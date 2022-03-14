@@ -29,10 +29,12 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String receiver_name;
     private String receiver_phone;
     private String order_date;
-
+    private double longitude;
+    private double latitude;
 
 
     private String time;
+    private String time_type;
     private int order_time_id;
     private int payment_method;
 
@@ -55,7 +57,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     public boolean isDataValidStep1(Context context) {
         if (service_id != 0 &&
-                sub_serv_id != 0 &&
+                //   sub_serv_id != 0 &&
                 carSize_id != 0 &&
                 carType_id != 0 &&
                 brand_id != 0 &&
@@ -63,7 +65,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 !sender_phone.isEmpty() &&
                 !receiver_name.isEmpty() &&
                 !receiver_phone.isEmpty() &&
-                !time.isEmpty()&&
+                !time.isEmpty() &&
                 order_time_id != 0 &&
                 !order_date.isEmpty()
 
@@ -123,15 +125,16 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 date_error.set(null);
 
             }
-            if (time.isEmpty()){
+            if (time.isEmpty()) {
                 time_error.set(context.getString(R.string.field_req));
-            }else {
+            } else {
                 time_error.set(null);
             }
 
             return false;
         }
     }
+
     public boolean isDataValidStep2(Context context) {
         if (payment_method != 0) {
 
@@ -170,10 +173,10 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.receiver_phone);
         this.order_date = "";
         notifyPropertyChanged(BR.order_date);
-        this.time="";
+        this.time = "";
         notifyPropertyChanged(BR.time);
 
-        this.order_time_id=0;
+        this.order_time_id = 0;
         notifyPropertyChanged(BR.order_time_id);
         this.ar_service_type = "";
         notifyPropertyChanged(BR.ar_service_type);
@@ -191,6 +194,14 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     }
 
+    public String getTime_type() {
+        return time_type;
+    }
+
+    public void setTime_type(String time_type) {
+        this.time_type = time_type;
+    }
+
     @Bindable
     public String getTime() {
         return time;
@@ -198,6 +209,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+        time_error.set(null);
         notifyPropertyChanged(BR.time);
     }
 
@@ -359,6 +371,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     public void setOrder_date(String order_date) {
         this.order_date = order_date;
+        date_error.set(null);
         notifyPropertyChanged(BR.order_date);
     }
 
@@ -435,6 +448,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public void setSub_services(List<ItemToUpload.SubServiceModel> sub_services) {
         this.sub_services = sub_services;
     }
+
     @Bindable
     public int getPayment_method() {
         return payment_method;
@@ -445,4 +459,22 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.payment_method);
 
     }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+
 }

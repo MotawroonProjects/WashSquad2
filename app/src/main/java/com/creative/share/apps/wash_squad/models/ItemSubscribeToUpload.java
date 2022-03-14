@@ -322,6 +322,8 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
     public void setAddress(String address) {
         this.address = address;
+        address_error.set(null);
+
         notifyPropertyChanged(BR.address);
     }
 
@@ -332,6 +334,8 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
     public void setday(String day) {
         this.day = day;
+        day_error.set(null);
+
         notifyPropertyChanged(BR.day);
     }
 

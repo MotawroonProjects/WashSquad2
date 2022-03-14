@@ -59,7 +59,7 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 carType_id != 0 &&
                 brand_id != 0 &&
 
-//                !TextUtils.isEmpty(address) &&
+                !TextUtils.isEmpty(address) &&
                 order_time_id != 0 &&
                 !order_date.isEmpty()
 
@@ -84,13 +84,13 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
 
-//
-//        /    if (TextUtils.isEmpty(address)) {
-//                address_error.set(context.getString(R.string.field_req));
-//            } else {
-//                address_error.set(null);
-//
-//            }
+
+           if (TextUtils.isEmpty(address)) {
+                address_error.set(context.getString(R.string.field_req));
+            } else {
+                address_error.set(null);
+
+            }
 
             if (order_time_id == 0) {
                 time_error.set(context.getString(R.string.field_req));
@@ -350,6 +350,8 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+        address_error.set(null);
+
         notifyPropertyChanged(BR.order_date);
 
     }
@@ -361,6 +363,7 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+        time_error.set(null);
         notifyPropertyChanged(BR.time);
 
     }
@@ -372,6 +375,8 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     public void setOrder_date(String order_date) {
         this.order_date = order_date;
+        date_error.set(null);
+
         notifyPropertyChanged(BR.order_date);
 
     }
