@@ -95,6 +95,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private List<DayModel> dayModelList;
     private String selected_day;
     private String selected_date;
+    private ArrayList<String> dayModelList2;
 
 
     @Override
@@ -132,13 +133,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         selected_date = dateFormat.format(new Date(System.currentTimeMillis()));
         timeModelList = new ArrayList<>();
         dayModelList = new ArrayList<>();
-        dayModelList.add(new DayModel("SATURDAY"));
-        dayModelList.add(new DayModel("SUNDAY"));
-        dayModelList.add(new DayModel("MONDAY"));
-        dayModelList.add(new DayModel("TUESDAY"));
-        dayModelList.add(new DayModel("WEDNESDAY"));
-        dayModelList.add(new DayModel("THURSDAY"));
-        dayModelList.add(new DayModel("FRIDAY"));
+        dayModelList2= new ArrayList<>();
+
+        setDays();
         carSizeModelList = new ArrayList<>();
 
 //        dayAdapter.updateList(dayModelList);
@@ -154,8 +151,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         itemToUpload = new ItemSubscribeToUpload();
         itemToUpload.setSub_services(subServiceModelList);
         itemToUpload.setService_id(serviceModel.getId());
-        itemToUpload.setAr_service_type(service_name_ar);
-        itemToUpload.setEn_service_type(service_name_en);
+        itemToUpload.setAr_service_type(serviceModel.getAr_title());
+        itemToUpload.setEn_service_type(serviceModel.getEn_title());
         itemToUpload.setOrder_date(selected_date);
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
@@ -343,7 +340,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         binding.tvDone1.setOnClickListener(view -> {
             binding.flDay.setVisibility(View.GONE);
             binding.tvDay.setText(dayModel.getDay_text());
-            selected_day=dayModel.getDay_text();
+            selected_day=dayModelList2.get(dayModelList.indexOf(dayModel));
             itemToUpload.setday(selected_day);
 
 
@@ -381,22 +378,29 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
+            double service_price=itemToUpload.getService_price()/count;
+
             count++;
             itemToUpload.setAmount(count);
             binding.tvCount.setText(String.valueOf(count));
             final_total = total * count;
 
             binding.setTotal(final_total);
+            itemToUpload.setService_price(service_price*count);
+
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
+                double service_price=itemToUpload.getService_price()/count;
                 count--;
                 itemToUpload.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-                binding.setTotal(total);
+                itemToUpload.setService_price(service_price*count);
+
+                // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
             }
 
@@ -405,6 +409,25 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         getCarType();
 
 
+    }
+
+    private void setDays() {
+        dayModelList = new ArrayList<>();
+        dayModelList.add(new DayModel(getString(R.string.Saturday)));
+        dayModelList.add(new DayModel(getString(R.string.sunday)));
+        dayModelList.add(new DayModel(getString(R.string.monday)));
+        dayModelList.add(new DayModel(getString(R.string.tuesday)));
+        dayModelList.add(new DayModel(getString(R.string.wendesday)));
+        dayModelList.add(new DayModel(getString(R.string.thursday)));
+        dayModelList.add(new DayModel(getString(R.string.friday)));
+        dayModelList2 = new ArrayList<>();
+        dayModelList2.add("SATURDAY");
+        dayModelList2.add("SUNDAY");
+        dayModelList2.add("MONDAY");
+        dayModelList2.add("TUESDAY");
+        dayModelList2.add("WEDNESDAY");
+        dayModelList2.add("THURSDAY");
+        dayModelList2.add("FRIDAY");
     }
 
     private void getCarSize() {
@@ -484,6 +507,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
+                            itemToUpload.setService_price(response.body()*count);
+
                             binding.setTotal(final_total);
 
                         } else {

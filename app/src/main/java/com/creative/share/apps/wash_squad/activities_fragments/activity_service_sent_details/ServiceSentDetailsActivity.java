@@ -1,5 +1,6 @@
 package com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -837,6 +838,47 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            if (data.hasExtra("location")) {
+                selectedLocation = (SelectedLocation) data.getSerializableExtra("location");
+                binding.setLocation(selectedLocation);
+                sendServiceModel.setLatitude(String.valueOf(selectedLocation.getLat()));
+                sendServiceModel.setLongitude(String.valueOf(selectedLocation.getLng()));
+                sendServiceModel.setAddress(selectedLocation.getAddress());
+                binding.setSendServiceModel(sendServiceModel);
 
+            }
+        } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+            if (data.hasExtra("date")) {
+                date = data.getLongExtra("date", 0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                d = dateFormat.format(new Date(date));
+//             /  / binding.tvDay.setText(d);
+//                sendServiceModel.setday(d);
+                binding.setSendServiceModel(sendServiceModel);
+
+
+            }
+        } else if (requestCode == 3 && resultCode == RESULT_OK && data != null) {
+            if (data.hasExtra("data")) {
+                timeModel = (TimeDataModel.TimeModel) data.getSerializableExtra("data");
+                String am_pm = timeModel.getType().equals("1") ? getString(R.string.am) : getString(R.string.pm);
+                String time = timeModel.getTime_text();
+
+                binding.setSendServiceModel(sendServiceModel);
+            }
+        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
+            Intent intent = getIntent();
+            if (intent != null) {
+
+                setResult(RESULT_OK, intent);
+
+            }
+            finish();
+        }
+    }
 
 }
