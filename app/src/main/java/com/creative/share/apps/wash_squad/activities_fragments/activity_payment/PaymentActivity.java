@@ -26,6 +26,7 @@ import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.CouponModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -55,6 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
     private CouponModel couponModel = null;
     private Preferences preferences;
     private UserModel userModel;
+    private SettingModel settingModel;
 
 
     @Override
@@ -82,6 +84,7 @@ public class PaymentActivity extends AppCompatActivity {
 
 
     private void initView() {
+
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(this);
         singleTon = SingleTon.newInstance();
@@ -150,7 +153,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
-/*
+
         binding.btnOther.setOnClickListener(view -> {
             if (itemToUpload.isDataValidStep2(this))
             {
@@ -173,7 +176,7 @@ public class PaymentActivity extends AppCompatActivity {
                 finish();
             }
         });
-*/
+
 
         binding.btnDiscount.setOnClickListener(view -> {
             String coupon = binding.edtCoupon.getText().toString().trim();
@@ -192,6 +195,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         updateTotalPrice(coupon_value);
 
+        getSetting();
     }
 
 
@@ -371,4 +375,24 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    private void getSetting(){
+
+        Api.getService(Tags.base_url)
+                .getStting()
+                .enqueue(new Callback<SettingModel>() {
+                    @Override
+                    public void onResponse(Call<SettingModel> call, Response<SettingModel> response) {
+
+                        if (response.isSuccessful() && response.body() !=null){
+                            settingModel=response.body();
+                            binding.setSettingModel(settingModel);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SettingModel> call, Throwable t) {
+
+                    }
+                });
+    }
 }

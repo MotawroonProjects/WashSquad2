@@ -13,6 +13,7 @@ import com.creative.share.apps.wash_squad.models.PlaceGeocodeData;
 import com.creative.share.apps.wash_squad.models.PlaceMapDetailsData;
 import com.creative.share.apps.wash_squad.models.QuestionDataModel;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
@@ -218,4 +219,8 @@ public interface Service {
     );
     @GET("api/order/getSubscription")
     Call<SubscribtionDataModel> getSubscribtion(@Query("user_id") String user_id);
+
+    @GET("api/setting")
+    Call<SettingModel> getStting();
+
 }

@@ -310,10 +310,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         }
 
 
-//        binding.consMap.setOnClickListener(view -> {
-//            Intent intent = new Intent(ServiceDetailsActivity.this, MapActivity.class);
-//            startActivityForResult(intent, 1);
-//        });
+        binding.consMap.setOnClickListener(view -> {
+            Intent intent = new Intent(ServiceDetailsActivity.this, MapActivity.class);
+            startActivityForResult(intent, 1);
+        });
         binding.closeCalender.setOnClickListener(view -> binding.flCalender.setVisibility(View.GONE));
         binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
 
@@ -358,28 +358,34 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
 
             }
-//            Intent intent = new Intent(this, PaymentActivity.class);
-//            intent.putExtra("item", itemToUpload);
-//            startActivityForResult(intent, 4);
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
+            double service_price=itemToUpload.getService_price()/count;
+
             count++;
             itemToUpload.setAmount(count);
             binding.tvCount.setText(String.valueOf(count));
             final_total = total * count;
 
             binding.setTotal(final_total);
+           // itemToUpload.setTotal_price(final_total+);
+            itemToUpload.setService_price(service_price*count);
+
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
+                double service_price=itemToUpload.getService_price()/count;
                 count--;
                 itemToUpload.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-                binding.setTotal(total);
+               // itemToUpload.setService_price(final_total);
+                itemToUpload.setService_price(service_price*count);
+
+                // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
             }
 
@@ -435,6 +441,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
+                            itemToUpload.setService_price(response.body()*count);
                             binding.setTotal(final_total);
 
                         } else {

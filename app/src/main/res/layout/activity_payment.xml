@@ -20,6 +20,9 @@
             type="com.creative.share.apps.wash_squad.models.ItemToUpload" />
 
 
+        <variable
+            name="settingModel"
+            type="com.creative.share.apps.wash_squad.models.SettingModel" />
     </data>
 
     <FrameLayout
@@ -331,7 +334,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="@{"
+                                    android:text='@{(itemModel.total_price-itemModel.service_price)+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -361,8 +364,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="@{itemModel"
-                                    android:textColor="@color/gray5"
+                                    android:text='@{((settingModel.tax_per*itemModel.total_price)/100)+""}'
+                                    android:textColor="@color/black"
                                     android:textSize="15sp" />
                             </LinearLayout>
 
@@ -395,7 +398,7 @@
                                     android:gravity="center_vertical|end"
                                     android:paddingLeft="8dp"
                                     android:paddingRight="8dp"
-                                    android:text='@{itemModel.total_price+" "+@string/sar}'
+                                    android:text='@{(itemModel.total_price+((settingModel.tax_per*itemModel.total_price)/100))+" "+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="14sp" />
                             </LinearLayout>
@@ -937,7 +940,7 @@
 
 
                     <Button
-                        android:id="@+id/btnAddVehicle"
+                        android:id="@+id/btnOther"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
