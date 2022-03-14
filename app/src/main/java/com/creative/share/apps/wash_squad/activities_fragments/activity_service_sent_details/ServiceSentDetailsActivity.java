@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
@@ -305,10 +306,10 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         }
 
 
-//        binding.consMap.setOnClickListener(view -> {
-//            Intent intent = new Intent(ServiceDetailsActivity.this, MapActivity.class);
-//            startActivityForResult(intent, 1);
-//        });
+        binding.consMap.setOnClickListener(view -> {
+            Intent intent = new Intent(ServiceSentDetailsActivity.this, MapActivity.class);
+            startActivityForResult(intent, 1);
+        });
         binding.closeCalender.setOnClickListener(view -> binding.flCalender.setVisibility(View.GONE));
         binding.closeTime.setOnClickListener(view -> binding.flTime.setVisibility(View.GONE));
 

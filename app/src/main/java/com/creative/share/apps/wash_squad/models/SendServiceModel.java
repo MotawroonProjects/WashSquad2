@@ -1,6 +1,7 @@
 package com.creative.share.apps.wash_squad.models;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -29,10 +30,11 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String receiver_name;
     private String receiver_phone;
     private String order_date;
-    private double longitude;
-    private double latitude;
+    private String longitude;
+    private String latitude;
 
 
+    private String address;
     private String time;
     private String time_type;
     private int order_time_id;
@@ -52,6 +54,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public ObservableField<String> user_phone_error = new ObservableField<>();
     public ObservableField<String> receiver_name_error = new ObservableField<>();
     public ObservableField<String> receiver_phone_error = new ObservableField<>();
+    public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
 
@@ -61,6 +64,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 carSize_id != 0 &&
                 carType_id != 0 &&
                 brand_id != 0 &&
+                !TextUtils.isEmpty(address) &&
                 !sender_name.isEmpty() &&
                 !sender_phone.isEmpty() &&
                 !receiver_name.isEmpty() &&
@@ -71,6 +75,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
 
         ) {
+            address_error.set(null);
             user_name_error.set(null);
             user_phone_error.set(null);
             receiver_name_error.set(null);
@@ -96,6 +101,12 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 time_error.set(context.getString(R.string.field_req));
             } else {
                 time_error.set(null);
+
+            }
+            if (TextUtils.isEmpty(address)) {
+                address_error.set(context.getString(R.string.field_req));
+            } else {
+                address_error.set(null);
 
             }
             if (sender_name.isEmpty()) {
@@ -157,6 +168,13 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         this.carSize_id = 0;
         notifyPropertyChanged(BR.carSize_id);
 
+        this.latitude = "";
+        notifyPropertyChanged(BR.latitude);
+
+        this.longitude = "";
+        notifyPropertyChanged(BR.longitude);
+        this.address = "";
+        notifyPropertyChanged(BR.address);
 
         this.ar_car_type = "";
         notifyPropertyChanged(BR.ar_car_type);
@@ -460,20 +478,39 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     }
 
-    public double getLongitude() {
+    @Bindable
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
+        notifyPropertyChanged(BR.latitude);
+
     }
 
-    public double getLatitude() {
+    @Bindable
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
+        notifyPropertyChanged(BR.longitude);
+
+    }
+
+    @Bindable
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+        address_error.set(null);
+
+        notifyPropertyChanged(BR.order_date);
+
     }
 
 
