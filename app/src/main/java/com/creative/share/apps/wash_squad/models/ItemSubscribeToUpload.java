@@ -106,6 +106,15 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         }
     }
 
+    public boolean isDataValidStep2(Context context) {
+        if (payment_method != 0) {
+
+            return true;
+        } else {
+            Toast.makeText(context, R.string.ch_payment, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
     public ItemSubscribeToUpload() {
         this.service_id = 0;
         notifyPropertyChanged(BR.service_id);

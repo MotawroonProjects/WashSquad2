@@ -120,22 +120,32 @@ public class PaymentActivity extends AppCompatActivity {
         binding.tvEdit.setOnClickListener(view -> {
             finish();
         });
+        binding.rbNo.setOnClickListener(view1 -> {
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.cache);
+            binding.flCash.setVisibility(View.GONE);
+        });
+        binding.rbYes.setOnClickListener(view12 -> {
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.cache);
+            binding.flCash.setVisibility(View.GONE);
+        });
         binding.rb1.setOnClickListener(view ->
         {
             binding.flCash.setVisibility(View.VISIBLE);
-            binding.rbNo.setOnClickListener(view1 -> binding.flCash.setVisibility(View.GONE));
-            binding.rbYes.setOnClickListener(view12 -> {
-                itemToUpload.setPayment_method(1);
-                binding.setItemModel(itemToUpload);
-                binding.tvPayment.setText(R.string.cache);
-                binding.flCash.setVisibility(View.GONE);
-            });
+
 
         });
-
+        binding.rb3.setOnClickListener(view -> {
+            itemToUpload.setPayment_method(2);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.visa);
+        });
         binding.rb4.setOnClickListener(view -> {
             binding.flMyWallet.setVisibility(View.VISIBLE);
-            itemToUpload.setPayment_method(4);
+            itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.my_wallet_balance);
         });

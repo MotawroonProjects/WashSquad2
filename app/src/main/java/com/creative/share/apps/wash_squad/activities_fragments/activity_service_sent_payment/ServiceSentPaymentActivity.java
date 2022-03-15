@@ -155,7 +155,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
         binding.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendServiceModel.setPayment_method(1);
+                sendServiceModel.setPayment_method(2);
                 uploadOrder(sendServiceModel);
             }
         });
