@@ -47,15 +47,15 @@ public class SignInActivity extends AppCompatActivity {
         preferences = Preferences.newInstance();
         getDatafromintent();
         if (savedInstanceState == null) {
-            if (preferences.isLangSelected(this)) {
-                if (type.equals("quick")) {
+            //if (preferences.isLangSelected(this)) {
+                if (type!=null&&type.equals("quick")) {
                     displayFragmentSignUp();
                 } else {
                     displayFragmentSignIn();
                 }
-            } else {
-                displayFragmentLanguage();
-            }
+//            } else {
+//                displayFragmentLanguage();
+//            }
         }
     }
 
