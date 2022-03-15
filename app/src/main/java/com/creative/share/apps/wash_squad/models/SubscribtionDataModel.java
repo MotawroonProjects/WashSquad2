@@ -208,7 +208,7 @@ public class SubscribtionDataModel implements Serializable {
         private String wash_date;
         private String will_wash_date;
         private String status;
-        private String time_dealy;
+        private int time_dealy;
         private String created_at;
         private String updated_at;
         private String day;
@@ -237,7 +237,7 @@ public class SubscribtionDataModel implements Serializable {
             return status;
         }
 
-        public String getTime_dealy() {
+        public int getTime_dealy() {
             return time_dealy;
         }
 
@@ -251,6 +251,10 @@ public class SubscribtionDataModel implements Serializable {
 
         public String getDay() {
             return day;
+        }
+
+        public void setTime_dealy(int time_dealy) {
+            this.time_dealy = time_dealy;
         }
     }
 }

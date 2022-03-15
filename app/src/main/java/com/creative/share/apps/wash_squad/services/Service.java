@@ -176,6 +176,7 @@ public interface Service {
 
     @POST("api/order/add")
     Call<Order_Data_Model.OrderModel> addOrder(@Body ItemToUpload itemToUpload);
+
     @POST("api/order/add")
     Call<Order_Data_Model.OrderModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
 
@@ -220,6 +221,7 @@ public interface Service {
     Call<ResponseBody> logout(
             @Field("user_id") int user_id
     );
+
     @GET("api/order/getSubscription")
     Call<SubscribtionDataModel> getSubscribtion(@Query("user_id") String user_id);
 
@@ -229,5 +231,9 @@ public interface Service {
     @POST("api/order/send-gift")
     Call<Order_Data_Model.OrderModel> sendGift(@Body SendServiceModel sendServiceModel);
 
-
+    @FormUrlEncoded
+    @POST("api/order/update-subscription")
+    Call<ResponseBody> postponeAppointment(@Field("subscription_id") String subscription_id,
+                                           @Field("status") String status
+    );
 }

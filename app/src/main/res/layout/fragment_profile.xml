@@ -14,6 +14,9 @@
         <variable
             name="model"
             type="com.creative.share.apps.wash_squad.models.SubscribtionDataModel.WashSub" />
+        <variable
+            name="settingmodel"
+            type="com.creative.share.apps.wash_squad.models.SettingModel" />
 
         <variable
             name="count"
@@ -331,7 +334,7 @@
                         <Button
                             android:id="@+id/btnDetials"
                             android:layout_width="0dp"
-                            android:layout_height="25dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginRight="25dp"
@@ -348,16 +351,17 @@
                         <Button
                             android:id="@+id/btnSubscribe"
                             android:layout_width="0dp"
-                            android:layout_height="25dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginRight="25dp"
-                            android:background="@drawable/btn_bg"
+                            android:background='@{model!=null||(model.time_dealy>settingmodel.delay_order_sub_limit)?@drawable/btn_bg:@drawable/btn_gray}'
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:text="@string/subscription_request"
                             android:textColor="@color/white"
                             android:textSize="10sp"
+                            android:enabled='@{model!=null||(model.time_dealy>settingmodel.delay_order_sub_limit)?true:false}'
                             app:layout_constraintBottom_toBottomOf="@+id/fl"
                             app:layout_constraintEnd_toEndOf="@+id/fl"
                             app:layout_constraintTop_toBottomOf="@+id/fl" />

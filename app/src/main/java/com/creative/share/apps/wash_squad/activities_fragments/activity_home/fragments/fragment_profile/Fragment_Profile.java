@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.collection.ArraySet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -36,6 +37,8 @@ import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_edit_profile.EditProfileActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_help.HelpActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_sign_in.SignInActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion.SubscribtionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_wallet.WalletActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.questions_activity.QuestionsActivity;
@@ -47,6 +50,7 @@ import com.creative.share.apps.wash_squad.models.CouponDataModel;
 import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.EditProfileModel;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
@@ -67,6 +71,7 @@ import java.util.Locale;
 import io.paperdb.Paper;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,6 +96,8 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private ArrayList<DayModel> dayModelList;
     private ArrayList<String> dayModelList2;
     private SettingModel settingModel;
+    private List<ServiceDataModel.ServiceModel> serviceModelList;
+    private SubscribtionDataModel.WashSub model;
 
     public static Fragment_Profile newInstance() {
 
@@ -109,6 +116,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
     private void initView() {
         activity = (HomeActivity) getActivity();
         preferences = Preferences.newInstance();
+        serviceModelList = new ArrayList<>();
         Paper.init(activity);
         setDays();
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -142,9 +150,11 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             @Override
             public void onClick(View view) {
                 if (status == 0) {
-
+                    Intent intent = new Intent(activity, SubscriptionServiceActivity.class);
+                    intent.putExtra("data", serviceModelList.get(2));
+                    startActivityForResult(intent, 1000);
                 } else {
-
+                    postponeAppointment();
                 }
             }
         });
@@ -218,7 +228,95 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         binding.image.setOnClickListener(view -> CreateImageAlertDialog());
 //        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
 //        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
+        binding.llInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if (settingModel != null && settingModel.getInstagram() != null && !settingModel.getInstagram().equals("#")) {
+                    open(settingModel.getInstagram());
+                } else {
+                    Toast.makeText(activity, getResources().getString(R.string.not_avail_now), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        binding.llTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (settingModel != null && settingModel.getTwitter() != null && !settingModel.getTwitter().equals("#")) {
+                    open(settingModel.getTwitter());
+                } else {
+                    Toast.makeText(activity, getResources().getString(R.string.not_avail_now), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        binding.llSnapChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (settingModel != null && settingModel.getSnapchat() != null && !settingModel.getSnapchat().equals("#")) {
+                    open("https://snapchat.com/add/" + settingModel.getSnapchat());
+                } else {
+                    Toast.makeText(activity, getResources().getString(R.string.not_avail_now), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        getServices();
+
+
+    }
+
+    private void getServices() {
+
+        Api.getService(Tags.base_url)
+                .getAllServices()
+                .enqueue(new Callback<ServiceDataModel>() {
+                    @Override
+                    public void onResponse(Call<ServiceDataModel> call, Response<ServiceDataModel> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            serviceModelList.clear();
+                            serviceModelList.addAll(response.body().getData());
+
+
+                        } else {
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                            } else if (response.code() == 500) {
+                                Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ServiceDataModel> call, Throwable t) {
+                        try {
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
     }
 
     private void CreateImageAlertDialog() {
@@ -357,6 +455,8 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         } else if (requestCode == 12) {
             userModel = preferences.getUserData(activity);
             update(userModel);
+        } else if (requestCode == 1000) {
+            getSubscribtion();
         }
 
     }
@@ -685,6 +785,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 count += 1;
             } else {
                 binding.setModel(body.getWash_sub().get(i));
+                model = body.getWash_sub().get(i);
                 binding.setDay(dayModelList.get(dayModelList2.indexOf(body.getWash_sub().get(i).getDay().toUpperCase())).getDay_text());
 
                 status = 1;
@@ -696,10 +797,13 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
             binding.btnSubscribe.setText(getResources().getString(R.string.postpone_an_appointment));
         } else {
             binding.btnDetials.setVisibility(View.GONE);
+            binding.btnSubscribe.setText(getResources().getString(R.string.subscription_request));
+
         }
         binding.setCount((body.getWash_sub().size() - count) + "");
 
     }
+
     private void setDays() {
         dayModelList = new ArrayList<>();
         dayModelList.add(new DayModel(getString(R.string.Saturday)));
@@ -718,6 +822,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         dayModelList2.add("THURSDAY");
         dayModelList2.add("FRIDAY");
     }
+
     private void getSetting() {
 
         Api.getService(Tags.base_url)
@@ -728,7 +833,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 
                         if (response.isSuccessful() && response.body() != null) {
                             settingModel = response.body();
-
+                            binding.setSettingmodel(settingModel);
                         }
                     }
 
@@ -739,5 +844,76 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                 });
     }
 
+    private void open(String path) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(path));
+        startActivity(intent);
+    }
+
+    private void postponeAppointment() {
+
+      /*  Intent intent = new Intent(activity, HomeActivity.class);
+        startActivity(intent);
+        activity.finish();*/
+//Log.e("llll","kkkkkk");
+        final ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        try {
+            Api.getService(Tags.base_url)
+                    .postponeAppointment(model.getId(), "wait")
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                // Log.e("token",response.body().getName());
+                                model.setTime_dealy(model.getTime_dealy() - 1);
+                                binding.setModel(model);
+
+                            } else {
+                                Log.e("llll", "kkkkkk");
+
+                               /* if (response.code() == 422) {
+                                    Toast.makeText(activity, getString(R.string.em_exist), Toast.LENGTH_SHORT).show();
+                                } else*/
+                                if (response.code() == 500) {
+                                    //Toast.makeText(HomeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+
+                                } else {
+                                    //Toast.makeText(HomeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                    try {
+
+                                        Log.e("error", response.code() + "_" + response.errorBody().string());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        //  Toast.makeText(HomeActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        //Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            dialog.dismiss();
+            Log.e("lll", e.getMessage().toString());
+        }
+    }
 
 }

@@ -22,7 +22,9 @@
         <variable
             name="count"
             type="String" />
-
+<variable
+    name="settingmodel"
+    type="com.creative.share.apps.wash_squad.models.SettingModel" />
         <variable
             name="lang"
             type="String" />
@@ -365,12 +367,14 @@
                         <Button
                             android:id="@+id/btnSubscribe"
                             android:layout_width="0dp"
-                            android:layout_height="25dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginRight="7dp"
-                            android:background="@drawable/btn_bg"
                             android:padding="5dp"
+                            android:enabled='@{model!=null||(model.time_dealy>settingmodel.delay_order_sub_limit)?true:false}'
+                            android:background='@{model!=null||(model.time_dealy>settingmodel.delay_order_sub_limit)?@drawable/btn_bg:@drawable/btn_gray}'
+
                             android:text="@string/request_to_postpone_an_appointment"
                             android:textColor="@color/white"
                             android:textSize="10sp"

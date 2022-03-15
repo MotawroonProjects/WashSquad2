@@ -9,7 +9,7 @@ public class SettingModel implements Serializable {
     private String snapchat;
     private About about;
     private Conditions conditions;
-    private String delay_order_sub_limit;
+    private int delay_order_sub_limit;
     private double tax_per;
 
     public String getTwitter() {
@@ -36,7 +36,7 @@ public class SettingModel implements Serializable {
         return conditions;
     }
 
-    public String getDelay_order_sub_limit() {
+    public int getDelay_order_sub_limit() {
         return delay_order_sub_limit;
     }
 

@@ -248,6 +248,7 @@
     <string name="wendesday">الاربعاء</string>
     <string name="thursday">الخميس</string>
     <string name="friday">الجمعه</string>
+    <string name="not_avail_now">غير متاح الان</string>
 
 
 </resources>

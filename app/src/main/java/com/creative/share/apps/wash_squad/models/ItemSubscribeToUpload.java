@@ -30,6 +30,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private String longitude;
     private String latitude;
     private String address;
+    private int order_time_id;
 
     private String day;
     private String order_date;
@@ -349,6 +350,13 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         notifyPropertyChanged(BR.payment_method);
     }
 
+    public int getOrder_time_id() {
+        return order_time_id;
+    }
+
+    public void setOrder_time_id(int order_time_id) {
+        this.order_time_id = order_time_id;
+    }
 
     public double getService_price() {
         return service_price;
