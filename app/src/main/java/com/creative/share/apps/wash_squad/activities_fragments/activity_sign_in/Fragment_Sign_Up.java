@@ -97,10 +97,12 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
             updateUi(picker.getCountryByISO(telephonyManager.getNetworkCountryIso()));
 
 
-        } else if (picker.getCountryByLocale(Locale.getDefault()) != null) {
-            updateUi(picker.getCountryByLocale(Locale.getDefault()));
-
-        } else {
+        }
+//        else if (picker.getCountryByLocale(Locale.getDefault()) != null) {
+//            updateUi(picker.getCountryByLocale(Locale.getDefault()));
+//
+//        }
+        else {
             String code = "+966";
             signUpModel.setPhone_code(code.replace("+", "00"));
             binding.tvCode.setText(code);
