@@ -795,6 +795,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         if (status == 1) {
             binding.btnDetials.setVisibility(View.VISIBLE);
             binding.btnSubscribe.setText(getResources().getString(R.string.postpone_an_appointment));
+           // Log.e("ldldldl",model.getTime_dealy()+" "+settingModel.getDelay_order_sub_limit());
         } else {
             binding.btnDetials.setVisibility(View.GONE);
             binding.btnSubscribe.setText(getResources().getString(R.string.subscription_request));
@@ -867,7 +868,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 // Log.e("token",response.body().getName());
-                                model.setTime_dealy(model.getTime_dealy() - 1);
+                                model.setTime_dealy(model.getTime_dealy() + 1);
                                 binding.setModel(model);
 
                             } else {

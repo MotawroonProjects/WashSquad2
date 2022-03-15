@@ -294,7 +294,7 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 // Log.e("token",response.body().getName());
-                                model.setTime_dealy(model.getTime_dealy() - 1);
+                                model.setTime_dealy(model.getTime_dealy() + 1);
                                 binding.setModel(model);
 
                             } else {
