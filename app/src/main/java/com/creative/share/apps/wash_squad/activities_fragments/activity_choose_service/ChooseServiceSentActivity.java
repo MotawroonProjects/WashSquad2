@@ -1,5 +1,6 @@
 package com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -21,12 +22,16 @@ import com.creative.share.apps.wash_squad.adapters.MainServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.SendServiceAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityChooseServiceSentBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.SelectedLocation;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.remote.Api;
 import com.creative.share.apps.wash_squad.tags.Tags;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -132,7 +137,21 @@ public class ChooseServiceSentActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ServiceSentDetailsActivity.class);
         intent.putExtra("data", serviceModel1);
 
-        startActivityForResult(intent, 1000);
+        startActivityForResult(intent, 4);
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
+            Intent intent = getIntent();
+            if (intent != null) {
+
+                setResult(RESULT_OK, intent);
+
+            }
+            finish();
+        }
+    }
+
 }

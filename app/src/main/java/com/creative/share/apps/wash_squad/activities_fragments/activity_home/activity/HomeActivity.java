@@ -421,9 +421,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void DisplayFragmentOrder() {
         try {
-            if (fragment_order == null) {
+
                 fragment_order = Fragment_Order.newInstance();
-            }
+
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
             }

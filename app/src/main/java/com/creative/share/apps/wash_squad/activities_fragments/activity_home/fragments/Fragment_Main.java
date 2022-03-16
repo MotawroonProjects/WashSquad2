@@ -160,6 +160,7 @@ public class Fragment_Main extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1000&&resultCode== Activity.RESULT_OK&&data!=null)
         {
+            activity.DisplayFragmentOrder();
         }
     }
 
