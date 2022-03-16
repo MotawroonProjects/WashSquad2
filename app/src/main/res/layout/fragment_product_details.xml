@@ -50,7 +50,7 @@
                         android:layout_weight=".6"
                         android:text='@{@string/order+":"}'
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
                         android:gravity="end"
                         android:text='@{lang.equals("ar")?model.service_ar_title:model.service_en_title}'
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <View
@@ -86,7 +86,7 @@
                         android:layout_weight=".6"
                         android:text='@{@string/order_num+":"}'
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,7 +97,7 @@
                         android:gravity="end"
                         android:text='@{model.id+"#"}'
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
 
                         />
                 </LinearLayout>
@@ -124,24 +124,22 @@
                         android:layout_weight=".6"
                         android:text='@{@string/date_time2+":"}'
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1px"
-                        android:layout_weight="1.4" />
+
 
                     <TextView
                         date2="@{model.order_date}"
                         startTime2="@{model.start_time_work}"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:gravity="end"
+                        android:layout_weight="1.4"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
 
                         />
                 </LinearLayout>
@@ -168,7 +166,7 @@
                         android:layout_weight=".6"
                         android:text='@{@string/price2+":"}'
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,7 +177,7 @@
                         android:gravity="end"
                         android:text='@{model.total_price+" "+@string/sar}'
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
 
                         />
                 </LinearLayout>
@@ -200,6 +198,7 @@
                     android:layout_marginEnd="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <TextView
@@ -208,7 +207,7 @@
                         android:layout_weight=".6"
                         android:text="@string/tax"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -219,7 +218,7 @@
                         android:gravity="end"
                         android:text='20 ريال'
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -227,6 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:layout_marginTop="7dp"
+                    android:visibility="gone"
                     android:background="@color/colorPrimary" />
 
                 <LinearLayout
@@ -245,7 +245,7 @@
                         android:layout_weight=".6"
                         android:text="@string/payment"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -256,7 +256,7 @@
                         android:gravity="end"
                         android:text='@{model.payment_method.equals("1")?@string/cache:@string/mada}'
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -283,7 +283,7 @@
                         android:layout_weight=".6"
                         android:text="@string/total2"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -294,7 +294,7 @@
                         android:gravity="end"
                         android:text='@{model.total_price+@string/sar}'
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
 
                         />
                 </LinearLayout>
@@ -321,7 +321,7 @@
                 <!--                    android:layout_weight=".6"-->
                 <!--                    android:text="@string/order_date"-->
                 <!--                    android:textColor="@color/black"-->
-                <!--                    android:textSize="15sp"-->
+                <!--                    android:textSize="13sp"-->
                 <!--                    app:layout_constraintStart_toStartOf="parent"-->
                 <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
@@ -332,7 +332,7 @@
                 <!--                    android:gravity="end"-->
                 <!--                    android:text="@{model.created_at}"-->
                 <!--                    android:textColor="@color/black"-->
-                <!--                    android:textSize="14sp"-->
+                <!--                    android:textSize="12sp"-->
 
                 <!--                    />-->
                 <!--            </LinearLayout>-->
