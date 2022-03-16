@@ -230,7 +230,7 @@ public interface Service {
     Call<SettingModel> getStting();
 
     @POST("api/order/send-gift")
-    Call<Order_Data_Model.OrderModel> sendGift(@Body SendServiceModel sendServiceModel);
+    Call<SingleOrderDataModel> sendGift(@Body SendServiceModel sendServiceModel);
 
     @FormUrlEncoded
     @POST("api/order/update-subscription")

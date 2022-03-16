@@ -1,5 +1,6 @@
 package com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaypalwebviewActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityServiceSentPaymentBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
@@ -26,6 +28,7 @@ import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.SettingModel;
+import com.creative.share.apps.wash_squad.models.SingleOrderDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -267,17 +270,24 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
 
             Api.getService(Tags.base_url)
                     .sendGift(sendServiceModel)
-                    .enqueue(new Callback<Order_Data_Model.OrderModel>() {
+                    .enqueue(new Callback<SingleOrderDataModel>() {
                         @Override
-                        public void onResponse(Call<Order_Data_Model.OrderModel> call, Response<Order_Data_Model.OrderModel> response) {
+                        public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(ServiceSentPaymentActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
+                                if (sendServiceModel.getPayment_method() == 2) {
+                                    Intent intent = new Intent(ServiceSentPaymentActivity.this, PaypalwebviewActivity.class);
+                                    intent.putExtra("url", response.body().getUrl());
+
+
+                                    startActivityForResult(intent,100);
+                                } else {
                                 Intent intent = getIntent();
                                 if (intent != null) {
                                     setResult(RESULT_OK, intent);
                                 }
-                                finish();
+                                finish();}
                             } else {
                                 try {
 
@@ -303,7 +313,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<Order_Data_Model.OrderModel> call, Throwable t) {
+                        public void onFailure(Call<SingleOrderDataModel> call, Throwable t) {
                             try {
                                 dialog.dismiss();
                                 if (t.getMessage() != null) {
@@ -352,5 +362,15 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100){
+            Intent intent = getIntent();
+            if (intent != null) {
+                setResult(RESULT_OK, intent);
+            }
+            finish();
+        }
+    }
 }
