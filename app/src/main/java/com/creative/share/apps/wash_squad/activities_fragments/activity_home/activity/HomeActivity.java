@@ -20,6 +20,7 @@ import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fra
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.Fragment_Home;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_offers.Fragment_Offer;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_offers.Fragment_Offers;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_order.Fragment_Order;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_profile.Fragment_Order_Detials;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.fragment_profile.Fragment_Order_Detials_Evaluation;

@@ -57,14 +57,14 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    if (preferences.getisfirsttime(SplashActivity.this) == true) {
-                        Intent i = new Intent(SplashActivity.this, Intro_Activity.class);
-                        startActivity(i);
-
-                    } else {
+//                    if (preferences.getisfirsttime(SplashActivity.this) == true) {
+//                        Intent i = new Intent(SplashActivity.this, Intro_Activity.class);
+//                        startActivity(i);
+//
+//                    } else {
                         Intent intent = new Intent(SplashActivity.this, LoginOptionActivity.class);
                         startActivity(intent);
-                    }
+//                    }
                     finish();
                 }
 

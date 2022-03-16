@@ -45,12 +45,14 @@ public class LoginOptionActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(view -> {
             Intent intent=new Intent(LoginOptionActivity.this, SignInActivity.class);
             startActivity(intent);
+            finish();
         });
 
         binding.btnQuickOrder.setOnClickListener(view -> {
             Intent intent=new Intent(LoginOptionActivity.this, SignInActivity.class);
             intent.putExtra("data","quick");
             startActivity(intent);
+            finish();
         });
     }
 }

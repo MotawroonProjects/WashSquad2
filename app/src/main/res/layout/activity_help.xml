@@ -168,6 +168,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:layout_marginTop="7dp"
+                                        android:visibility="gone"
                                         android:layout_marginBottom="7dp"
                                         android:orientation="horizontal">
 
@@ -359,28 +360,28 @@
                             android:id="@+id/btNo"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/rounded_white_strock_primary"
+                            android:background="@drawable/btn_bg"
                             android:paddingLeft="40dp"
                             android:paddingRight="40dp"
                             android:text="@string/no"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/white"
                             android:textSize="13sp" />
 
                         <Button
                             android:id="@+id/btYes"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/btn_bg"
+                            android:background="@drawable/rounded_white_strock_primary"
                             android:paddingLeft="40dp"
                             android:paddingRight="40dp"
                             android:text="@string/yes"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>

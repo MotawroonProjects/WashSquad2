@@ -225,7 +225,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
 //
 //        }
         getSubscribtion();
-        binding.image.setOnClickListener(view -> CreateImageAlertDialog());
+       // binding.image.setOnClickListener(view -> CreateImageAlertDialog());
 //        binding.llChange.setOnClickListener(view -> activity.displayFragmentNewpass());
 //        binding.btnLogin.setOnClickListener(view -> activity.navigateToSinInActivity());
         binding.llInstagram.setOnClickListener(new View.OnClickListener() {

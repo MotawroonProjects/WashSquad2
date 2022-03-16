@@ -6,47 +6,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_marginTop="16dp"
             android:background="@color/white"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/language_settings"
-            android:textColor="@color/black"
+            android:text="@string/language"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray3" />
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rb_en"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/rb_bg"
-                android:padding="8dp"
-                android:text="English"
-                android:textColor="@color/gray4"
-                android:textSize="17sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/gray3" />
 
             <RadioButton
                 android:id="@+id/rb_ar"
@@ -55,13 +38,30 @@
                 android:button="@drawable/rb_bg"
                 android:padding="8dp"
                 android:text="العربية"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/gray3" />
+            <RadioButton
+                android:id="@+id/rb_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/rb_bg"
+                android:padding="8dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:text="English"
+                android:textColor="@color/gray4"
+                android:textSize="17sp" />
+
+
+
 
         </RadioGroup>
 
@@ -71,6 +71,7 @@
             android:layout_height="35dp"
             android:background="@color/white"
             android:text="@string/cancel"
+            android:visibility="gone"
             android:textColor="@color/gray4"
             android:textSize="15sp" />
 

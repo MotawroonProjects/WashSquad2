@@ -93,6 +93,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
         if (userModel != null) {
             EventBus.getDefault().register(this);
         }
+        binding.imageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 

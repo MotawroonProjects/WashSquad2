@@ -217,7 +217,7 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_phone"
+                                android:src="@drawable/ic_calls"
                                 android:padding="10dp"
                                 app:tint="@color/white" />
                         </LinearLayout>
@@ -234,7 +234,7 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_contact_us"
+                                android:src="@drawable/ic_messages"
                                 android:padding="10dp"
                                 app:tint="@color/white" />
                         </LinearLayout>
@@ -252,7 +252,8 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_whatts"
+                                android:src="@drawable/ic_whats"
+                                android:tint="@color/white"
                                 android:padding="10dp"
                                  />
                         </LinearLayout>

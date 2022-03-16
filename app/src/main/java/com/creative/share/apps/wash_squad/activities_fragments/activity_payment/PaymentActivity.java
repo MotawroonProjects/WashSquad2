@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityPaymentBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
@@ -101,7 +102,10 @@ public class PaymentActivity extends AppCompatActivity {
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
         binding.tvDate.setText(String.format("%s %s %s", m_date, itemToUpload.getTime(), itemToUpload.getTime_type()));
-
+        binding.tvPoliciesAndTerms.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TermsActivity.class);
+            startActivity(intent);
+        });
 
 //        if (itemToUpload.getSub_services().size()>0)
 //        {

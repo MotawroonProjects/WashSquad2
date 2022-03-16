@@ -124,7 +124,7 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
 
     private void CreateImageAlertDialog() {
 
-        final androidx.appcompat.app.AlertDialog dialog = new AlertDialog.Builder(this)
+        final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setCancelable(true)
                 .create();
 
@@ -267,9 +267,14 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
                         dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null) {
                             //listener.onSuccess(response.body());
-
+                            userModel = response.body();
+                            preferences.create_update_userData(EditProfileActivity.this, userModel);
+                            edit_profile_model = new EditProfileModel(userModel.getFull_name());
+Log.e("tttt",Tags.IMAGE_URL+response.body().getLogo());
+                            binding.setEditprofilemodel(edit_profile_model);
                             Toast.makeText(EditProfileActivity.this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
                             finish();
+
 
                         } else {
                             Log.e("codeimage", response.code() + "_");
@@ -287,6 +292,7 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
                     @Override
                     public void onFailure(Call<UserModel> call, Throwable t) {
                         try {
+                            Log.e("dddd",t.toString());
                             dialog.dismiss();
                             Toast.makeText(EditProfileActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
 
@@ -375,6 +381,8 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
         dialog.setCancelable(false);
         dialog.show();
         try {
+
+
 
             Api.getService(Tags.base_url)
                     .edit_profile(userModel.getId() + "", name)

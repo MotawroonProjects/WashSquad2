@@ -215,7 +215,9 @@
     <string name="you_can_benefit_from_your_wallet_balance">You can benefit from your wallet balance when your balance reaches 100 riyals or more</string>
     <string name="edit">Edit</string>
     <string name="add_request_to_waiting_list">Add request to waiting list</string>
-    <string name="date_time">Date/Time</string>
+    <string name="date_time">Date</string>
+    <string name="date_time2">Date/Time</string>
+
     <string name="tax">Tax:</string>
     <string name="total2">Total:</string>
     <string name="addition">Addition</string>
@@ -232,7 +234,7 @@
     <string name="next1">Next</string>
     <string name="wash1">Wash</string>
     <string name="no_subscribtion">No Subscribtion</string>
-    <string name="postpone_an_appointment">Request to postpone an appointment</string>
+    <string name="postpone_an_appointment">Request  postpone an appointment</string>
     <string name="new_password">New Password</string>
     <string name="enter_your_new_password">Enter your new password</string>
     <string name="at_least_6_letters_or_numbers">At least 6 letters or numbers</string>
