@@ -324,7 +324,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         binding.tvDone.setOnClickListener(view -> {
             binding.flTime.setVisibility(View.GONE);
-            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
+            binding.tvTime.setText(timeModel.getTime_text());
             sendServiceModel.setTime(timeModel.getTime_text());
             sendServiceModel.setTime_type(timeModel.getType());
             sendServiceModel.setOrder_time_id(timeModel.getId());

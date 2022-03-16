@@ -326,7 +326,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         });
         binding.tvDone.setOnClickListener(view -> {
             binding.flTime.setVisibility(View.GONE);
-            binding.tvTime.setText(timeModel.getTime_text()+timeModel.getType());
+            binding.tvTime.setText(timeModel.getTime_text());
             itemToUpload.setTime(timeModel.getTime_text());
             itemToUpload.setTime_type(timeModel.getType());
             itemToUpload.setOrder_time_id(timeModel.getId());
