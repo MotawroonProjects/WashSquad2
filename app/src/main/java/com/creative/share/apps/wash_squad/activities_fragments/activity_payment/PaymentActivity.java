@@ -101,7 +101,7 @@ public class PaymentActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s %s", m_date, itemToUpload.getTime(), itemToUpload.getTime_type()));
+        binding.tvDate.setText(String.format("%s %s", m_date, itemToUpload.getTime()));
         binding.tvPoliciesAndTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
