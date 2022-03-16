@@ -253,6 +253,8 @@
     <string name="thursday">THURSDAY</string>
     <string name="friday">FRIDAY</string>
     <string name="not_avail_now">Not Available Now</string>
+    <string name="payment_faild">Payment Faild</string>
+    <string name="payment_suc">Payment Success</string>
 
 
 </resources>

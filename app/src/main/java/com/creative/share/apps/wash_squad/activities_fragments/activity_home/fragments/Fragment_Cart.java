@@ -20,6 +20,7 @@ import com.creative.share.apps.wash_squad.adapters.CartAdapterAdapter;
 import com.creative.share.apps.wash_squad.databinding.FragmentCartBinding;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.models.SingleOrderDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -98,9 +99,9 @@ public class Fragment_Cart extends Fragment {
 
             Api.getService(Tags.base_url)
                     .addOrder(itemToUpload)
-                    .enqueue(new Callback<Order_Data_Model.OrderModel>() {
+                    .enqueue(new Callback<SingleOrderDataModel>() {
                         @Override
-                        public void onResponse(Call<Order_Data_Model.OrderModel> call, Response<Order_Data_Model.OrderModel> response) {
+                        public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
                             dialog.dismiss();
                             if (response.isSuccessful()&&response.body()!=null)
                             {
@@ -113,7 +114,7 @@ public class Fragment_Cart extends Fragment {
                                     binding.ll.setVisibility(View.VISIBLE);
                                     singleTon.clear();
                                 }
-                                Common.CreateDialogAlert(activity,getString(R.string.order_sent_suc)+" "+response.body().getId());
+                                Common.CreateDialogAlert(activity,getString(R.string.order_sent_suc)+" "+response.body().getData().getId());
 
                             }else
                             {
@@ -139,7 +140,7 @@ public class Fragment_Cart extends Fragment {
                         }
 
                         @Override
-                        public void onFailure(Call<Order_Data_Model.OrderModel> call, Throwable t) {
+                        public void onFailure(Call<SingleOrderDataModel> call, Throwable t) {
                             try {
                                 dialog.dismiss();
                                 if (t.getMessage()!=null)

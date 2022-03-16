@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_subscribtion_payment.PaymentSubscribtionActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityPaymentBinding;
@@ -28,6 +30,7 @@ import com.creative.share.apps.wash_squad.models.CouponModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.SettingModel;
+import com.creative.share.apps.wash_squad.models.SingleOrderDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
 import com.creative.share.apps.wash_squad.remote.Api;
@@ -309,17 +312,25 @@ public class PaymentActivity extends AppCompatActivity {
 
             Api.getService(Tags.base_url)
                     .addOrder(itemToUpload)
-                    .enqueue(new Callback<Order_Data_Model.OrderModel>() {
+                    .enqueue(new Callback<SingleOrderDataModel>() {
                         @Override
-                        public void onResponse(Call<Order_Data_Model.OrderModel> call, Response<Order_Data_Model.OrderModel> response) {
+                        public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
-                                Intent intent = getIntent();
-                                if (intent != null) {
-                                    setResult(RESULT_OK, intent);
+                                if (itemToUpload.getPayment_method() == 2) {
+                                    Intent intent = new Intent(PaymentActivity.this, PaypalwebviewActivity.class);
+                                    intent.putExtra("url", response.body().getUrl());
+
+
+                                    startActivityForResult(intent,100);
+                                } else {
+                                    Intent intent = getIntent();
+                                    if (intent != null) {
+                                        setResult(RESULT_OK, intent);
+                                    }
+                                    finish();
                                 }
-                                finish();
                             } else {
                                 try {
 
@@ -345,7 +356,7 @@ public class PaymentActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<Order_Data_Model.OrderModel> call, Throwable t) {
+                        public void onFailure(Call<SingleOrderDataModel> call, Throwable t) {
                             try {
                                 dialog.dismiss();
                                 if (t.getMessage() != null) {
@@ -393,5 +404,16 @@ public class PaymentActivity extends AppCompatActivity {
                         Log.e("error", t.getMessage());
                     }
                 });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100){
+            Intent intent = getIntent();
+            if (intent != null) {
+                setResult(RESULT_OK, intent);
+            }
+            finish();
+        }
     }
 }

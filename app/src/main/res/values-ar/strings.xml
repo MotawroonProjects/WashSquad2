@@ -251,6 +251,8 @@
     <string name="thursday">الخميس</string>
     <string name="friday">الجمعه</string>
     <string name="not_avail_now">غير متاح الان</string>
+    <string name="payment_faild">فشل الدفع</string>
+    <string name="payment_suc">تم الدفع بنجاح</string>
 
 
 </resources>

@@ -25,6 +25,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity
+            android:name=".activities_fragments.activity_payment.PaypalwebviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity"
             android:exported="false" />
         <activity

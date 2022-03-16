@@ -16,6 +16,7 @@ import com.creative.share.apps.wash_squad.models.QuestionDataModel;
 import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.SettingModel;
+import com.creative.share.apps.wash_squad.models.SingleOrderDataModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
@@ -175,10 +176,10 @@ public interface Service {
 
 
     @POST("api/order/add")
-    Call<Order_Data_Model.OrderModel> addOrder(@Body ItemToUpload itemToUpload);
+    Call<SingleOrderDataModel> addOrder(@Body ItemToUpload itemToUpload);
 
     @POST("api/order/add")
-    Call<Order_Data_Model.OrderModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
+    Call<SingleOrderDataModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
 
     @GET("api/offers")
     Call<OfferDataModel> getOffers();
@@ -209,7 +210,7 @@ public interface Service {
     );
 
     @FormUrlEncoded
-    @POST("api/token/delete")
+    @POST("api/phone/token/delete")
     Call<ResponseBody> deltePhoneToken(
             @Field("phone_token") String phone_token,
             @Field("user_id") int user_id
