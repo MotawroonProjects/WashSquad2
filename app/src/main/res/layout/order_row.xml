@@ -101,7 +101,7 @@
                             android:ellipsize="end"
                             android:gravity="center"
                             android:lines="1"
-                            android:textColor="@color/gray3"
+                            android:textColor="@color/gray5"
                             android:textSize="12sp" />
 
                         <TextView
@@ -111,7 +111,7 @@
                             android:ellipsize="end"
                             android:gravity="center"
                             android:lines="1"
-                            android:textColor="@color/gray3"
+                            android:textColor="@color/gray5"
                             android:textSize="12sp" />
 
                         <TextView

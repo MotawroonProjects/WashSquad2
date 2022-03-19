@@ -28,6 +28,7 @@
         <variable
             name="total"
             type="Double" />
+        <import type="android.text.Html"/>
 
     </data>
     <FrameLayout
@@ -150,7 +151,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="15sp"
-                                android:text='@{lang.equals("ar")?level2.ar_des:level2.en_des}'
+                                android:text='@{lang.equals("ar")?Html.fromHtml(level2.ar_des).toString():Html.fromHtml(level2.en_des).toString()}'
 
 
                                 />

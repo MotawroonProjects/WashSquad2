@@ -253,6 +253,10 @@
     <string name="not_avail_now">غير متاح الان</string>
     <string name="payment_faild">فشل الدفع</string>
     <string name="payment_suc">تم الدفع بنجاح</string>
+    <string name="apple_pay">ابل باى</string>
+    <string name="pos">نقاط البيع</string>
+    <string name="numbers">Number</string>
+    <string name="characters">characters</string>
 
 
 </resources>

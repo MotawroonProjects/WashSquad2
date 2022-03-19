@@ -103,14 +103,14 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s", m_date, itemToUpload.getday()));
+        binding.tvDate.setText(String.format("%s %s %s", m_date,"  ", itemToUpload.getday()));
         binding.tvPoliciesAndTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
         });
 
 //        if (itemToUpload.getSub_services().size()>0)
-//        {
+//        {tvDate
 //            manager = new LinearLayoutManager(this);
 //            adapter = new AdditionalAdapter(itemToUpload.getSub_services(),this);
 //            binding.recView.setLayoutManager(manager);
@@ -144,10 +144,16 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
 
         });
+        binding.rb2.setOnClickListener(view ->
+        {
+            binding.flCash.setVisibility(View.VISIBLE);
+
+
+        });
         binding.rb3.setOnClickListener(view -> {
             itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.visa);
+            binding.tvPayment.setText(R.string.apple_pay);
         });
         binding.rb4.setOnClickListener(view -> {
             binding.flMyWallet.setVisibility(View.VISIBLE);

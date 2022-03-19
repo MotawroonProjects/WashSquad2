@@ -255,6 +255,10 @@
     <string name="not_avail_now">Not Available Now</string>
     <string name="payment_faild">Payment Faild</string>
     <string name="payment_suc">Payment Success</string>
+    <string name="apple_pay">Apple Pay</string>
+    <string name="pos">POS</string>
+    <string name="numbers">Number</string>
+    <string name="characters">characters</string>
 
 
 </resources>

@@ -42,13 +42,21 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private String coupon_serial;
     private String ar_service_type;
     private String en_service_type;
+    private String vehicleChar;
+    private String vehicleNumber;
     private String car_plate_number;
+    private String time;
+    private String time_type;
+
     private ServiceDataModel.Level2 level2;
     private List<ItemToUpload.SubServiceModel> sub_services;
 
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> day_error = new ObservableField<>();
     public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_plate_char_error = new ObservableField<>();
+    public ObservableField<String> date_error = new ObservableField<>();
+    public ObservableField<String> time_error = new ObservableField<>();
 
     public boolean isDataValidStep1(Context context) {
         if (service_id != 0 &&
@@ -59,14 +67,18 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
                 !TextUtils.isEmpty(address) &&
                 !day.isEmpty() &&
-                !car_plate_number.isEmpty()
-
+                !vehicleChar.isEmpty() &&
+                !vehicleNumber.isEmpty() &&
+                order_time_id != 0 &&
+                !order_date.isEmpty()
 
         ) {
             address_error.set(null);
             day_error.set(null);
             car_plate_number_error.set(null);
-
+            car_plate_char_error.set(null);
+            time_error.set(null);
+            date_error.set(null);
 
             return true;
         } else {
@@ -96,12 +108,29 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
                 day_error.set(null);
 
             }
-            if (car_plate_number.isEmpty()) {
+            if (vehicleNumber.isEmpty()) {
                 car_plate_number_error.set(context.getString(R.string.field_req));
             } else {
                 car_plate_number_error.set(null);
             }
+            if (vehicleChar.isEmpty()) {
+                car_plate_char_error.set(context.getString(R.string.field_req));
+            } else {
+                car_plate_char_error.set(null);
+            }
+            if (order_time_id == 0) {
+                time_error.set(context.getString(R.string.field_req));
+            } else {
+                time_error.set(null);
 
+            }
+
+            if (order_date.isEmpty()) {
+                date_error.set(context.getString(R.string.field_req));
+            } else {
+                date_error.set(null);
+
+            }
             return false;
         }
     }
@@ -115,6 +144,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
             return false;
         }
     }
+
     public ItemSubscribeToUpload() {
         this.service_id = 0;
         notifyPropertyChanged(BR.service_id);
@@ -145,9 +175,10 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         this.day = "";
         notifyPropertyChanged(BR.order_date);
 
-        this.car_plate_number = "";
-        notifyPropertyChanged(BR.car_plate_number);
-
+        this.vehicleNumber = "";
+        notifyPropertyChanged(BR.vehicleNumber);
+        this.vehicleChar = "";
+        notifyPropertyChanged(BR.vehicleChar);
         this.payment_method = 0;
         notifyPropertyChanged(BR.payment_method);
 
@@ -435,6 +466,26 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
     public void setSub_services(List<ItemToUpload.SubServiceModel> sub_services) {
         this.sub_services = sub_services;
+    }
+
+    @Bindable
+    public String getVehicleChar() {
+        return vehicleChar;
+    }
+
+    public void setVehicleChar(String vehicleChar) {
+        this.vehicleChar = vehicleChar;
+        notifyPropertyChanged(BR.vehicleChar);
+    }
+
+    @Bindable
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+        notifyPropertyChanged(BR.vehicleNumber);
     }
 
     public static class SubServiceModel implements Serializable {

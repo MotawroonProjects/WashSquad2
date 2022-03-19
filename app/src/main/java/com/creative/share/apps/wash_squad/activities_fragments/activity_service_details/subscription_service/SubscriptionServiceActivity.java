@@ -28,16 +28,21 @@ import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarSizeAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarTypeAdapter;
 import com.creative.share.apps.wash_squad.adapters.DayAdapter;
+import com.creative.share.apps.wash_squad.adapters.SpinnerAreaAdapter;
 import com.creative.share.apps.wash_squad.adapters.TimeAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivitySubscriptionServiceBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.AreaDataModel;
+import com.creative.share.apps.wash_squad.models.AreaModel;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
+import com.creative.share.apps.wash_squad.models.DayDataModel;
 import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.SelectedLocation;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
 import com.creative.share.apps.wash_squad.preferences.Preferences;
@@ -68,10 +73,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private List<CarTypeDataModel.CarTypeModel> carTypeModelList;
     private List<CarTypeDataModel.CarBrandModel> carBrandModelList;
     private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
-
+    private List<AreaModel> areaModelList;
     private AdditionalServiceAdapter additionalServiceAdapter;
     private BouquetAdapter bouquetAdapter;
     private CarTypeAdapter carTypeAdapter;
+    private SpinnerAreaAdapter spinnerAreaAdapter;
     private CarBrandAdapter carBrandAdapter;
     private GridLayoutManager manager1;
     private LinearLayoutManager manager2;
@@ -133,8 +139,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         selected_date = dateFormat.format(new Date(System.currentTimeMillis()));
         timeModelList = new ArrayList<>();
         dayModelList = new ArrayList<>();
-        dayModelList2= new ArrayList<>();
-
+        dayModelList2 = new ArrayList<>();
+        areaModelList = new ArrayList<>();
         setDays();
         carSizeModelList = new ArrayList<>();
 
@@ -160,8 +166,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         additional_service = new ArrayList<>();
         level2List = new ArrayList<>();
         level2List.addAll(serviceModel.getLevel2());
-        if(level2List.size()>0){
-            level2Model=level2List.get(0);
+        if (level2List.size() > 0) {
+            level2Model = level2List.get(0);
 
         }
         carTypeModelList = new ArrayList<>();
@@ -170,6 +176,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
         carBrandAdapter = new CarBrandAdapter(this, carBrandModelList);
         binding.spinnerBrand.setAdapter(carBrandAdapter);
+        spinnerAreaAdapter = new SpinnerAreaAdapter(this, areaModelList);
+        binding.spinnerArea.setAdapter(spinnerAreaAdapter);
 
         binding.llBack.setOnClickListener(view -> finish());
 
@@ -302,12 +310,30 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
                         additional_service.clear();
                         size_id = carSizeModelList.get(pos).getId();
-                        if(level2Model!=null){
-                        getPrice(level2Model.getId(), carSizeModelList.get(pos).getId());}
+                        if (level2Model != null) {
+                            getPrice(level2Model.getId(), carSizeModelList.get(pos).getId());
+                        }
                         itemToUpload.setCarSize_id(carSizeModelList.get(pos).getId());
 
                     }
 
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        binding.spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+
+
+                } else {
+                    getDays(areaModelList.get(i));
 
                 }
             }
@@ -340,7 +366,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         binding.tvDone1.setOnClickListener(view -> {
             binding.flDay.setVisibility(View.GONE);
             binding.tvDay.setText(dayModel.getDay_text());
-            selected_day=dayModelList2.get(dayModelList.indexOf(dayModel));
+            selected_day = dayModelList2.get(dayModelList.indexOf(dayModel));
             itemToUpload.setday(selected_day);
 
 
@@ -365,6 +391,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setUser_name(userModel.getFull_name());
                     itemToUpload.setUser_phone(userModel.getPhone());
                     itemToUpload.setTotal_price(final_total);
+                    itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
                     Intent intent = new Intent(this, PaymentSubscribtionActivity.class);
                     intent.putExtra("item", itemToUpload);
                     startActivityForResult(intent, 4);
@@ -378,7 +405,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
-            double service_price=itemToUpload.getService_price()/count;
+            double service_price = itemToUpload.getService_price() / count;
 
             count++;
             itemToUpload.setAmount(count);
@@ -386,28 +413,28 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             final_total = total * count;
 
             binding.setTotal(final_total);
-            itemToUpload.setService_price(service_price*count);
+            itemToUpload.setService_price(service_price * count);
 
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
-                double service_price=itemToUpload.getService_price()/count;
+                double service_price = itemToUpload.getService_price() / count;
                 count--;
                 itemToUpload.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-                itemToUpload.setService_price(service_price*count);
+                itemToUpload.setService_price(service_price * count);
 
                 // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
             }
 
         });
-      getCarSize();
+        getCarSize();
         getCarType();
-
+        getArea();
 
     }
 
@@ -501,13 +528,13 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Double> call, Response<Double> response) {
                         dialog.dismiss();
-                        Log.e("error", response.code() + "_"+service_id+" "+size_id );
+                        Log.e("error", response.code() + "_" + service_id + " " + size_id);
 
                         if (response.isSuccessful() && response.body() != null) {
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
-                            itemToUpload.setService_price(response.body()*count);
+                            itemToUpload.setService_price(response.body() * count);
 
                             binding.setTotal(final_total);
 
@@ -907,8 +934,143 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     }
 
     public void setBouquetItem(ServiceDataModel.Level2 model) {
-        this.level2Model=model;
-        if(size_id!=0){
-            getPrice(level2Model.getId(), size_id);}
+        this.level2Model = model;
+        if (size_id != 0) {
+            getPrice(level2Model.getId(), size_id);
+        }
     }
+
+    private void getArea() {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Log.e("data", "ddd");
+        Api.getService(Tags.base_url)
+                .getArea()
+                .enqueue(new Callback<AreaDataModel>() {
+                    @Override
+                    public void onResponse(Call<AreaDataModel> call, Response<AreaDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            areaModelList.clear();
+                            areaModelList.add(new AreaModel("اختر المنطقه", "Choose Area"));
+                            areaModelList.addAll(response.body().getData());
+                            spinnerAreaAdapter.notifyDataSetChanged();
+
+                        } else {
+
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                                //   binding.llNoCoupon.setVisibility(View.VISIBLE);
+                            } else if (response.code() == 500) {
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AreaDataModel> call, Throwable t) {
+                        try {
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //     Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+    }
+
+    private void getDays(AreaModel areaModel) {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Log.e("data", "ddd");
+        Api.getService(Tags.base_url)
+                .getDays(serviceModel.getId() + "", areaModel.getId() + "")
+                .enqueue(new Callback<DayDataModel>() {
+                    @Override
+                    public void onResponse(Call<DayDataModel> call, Response<DayDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            updateDays(response.body());
+
+                        } else {
+
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                                //   binding.llNoCoupon.setVisibility(View.VISIBLE);
+                            } else if (response.code() == 500) {
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DayDataModel> call, Throwable t) {
+                        try {
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //     Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+    }
+
+    private void updateDays(DayDataModel body) {
+        for (int i = 0; i < dayModelList2.size(); i++) {
+            if (!body.getDays().contains(dayModelList2.get(i))) {
+                dayModelList.remove(i);
+                dayModelList2.remove(i);
+                i -= 1;
+            }
+        }
+        dayAdapter.notifyDataSetChanged();
+    }
+
+
 }

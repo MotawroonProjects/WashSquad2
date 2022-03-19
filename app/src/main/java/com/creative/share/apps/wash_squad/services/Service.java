@@ -2,10 +2,12 @@ package com.creative.share.apps.wash_squad.services;
 
 
 import com.creative.share.apps.wash_squad.models.AboutDataModel;
+import com.creative.share.apps.wash_squad.models.AreaDataModel;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
 import com.creative.share.apps.wash_squad.models.CouponDataModel;
 import com.creative.share.apps.wash_squad.models.CouponModel;
+import com.creative.share.apps.wash_squad.models.DayDataModel;
 import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.OfferDataModel;
@@ -237,4 +239,9 @@ public interface Service {
     Call<ResponseBody> postponeAppointment(@Field("subscription_id") String subscription_id,
                                            @Field("status") String status
     );
+    @GET("api/places")
+    Call<AreaDataModel> getArea();
+    @GET("api/dayByPlacesAndServices")
+    Call<DayDataModel> getDays(@Query("service_id") String service_id,
+                               @Query("place_id") String place_id);
 }
