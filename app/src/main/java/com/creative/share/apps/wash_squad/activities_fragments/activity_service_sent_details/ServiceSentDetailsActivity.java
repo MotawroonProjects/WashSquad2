@@ -24,9 +24,12 @@ import com.creative.share.apps.wash_squad.adapters.AdditionalServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarSizeAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarTypeAdapter;
+import com.creative.share.apps.wash_squad.adapters.SpinnerAreaAdapter;
 import com.creative.share.apps.wash_squad.adapters.TimeAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityServiceSentDetailsBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.AreaDataModel;
+import com.creative.share.apps.wash_squad.models.AreaModel;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
@@ -83,6 +86,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     private List<ServiceDataModel.Level2> additional_service;
     private List<ItemToUpload.SubServiceModel> subServiceModelList;
     private List<TimeDataModel.TimeModel> timeModelList;
+    private SpinnerAreaAdapter spinnerAreaAdapter;
+    private List<AreaModel> areaModelList;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -115,6 +120,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         timeModelList = new ArrayList<>();
         timeAdapter = new TimeAdapter(timeModelList, this);
+        areaModelList = new ArrayList<>();
+
         carBrandModelList = new ArrayList<>();
         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
         subServiceModelList = new ArrayList<>();
@@ -125,7 +132,11 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         sendServiceModel = new SendServiceModel();
         if (userModel != null) {
             sendServiceModel.setSender_name(userModel.getFull_name());
-            sendServiceModel.setSender_phone(userModel.getPhone());
+            sendServiceModel.setSender_phone(userModel.getPhone().replaceFirst(userModel.getPhone_code(),""));
+            sendServiceModel.setPhone_code(userModel.getPhone_code());
+        }
+        else{
+            sendServiceModel.setPhone_code("00966");
         }
         sendServiceModel.setSub_services(subServiceModelList);
         sendServiceModel.setService_id(serviceModel.getId());
@@ -142,7 +153,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         carBrandAdapter = new CarBrandAdapter(this, carBrandModelList);
         binding.spinnerBrand.setAdapter(carBrandAdapter);
-
+        spinnerAreaAdapter = new SpinnerAreaAdapter(this, areaModelList);
+        binding.spinnerArea.setAdapter(spinnerAreaAdapter);
 
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -390,10 +402,90 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
             }
 
         });
+        binding.spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+
+
+                } else {
+
+                    sendServiceModel.setPlace_id(areaModelList.get(i).getId());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        getArea();
+
         getCarSize();
         getCarType();
 
 
+    }
+    private void getArea() {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Log.e("data", "ddd");
+        Api.getService(Tags.base_url)
+                .getArea()
+                .enqueue(new Callback<AreaDataModel>() {
+                    @Override
+                    public void onResponse(Call<AreaDataModel> call, Response<AreaDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            areaModelList.clear();
+                            areaModelList.add(new AreaModel("اختر المنطقه", "Choose Area"));
+                            areaModelList.addAll(response.body().getData());
+                            spinnerAreaAdapter.notifyDataSetChanged();
+
+                        } else {
+
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                                //   binding.llNoCoupon.setVisibility(View.VISIBLE);
+                            } else if (response.code() == 500) {
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AreaDataModel> call, Throwable t) {
+                        try {
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //     Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
     }
 
     public void setTimeItem(TimeDataModel.TimeModel model) {

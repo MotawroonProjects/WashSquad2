@@ -255,8 +255,10 @@
     <string name="payment_suc">تم الدفع بنجاح</string>
     <string name="apple_pay">ابل باى</string>
     <string name="pos">نقاط البيع</string>
-    <string name="numbers">Number</string>
-    <string name="characters">characters</string>
+    <string name="numbers">ارقام</string>
+    <string name="characters">حروف</string>
+    <string name="date_not">التاريخ لا يساوى اليوم</string>
+    <string name="ch_area">Choose Area</string>
 
 
 </resources>

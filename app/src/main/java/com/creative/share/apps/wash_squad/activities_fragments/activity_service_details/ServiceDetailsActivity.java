@@ -26,10 +26,13 @@ import com.creative.share.apps.wash_squad.adapters.AdditionalServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarBrandAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarSizeAdapter;
 import com.creative.share.apps.wash_squad.adapters.CarTypeAdapter;
+import com.creative.share.apps.wash_squad.adapters.SpinnerAreaAdapter;
 import com.creative.share.apps.wash_squad.adapters.TimeAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityServiceDetailsBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
+import com.creative.share.apps.wash_squad.models.AreaDataModel;
+import com.creative.share.apps.wash_squad.models.AreaModel;
 import com.creative.share.apps.wash_squad.models.CarSizeDataModel;
 import com.creative.share.apps.wash_squad.models.CarTypeDataModel;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
@@ -72,6 +75,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     private LinearLayoutManager manager2;
     private TimeDataModel.TimeModel timeModel;
     private String d;
+    private SpinnerAreaAdapter spinnerAreaAdapter;
+    private List<AreaModel> areaModelList;
+
     private List<ServiceDataModel.Level2> additional_service;
     private ItemToUpload itemToUpload;
     private int service_id;
@@ -123,6 +129,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         carBrandModelList = new ArrayList<>();
         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
         subServiceModelList = new ArrayList<>();
+        areaModelList = new ArrayList<>();
         preferences = Preferences.newInstance();
         binding.setPrice(0.0);
         binding.setTotal(total);
@@ -136,7 +143,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
 
-     //   itemToUpload.setSub_serv_id(serviceModel.getId());
+        //   itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         carSizeModelList = new ArrayList<>();
         carTypeModelList = new ArrayList<>();
@@ -145,7 +152,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
         carBrandAdapter = new CarBrandAdapter(this, carBrandModelList);
         binding.spinnerBrand.setAdapter(carBrandAdapter);
-
+        spinnerAreaAdapter = new SpinnerAreaAdapter(this, areaModelList);
+        binding.spinnerArea.setAdapter(spinnerAreaAdapter);
 
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -362,7 +370,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
-            double service_price=itemToUpload.getService_price()/count;
+            double service_price = itemToUpload.getService_price() / count;
 
             count++;
             itemToUpload.setAmount(count);
@@ -370,37 +378,116 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             final_total = total * count;
 
             binding.setTotal(final_total);
-           // itemToUpload.setTotal_price(final_total+);
-            itemToUpload.setService_price(service_price*count);
+            // itemToUpload.setTotal_price(final_total+);
+            itemToUpload.setService_price(service_price * count);
 
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
-                double service_price=itemToUpload.getService_price()/count;
+                double service_price = itemToUpload.getService_price() / count;
                 count--;
                 itemToUpload.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-               // itemToUpload.setService_price(final_total);
-                itemToUpload.setService_price(service_price*count);
+                // itemToUpload.setService_price(final_total);
+                itemToUpload.setService_price(service_price * count);
 
                 // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
             }
 
         });
+        binding.spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+
+
+                } else {
+
+                    itemToUpload.setPlace_id(areaModelList.get(i).getId());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         getCarSize();
         getCarType();
-
+        getArea();
 
     }
 
     public void setTimeItem(TimeDataModel.TimeModel model) {
         //timeAdapter.updateList(model);
         binding.tvDone.setVisibility(View.VISIBLE);
-        this.timeModel=model;
+        this.timeModel = model;
+    }
+
+    private void getArea() {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Log.e("data", "ddd");
+        Api.getService(Tags.base_url)
+                .getArea()
+                .enqueue(new Callback<AreaDataModel>() {
+                    @Override
+                    public void onResponse(Call<AreaDataModel> call, Response<AreaDataModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            areaModelList.clear();
+                            areaModelList.add(new AreaModel("اختر المنطقه", "Choose Area"));
+                            areaModelList.addAll(response.body().getData());
+                            spinnerAreaAdapter.notifyDataSetChanged();
+
+                        } else {
+
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 404) {
+                                //   binding.llNoCoupon.setVisibility(View.VISIBLE);
+                            } else if (response.code() == 500) {
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AreaDataModel> call, Throwable t) {
+                        try {
+                            // binding.swipeRefresh.setRefreshing(false);
+
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    //     Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
     }
 
     private void openCalender() {
@@ -442,7 +529,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
-                            itemToUpload.setService_price(response.body()*count);
+                            itemToUpload.setService_price(response.body() * count);
                             binding.setTotal(final_total);
 
                         } else {
@@ -503,7 +590,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                             final_total = total * count;
                             binding.setTotal(final_total);
 
-                            level3.setPrice(response.body()+"");
+                            level3.setPrice(response.body() + "");
                             additional_service.add(level3);
 
                             subServiceModelList.clear();

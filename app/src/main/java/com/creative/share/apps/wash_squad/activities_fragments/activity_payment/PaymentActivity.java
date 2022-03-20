@@ -166,6 +166,8 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         binding.btnSend.setOnClickListener(view -> {
+            itemToUpload.setUser_phone(userModel.getPhone_code()+itemToUpload.getUser_phone());
+
             if (itemToUpload.isDataValidStep2(this)) {
                 if (couponModel == null) {
                     itemToUpload.setCoupon_serial(null);

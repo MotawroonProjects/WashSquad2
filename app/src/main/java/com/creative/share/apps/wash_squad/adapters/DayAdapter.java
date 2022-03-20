@@ -70,7 +70,7 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.MyHolder>{
 
     @Override
     public int getItemCount() {
-        return 7;
+        return dayList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

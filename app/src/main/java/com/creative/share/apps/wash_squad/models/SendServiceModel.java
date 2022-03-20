@@ -32,7 +32,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String order_date;
     private String longitude;
     private String latitude;
-
+    private int place_id;
 
     private String address;
     private String time;
@@ -49,7 +49,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String en_service_type;
     private ServiceDataModel.Level2 level2;
     private List<ItemToUpload.SubServiceModel> sub_services;
-
+    private String phone_code;
     public ObservableField<String> user_name_error = new ObservableField<>();
     public ObservableField<String> user_phone_error = new ObservableField<>();
     public ObservableField<String> receiver_name_error = new ObservableField<>();
@@ -71,7 +71,8 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 !receiver_phone.isEmpty() &&
                 !time.isEmpty() &&
                 order_time_id != 0 &&
-                !order_date.isEmpty()
+                !order_date.isEmpty() &&
+                place_id != 0
 
 
         ) {
@@ -96,7 +97,9 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             if (brand_id == 0) {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
-
+            if (place_id == 0) {
+                Toast.makeText(context, context.getResources().getString(R.string.ch_area), Toast.LENGTH_LONG).show();
+            }
             if (order_time_id == 0) {
                 time_error.set(context.getString(R.string.field_req));
             } else {
@@ -209,7 +212,18 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.ar_brand_name);
         this.en_brand_name = "";
         notifyPropertyChanged(BR.en_brand_name);
+        this.place_id = 0;
+        notifyPropertyChanged(BR.place_id);
+    }
 
+    @Bindable
+    public int getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(int place_id) {
+        this.place_id = place_id;
+        notifyPropertyChanged(BR.place_id);
     }
 
     public String getTime_type() {
@@ -513,5 +527,11 @@ public class SendServiceModel extends BaseObservable implements Serializable {
 
     }
 
+    public String getPhone_code() {
+        return phone_code;
+    }
 
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
+    }
 }

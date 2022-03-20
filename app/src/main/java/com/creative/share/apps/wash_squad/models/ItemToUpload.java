@@ -40,7 +40,7 @@ public class ItemToUpload extends BaseObservable implements Serializable {
     private double service_price;
     private double total_price;
     private int number_of_cars;
-
+    private int place_id;
     private String coupon_serial;
     private String ar_service_type;
     private String en_service_type;
@@ -61,7 +61,8 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
                 !TextUtils.isEmpty(address) &&
                 order_time_id != 0 &&
-                !order_date.isEmpty()
+                !order_date.isEmpty() &&
+                place_id != 0
 
 
         ) {
@@ -84,8 +85,10 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
 
-
-           if (TextUtils.isEmpty(address)) {
+            if (place_id == 0) {
+                Toast.makeText(context, context.getResources().getString(R.string.ch_area), Toast.LENGTH_LONG).show();
+            }
+            if (TextUtils.isEmpty(address)) {
                 address_error.set(context.getString(R.string.field_req));
             } else {
                 address_error.set(null);
@@ -171,9 +174,19 @@ public class ItemToUpload extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.ar_brand_name);
         this.en_brand_name = "";
         notifyPropertyChanged(BR.en_brand_name);
-
+        this.place_id = 0;
+        notifyPropertyChanged(BR.place_id);
     }
 
+    @Bindable
+    public int getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(int place_id) {
+        this.place_id = place_id;
+        notifyPropertyChanged(BR.place_id);
+    }
 
     @Bindable
     public String getAr_car_type() {

@@ -302,7 +302,24 @@
 
                         </Spinner>
                     </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/expand_bg"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        >
+                        <Spinner
+                            android:id="@+id/spinnerArea"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:layout_gravity="center_vertical"
+                            app:backgroundTint="@color/colorPrimary"
+                            >
 
+                        </Spinner>
+                    </FrameLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/consMap"
                         android:layout_width="match_parent"

@@ -31,6 +31,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private String latitude;
     private String address;
     private int order_time_id;
+    private int place_id;
 
     private String day;
     private String order_date;
@@ -70,7 +71,8 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
                 !vehicleChar.isEmpty() &&
                 !vehicleNumber.isEmpty() &&
                 order_time_id != 0 &&
-                !order_date.isEmpty()
+                !order_date.isEmpty()&&
+                place_id != 0
 
         ) {
             address_error.set(null);
@@ -94,7 +96,9 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
 
-
+            if (place_id == 0) {
+                Toast.makeText(context, context.getResources().getString(R.string.ch_area), Toast.LENGTH_LONG).show();
+            }
             if (TextUtils.isEmpty(address)) {
                 address_error.set(context.getString(R.string.field_req));
             } else {
@@ -195,6 +199,22 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         notifyPropertyChanged(BR.ar_brand_name);
         this.en_brand_name = "";
         notifyPropertyChanged(BR.en_brand_name);
+        this.time = "";
+        notifyPropertyChanged(BR.time);
+
+        this.order_date = "";
+        notifyPropertyChanged(BR.order_date);
+        this.place_id = 0;
+        notifyPropertyChanged(BR.place_id);
+    }
+    @Bindable
+    public int getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(int place_id) {
+        this.place_id = place_id;
+        notifyPropertyChanged(BR.place_id);
     }
 
     @Bindable
@@ -534,5 +554,19 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         }
     }
 
+    public String getTime() {
+        return time;
+    }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTime_type() {
+        return time_type;
+    }
+
+    public void setTime_type(String time_type) {
+        this.time_type = time_type;
+    }
 }

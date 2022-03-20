@@ -259,6 +259,8 @@
     <string name="pos">POS</string>
     <string name="numbers">Number</string>
     <string name="characters">characters</string>
+    <string name="date_not">Date Dont Match Day</string>
+    <string name="ch_area">Choose Area</string>
 
 
 </resources>

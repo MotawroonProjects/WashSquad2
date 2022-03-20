@@ -53,6 +53,7 @@ import com.creative.share.apps.wash_squad.tags.Tags;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -141,7 +142,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         dayModelList = new ArrayList<>();
         dayModelList2 = new ArrayList<>();
         areaModelList = new ArrayList<>();
-        setDays();
+
         carSizeModelList = new ArrayList<>();
 
 //        dayAdapter.updateList(dayModelList);
@@ -333,6 +334,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
 
                 } else {
+                    itemToUpload.setPlace_id(areaModelList.get(i).getId());
                     getDays(areaModelList.get(i));
 
                 }
@@ -361,7 +363,21 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         binding.recViewDay.setAdapter(dayAdapter);
         binding.recViewTime.setLayoutManager(new GridLayoutManager(this, 3));
         binding.recViewTime.setAdapter(timeAdapter);
+        binding.closeCalender.setOnClickListener(view -> binding.flCalender.setVisibility(View.GONE));
 
+        binding.consDate.setOnClickListener(view -> openCalender());
+        binding.consTime.setOnClickListener(view -> {
+            binding.flTime.setVisibility(View.VISIBLE);
+
+        });
+        binding.tvDone.setOnClickListener(view -> {
+            binding.flTime.setVisibility(View.GONE);
+            binding.tvTime.setText(timeModel.getTime_text());
+            itemToUpload.setTime(timeModel.getTime_text());
+            itemToUpload.setTime_type(timeModel.getType());
+            itemToUpload.setOrder_time_id(timeModel.getId());
+
+        });
 
         binding.tvDone1.setOnClickListener(view -> {
             binding.flDay.setVisibility(View.GONE);
@@ -438,24 +454,35 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     }
 
-    private void setDays() {
-        dayModelList = new ArrayList<>();
-        dayModelList.add(new DayModel(getString(R.string.Saturday)));
-        dayModelList.add(new DayModel(getString(R.string.sunday)));
-        dayModelList.add(new DayModel(getString(R.string.monday)));
-        dayModelList.add(new DayModel(getString(R.string.tuesday)));
-        dayModelList.add(new DayModel(getString(R.string.wendesday)));
-        dayModelList.add(new DayModel(getString(R.string.thursday)));
-        dayModelList.add(new DayModel(getString(R.string.friday)));
-        dayModelList2 = new ArrayList<>();
-        dayModelList2.add("SATURDAY");
-        dayModelList2.add("SUNDAY");
-        dayModelList2.add("MONDAY");
-        dayModelList2.add("TUESDAY");
-        dayModelList2.add("WEDNESDAY");
-        dayModelList2.add("THURSDAY");
-        dayModelList2.add("FRIDAY");
+    private void openCalender() {
+        binding.flCalender.setVisibility(View.VISIBLE);
+        Calendar calendar = Calendar.getInstance();
+        binding.calendar.setMinDate(calendar.getTimeInMillis());
+
+        binding.calendar.setOnDateChangeListener((calendarView, i, i1, i2) -> {
+            Log.e("date", i + "/" + (i1 + 1) + "/" + i2);
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+            Log.e("dlldld", dateFormat2.format(new Date(calendar.getTimeInMillis())).toString());
+            if (itemToUpload.getday().equals(dateFormat2.format(new Date(calendar.getTimeInMillis())).toString())) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                //Log.e("dlldld", dateFormat.format(new Date(calendar.getTimeInMillis())).toString());
+
+                selected_date = dateFormat.format(new Date(calendar.getTimeInMillis()));
+                binding.flCalender.setVisibility(View.GONE);
+                binding.tvDate.setText(selected_date);
+                itemToUpload.setOrder_date(selected_date);
+                binding.consTime.setEnabled(true);
+                getTime();
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.date_not), Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
+
 
     private void getCarSize() {
 
@@ -875,7 +902,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     private void getTime() {
         Api.getService(Tags.base_url)
-                .getTime(selected_day)
+                .getTime(selected_date)
                 .enqueue(new Callback<TimeDataModel>() {
                     @Override
                     public void onResponse(Call<TimeDataModel> call, Response<TimeDataModel> response) {
@@ -1062,13 +1089,31 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     }
 
     private void updateDays(DayDataModel body) {
+        dayModelList.clear();
+        dayModelList.add(new DayModel(getString(R.string.Saturday)));
+        dayModelList.add(new DayModel(getString(R.string.sunday)));
+        dayModelList.add(new DayModel(getString(R.string.monday)));
+        dayModelList.add(new DayModel(getString(R.string.tuesday)));
+        dayModelList.add(new DayModel(getString(R.string.wendesday)));
+        dayModelList.add(new DayModel(getString(R.string.thursday)));
+        dayModelList.add(new DayModel(getString(R.string.friday)));
+        dayModelList2 = new ArrayList<>();
+        dayModelList2.add("Saturday");
+        dayModelList2.add("Sunday");
+        dayModelList2.add("Monday");
+        dayModelList2.add("Tuesday");
+        dayModelList2.add("Wednesday");
+        dayModelList2.add("Thursday");
+        dayModelList2.add("Friday");
         for (int i = 0; i < dayModelList2.size(); i++) {
+
             if (!body.getDays().contains(dayModelList2.get(i))) {
                 dayModelList.remove(i);
                 dayModelList2.remove(i);
                 i -= 1;
             }
         }
+        Log.e("data", dayModelList.size() + "");
         dayAdapter.notifyDataSetChanged();
     }
 

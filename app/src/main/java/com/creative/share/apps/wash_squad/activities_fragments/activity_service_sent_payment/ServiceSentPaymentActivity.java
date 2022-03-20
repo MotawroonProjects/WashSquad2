@@ -158,6 +158,9 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
         binding.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendServiceModel.setSender_phone(sendServiceModel.getPhone_code()+sendServiceModel.getSender_phone());
+                sendServiceModel.setReceiver_name(sendServiceModel.getPhone_code()+sendServiceModel.getReceiver_phone());
+
                 sendServiceModel.setPayment_method(2);
                 uploadOrder(sendServiceModel);
             }
