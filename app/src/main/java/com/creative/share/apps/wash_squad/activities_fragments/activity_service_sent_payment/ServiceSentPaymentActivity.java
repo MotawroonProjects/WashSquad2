@@ -355,6 +355,7 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
                             tax = (sendServiceModel.getTotal_price() * settingModel.getTax_per()) / 100;
                             binding.setTax(tax);
                             sendServiceModel.setTotal_price(sendServiceModel.getTotal_price() + tax);
+                            sendServiceModel.setTotal_tax(tax);
                             binding.setSendServiceModel(sendServiceModel);
                         }
                     }

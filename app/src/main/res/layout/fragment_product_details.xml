@@ -198,7 +198,6 @@
                     android:layout_marginEnd="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone"
                     android:weightSum="2">
 
                     <TextView
@@ -216,7 +215,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.4"
                         android:gravity="end"
-                        android:text='20 ريال'
+                        android:text='@{model.total_tax+" "+@string/sar}'
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -226,7 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:layout_marginTop="7dp"
-                    android:visibility="gone"
+
                     android:background="@color/colorPrimary" />
 
                 <LinearLayout

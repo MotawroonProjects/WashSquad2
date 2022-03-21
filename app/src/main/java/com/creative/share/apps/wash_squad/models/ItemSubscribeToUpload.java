@@ -38,6 +38,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private int payment_method;
     private double service_price;
     private double total_price;
+    private double total_tax;
     private int number_of_cars;
 
     private String coupon_serial;
@@ -71,7 +72,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
                 !vehicleChar.isEmpty() &&
                 !vehicleNumber.isEmpty() &&
                 order_time_id != 0 &&
-                !order_date.isEmpty()&&
+                !order_date.isEmpty() &&
                 place_id != 0
 
         ) {
@@ -207,6 +208,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         this.place_id = 0;
         notifyPropertyChanged(BR.place_id);
     }
+
     @Bindable
     public int getPlace_id() {
         return place_id;
@@ -434,6 +436,14 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     public void setTotal_price(double total_price) {
         this.total_price = total_price;
         notifyPropertyChanged(BR.total_price);
+    }
+
+    public double getTotal_tax() {
+        return total_tax;
+    }
+
+    public void setTotal_tax(double total_tax) {
+        this.total_tax = total_tax;
     }
 
     public int getAmount() {

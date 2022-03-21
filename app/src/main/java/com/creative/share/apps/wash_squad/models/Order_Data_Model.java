@@ -15,8 +15,7 @@ public class Order_Data_Model implements Serializable {
         return data;
     }
 
-    public static class OrderModel implements Serializable
-    {
+    public static class OrderModel implements Serializable {
         private int id;
         private int order_type;
         private int user_id;
@@ -44,6 +43,7 @@ public class Order_Data_Model implements Serializable {
         private String opinion_des;
         private double rating;
         private double total_price;
+        private double total_tax;
         private String coupon_serial;
         private String created_at;
         private String updated_at;
@@ -177,6 +177,10 @@ public class Order_Data_Model implements Serializable {
 
         public double getTotal_price() {
             return total_price;
+        }
+
+        public double getTotal_tax() {
+            return total_tax;
         }
 
         public String getCoupon_serial() {
@@ -313,8 +317,7 @@ public class Order_Data_Model implements Serializable {
         }
     }
 
-    public static class Products implements Serializable
-    {
+    public static class Products implements Serializable {
         private int id;
         private int order_id;
         private int sub_service_id;

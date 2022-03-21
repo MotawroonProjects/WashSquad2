@@ -39,6 +39,7 @@ public class ItemToUpload extends BaseObservable implements Serializable {
     private int payment_method;
     private double service_price;
     private double total_price;
+    private double total_tax;
     private int number_of_cars;
     private int place_id;
     private String coupon_serial;
@@ -367,6 +368,14 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
         notifyPropertyChanged(BR.order_date);
 
+    }
+
+    public double getTotal_tax() {
+        return total_tax;
+    }
+
+    public void setTotal_tax(double total_tax) {
+        this.total_tax = total_tax;
     }
 
     @Bindable

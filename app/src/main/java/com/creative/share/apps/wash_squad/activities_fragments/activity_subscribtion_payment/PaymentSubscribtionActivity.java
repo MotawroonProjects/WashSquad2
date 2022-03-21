@@ -157,7 +157,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         });
         binding.rb4.setOnClickListener(view -> {
             binding.flMyWallet.setVisibility(View.VISIBLE);
-            itemToUpload.setPayment_method(2);
+            itemToUpload.setPayment_method(3);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.my_wallet_balance);
         });
@@ -402,6 +402,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                             tax = (itemToUpload.getTotal_price() * settingModel.getTax_per()) / 100;
                             binding.setTax(tax);
                             itemToUpload.setTotal_price(itemToUpload.getTotal_price() + tax);
+                            itemToUpload.setTotal_tax(tax);
                             binding.setItemModel(itemToUpload);
                         }
                     }

@@ -47,6 +47,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String coupon_serial;
     private String ar_service_type;
     private String en_service_type;
+    private double total_tax;
     private ServiceDataModel.Level2 level2;
     private List<ItemToUpload.SubServiceModel> sub_services;
     private String phone_code;
@@ -253,6 +254,14 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public void setOrder_time_id(int order_time_id) {
         this.order_time_id = order_time_id;
         notifyPropertyChanged(BR.order_time_id);
+    }
+
+    public double getTotal_tax() {
+        return total_tax;
+    }
+
+    public void setTotal_tax(double total_tax) {
+        this.total_tax = total_tax;
     }
 
     @Bindable
