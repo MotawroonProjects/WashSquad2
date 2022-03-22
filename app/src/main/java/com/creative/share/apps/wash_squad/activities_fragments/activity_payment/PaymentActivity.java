@@ -62,6 +62,7 @@ public class PaymentActivity extends AppCompatActivity {
     private UserModel userModel;
     private SettingModel settingModel;
     private double tax;
+    private Order_Data_Model.OrderModel orderModel;
 
 
     @Override
@@ -83,6 +84,10 @@ public class PaymentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             itemToUpload = (ItemToUpload) intent.getSerializableExtra("item");
+            if (intent.getSerializableExtra("order") != null) {
+                orderModel = (Order_Data_Model.OrderModel) intent.getSerializableExtra("order");
+
+            }
         }
     }
 
@@ -109,6 +114,7 @@ public class PaymentActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
         });
+
 
 //        if (itemToUpload.getSub_services().size()>0)
 //        {
@@ -160,6 +166,7 @@ public class PaymentActivity extends AppCompatActivity {
             binding.flMyWallet.setVisibility(View.VISIBLE);
             itemToUpload.setPayment_method(3);
             binding.setItemModel(itemToUpload);
+
             binding.tvPayment.setText(R.string.my_wallet_balance);
         });
         binding.tvDone.setOnClickListener(view -> binding.flMyWallet.setVisibility(View.GONE));
@@ -215,6 +222,42 @@ public class PaymentActivity extends AppCompatActivity {
         updateTotalPrice(coupon_value);
 
         getSetting();
+        if(orderModel!=null){
+            updateData();
+        }
+    }
+
+    private void updateData() {
+        if(orderModel.getPayment_method().equals("1")){
+            binding.rb1.setChecked(true);
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.cache);
+            binding.setItemModel(itemToUpload);
+            //binding.rb1
+        }
+        else if(orderModel.getPayment_method().equals("2")){
+            itemToUpload.setPayment_method(2);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.apple_pay);
+            binding.setItemModel(itemToUpload);
+            binding.rb3.setChecked(true);
+
+        }
+        else if(orderModel.getPayment_method().equals("3")){
+            itemToUpload.setPayment_method(3);
+            binding.rb4.setChecked(true);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.my_wallet_balance);
+            binding.setItemModel(itemToUpload);
+
+        }
+        else if(orderModel.getPayment_method().equals("4")){
+
+        }
+        if(orderModel.getCoupon_serial()!=null){
+            getCouponValue(orderModel.getCoupon_serial());
+        }
     }
 
 

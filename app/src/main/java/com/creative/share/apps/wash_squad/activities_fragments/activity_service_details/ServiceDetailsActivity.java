@@ -373,6 +373,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     itemToUpload.setTotal_price(final_total);
                     Intent intent = new Intent(this, PaymentActivity.class);
                     intent.putExtra("item", itemToUpload);
+                    if(orderModel!=null){
+                        intent.putExtra("order",orderModel);
+                    }
                     startActivityForResult(intent, 4);
                 } else {
                     Common.CreateNoSignAlertDialog(this);
