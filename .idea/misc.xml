@@ -79,8 +79,8 @@
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_intro_.xml" value="0.1390625" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_login_option.xml" value="0.1390625" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_new_password.xml" value="0.33" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_order_details.xml" value="0.33" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.1984732824427481" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_order_details.xml" value="0.22" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.12149532710280374" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_payment_subscribtion.xml" value="0.22" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_paypal.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_questions.xml" value="0.27291666666666664" />
@@ -103,10 +103,12 @@
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_offer.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_offers.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_order_detials.xml" value="0.14270833333333333" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_product_details.xml" value="0.18072289156626506" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_order_detials_evaluation.xml" value="0.27291666666666664" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_product_details.xml" value="0.13333333333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_profile.xml" value="0.32503457814661135" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/offer_row.xml" value="0.1" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/order_row.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/size_row.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/time_row.xml" value="0.27291666666666664" />

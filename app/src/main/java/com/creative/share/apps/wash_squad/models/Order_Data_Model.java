@@ -22,7 +22,10 @@ public class Order_Data_Model implements Serializable {
         private String marketer_id;
         private String employee_id;
         private int service_id;
+        private int status;
+        private int sub_service_id;
         private int size_id;
+        private int brand_id;
         private int type_id;
         private String package_id;
         private String address;
@@ -33,11 +36,13 @@ public class Order_Data_Model implements Serializable {
         private String addons;
         private String number_of_cars;
         private String payment_method;
+        private String payment_status;
+        private int payment_method_check;
         private int driver_id;
+        private String place_id;
         private String feedback;
         private long start_time_work;
         private long end_time_work;
-        private int status;
         private String distributor_employee_id;
         private int cancel_reason;
         private String opinion_des;
@@ -45,22 +50,33 @@ public class Order_Data_Model implements Serializable {
         private double total_price;
         private double total_tax;
         private String coupon_serial;
+        private int place_check;
+        private int step;
+        private String order_time;
+        private String neighborhood;
+        private String satisfied_status;
         private String created_at;
         private String updated_at;
+        private int commission_value;
         private String driver_full_name;
-        private String user_image;
+        private String driver_image;
         private String user_full_name;
+        private String user_image;
+        private String user_phone_code;
+        private String user_phone;
         private String service_en_title;
         private String service_ar_title;
         private String service_image;
         private String carSize_en_title;
         private String carSize_ar_title;
         private String carSize_image;
-        private String cancel_en_title;
-        private String cancel_ar_title;
         private String carType_en_title;
         private String carType__ar_title;
         private String carType__image;
+        private String see_images;
+        private int see_image_check;
+        private String cancel_en_title;
+        private String cancel_ar_title;
         private String work_time_choosen;
         private String work_time_en_title;
         private String work_time_ar_title;
@@ -68,11 +84,14 @@ public class Order_Data_Model implements Serializable {
         private String service_level2_ar_title;
         private String brand_en_title;
         private String brand__ar_title;
-        private String see_images;
         private List<Products> order_sub_services;
-
+        private List<Products> sub_service;
         public int getId() {
             return id;
+        }
+
+        public List<Products> getSub_service() {
+            return sub_service;
         }
 
         public int getOrder_type() {
@@ -291,6 +310,66 @@ public class Order_Data_Model implements Serializable {
 
         public List<OrderModel.order_images> getOrder_images() {
             return order_images;
+        }
+
+        public int getSub_service_id() {
+            return sub_service_id;
+        }
+
+        public int getBrand_id() {
+            return brand_id;
+        }
+
+        public String getPayment_status() {
+            return payment_status;
+        }
+
+        public int getPayment_method_check() {
+            return payment_method_check;
+        }
+
+        public String getPlace_id() {
+            return place_id;
+        }
+
+        public int getPlace_check() {
+            return place_check;
+        }
+
+        public int getStep() {
+            return step;
+        }
+
+        public String getOrder_time() {
+            return order_time;
+        }
+
+        public String getNeighborhood() {
+            return neighborhood;
+        }
+
+        public String getSatisfied_status() {
+            return satisfied_status;
+        }
+
+        public int getCommission_value() {
+            return commission_value;
+        }
+
+        public String getDriver_image() {
+            return driver_image;
+        }
+
+        public String getUser_phone_code() {
+            return user_phone_code;
+        }
+
+        public String getUser_phone() {
+            return user_phone;
+        }
+
+        public int getSee_image_check() {
+            return see_image_check;
         }
 
         public static class order_images implements Serializable {

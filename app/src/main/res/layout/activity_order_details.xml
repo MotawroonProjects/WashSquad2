@@ -53,7 +53,8 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/white">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -296,7 +297,34 @@
 
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_white"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="@string/edit_order"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
 
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_send"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="@string/cancel_order"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </LinearLayout>
 </layout>

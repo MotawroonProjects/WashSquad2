@@ -11,12 +11,16 @@ public class OfferDataModel implements Serializable {
         return data;
     }
 
-    public class OfferModel implements Serializable
-    {
+    public class OfferModel implements Serializable {
         private String image;
+        private int service_id;
 
         public String getImage() {
             return image;
+        }
+
+        public int getService_id() {
+            return service_id;
         }
     }
 }

@@ -259,6 +259,8 @@
     <string name="characters">حروف</string>
     <string name="date_not">التاريخ لا يساوى اليوم</string>
     <string name="ch_area">Choose Area</string>
+    <string name="edit_order">Edit Order</string>
+    <string name="cancel_order">Cancel Order</string>
 
 
 </resources>

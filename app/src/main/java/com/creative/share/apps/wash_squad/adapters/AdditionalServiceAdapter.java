@@ -49,8 +49,10 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
         ServiceDataModel.Level2 serviceModel = serviceModelList.get(position);
         holder.additionalServiceRowBinding.setLang(lang);
         holder.additionalServiceRowBinding.setLevel3(serviceModel);
-
-        if (sparseBooleanArray.get(position,false) ) {
+        if (serviceModel.isSelected()) {
+            sparseBooleanArray.put(position, true);
+        }
+        if (sparseBooleanArray.get(position, false)) {
             holder.additionalServiceRowBinding.checkbox.setChecked(true);
         } else {
             holder.additionalServiceRowBinding.checkbox.setChecked(false);
@@ -61,34 +63,33 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
 
             if (holder.additionalServiceRowBinding.checkbox.isChecked()) {
 
-                Log.e("ddd","tttt");
-                sparseBooleanArray.put(holder.getAdapterPosition(),true);
+                Log.e("ddd", "tttt");
+                sparseBooleanArray.put(holder.getAdapterPosition(), true);
 
                 ServiceDataModel.Level2 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
-                if(context instanceof  ServiceDetailsActivity){
-                    ServiceDetailsActivity activity=(ServiceDetailsActivity)context;
-                activity.setItemAdditionService(serviceModel1);}
-                else if(context instanceof  ServiceSentDetailsActivity){
-                    ServiceSentDetailsActivity activity=(ServiceSentDetailsActivity)context;
-                        activity.setItemAdditionService(serviceModel1);}
+                if (context instanceof ServiceDetailsActivity) {
+                    ServiceDetailsActivity activity = (ServiceDetailsActivity) context;
+                    activity.setItemAdditionService(serviceModel1);
+                } else if (context instanceof ServiceSentDetailsActivity) {
+                    ServiceSentDetailsActivity activity = (ServiceSentDetailsActivity) context;
+                    activity.setItemAdditionService(serviceModel1);
+                }
 
                 notifyDataSetChanged();
 
 
-
             } else {
 
-                Log.e("bb","rrr");
+                Log.e("bb", "rrr");
 
-                sparseBooleanArray.put(holder.getAdapterPosition(),false);
+                sparseBooleanArray.put(holder.getAdapterPosition(), false);
 
                 ServiceDataModel.Level2 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
-                if(context instanceof  ServiceDetailsActivity){
-                    ServiceDetailsActivity activity=(ServiceDetailsActivity)context;
+                if (context instanceof ServiceDetailsActivity) {
+                    ServiceDetailsActivity activity = (ServiceDetailsActivity) context;
                     activity.removeAdditionalItem(serviceModel1);
-                }
-                else if(context instanceof  ServiceSentDetailsActivity){
-                    ServiceSentDetailsActivity activity=(ServiceSentDetailsActivity)context;
+                } else if (context instanceof ServiceSentDetailsActivity) {
+                    ServiceSentDetailsActivity activity = (ServiceSentDetailsActivity) context;
                     activity.removeAdditionalItem(serviceModel1);
                 }
                 notifyDataSetChanged();
@@ -101,8 +102,7 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
 
     }
 
-    public void clearSelection()
-    {
+    public void clearSelection() {
         this.sparseBooleanArray.clear();
         notifyDataSetChanged();
     }
@@ -110,6 +110,11 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
     @Override
     public int getItemCount() {
         return serviceModelList.size();
+    }
+
+    public void updatelist(List<ServiceDataModel.Level2> level2) {
+        this.serviceModelList = level2;
+        notifyDataSetChanged();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
