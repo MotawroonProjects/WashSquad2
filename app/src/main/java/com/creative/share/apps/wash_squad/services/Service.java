@@ -179,7 +179,8 @@ public interface Service {
 
     @POST("api/order/add")
     Call<SingleOrderDataModel> addOrder(@Body ItemToUpload itemToUpload);
-
+    @POST("api/order/edit")
+    Call<SingleOrderDataModel> updateOrder(@Body ItemToUpload itemToUpload);
     @POST("api/order/add")
     Call<SingleOrderDataModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
 

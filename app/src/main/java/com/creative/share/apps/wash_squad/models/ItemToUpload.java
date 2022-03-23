@@ -17,6 +17,7 @@ import java.security.Provider;
 import java.util.List;
 
 public class ItemToUpload extends BaseObservable implements Serializable {
+    private String order_id;
     private int user_id;
     private int service_id;
     private int sub_serv_id;
@@ -490,6 +491,14 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     public void setTime_type(String time_type) {
         this.time_type = time_type;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 
     public static class SubServiceModel implements Serializable {

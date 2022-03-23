@@ -440,13 +440,13 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
     private void updatesubService() {
         first=0;
-        Log.e("suuuu",serviceModel.getLevel2().size()+" "+orderModel.getSub_service().size());
+        Log.e("suuuu",serviceModel.getLevel2().size()+" "+orderModel.getOrder_sub_services().size());
         for (int i = 0; i < serviceModel.getLevel2().size(); i++) {
 
-            for (int j = 0; j < orderModel.getSub_service().size(); j++) {
-                Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getSub_service().get(j).getId());
+            for (int j = 0; j < orderModel.getOrder_sub_services().size(); j++) {
+                Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getOrder_sub_services().get(j).getSub_service_id());
 
-                if (serviceModel.getLevel2().get(i).getId()==orderModel.getSub_service().get(j).getId()) {
+                if (serviceModel.getLevel2().get(i).getId()==orderModel.getOrder_sub_services().get(j).getSub_service_id()) {
 
                     ServiceDataModel.Level2 serLevel2 = serviceModel.getLevel2().get(i);
                     serLevel2.setSelected(true);

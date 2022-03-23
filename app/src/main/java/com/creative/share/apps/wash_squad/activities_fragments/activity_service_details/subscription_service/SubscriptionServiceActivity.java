@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,7 @@ import com.creative.share.apps.wash_squad.models.DayDataModel;
 import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
+import com.creative.share.apps.wash_squad.models.Order_Data_Model;
 import com.creative.share.apps.wash_squad.models.SelectedLocation;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
@@ -103,6 +105,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private String selected_day;
     private String selected_date;
     private ArrayList<String> dayModelList2;
+    private Order_Data_Model.OrderModel orderModel;
+    private int first;
 
 
     @Override
@@ -126,7 +130,10 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             service_id = intent.getIntExtra("service_id", 0);
             service_name_ar = intent.getStringExtra("service_name_ar");
             service_name_en = intent.getStringExtra("service_name_en");
+            if (intent.getSerializableExtra("order") != null) {
+                orderModel = (Order_Data_Model.OrderModel) intent.getSerializableExtra("order");
 
+            }
         }
     }
 
@@ -251,6 +258,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     carBrandModelList.addAll(carTypeModelList.get(i).getLevel2());
                     carBrandAdapter.notifyDataSetChanged();
                     binding.spinnerBrand.setSelection(0);
+                    if (orderModel != null && first == 1) {
+                        updatebrand();
+                    }
                 }
             }
 
@@ -483,6 +493,99 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     }
 
+    private void updateArea() {
+        for (int i = 0; i < areaModelList.size(); i++) {
+            if (orderModel.getPlace_id() != null && orderModel.getPlace_id().equals(areaModelList.get(i).getId() + "")) {
+                binding.spinnerArea.setSelection(i);
+                break;
+
+            }
+        }
+    }
+
+    private void updatebrand() {
+        first=0;
+        for (int i = 0; i < carBrandModelList.size(); i++) {
+            Log.e("datab", carBrandModelList.get(i).getId() + " " + orderModel.getBrand_id());
+            if (carBrandModelList.get(i).getId() == orderModel.getBrand_id()) {
+                binding.spinnerBrand.setSelection(i);
+                break;
+
+            }
+        }
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void updateDataOrder() {
+        if (selectedLocation == null) {
+            selectedLocation = new SelectedLocation(orderModel.getLatitude(), orderModel.getLongitude(), orderModel.getAddress());
+            binding.setLocation(selectedLocation);
+        }
+        itemToUpload.setUser_phone(orderModel.getUser_phone());
+        itemToUpload.setAmount(Integer.parseInt(orderModel.getNumber_of_cars()));
+        if (orderModel.getPlace_id() != null) {
+            itemToUpload.setPlace_id(Integer.parseInt(orderModel.getPlace_id()));
+        }
+        itemToUpload.setAddress(orderModel.getAddress());
+        itemToUpload.setLatitude(orderModel.getLatitude() + "");
+        itemToUpload.setLongitude(orderModel.getLongitude() + "");
+        itemToUpload.setCarSize_id(orderModel.getSize_id());
+        itemToUpload.setBrand_id(orderModel.getBrand_id());
+
+        itemToUpload.setTime(orderModel.getOrder_time());
+        binding.tvTime.setText(orderModel.getOrder_time());
+        // itemToUpload.setTime_type(orderModel.getType());
+        itemToUpload.setOrder_time_id(orderModel.getOrder_time_id());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        selected_date = dateFormat.format(new Date(orderModel.getOrder_date() * 1000));
+        binding.flCalender.setVisibility(View.GONE);
+        binding.tvDate.setText(selected_date);
+        itemToUpload.setOrder_date(selected_date);
+        binding.consTime.setEnabled(true);
+        binding.setItemModel(itemToUpload);
+        for (int i = 0; i < carTypeModelList.size(); i++) {
+            Log.e("data", carTypeModelList.get(i).getId() + " " + orderModel.getType_id());
+            if (carTypeModelList.get(i).getId() == orderModel.getType_id()) {
+
+                binding.spinner.setSelection(i);
+                first = 1;
+                break;
+
+            }
+        }
+        updatesubService();
+        getTime();
+        // itemToUpload.setAr_service_type(orderModel.getar);
+
+//    }
+    }
+
+    private void updatesubService() {
+      //  first = 0;
+//        Log.e("suuuu", serviceModel.getLevel2().size() + " " + orderModel.getOrder_sub_services().size());
+        for (int i = 0; i < serviceModel.getLevel2().size(); i++) {
+
+
+                Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getSub_service_id());
+
+            if (serviceModel.getLevel2().get(i).getId() == orderModel.getSub_service_id()) {
+
+                ServiceDataModel.Level2 serLevel2 = serviceModel.getLevel2().get(i);
+                serLevel2.setSelected(true);
+                serviceModel.getLevel2().set(i, serLevel2);
+                this.level2Model = serLevel2;
+
+            } else {
+                ServiceDataModel.Level2 serLevel2 = serviceModel.getLevel2().get(i);
+                serLevel2.setSelected(false);
+                serviceModel.getLevel2().set(i, serLevel2);
+            }
+            bouquetAdapter.updatelist(serviceModel.getLevel2());
+        }
+        // additionalServiceAdapter.updatelist(serviceModel.getLevel2());
+        bouquetAdapter.notifyDataSetChanged();
+    }
 
     private void getCarSize() {
 
@@ -744,7 +847,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                         if (response.isSuccessful() && response.body() != null) {
                             carTypeModelList.addAll(response.body().getData());
                             carTypeAdapter.notifyDataSetChanged();
-
+                            if (orderModel != null) {
+                                updateDataOrder();
+                            }
                         } else {
                             try {
 
@@ -910,7 +1015,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             timeModelList.clear();
                             timeModelList.addAll(response.body().getData());
                             timeAdapter.updateList(timeModelList);
-
+                            if (orderModel != null) {
+                                updatetime();
+                            }
                             // updateUI(response.body().getData());
 
                         } else {
@@ -984,6 +1091,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             areaModelList.add(new AreaModel("اختر المنطقه", "Choose Area"));
                             areaModelList.addAll(response.body().getData());
                             spinnerAreaAdapter.notifyDataSetChanged();
+                            if (orderModel != null) {
+                                updateArea();
+                            }
 
                         } else {
 
@@ -1115,7 +1225,24 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         }
         Log.e("data", dayModelList.size() + "");
         dayAdapter.notifyDataSetChanged();
-    }
+        if(orderModel!=null){
+            for(int i=0;i<dayModelList2.size();i++){
 
+            }
+        }
+    }
+    private void updatetime() {
+        for (int i = 0; i < timeModelList.size(); i++) {
+            Log.e("dlldlld",timeModelList.get(i).getId()+" "+orderModel.getOrder_time_id());
+            if (orderModel.getOrder_time_id() == timeModelList.get(i).getId()) {
+                timeModel = timeModelList.get(i);
+                binding.tvTime.setText(timeModel.getTime_text());
+                itemToUpload.setTime(timeModel.getTime_text());
+                itemToUpload.setTime_type(timeModel.getType());
+                itemToUpload.setOrder_time_id(timeModel.getId());
+                break;
+            }
+        }
+    }
 
 }

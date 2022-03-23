@@ -90,8 +90,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
         serviceModelList = new ArrayList<>();
 
         Paper.init(this);
-        lang = Paper.book().read("lang", "ar");
+        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
+        Log.e("d;dddlld",lang);
         binding.setModel(orderModel);
         fragmentList = new ArrayList<>();
         title = new ArrayList<>();
@@ -313,7 +314,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000 && resultCode == Activity.RESULT_OK && data != null) {
-            getOrder();
+            Intent intent = getIntent();
+            if (intent != null) {
+
+                setResult(RESULT_OK, intent);
+
+            }
+            finish();
+
         }
     }
 }

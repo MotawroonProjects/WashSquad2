@@ -181,7 +181,12 @@ public class PaymentActivity extends AppCompatActivity {
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
                 }
-                uploadOrder(itemToUpload);
+                if(orderModel==null){
+                uploadOrder(itemToUpload);}
+                else{
+                    itemToUpload.setOrder_id(orderModel.getId()+"");
+                    updateOrder(itemToUpload);
+                }
             }
         });
 
@@ -363,6 +368,85 @@ public class PaymentActivity extends AppCompatActivity {
 
             Api.getService(Tags.base_url)
                     .addOrder(itemToUpload)
+                    .enqueue(new Callback<SingleOrderDataModel>() {
+                        @Override
+                        public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                Toast.makeText(PaymentActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
+                                if (itemToUpload.getPayment_method() == 2) {
+                                    Intent intent = new Intent(PaymentActivity.this, PaypalwebviewActivity.class);
+                                    intent.putExtra("url", response.body().getUrl());
+
+
+                                    startActivityForResult(intent,100);
+                                } else {
+                                    Intent intent = getIntent();
+                                    if (intent != null) {
+                                        setResult(RESULT_OK, intent);
+                                    }
+                                    finish();
+                                }
+                            } else {
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (response.code() == 422) {
+                                    Toast.makeText(PaymentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                } else if (response.code() == 402) {
+                                    Toast.makeText(PaymentActivity.this, R.string.num_exceed, Toast.LENGTH_SHORT).show();
+
+                                } else if (response.code() == 500) {
+                                    Toast.makeText(PaymentActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    Toast.makeText(PaymentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SingleOrderDataModel> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(PaymentActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(PaymentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                                Log.e("ec", e.getMessage() + "_");
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            Log.e("edddc", e.getMessage() + "_");
+
+            dialog.dismiss();
+
+        }
+
+    }
+    private void updateOrder(ItemToUpload itemToUpload) {
+
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        try {
+
+
+            Api.getService(Tags.base_url)
+                    .updateOrder(itemToUpload)
                     .enqueue(new Callback<SingleOrderDataModel>() {
                         @Override
                         public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
