@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -92,7 +93,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
-        Log.e("d;dddlld",lang);
+        Log.e("d;dddlld", lang);
         binding.setModel(orderModel);
         fragmentList = new ArrayList<>();
         title = new ArrayList<>();
@@ -113,6 +114,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 show(orderModel);
+            }
+        });
+        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelOrder();
             }
         });
         getServices();
@@ -234,15 +241,16 @@ public class OrderDetailsActivity extends AppCompatActivity {
             EventBus.getDefault().unregister(this);
         }
     }
+
     public void show(Order_Data_Model.OrderModel orderModel) {
         if (orderModel.getService_id() == 77) {
             Intent intent = new Intent(this, SubscriptionServiceActivity.class);
-            intent.putExtra("order",orderModel);
+            intent.putExtra("order", orderModel);
 
             intent.putExtra("data", serviceModelList.get(2));
 
             startActivityForResult(intent, 1000);
-        }  else {
+        } else {
             int pos = -1;
             for (int i = 0; i < serviceModelList.size(); i++) {
                 if (serviceModelList.get(i).getId() == orderModel.getService_id()) {
@@ -252,7 +260,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             if (pos != -1) {
                 Intent intent = new Intent(this, ServiceDetailsActivity.class);
                 intent.putExtra("data", serviceModelList.get(pos));
-                intent.putExtra("order",orderModel);
+                intent.putExtra("order", orderModel);
                 startActivityForResult(intent, 1000);
             }
         }
@@ -280,7 +288,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                             }
                             if (response.code() == 404) {
                             } else if (response.code() == 500) {
-                               // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
@@ -298,7 +306,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                  //  Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
                                     //Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -324,4 +332,61 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         }
     }
+
+    private void cancelOrder() {
+        final ProgressDialog dialog = Common.createProgressDialog(OrderDetailsActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        try {
+            Api.getService(Tags.base_url)
+                    .Cancel_order(orderModel.getId(), 15)
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                Toast.makeText(OrderDetailsActivity.this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
+
+                                Intent intent = getIntent();
+                                if (intent != null) {
+                                    setResult(RESULT_OK, intent);
+                                }
+                                finish();
+
+                            } else {
+                                Toast.makeText(OrderDetailsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(OrderDetailsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(OrderDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            dialog.dismiss();
+            Log.e("lll", e.getMessage().toString());
+        }
+    }
+
 }

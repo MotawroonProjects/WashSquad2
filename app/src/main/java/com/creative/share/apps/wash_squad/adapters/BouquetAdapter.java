@@ -52,7 +52,8 @@ public class BouquetAdapter extends RecyclerView.Adapter<BouquetAdapter.MyHolder
             oldPos = currentPos;
         }
         if(level2.isSelected()){
-            oldPos=position;
+            currentPos=position;
+
             oldPos = currentPos;
         }
         holder.bouquetRowBinding.setLang(lang);

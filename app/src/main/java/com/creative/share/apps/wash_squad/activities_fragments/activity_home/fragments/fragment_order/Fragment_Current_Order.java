@@ -217,13 +217,13 @@ public class Fragment_Current_Order extends Fragment {
     public void setItemData(Order_Data_Model.OrderModel orderModel) {
         Intent intent = new Intent(activity, OrderDetailsActivity.class);
         intent.putExtra("data",orderModel);
-        startActivityForResult(intent,1);
+        startActivityForResult(intent,1000);
 
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1000&&resultCode== Activity.RESULT_OK&&data!=null)
+        if (requestCode==1000&&resultCode== Activity.RESULT_OK)
         {
             getOrders();
         }

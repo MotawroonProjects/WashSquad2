@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ItemSubscribeToUpload extends BaseObservable implements Serializable {
+    private String order_id;
     private int user_id;
     private int service_id;
     private int sub_serv_id;
@@ -207,6 +208,14 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         notifyPropertyChanged(BR.order_date);
         this.place_id = 0;
         notifyPropertyChanged(BR.place_id);
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 
     @Bindable

@@ -86,6 +86,10 @@ public class Order_Data_Model implements Serializable {
         private String brand__ar_title;
         private List<Products> order_sub_services;
         private List<Products> sub_service;
+        private String day;
+        private String car_plate_number;
+        private CouponModel coupon;
+
         public int getId() {
             return id;
         }
@@ -370,6 +374,18 @@ public class Order_Data_Model implements Serializable {
 
         public int getSee_image_check() {
             return see_image_check;
+        }
+
+        public String getDay() {
+            return day;
+        }
+
+        public String getCar_plate_number() {
+            return car_plate_number;
+        }
+
+        public CouponModel getCoupon() {
+            return coupon;
         }
 
         public static class order_images implements Serializable {

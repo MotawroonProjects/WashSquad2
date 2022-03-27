@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaypalwebviewActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
 import com.creative.share.apps.wash_squad.adapters.AdditionalAdapter;
@@ -61,6 +62,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
     private UserModel userModel;
     private SettingModel settingModel;
     private double tax;
+    private Order_Data_Model.OrderModel orderModel;
 
 
     @Override
@@ -82,6 +84,10 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             itemToUpload = (ItemSubscribeToUpload) intent.getSerializableExtra("item");
+            if (intent.getSerializableExtra("order") != null) {
+                orderModel = (Order_Data_Model.OrderModel) intent.getSerializableExtra("order");
+
+            }
         }
     }
 
@@ -167,12 +173,17 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         binding.btnSend.setOnClickListener(view -> {
             if (itemToUpload.isDataValidStep2(this)) {
                 itemToUpload.setUser_phone(userModel.getPhone_code()+itemToUpload.getUser_phone());
-                if (couponModel == null) {
+                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
                 }
-                uploadOrder(itemToUpload);
+                if(orderModel==null){
+                    uploadOrder(itemToUpload);}
+                else{
+                    itemToUpload.setOrder_id(orderModel.getId()+"");
+                    updateOrder(itemToUpload);
+                }
             }
         });
 
@@ -213,6 +224,41 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         updateTotalPrice(coupon_value);
 
         getSetting();
+        if(orderModel!=null){
+            updateData();
+        }
+    }
+    private void updateData() {
+        if(orderModel.getPayment_method().equals("1")){
+            binding.rb1.setChecked(true);
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.cache);
+            binding.setItemModel(itemToUpload);
+            //binding.rb1
+        }
+        else if(orderModel.getPayment_method().equals("2")){
+            itemToUpload.setPayment_method(2);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.apple_pay);
+            binding.setItemModel(itemToUpload);
+            binding.rb3.setChecked(true);
+
+        }
+        else if(orderModel.getPayment_method().equals("3")){
+            itemToUpload.setPayment_method(3);
+            binding.rb4.setChecked(true);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.my_wallet_balance);
+            binding.setItemModel(itemToUpload);
+
+        }
+        else if(orderModel.getPayment_method().equals("4")){
+
+        }
+        if(orderModel.getCoupon_serial()!=null){
+            getCouponValue(orderModel.getCoupon_serial());
+        }
     }
 
 
@@ -304,6 +350,85 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
             total += subServiceModel.getPrice();
         }
         return total;
+
+    }
+    private void updateOrder(ItemSubscribeToUpload itemToUpload) {
+
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        try {
+
+
+            Api.getService(Tags.base_url)
+                    .updateOrderSubscribe(itemToUpload)
+                    .enqueue(new Callback<SingleOrderDataModel>() {
+                        @Override
+                        public void onResponse(Call<SingleOrderDataModel> call, Response<SingleOrderDataModel> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
+                                if (itemToUpload.getPayment_method() == 2) {
+                                    Intent intent = new Intent(PaymentSubscribtionActivity.this, PaypalwebviewActivity.class);
+                                    intent.putExtra("url", response.body().getUrl());
+
+
+                                    startActivityForResult(intent,100);
+                                } else {
+                                    Intent intent = getIntent();
+                                    if (intent != null) {
+                                        setResult(RESULT_OK, intent);
+                                    }
+                                    finish();
+                                }
+                            } else {
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (response.code() == 422) {
+                                    Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                } else if (response.code() == 402) {
+                                    Toast.makeText(PaymentSubscribtionActivity.this, R.string.num_exceed, Toast.LENGTH_SHORT).show();
+
+                                } else if (response.code() == 500) {
+                                    Toast.makeText(PaymentSubscribtionActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SingleOrderDataModel> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(PaymentSubscribtionActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(PaymentSubscribtionActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                                Log.e("ec", e.getMessage() + "_");
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            Log.e("edddc", e.getMessage() + "_");
+
+            dialog.dismiss();
+
+        }
 
     }
 

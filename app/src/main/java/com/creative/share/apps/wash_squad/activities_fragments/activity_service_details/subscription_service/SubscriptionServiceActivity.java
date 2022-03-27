@@ -170,7 +170,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         itemToUpload.setOrder_date(selected_date);
         // itemToUpload.setLevel2(serviceModel.getLevel2());
         binding.setItemModel(itemToUpload);
-        itemToUpload.setSub_serv_id(serviceModel.getId());
+        // itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         level2List = new ArrayList<>();
         level2List.addAll(serviceModel.getLevel2());
@@ -420,6 +420,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
                     Intent intent = new Intent(this, PaymentSubscribtionActivity.class);
                     intent.putExtra("item", itemToUpload);
+                    if(orderModel!=null){
+                        intent.putExtra("order",orderModel);
+                    }
                     startActivityForResult(intent, 4);
                 } else {
                     Common.CreateNoSignAlertDialog(this);
@@ -504,7 +507,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     }
 
     private void updatebrand() {
-        first=0;
+        first = 0;
         for (int i = 0; i < carBrandModelList.size(); i++) {
             Log.e("datab", carBrandModelList.get(i).getId() + " " + orderModel.getBrand_id());
             if (carBrandModelList.get(i).getId() == orderModel.getBrand_id()) {
@@ -535,6 +538,10 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
         itemToUpload.setTime(orderModel.getOrder_time());
         binding.tvTime.setText(orderModel.getOrder_time());
+        if (orderModel.getCar_plate_number() != null) {
+            itemToUpload.setVehicleChar(orderModel.getCar_plate_number().substring(0, 3));
+            itemToUpload.setVehicleNumber(orderModel.getCar_plate_number().substring(3, 7));
+        }
         // itemToUpload.setTime_type(orderModel.getType());
         itemToUpload.setOrder_time_id(orderModel.getOrder_time_id());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -562,12 +569,12 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     }
 
     private void updatesubService() {
-      //  first = 0;
+        //  first = 0;
 //        Log.e("suuuu", serviceModel.getLevel2().size() + " " + orderModel.getOrder_sub_services().size());
         for (int i = 0; i < serviceModel.getLevel2().size(); i++) {
 
 
-                Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getSub_service_id());
+            Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getSub_service_id());
 
             if (serviceModel.getLevel2().get(i).getId() == orderModel.getSub_service_id()) {
 
@@ -581,6 +588,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                 serLevel2.setSelected(false);
                 serviceModel.getLevel2().set(i, serLevel2);
             }
+            itemToUpload.setSub_serv_id(orderModel.getSub_service_id());
             bouquetAdapter.updatelist(serviceModel.getLevel2());
         }
         // additionalServiceAdapter.updatelist(serviceModel.getLevel2());
@@ -667,6 +675,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             itemToUpload.setService_price(response.body() * count);
 
                             binding.setTotal(final_total);
+
 
                         } else {
 
@@ -1069,6 +1078,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
     public void setBouquetItem(ServiceDataModel.Level2 model) {
         this.level2Model = model;
+        itemToUpload.setSub_serv_id(model.getId());
         if (size_id != 0) {
             getPrice(level2Model.getId(), size_id);
         }
@@ -1225,15 +1235,19 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         }
         Log.e("data", dayModelList.size() + "");
         dayAdapter.notifyDataSetChanged();
-        if(orderModel!=null){
-            for(int i=0;i<dayModelList2.size();i++){
-
+        if (orderModel != null&&orderModel.getDay()!=null) {
+            for (int i = 0; i < dayModelList2.size(); i++) {
+                if (orderModel.getDay().toUpperCase().equals(dayModelList2.get(i).toUpperCase())) {
+                    binding.tvDay.setText(dayModelList.get(i).getDay_text());
+                    itemToUpload.setday(orderModel.getDay());
+                }
             }
         }
     }
+
     private void updatetime() {
         for (int i = 0; i < timeModelList.size(); i++) {
-            Log.e("dlldlld",timeModelList.get(i).getId()+" "+orderModel.getOrder_time_id());
+            Log.e("dlldlld", timeModelList.get(i).getId() + " " + orderModel.getOrder_time_id());
             if (orderModel.getOrder_time_id() == timeModelList.get(i).getId()) {
                 timeModel = timeModelList.get(i);
                 binding.tvTime.setText(timeModel.getTime_text());

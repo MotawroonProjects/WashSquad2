@@ -183,7 +183,8 @@ public interface Service {
     Call<SingleOrderDataModel> updateOrder(@Body ItemToUpload itemToUpload);
     @POST("api/order/add")
     Call<SingleOrderDataModel> addOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
-
+    @POST("api/order/edit")
+    Call<SingleOrderDataModel> updateOrderSubscribe(@Body ItemSubscribeToUpload itemToUpload);
     @GET("api/offers")
     Call<OfferDataModel> getOffers();
 
@@ -245,4 +246,10 @@ public interface Service {
     @GET("api/dayByPlacesAndServices")
     Call<DayDataModel> getDays(@Query("service_id") String service_id,
                                @Query("place_id") String place_id);
+    @FormUrlEncoded
+    @POST("api/order/updateOrderStatus")
+    Call<ResponseBody> Cancel_order(
+            @Field("order_id") int order_id,
+            @Field("status") int status
+    );
 }

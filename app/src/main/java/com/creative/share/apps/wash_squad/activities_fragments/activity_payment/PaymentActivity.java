@@ -176,7 +176,7 @@ public class PaymentActivity extends AppCompatActivity {
             itemToUpload.setUser_phone(userModel.getPhone_code()+itemToUpload.getUser_phone());
 
             if (itemToUpload.isDataValidStep2(this)) {
-                if (couponModel == null) {
+                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
@@ -194,7 +194,7 @@ public class PaymentActivity extends AppCompatActivity {
         binding.btnOther.setOnClickListener(view -> {
             if (itemToUpload.isDataValidStep2(this)) {
 
-                if (couponModel == null) {
+                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
