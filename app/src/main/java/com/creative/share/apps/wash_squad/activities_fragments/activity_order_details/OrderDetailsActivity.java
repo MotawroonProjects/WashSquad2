@@ -210,22 +210,29 @@ public class OrderDetailsActivity extends AppCompatActivity {
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_gray));
             binding.img3.setBackground(getResources().getDrawable(R.drawable.circle_gray));
             binding.img4.setBackground(getResources().getDrawable(R.drawable.circle_gray));
+            binding.btnCancel.setVisibility(View.VISIBLE);
+
 
         } else if (orderModel.getStatus() == 1) {
             binding.img1.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img3.setBackground(getResources().getDrawable(R.drawable.circle_gray));
             binding.img4.setBackground(getResources().getDrawable(R.drawable.circle_gray));
+            binding.btnCancel.setVisibility(View.GONE);
         } else if (orderModel.getStatus() == 2) {
             binding.img1.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img3.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img4.setBackground(getResources().getDrawable(R.drawable.circle_gray));
+            binding.btnCancel.setVisibility(View.GONE);
+
         } else {
             binding.img1.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img3.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img4.setBackground(getResources().getDrawable(R.drawable.circle_primary));
+            binding.btnCancel.setVisibility(View.GONE);
+
         }
     }
 

@@ -109,7 +109,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s %s", m_date,"  ", itemToUpload.getday()));
+        binding.tvDate.setText(String.format("%s %s %s", m_date, "  ", itemToUpload.getday()));
         binding.tvPoliciesAndTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
@@ -172,16 +172,16 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
         binding.btnSend.setOnClickListener(view -> {
             if (itemToUpload.isDataValidStep2(this)) {
-                itemToUpload.setUser_phone(userModel.getPhone_code()+itemToUpload.getUser_phone());
-                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
+                itemToUpload.setUser_phone(userModel.getPhone_code() + itemToUpload.getUser_phone());
+                if (couponModel == null || couponModel.getId() == orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
                 }
-                if(orderModel==null){
-                    uploadOrder(itemToUpload);}
-                else{
-                    itemToUpload.setOrder_id(orderModel.getId()+"");
+                if (orderModel == null) {
+                    uploadOrder(itemToUpload);
+                } else {
+                    itemToUpload.setOrder_id(orderModel.getId() + "");
                     updateOrder(itemToUpload);
                 }
             }
@@ -189,22 +189,22 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
 
         binding.btnOther.setOnClickListener(view -> {
-           // if (itemToUpload.isDataValidStep2(this)) {
+            // if (itemToUpload.isDataValidStep2(this)) {
 
-                if (couponModel == null) {
-                    itemToUpload.setCoupon_serial(null);
-                } else {
-                    itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
-                }
+            if (couponModel == null) {
+                itemToUpload.setCoupon_serial(null);
+            } else {
+                itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
+            }
 
 
-              //  singleTon.addItem(itemToUpload);
-                Intent intent = getIntent();
-                if (intent != null) {
-                    setResult(RESULT_OK, intent);
-                }
-                finish();
-           // }
+            //  singleTon.addItem(itemToUpload);
+            Intent intent = getIntent();
+            if (intent != null) {
+                setResult(RESULT_OK, intent);
+            }
+            finish();
+            // }
         });
 
 
@@ -224,39 +224,37 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         updateTotalPrice(coupon_value);
 
         getSetting();
-        if(orderModel!=null){
+        if (orderModel != null) {
             updateData();
         }
     }
+
     private void updateData() {
-        if(orderModel.getPayment_method().equals("1")){
+        if (orderModel.getPayment_method().equals("1")) {
             binding.rb1.setChecked(true);
             itemToUpload.setPayment_method(1);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.cache);
             binding.setItemModel(itemToUpload);
             //binding.rb1
-        }
-        else if(orderModel.getPayment_method().equals("2")){
+        } else if (orderModel.getPayment_method().equals("2")) {
             itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.apple_pay);
             binding.setItemModel(itemToUpload);
             binding.rb3.setChecked(true);
 
-        }
-        else if(orderModel.getPayment_method().equals("3")){
+        } else if (orderModel.getPayment_method().equals("3")) {
             itemToUpload.setPayment_method(3);
             binding.rb4.setChecked(true);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.my_wallet_balance);
             binding.setItemModel(itemToUpload);
 
-        }
-        else if(orderModel.getPayment_method().equals("4")){
+        } else if (orderModel.getPayment_method().equals("4")) {
 
         }
-        if(orderModel.getCoupon_serial()!=null){
+        if (orderModel.getCoupon_serial() != null) {
             getCouponValue(orderModel.getCoupon_serial());
         }
     }
@@ -352,6 +350,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         return total;
 
     }
+
     private void updateOrder(ItemSubscribeToUpload itemToUpload) {
 
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
@@ -359,7 +358,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         dialog.show();
         try {
 
-
+            Log.e("dllddl", itemToUpload.getday());
             Api.getService(Tags.base_url)
                     .updateOrderSubscribe(itemToUpload)
                     .enqueue(new Callback<SingleOrderDataModel>() {
@@ -368,12 +367,12 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
-                                if (itemToUpload.getPayment_method() == 2) {
+                                if (itemToUpload.getPayment_method() == 2 && orderModel.getTotal_price() < itemToUpload.getTotal_price()) {
                                     Intent intent = new Intent(PaymentSubscribtionActivity.this, PaypalwebviewActivity.class);
                                     intent.putExtra("url", response.body().getUrl());
 
 
-                                    startActivityForResult(intent,100);
+                                    startActivityForResult(intent, 100);
                                 } else {
                                     Intent intent = getIntent();
                                     if (intent != null) {
@@ -450,19 +449,19 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
 
-                                if(itemToUpload.getPayment_method()==2){
+                                if (itemToUpload.getPayment_method() == 2) {
                                     Intent intent = new Intent(PaymentSubscribtionActivity.this, PaypalwebviewActivity.class);
                                     intent.putExtra("url", response.body().getUrl());
 
 
-                                    startActivityForResult(intent,100);
+                                    startActivityForResult(intent, 100);
+                                } else {
+                                    Intent intent = getIntent();
+                                    if (intent != null) {
+                                        setResult(RESULT_OK, intent);
+                                    }
+                                    finish();
                                 }
-                                else{
-                                Intent intent = getIntent();
-                                if (intent != null) {
-                                    setResult(RESULT_OK, intent);
-                                }
-                                finish();}
                             } else {
                                 try {
 
@@ -542,7 +541,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if (requestCode == 100) {
             Intent intent = getIntent();
             if (intent != null) {
                 setResult(RESULT_OK, intent);
