@@ -395,7 +395,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
-                                if (itemToUpload.getPayment_method() == 2 && orderModel.getTotal_price() < itemToUpload.getTotal_price()) {
+                                if (itemToUpload.getPayment_method() == 1 && orderModel.getTotal_price() < itemToUpload.getTotal_price()) {
                                     Intent intent = new Intent(PaymentSubscribtionActivity.this, PaypalwebviewActivity.class);
                                     intent.putExtra("url", response.body().getUrl());
 
@@ -477,7 +477,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentSubscribtionActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
 
-                                if (itemToUpload.getPayment_method() == 2) {
+                                if (itemToUpload.getPayment_method() == 1) {
                                     Intent intent = new Intent(PaymentSubscribtionActivity.this, PaypalwebviewActivity.class);
                                     intent.putExtra("url", response.body().getUrl());
 

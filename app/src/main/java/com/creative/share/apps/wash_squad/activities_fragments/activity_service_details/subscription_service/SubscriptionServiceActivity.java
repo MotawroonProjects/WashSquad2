@@ -539,8 +539,15 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         itemToUpload.setTime(orderModel.getOrder_time());
         binding.tvTime.setText(orderModel.getOrder_time());
         if (orderModel.getCar_plate_number() != null) {
-            itemToUpload.setVehicleChar(orderModel.getCar_plate_number().substring(0, 3));
-            itemToUpload.setVehicleNumber(orderModel.getCar_plate_number().substring(3, 7));
+           // Log.e(";llll",orderModel.getCar_plate_number());
+            try {
+                itemToUpload.setVehicleChar(orderModel.getCar_plate_number().substring(0, 3));
+                itemToUpload.setVehicleNumber(orderModel.getCar_plate_number().substring(3, 7));
+            }
+            catch (Exception e){
+
+            }
+
         }
         // itemToUpload.setTime_type(orderModel.getType());
         itemToUpload.setOrder_time_id(orderModel.getOrder_time_id());
