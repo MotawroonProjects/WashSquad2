@@ -63,6 +63,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
     private SettingModel settingModel;
     private double tax;
     private Order_Data_Model.OrderModel orderModel;
+    private double wallet;
 
 
     @Override
@@ -133,20 +134,22 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
             finish();
         });
         binding.rbNo.setOnClickListener(view1 -> {
-            itemToUpload.setPayment_method(1);
+            itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.cache);
             binding.flCash.setVisibility(View.GONE);
         });
         binding.rbYes.setOnClickListener(view12 -> {
-            itemToUpload.setPayment_method(1);
+            itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.cache);
             binding.flCash.setVisibility(View.GONE);
         });
         binding.rb1.setOnClickListener(view ->
         {
-            binding.flCash.setVisibility(View.VISIBLE);
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.apple_pay);
 
 
         });
@@ -157,15 +160,35 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
         });
         binding.rb3.setOnClickListener(view -> {
-            itemToUpload.setPayment_method(2);
-            binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.apple_pay);
+            itemToUpload.setPayment_method(3);
+            binding.tvPayment.setText(R.string.pos);
         });
         binding.rb4.setOnClickListener(view -> {
-            binding.flMyWallet.setVisibility(View.VISIBLE);
-            itemToUpload.setPayment_method(3);
-            binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.my_wallet_balance);
+
+            if(orderModel!=null){
+                if(itemToUpload.getTotal_price()-orderModel.getTotal_price()<=wallet){
+                    itemToUpload.setPayment_method(4);
+                    binding.setItemModel(itemToUpload);
+                    binding.tvPayment.setText(R.string.my_wallet_balance);
+                }
+                else{
+                    binding.flMyWallet.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+            else {
+                    if(itemToUpload.getTotal_price()<=wallet){
+                    itemToUpload.setPayment_method(4);
+                    binding.setItemModel(itemToUpload);
+                    binding.tvPayment.setText(R.string.my_wallet_balance);
+                }
+                else{
+                    binding.flMyWallet.setVisibility(View.VISIBLE);
+
+                }
+            }
+
         });
         binding.tvDone.setOnClickListener(view -> binding.flMyWallet.setVisibility(View.GONE));
 
@@ -224,6 +247,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         updateTotalPrice(coupon_value);
 
         getSetting();
+        getProfile();
         if (orderModel != null) {
             updateData();
         }
@@ -234,25 +258,29 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
             binding.rb1.setChecked(true);
             itemToUpload.setPayment_method(1);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.cache);
+            binding.tvPayment.setText(R.string.apple_pay);
             binding.setItemModel(itemToUpload);
             //binding.rb1
         } else if (orderModel.getPayment_method().equals("2")) {
             itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.apple_pay);
+            binding.tvPayment.setText(R.string.cache);
             binding.setItemModel(itemToUpload);
-            binding.rb3.setChecked(true);
+            binding.rb2.setChecked(true);
 
         } else if (orderModel.getPayment_method().equals("3")) {
             itemToUpload.setPayment_method(3);
-            binding.rb4.setChecked(true);
+            binding.rb3.setChecked(true);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.my_wallet_balance);
+            binding.tvPayment.setText(R.string.pos);
             binding.setItemModel(itemToUpload);
 
         } else if (orderModel.getPayment_method().equals("4")) {
-
+            itemToUpload.setPayment_method(4);
+            binding.rb4.setChecked(true);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.my_wallet);
+            binding.setItemModel(itemToUpload);
         }
         if (orderModel.getCoupon_serial() != null) {
             getCouponValue(orderModel.getCoupon_serial());
@@ -536,6 +564,51 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                         Log.e("error", t.getMessage());
                     }
                 });
+    }
+    private void getProfile() {
+        binding.progBar.setVisibility(View.VISIBLE);
+
+        try {
+
+
+            Api.getService(Tags.base_url)
+                    .getProfile(userModel.getId() + "")
+                    .enqueue(new Callback<UserModel>() {
+                        @Override
+                        public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+
+                            if (response.isSuccessful() && response.body() != null) {
+                                binding.progBar.setVisibility(View.GONE);
+                               wallet=response.body().getWallet();
+
+                            } else {
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserModel> call, Throwable t) {
+                            try {
+                                binding.progBar.setVisibility(View.GONE);
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            binding.progBar.setVisibility(View.GONE);
+
+        }
     }
 
     @Override

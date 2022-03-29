@@ -574,7 +574,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
                                     <RadioButton
-                                        android:id="@+id/rb3"
+                                        android:id="@+id/rb1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -586,7 +586,7 @@
                                         android:textSize="15sp" />
 
                                     <RadioButton
-                                        android:id="@+id/rb1"
+                                        android:id="@+id/rb2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:button="@drawable/rb_bg4"
@@ -597,7 +597,7 @@
                                         android:textSize="15sp" />
 
                                     <RadioButton
-                                        android:id="@+id/rb2"
+                                        android:id="@+id/rb3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:button="@drawable/rb_bg4"

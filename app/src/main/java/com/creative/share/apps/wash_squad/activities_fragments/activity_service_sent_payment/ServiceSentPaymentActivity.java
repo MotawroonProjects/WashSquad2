@@ -158,8 +158,8 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
         binding.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendServiceModel.setSender_phone(sendServiceModel.getPhone_code()+sendServiceModel.getSender_phone());
-                sendServiceModel.setReceiver_name(sendServiceModel.getPhone_code()+sendServiceModel.getReceiver_phone());
+                sendServiceModel.setSender_phone(sendServiceModel.getPhone_code() + sendServiceModel.getSender_phone());
+                sendServiceModel.setReceiver_name(sendServiceModel.getPhone_code() + sendServiceModel.getReceiver_phone());
 
                 sendServiceModel.setPayment_method(2);
                 uploadOrder(sendServiceModel);
@@ -284,13 +284,14 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
                                     intent.putExtra("url", response.body().getUrl());
 
 
-                                    startActivityForResult(intent,100);
+                                    startActivityForResult(intent, 100);
                                 } else {
-                                Intent intent = getIntent();
-                                if (intent != null) {
-                                    setResult(RESULT_OK, intent);
+                                    Intent intent = getIntent();
+                                    if (intent != null) {
+                                        setResult(RESULT_OK, intent);
+                                    }
+                                    finish();
                                 }
-                                finish();}
                             } else {
                                 try {
 
@@ -366,10 +367,11 @@ public class ServiceSentPaymentActivity extends AppCompatActivity {
                     }
                 });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if (requestCode == 100) {
             Intent intent = getIntent();
             if (intent != null) {
                 setResult(RESULT_OK, intent);

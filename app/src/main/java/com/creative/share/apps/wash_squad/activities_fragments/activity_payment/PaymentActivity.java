@@ -63,6 +63,7 @@ public class PaymentActivity extends AppCompatActivity {
     private SettingModel settingModel;
     private double tax;
     private Order_Data_Model.OrderModel orderModel;
+    private double wallet;
 
 
     @Override
@@ -109,7 +110,7 @@ public class PaymentActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
         String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s %s", m_date,"  ", itemToUpload.getTime()));
+        binding.tvDate.setText(String.format("%s %s %s", m_date, "  ", itemToUpload.getTime()));
         binding.tvPoliciesAndTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
@@ -134,57 +135,77 @@ public class PaymentActivity extends AppCompatActivity {
             finish();
         });
         binding.rbNo.setOnClickListener(view1 -> {
-            itemToUpload.setPayment_method(1);
+            itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.cache);
             binding.flCash.setVisibility(View.GONE);
         });
         binding.rbYes.setOnClickListener(view12 -> {
-            itemToUpload.setPayment_method(1);
+            itemToUpload.setPayment_method(2);
             binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.cache);
             binding.flCash.setVisibility(View.GONE);
         });
         binding.rb1.setOnClickListener(view ->
         {
-            binding.flCash.setVisibility(View.VISIBLE);
+            itemToUpload.setPayment_method(1);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.apple_pay);
+
 
 
         });
         binding.rb2.setOnClickListener(view ->
         {
             binding.flCash.setVisibility(View.VISIBLE);
+            // binding.flCash.setVisibility(View.VISIBLE);
 
 
         });
         binding.rb3.setOnClickListener(view -> {
-            itemToUpload.setPayment_method(2);
-            binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.apple_pay);
+            itemToUpload.setPayment_method(3);
+            binding.tvPayment.setText(R.string.pos);
         });
         binding.rb4.setOnClickListener(view -> {
-            binding.flMyWallet.setVisibility(View.VISIBLE);
-            itemToUpload.setPayment_method(3);
-            binding.setItemModel(itemToUpload);
 
-            binding.tvPayment.setText(R.string.my_wallet_balance);
+            if (orderModel != null) {
+                if (itemToUpload.getTotal_price() - orderModel.getTotal_price() <= wallet) {
+                    itemToUpload.setPayment_method(4);
+                    binding.setItemModel(itemToUpload);
+                    binding.tvPayment.setText(R.string.my_wallet_balance);
+                } else {
+                    binding.flMyWallet.setVisibility(View.VISIBLE);
+
+                }
+
+            } else {
+                if (itemToUpload.getTotal_price() <= wallet) {
+                    itemToUpload.setPayment_method(4);
+                    binding.setItemModel(itemToUpload);
+                    binding.tvPayment.setText(R.string.my_wallet_balance);
+                } else {
+                    binding.flMyWallet.setVisibility(View.VISIBLE);
+
+                }
+            }
+
         });
         binding.tvDone.setOnClickListener(view -> binding.flMyWallet.setVisibility(View.GONE));
 
 
         binding.btnSend.setOnClickListener(view -> {
-            itemToUpload.setUser_phone(userModel.getPhone_code()+itemToUpload.getUser_phone());
+            itemToUpload.setUser_phone(userModel.getPhone_code() + itemToUpload.getUser_phone());
 
             if (itemToUpload.isDataValidStep2(this)) {
-                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
+                if (couponModel == null || couponModel.getId() == orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
                 }
-                if(orderModel==null){
-                uploadOrder(itemToUpload);}
-                else{
-                    itemToUpload.setOrder_id(orderModel.getId()+"");
+                if (orderModel == null) {
+                    uploadOrder(itemToUpload);
+                } else {
+                    itemToUpload.setOrder_id(orderModel.getId() + "");
                     updateOrder(itemToUpload);
                 }
             }
@@ -194,7 +215,7 @@ public class PaymentActivity extends AppCompatActivity {
         binding.btnOther.setOnClickListener(view -> {
             if (itemToUpload.isDataValidStep2(this)) {
 
-                if (couponModel == null||couponModel.getId()==orderModel.getCoupon().getId()) {
+                if (couponModel == null || couponModel.getId() == orderModel.getCoupon().getId()) {
                     itemToUpload.setCoupon_serial(null);
                 } else {
                     itemToUpload.setCoupon_serial(couponModel.getCoupon_serial());
@@ -225,42 +246,43 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
         updateTotalPrice(coupon_value);
-
+        getProfile();
         getSetting();
-        if(orderModel!=null){
+        if (orderModel != null) {
             updateData();
         }
     }
 
     private void updateData() {
-        if(orderModel.getPayment_method().equals("1")){
+        if (orderModel.getPayment_method().equals("1")) {
             binding.rb1.setChecked(true);
             itemToUpload.setPayment_method(1);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.cache);
-            binding.setItemModel(itemToUpload);
-            //binding.rb1
-        }
-        else if(orderModel.getPayment_method().equals("2")){
-            itemToUpload.setPayment_method(2);
-            binding.setItemModel(itemToUpload);
             binding.tvPayment.setText(R.string.apple_pay);
             binding.setItemModel(itemToUpload);
-            binding.rb3.setChecked(true);
+            //binding.rb1
+        } else if (orderModel.getPayment_method().equals("2")) {
+            itemToUpload.setPayment_method(2);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.cache);
+            binding.setItemModel(itemToUpload);
+            binding.rb2.setChecked(true);
 
-        }
-        else if(orderModel.getPayment_method().equals("3")){
+        } else if (orderModel.getPayment_method().equals("3")) {
             itemToUpload.setPayment_method(3);
+            binding.rb3.setChecked(true);
+            binding.setItemModel(itemToUpload);
+            binding.tvPayment.setText(R.string.pos);
+            binding.setItemModel(itemToUpload);
+
+        } else if (orderModel.getPayment_method().equals("4")) {
+            itemToUpload.setPayment_method(4);
             binding.rb4.setChecked(true);
             binding.setItemModel(itemToUpload);
-            binding.tvPayment.setText(R.string.my_wallet_balance);
+            binding.tvPayment.setText(R.string.my_wallet);
             binding.setItemModel(itemToUpload);
-
         }
-        else if(orderModel.getPayment_method().equals("4")){
-
-        }
-        if(orderModel.getCoupon_serial()!=null){
+        if (orderModel.getCoupon_serial() != null) {
             getCouponValue(orderModel.getCoupon_serial());
         }
     }
@@ -379,7 +401,7 @@ public class PaymentActivity extends AppCompatActivity {
                                     intent.putExtra("url", response.body().getUrl());
 
 
-                                    startActivityForResult(intent,100);
+                                    startActivityForResult(intent, 100);
                                 } else {
                                     Intent intent = getIntent();
                                     if (intent != null) {
@@ -437,6 +459,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
 
     }
+
     private void updateOrder(ItemToUpload itemToUpload) {
 
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
@@ -453,12 +476,12 @@ public class PaymentActivity extends AppCompatActivity {
                             dialog.dismiss();
                             if (response.isSuccessful() && response.body() != null) {
                                 Toast.makeText(PaymentActivity.this, getString(R.string.suc), Toast.LENGTH_LONG).show();
-                                if (itemToUpload.getPayment_method() == 2&&orderModel.getTotal_price()<itemToUpload.getTotal_price()) {
+                                if (itemToUpload.getPayment_method() == 2 && orderModel.getTotal_price() < itemToUpload.getTotal_price()) {
                                     Intent intent = new Intent(PaymentActivity.this, PaypalwebviewActivity.class);
                                     intent.putExtra("url", response.body().getUrl());
 
 
-                                    startActivityForResult(intent,100);
+                                    startActivityForResult(intent, 100);
                                 } else {
                                     Intent intent = getIntent();
                                     if (intent != null) {
@@ -541,10 +564,11 @@ public class PaymentActivity extends AppCompatActivity {
                     }
                 });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if (requestCode == 100) {
             Intent intent = getIntent();
             if (intent != null) {
                 setResult(RESULT_OK, intent);
@@ -552,4 +576,51 @@ public class PaymentActivity extends AppCompatActivity {
             finish();
         }
     }
+
+    private void getProfile() {
+        binding.progBar.setVisibility(View.VISIBLE);
+
+        try {
+
+
+            Api.getService(Tags.base_url)
+                    .getProfile(userModel.getId() + "")
+                    .enqueue(new Callback<UserModel>() {
+                        @Override
+                        public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+
+                            if (response.isSuccessful() && response.body() != null) {
+                                binding.progBar.setVisibility(View.GONE);
+                                wallet = response.body().getWallet();
+
+                            } else {
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserModel> call, Throwable t) {
+                            try {
+                                binding.progBar.setVisibility(View.GONE);
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            binding.progBar.setVisibility(View.GONE);
+
+        }
+    }
+
 }

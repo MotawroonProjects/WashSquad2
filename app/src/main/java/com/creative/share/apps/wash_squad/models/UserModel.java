@@ -12,6 +12,7 @@ public class UserModel implements Serializable {
     private String logo;
     private int user_type;
     private String password_token;
+    private double wallet;
 
     public String getPassword_token() {
         return password_token;
@@ -40,5 +41,9 @@ public class UserModel implements Serializable {
 
     public int getUser_type() {
         return user_type;
+    }
+
+    public double getWallet() {
+        return wallet;
     }
 }

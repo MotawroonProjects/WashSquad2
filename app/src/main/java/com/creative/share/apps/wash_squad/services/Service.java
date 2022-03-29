@@ -252,4 +252,8 @@ public interface Service {
             @Field("order_id") int order_id,
             @Field("status") int status
     );
+    @FormUrlEncoded
+    @POST("api/client/profile")
+    Call<UserModel> getProfile(@Field("user_id") String user_id
+    );
 }
