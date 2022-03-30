@@ -263,6 +263,8 @@
     <string name="ch_area">Choose Area</string>
     <string name="edit_order">Edit Order</string>
     <string name="cancel_order">Cancel Order</string>
+    <string name="invoice">Invoice</string>
+    <string name="print">Print</string>
 
 
 </resources>

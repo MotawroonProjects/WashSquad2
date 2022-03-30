@@ -275,20 +275,52 @@
                     </androidx.cardview.widget.CardView>
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+                   <LinearLayout
+                       android:id="@+id/llprint"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="10dp"
+                       android:gravity="end"
+                       android:orientation="horizontal">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
-                    app:tabBackground="@drawable/tab_order_indicator"
-                    app:tabGravity="fill"
-                    app:tabIndicatorHeight="0dp"
-                    app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/white"
-                    app:tabTextColor="@color/gray4" />
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_vertical"
+                           android:paddingStart="8dp"
+                           android:paddingEnd="8dp"
+                           android:text="@string/a_copy_of_the_invoice"
+                           android:textColor="@color/colorPrimary"
+                           android:textSize="14sp" />
+
+                       <ImageView
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:layout_gravity="center_vertical"
+                           android:padding="3dp"
+                           android:src="@drawable/ic_pdf" />
+
+
+                   </LinearLayout>
+                   <com.google.android.material.tabs.TabLayout
+                       android:id="@+id/tab"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="40dp"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginEnd="40dp"
+                       app:tabBackground="@drawable/tab_order_indicator"
+                       app:tabGravity="fill"
+                       app:tabIndicatorHeight="0dp"
+                       app:tabMode="fixed"
+                       app:tabSelectedTextColor="@color/white"
+                       app:tabTextColor="@color/gray4" />
+
+               </LinearLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
 

@@ -136,7 +136,10 @@
             android:name=".activities_fragments.activity_intro.Intro_Activity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
+        <activity
+            android:name=".activities_fragments.activity_print.PrintActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <service
             android:name=".notification.FireBaseMessaging"
             android:exported="false">

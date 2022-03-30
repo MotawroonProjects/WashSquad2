@@ -21,8 +21,11 @@ import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service.ChooseServiceSentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.fragments.Fragment_Product_Details;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.fragments.Fragment_Order_Products;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaypalwebviewActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_print.PrintActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity;
 import com.creative.share.apps.wash_squad.adapters.ViewPagerAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityOrderDetailsBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
@@ -120,6 +123,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cancelOrder();
+            }
+        });
+        binding.llprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrderDetailsActivity.this, PrintActivity.class);
+                intent.putExtra("url", Tags.base_url+"api/order/print/"+orderModel.getId());
+                startActivity(intent);
             }
         });
         getServices();
