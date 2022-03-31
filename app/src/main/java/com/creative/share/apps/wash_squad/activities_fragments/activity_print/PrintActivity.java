@@ -112,6 +112,7 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
                                                      intent.putExtra("file_url", url);
                                                      intent.putExtra("file_name", name);
                                                      startService(intent);
+                                                     finish();
                                                  }
 
                                              }
@@ -231,7 +232,7 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
                             intent.setDataAndType(path, "application/pdf");
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();
+                           // finish();
                         }
                     });
 

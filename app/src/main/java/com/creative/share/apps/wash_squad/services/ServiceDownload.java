@@ -85,7 +85,7 @@ public class ServiceDownload extends Service{
 
                 String extension  = file_url.substring(file_url.lastIndexOf("."));
 
-                File outFile = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/Ebsar_App");
+                File outFile = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/washsquad_App");
 
                 if (!outFile.exists()) {
                     outFile.mkdir();
@@ -132,7 +132,7 @@ public class ServiceDownload extends Service{
         @Override
         protected void onPostExecute(String string) {
 
-            manager.cancel("ebsar_tag", 1585);
+            manager.cancel("washsquad_tag", 1585);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 initNewVersionNotification(1);
             } else {
@@ -148,7 +148,7 @@ public class ServiceDownload extends Service{
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
             builder.setProgress(100, Integer.parseInt(values[0]), false);
-            manager.notify("ebsar_tag", 1585, builder.build());
+            manager.notify("washsquad_tag", 1585, builder.build());
 
         }
 
@@ -175,15 +175,15 @@ public class ServiceDownload extends Service{
             builder.setDefaults(0);
             builder.setWhen(System.currentTimeMillis());
 
-            manager.notify("ebsar_tag", 1585, builder.build());
+            manager.notify("washsquad_tag", 1585, builder.build());
 
 
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         private void initNewVersionNotification(int type) {
-            String channel_id = "ebsar_channel_id";
-            CharSequence channel_name = "ebsar_channel_name";
+            String channel_id = "washsquad_channel_id";
+            CharSequence channel_name = "washsquad_channel_name";
             int Importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(channel_id, channel_name, Importance);
 
@@ -225,7 +225,7 @@ public class ServiceDownload extends Service{
             builder.setDefaults(0);
             channel.setSound(null, null);
             manager.createNotificationChannel(channel);
-            manager.notify("ebsar_tag", 1585, builder.build());
+            manager.notify("washsquad_tag", 1585, builder.build());
 
         }
 
