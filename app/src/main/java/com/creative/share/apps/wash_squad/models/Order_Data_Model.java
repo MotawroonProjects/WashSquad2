@@ -85,7 +85,6 @@ public class Order_Data_Model implements Serializable {
         private String brand_en_title;
         private String brand__ar_title;
         private List<Products> order_sub_services;
-        private List<Products> sub_service;
         private String day;
         private String car_plate_number;
         private CouponModel coupon;
@@ -94,9 +93,7 @@ public class Order_Data_Model implements Serializable {
             return id;
         }
 
-        public List<Products> getSub_service() {
-            return sub_service;
-        }
+
 
         public int getOrder_type() {
             return order_type;

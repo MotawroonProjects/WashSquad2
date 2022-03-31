@@ -265,6 +265,8 @@
     <string name="cancel_order">Cancel Order</string>
     <string name="invoice">Invoice</string>
     <string name="print">Print</string>
-
+    <string name="downloading2">Downloading...</string>
+    <string name="down_done">Download done</string>
+    <string name="download">Downloading</string>
 
 </resources>

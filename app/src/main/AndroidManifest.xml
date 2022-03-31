@@ -147,6 +147,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service
+            android:name=".services.ServiceDownload"
+            android:enabled="true"
+            android:stopWithTask="false" />
     </application>
 
 </manifest>

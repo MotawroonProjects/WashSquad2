@@ -74,11 +74,12 @@
         <entry key="..\:/WashSquad2/app/src/main/res/drawable/selected_car_size_bg.xml" value="0.15885416666666666" />
         <entry key="..\:/WashSquad2/app/src/main/res/drawable/shap1_select.xml" value="0.15885416666666666" />
         <entry key="..\:/WashSquad2/app/src/main/res/drawable/tab_order_indicator.xml" value="0.1" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_choose_service_sent.xml" value="0.1" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_edit_profile.xml" value="0.21" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_help.xml" value="0.27291666666666664" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_help.xml" value="0.1" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_home.xml" value="0.1390625" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_intro_.xml" value="0.1390625" />
-        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_login_option.xml" value="0.1390625" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_login_option.xml" value="0.33" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_new_password.xml" value="0.33" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_order_details.xml" value="0.22" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.12149532710280374" />
@@ -99,6 +100,7 @@
         <entry key="..\:/WashSquad2/app/src/main/res/layout/additional_service_row.xml" value="0.19427083333333334" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/area_row.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/dialog_language.xml" value="0.22552083333333334" />
+        <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_code_verification.xml" value="0.20925925925925926" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_forgetpassword.xml" value="0.14270833333333333" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_home.xml" value="0.27291666666666664" />
         <entry key="..\:/WashSquad2/app/src/main/res/layout/fragment_main.xml" value="0.27291666666666664" />

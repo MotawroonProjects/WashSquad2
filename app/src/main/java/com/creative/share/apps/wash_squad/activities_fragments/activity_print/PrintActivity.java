@@ -40,6 +40,7 @@ import com.creative.share.apps.wash_squad.interfaces.Listeners;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.FailureResponse;
 import com.creative.share.apps.wash_squad.models.SuccessResponse;
+import com.creative.share.apps.wash_squad.services.ServiceDownload;
 
 import java.io.File;
 import java.util.Locale;
@@ -53,7 +54,8 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
     private final String write_perm = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private final int write_req = 100;
     private boolean isPermissionGranted = false;
-
+    private final String write_permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    private final int write_REQ = 1;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -93,7 +95,9 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
         binding.webView.getSettings().setBuiltInZoomControls(false);
         binding.webView.setDrawingCacheEnabled(true);
         binding.webView.enableSlowWholeDocumentDraw();
+        binding.webView.performClick();
         binding.webView.loadUrl(videoPath);
+
         binding.webView.setWebViewClient(new WebViewClient() {
                                              @Override
                                              public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -102,7 +106,13 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
 
                                              @Override
                                              public void onPageFinished(WebView view, String url) {
-
+                                                 if(url.contains("dowanloadinvoice")){
+                                                     String name = "wash_squad"+System.currentTimeMillis();
+                                                     Intent intent = new Intent(PrintActivity.this, ServiceDownload.class);
+                                                     intent.putExtra("file_url", url);
+                                                     intent.putExtra("file_name", name);
+                                                     startService(intent);
+                                                 }
 
                                              }
 
@@ -130,34 +140,32 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
 
     private void checkWritePermission() {
 
-        if (ContextCompat.checkSelfPermission(this, write_perm) != PackageManager.PERMISSION_GRANTED) {
-
-
-            isPermissionGranted = false;
-
-            ActivityCompat.requestPermissions(this, new String[]{write_perm}, write_req);
-
+        if (ContextCompat.checkSelfPermission(this, write_permission) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startService();
 
         } else {
-            printpdf();
-            isPermissionGranted = true;
-
+            ActivityCompat.requestPermissions(this, new String[]{write_permission}, write_REQ);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == write_REQ) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-        if (requestCode == write_req && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            printpdf();
+                startService();
+            } else {
+                Toast.makeText(this, getString(R.string.perm_image_denied), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void printpdf() {
 
-        PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
         try {
             String file;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD_MR1) {
@@ -223,6 +231,7 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
                             intent.setDataAndType(path, "application/pdf");
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
                         }
                     });
 
@@ -242,7 +251,9 @@ public class PrintActivity extends AppCompatActivity implements Listeners.BackLi
         super.onResume();
         binding.webView.onResume();
     }
-
+    private void startService(){
+        checkWritePermission();
+    }
     @Override
     public void back() {
         finish();
