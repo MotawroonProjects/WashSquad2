@@ -8,8 +8,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -128,9 +130,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
         binding.llprint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderDetailsActivity.this, PrintActivity.class);
-                intent.putExtra("url", Tags.base_url+"api/order/print/"+orderModel.getId());
-                startActivity(intent);
+                String url = Tags.base_url + "api/order/print/" + orderModel.getId();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setPackage("com.android.chrome");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    // Chrome browser presumably not installed so allow user to choose instead
+                    intent.setPackage(null);
+                    startActivity(intent);
+                }
+//                Intent intent = new Intent(OrderDetailsActivity.this, PrintActivity.class);
+//                intent.putExtra("url", );
+//                startActivity(intent);
             }
         });
         getServices();
