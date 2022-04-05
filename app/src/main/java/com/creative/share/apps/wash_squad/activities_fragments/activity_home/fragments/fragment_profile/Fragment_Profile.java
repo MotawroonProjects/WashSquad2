@@ -783,7 +783,7 @@ public class Fragment_Profile extends Fragment implements Listeners.EditProfileL
         for (int i = 0; i < body.getWash_sub().size(); i++) {
             if (body.getWash_sub().get(i).getStatus().equals("done")) {
                 count += 1;
-            } else {
+            } else if(status!=1){
                 binding.setModel(body.getWash_sub().get(i));
                 model = body.getWash_sub().get(i);
                 binding.setDay(dayModelList.get(dayModelList2.indexOf(body.getWash_sub().get(i).getDay().toUpperCase())).getDay_text());

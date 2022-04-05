@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     >
+
     <data>
+
         <variable
             name="location"
             type="com.creative.share.apps.wash_squad.models.SelectedLocation" />
+
         <variable
             name="backListener"
             type="com.creative.share.apps.wash_squad.interfaces.Listeners.BackListener" />
+
         <variable
             name="lang"
             type="String" />
+
         <variable
             name="itemModel"
             type="com.creative.share.apps.wash_squad.models.ItemToUpload" />
@@ -22,39 +26,42 @@
         <variable
             name="level2"
             type="com.creative.share.apps.wash_squad.models.ServiceDataModel.ServiceModel" />
+
         <variable
             name="price"
             type="Double" />
+
         <variable
             name="total"
             type="Double" />
-        <import type="android.text.Html"/>
+
+        <import type="android.text.Html" />
 
     </data>
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".activities_fragments.activity_choose_order_type.ChooseOrderTypeActivity"
             android:background="@color/gray0"
-            >
+            tools:context=".activities_fragments.activity_choose_order_type.ChooseOrderTypeActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:background="@color/colorPrimary"
                 app:contentInsetEnd="0dp"
-                app:contentInsetStart="0dp"
                 app:contentInsetLeft="0dp"
                 app:contentInsetRight="0dp"
-                >
+                app:contentInsetStart="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -87,33 +94,34 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                >
+                app:layout_constraintTop_toBottomOf="@id/toolbar">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/toolbar"
                     android:layout_marginTop="20dp"
+                    android:orientation="vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:orientation="vertical"
-                    >
+                    app:layout_constraintTop_toBottomOf="@id/toolbar">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@drawable/expand_bg"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginBottom="5dp"
+                            android:orientation="horizontal"
 
                             >
 
@@ -122,19 +130,18 @@
                                 serviceImage="@{level2.image}"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_vertical" />
 
                             <TextView
                                 android:id="@+id/tvServiceName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp"
                                 android:text='@{lang.equals("ar")?level2.ar_title:level2.en_title}'
-                                />
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <net.cachapa.expandablelayout.ExpandableLayout
@@ -142,32 +149,32 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:el_duration="500"
-                            app:el_parallax=".5"
                             app:el_expanded="false"
-                            >
+                            app:el_parallax=".5">
+
                             <TextView
                                 android:id="@+id/tvContent"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:text='@{lang.equals("ar")?Html.fromHtml(level2.ar_des).toString():Html.fromHtml(level2.en_des).toString()}'
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="15sp"
-                                android:text='@{lang.equals("ar")?Html.fromHtml(level2.ar_des).toString():Html.fromHtml(level2.en_des).toString()}'
 
 
                                 />
                         </net.cachapa.expandablelayout.ExpandableLayout>
+
                         <TextView
                             android:id="@+id/tvDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/gray5"
-                            android:textSize="13sp"
-                            android:text="@string/more_details"
+                            android:layout_gravity="end"
                             android:layout_marginTop="8dp"
                             android:paddingTop="5dp"
-                            android:layout_gravity="end"
                             android:paddingBottom="5dp"
-                            />
+                            android:text="@string/more_details"
+                            android:textColor="@color/gray5"
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -181,28 +188,28 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginTop="8dp"
-                        >
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:background="@drawable/expand_bg"
+                            android:orientation="horizontal"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            >
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
+                                android:text="@string/price"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
-                                android:text="@string/price"
 
                                 />
 
@@ -211,12 +218,11 @@
                                 android:layout_height="35dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
-                                android:textColor="@color/black"
-                                android:textSize="13sp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text='@{String.valueOf(price)+" "+@string/sar}'
-                                />
+                                android:textColor="@color/black"
+                                android:textSize="13sp" />
 
                         </LinearLayout>
 
@@ -226,18 +232,17 @@
                             android:orientation="horizontal"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            >
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
                             <ImageView
                                 android:id="@+id/imageIncrease"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:background="@drawable/edt_comment"
-                                android:src="@drawable/ic_add"
                                 android:padding="12dp"
-                                />
+                                android:src="@drawable/ic_add" />
 
                             <TextView
                                 android:id="@+id/tvCount"
@@ -245,12 +250,11 @@
                                 android:layout_height="35dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
-                                android:textColor="@color/black"
-                                android:textSize="13sp"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text="1"
-                                />
+                                android:textColor="@color/black"
+                                android:textSize="13sp" />
 
                             <ImageView
                                 android:id="@+id/imageDecrease"
@@ -258,9 +262,8 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:background="@drawable/edt_comment"
-                                android:src="@drawable/ic_minus"
                                 android:padding="12dp"
-                                />
+                                android:src="@drawable/ic_minus" />
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -271,15 +274,14 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/expand_bg"
                         android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        >
+                        android:paddingRight="8dp">
+
                         <Spinner
                             android:id="@+id/spinner"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:layout_gravity="center_vertical"
-                            app:backgroundTint="@color/colorPrimary"
-                            >
+                            app:backgroundTint="@color/colorPrimary">
 
                         </Spinner>
                     </FrameLayout>
@@ -290,70 +292,70 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/expand_bg"
                         android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        >
+                        android:paddingRight="8dp">
+
                         <Spinner
                             android:id="@+id/spinnerBrand"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:layout_gravity="center_vertical"
-                            app:backgroundTint="@color/colorPrimary"
-                            >
+                            app:backgroundTint="@color/colorPrimary">
 
                         </Spinner>
                     </FrameLayout>
+
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/expand_bg"
                         android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        >
+                        android:paddingRight="8dp">
+
                         <Spinner
                             android:id="@+id/spinnerArea"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:layout_gravity="center_vertical"
-                            app:backgroundTint="@color/colorPrimary"
-                            >
+                            app:backgroundTint="@color/colorPrimary">
 
                         </Spinner>
                     </FrameLayout>
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/consMap"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/expand_bg"
-                        >
+                        android:background="@drawable/expand_bg">
+
                         <ImageView
                             android:id="@+id/icon_map"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:src="@drawable/ic_map"
-                            android:padding="8dp"
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_map"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:tint="@color/color_second" />
+
                         <TextView
+                            error="@{itemModel.address_error}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/icon_map"
-                            android:textColor="@color/color_second"
-                            android:textSize="13sp"
-                            android:textColorHint="@color/color_second"
-                            android:hint="@string/location_on_map"
                             android:clickable="false"
+                            android:hint="@string/location_on_map"
                             android:longClickable="false"
-                            app:layout_constraintEnd_toStartOf="@id/arrow1"
-                            android:text="@{location.address}"
                             android:singleLine="true"
-                            error="@{itemModel.address_error}"
-
+                            android:text="@{location.address}"
+                            android:textColor="@color/color_second"
+                            android:textColorHint="@color/color_second"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/arrow1"
+                            app:layout_constraintStart_toEndOf="@id/icon_map"
+                            app:layout_constraintTop_toTopOf="parent"
 
 
                             />
@@ -362,12 +364,12 @@
                             android:id="@+id/arrow1"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:src="@drawable/ic_arrow_right"
-                            android:padding="12dp"
-                            android:rotation='@{lang.equals("ar")?180:0}'
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="12dp"
+                            android:rotation='@{lang.equals("ar")?180:0}'
+                            android:src="@drawable/ic_arrow_right"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:tint="@color/gray5" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -376,21 +378,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/expand_bg"
-                        >
+                        android:background="@drawable/expand_bg">
+
                         <ImageView
                             android:id="@+id/icon_calender"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:src="@drawable/ic_calender"
-                            android:padding="8dp"
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_calender"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:tint="@color/color_second" />
 
                         <TextView
                             android:id="@+id/tvDate"
+                            error="@{itemModel.date_error}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -403,11 +406,10 @@
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/arrow2"
+
                             app:layout_constraintStart_toEndOf="@id/icon_calender"
 
                             app:layout_constraintTop_toTopOf="parent"
-
-                            error="@{itemModel.date_error}"
 
                             />
 
@@ -415,49 +417,51 @@
                             android:id="@+id/arrow2"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:src="@drawable/ic_arrow_right"
-                            android:padding="12dp"
-                            android:rotation='@{lang.equals("ar")?180:0}'
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="12dp"
+                            android:rotation='@{lang.equals("ar")?180:0}'
+                            android:src="@drawable/ic_arrow_right"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:tint="@color/gray5" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/consTime"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="10dp"
 
-                        android:background="@drawable/expand_bg"
-                        >
+                        android:background="@drawable/expand_bg">
+
                         <ImageView
                             android:id="@+id/icon_time"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:src="@drawable/ic_time"
-                            android:padding="8dp"
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_time"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:tint="@color/color_second" />
+
                         <TextView
                             android:id="@+id/tvTime"
+                            error="@{itemModel.time_error}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/icon_time"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:hint="@string/time"
+                            android:longClickable="false"
+                            android:singleLine="true"
                             android:textColor="@color/color_second"
                             android:textColorHint="@color/color_second"
                             android:textSize="13sp"
-                            android:hint="@string/time"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            android:singleLine="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/arrow3"
-                            android:gravity="center_vertical"
-                            error="@{itemModel.time_error}"
+                            app:layout_constraintStart_toEndOf="@id/icon_time"
+                            app:layout_constraintTop_toTopOf="parent"
 
 
                             />
@@ -466,12 +470,12 @@
                             android:id="@+id/arrow3"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:src="@drawable/ic_arrow_right"
-                            android:padding="12dp"
-                            android:rotation='@{lang.equals("ar")?180:0}'
                             android:clickable="false"
                             android:longClickable="false"
+                            android:padding="12dp"
+                            android:rotation='@{lang.equals("ar")?180:0}'
+                            android:src="@drawable/ic_arrow_right"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:tint="@color/gray5" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -479,27 +483,24 @@
                         android:id="@+id/llAdditional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/expand_bg"
-                        android:padding="10dp"
                         android:layout_marginTop="8dp"
-                        android:visibility="gone"
-                        >
+                        android:background="@drawable/expand_bg"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/color_second"
-                            android:textSize="12sp"
                             android:text="@string/additional_services"
-                            />
+                            android:textColor="@color/color_second"
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/gray5"
                             android:layout_marginTop="10dp"
-                            />
+                            android:background="@color/gray5" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recViewService"
@@ -514,23 +515,23 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/expand_bg"
+                        android:orientation="horizontal"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginTop="8dp"
-                        >
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="35dp"
                             android:layout_gravity="center_vertical"
                             android:gravity="center_vertical"
+                            android:text="@string/total"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            android:text="@string/total"
 
                             />
 
@@ -540,12 +541,11 @@
                             android:layout_height="35dp"
                             android:layout_gravity="center_vertical"
                             android:gravity="center_vertical"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             android:text="@{String.valueOf(total)}"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -556,14 +556,13 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="@string/order_now"
+                        android:layout_marginBottom="30dp"
                         android:background="@drawable/btn_send"
                         android:paddingLeft="50dp"
                         android:paddingRight="50dp"
-                        android:layout_marginBottom="30dp"
-                        />
+                        android:text="@string/order_now"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
@@ -575,8 +574,8 @@
             android:layout_height="match_parent"
             android:background="@color/black_trans"
             android:clickable="true"
-            android:longClickable="true"
             android:focusable="true"
+            android:longClickable="true"
             android:visibility="gone">
 
             <androidx.cardview.widget.CardView
@@ -592,23 +591,25 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
+
                     <ImageView
                         android:id="@+id/closeCalender"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:src="@drawable/ic_close"
-                        android:layout_marginTop="32dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"/>
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_close" />
+
                     <CalendarView
                         android:id="@+id/calendar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbar"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:scrollbars="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/toolbar"
 
                         >
 
@@ -619,14 +620,15 @@
 
 
         </FrameLayout>
+
         <FrameLayout
             android:id="@+id/flTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_trans"
             android:clickable="true"
-            android:longClickable="true"
             android:focusable="true"
+            android:longClickable="true"
             android:visibility="gone">
 
             <androidx.cardview.widget.CardView
@@ -642,102 +644,106 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="20dp"
-                        >
+                        android:orientation="horizontal">
+
                         <ImageView
                             android:id="@+id/closeTime"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_close"
-
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
-                            />
+                            android:padding="5dp"
+                            android:src="@drawable/ic_close" />
+
                         <androidx.legacy.widget.Space
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
+
                         <TextView
                             android:id="@+id/tvDone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/done2"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimary"
                             android:layout_gravity="center_vertical"
-                            android:visibility="gone"/>
+                            android:text="@string/done2"
+                            android:minWidth="90dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/time"
                         android:layout_gravity="end"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="35dp"
+                        android:text="@string/time"
+                        android:textAllCaps="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"/>
+                        android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recViewTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:layout_marginEnd="32dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="15dp"
-                        />
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="15dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textColor="@color/gray4"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="8dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="20dp"
-                        android:visibility="gone"/>
+                        android:text=""
+                        android:textColor="@color/gray4"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/btn_bg"
-                        android:padding="5dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginStart="30dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="30dp"
                         android:layout_marginBottom="15dp"
+                        android:background="@drawable/btn_bg"
                         android:gravity="center"
-                        android:visibility="gone"
-                        >
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:visibility="gone">
+
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_time"
-                            app:tint="@color/white"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
-                            />
+                            android:src="@drawable/ic_time"
+                            app:tint="@color/white" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/add_request_to_waiting_list"
-                            android:textColor="@color/white"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"/>
+                            android:text="@string/add_request_to_waiting_list"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 

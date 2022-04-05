@@ -259,7 +259,7 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
         for (int i = 0; i < washSubList.size(); i++) {
             if (washSubList.get(i).getStatus().equals("done")) {
                 count += 1;
-            } else {
+            } else if (status != 1) {
                 binding.setModel(washSubList.get(i));
                 model = washSubList.get(i);
                 binding.setDay(dayModelList.get(dayModelList2.indexOf(washSubList.get(i).getDay().toUpperCase())).getDay_text());
