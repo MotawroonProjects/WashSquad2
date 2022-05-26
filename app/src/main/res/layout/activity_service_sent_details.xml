@@ -330,6 +330,109 @@
                         </Spinner>
                     </FrameLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        android:text="@string/car_plate_number"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/characters"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <com.chaos.view.PinView
+                                android:id="@+id/edtCharacters"
+                                style="@style/PinWidget.PinView"
+                                error="@{itemModel.car_plate_char_error}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:cursorVisible="true"
+                                android:inputType="text"
+                                android:itemBackground="@drawable/item_selected2"
+                                android:text="@={itemModel.vehicleChar}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                app:cursorColor="@color/color2"
+                                app:cursorWidth="2dp"
+                                app:hideLineWhenFilled="true"
+                                app:itemCount="3"
+                                app:itemHeight="30dp"
+                                app:itemRadius="5dp"
+                                app:itemSpacing="5dp"
+                                app:itemWidth="30dp"
+                                app:lineColor="@color/color2"
+                                app:lineWidth="1dp"
+                                app:viewType="rectangle" />
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/numbers"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <com.chaos.view.PinView
+                                android:id="@+id/edtCode"
+                                style="@style/PinWidget.PinView"
+                                error="@{itemModel.car_plate_number_error}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:cursorVisible="true"
+                                android:inputType="number"
+                                android:itemBackground="@drawable/item_selected2"
+                                android:text="@={itemModel.vehicleNumber}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                app:cursorColor="@color/color2"
+                                app:cursorWidth="2dp"
+                                app:hideLineWhenFilled="true"
+                                app:itemCount="4"
+                                app:itemHeight="30dp"
+                                app:itemRadius="5dp"
+                                app:itemSpacing="5dp"
+                                app:itemWidth="30dp"
+                                app:lineColor="@color/color2"
+                                app:lineWidth="1dp"
+                                app:viewType="rectangle"
+
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -917,8 +1020,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="@string/done2"
                             android:minWidth="90dp"
+                            android:text="@string/done2"
                             android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             android:visibility="gone" />

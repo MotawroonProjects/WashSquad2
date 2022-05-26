@@ -95,7 +95,7 @@
     <string name="add_comment">إضافة تعليق</string>
     <string name="add_rate">إضافة تقييم</string>
     <string name="offer">العروض</string>
-    <string name="services">الخدمات</string>
+    <string name="services">الباقات</string>
     <string name="cart">العربة</string>
     <string name="no_offers_to_display">لا توجد عروض لعرضها</string>
     <string name="no_services_to_display">لا توجد خدمات لعرضها</string>
@@ -266,5 +266,6 @@
     <string name="downloading2">تحميل...</string>
     <string name="down_done">تم التحميل</string>
     <string name="download">تنزيل</string>
+    <string name="market">المتجر</string>
 
 </resources>

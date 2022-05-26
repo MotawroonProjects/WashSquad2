@@ -48,6 +48,9 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private String ar_service_type;
     private String en_service_type;
     private double total_tax;
+    private String vehicleChar;
+    private String vehicleNumber;
+    private String car_plate_number;
     private ServiceDataModel.Level2 level2;
     private List<ItemToUpload.SubServiceModel> sub_services;
     private String phone_code;
@@ -58,7 +61,8 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
-
+    public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_plate_char_error = new ObservableField<>();
     public boolean isDataValidStep1(Context context) {
         if (service_id != 0 &&
                 //   sub_serv_id != 0 &&
@@ -73,7 +77,8 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 !time.isEmpty() &&
                 order_time_id != 0 &&
                 !order_date.isEmpty() &&
-                place_id != 0
+                place_id != 0  &&!vehicleChar.isEmpty() &&
+                !vehicleNumber.isEmpty()
 
 
         ) {
@@ -84,7 +89,8 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             receiver_phone_error.set(null);
             date_error.set(null);
             time_error.set(null);
-
+            car_plate_number_error.set(null);
+            car_plate_char_error.set(null);
             return true;
         } else {
             if (carSize_id == 0) {
@@ -94,7 +100,16 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             if (carType_id == 0) {
                 Toast.makeText(context, R.string.ch_car_type, Toast.LENGTH_SHORT).show();
             }
-
+            if (vehicleNumber.isEmpty()) {
+                car_plate_number_error.set(context.getString(R.string.field_req));
+            } else {
+                car_plate_number_error.set(null);
+            }
+            if (vehicleChar.isEmpty()) {
+                car_plate_char_error.set(context.getString(R.string.field_req));
+            } else {
+                car_plate_char_error.set(null);
+            }
             if (brand_id == 0) {
                 Toast.makeText(context, R.string.ch_brand, Toast.LENGTH_SHORT).show();
             }
@@ -215,6 +230,10 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.en_brand_name);
         this.place_id = 0;
         notifyPropertyChanged(BR.place_id);
+        this.vehicleNumber = "";
+        notifyPropertyChanged(BR.vehicleNumber);
+        this.vehicleChar = "";
+        notifyPropertyChanged(BR.vehicleChar);
     }
 
     @Bindable
@@ -543,4 +562,33 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public void setPhone_code(String phone_code) {
         this.phone_code = phone_code;
     }
+    @Bindable
+    public String getCar_plate_number() {
+        return car_plate_number;
+    }
+
+    public void setCar_plate_number(String car_plate_number) {
+        this.car_plate_number = car_plate_number;
+        notifyPropertyChanged(BR.car_plate_number);
+    }
+    @Bindable
+    public String getVehicleChar() {
+        return vehicleChar;
+    }
+
+    public void setVehicleChar(String vehicleChar) {
+        this.vehicleChar = vehicleChar;
+        notifyPropertyChanged(BR.vehicleChar);
+    }
+
+    @Bindable
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+        notifyPropertyChanged(BR.vehicleNumber);
+    }
+
 }

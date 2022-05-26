@@ -30,7 +30,7 @@ public class Fragment_Home extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         initView();
         return binding.getRoot();
     }
@@ -51,9 +51,9 @@ public class Fragment_Home extends Fragment {
 
                     break;
                 case 1:
+                    activity.DisplayFragmentMain();
 
-                    activity.DisplayFragmentOrder();
-                    
+
 
                     break;
                 case 2:
@@ -62,9 +62,11 @@ public class Fragment_Home extends Fragment {
 
                     break;
                 case 3:
-                    activity.DisplayFragmentMain();
+                    activity.DisplayFragmentOrder();
                     break;
-
+                case 4:
+                    activity.DisplayFragmentMarket();
+                    break;
             }
             return false;
         });
@@ -73,26 +75,26 @@ public class Fragment_Home extends Fragment {
 
     private void setUpBottomNavigation() {
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("", R.drawable.ic_user);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("", R.drawable.ic_paper);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("", R.drawable.ic_offer);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("", R.drawable.logo_only);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.profile2), R.drawable.ic_user);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.services), R.drawable.logo_only);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.offer), R.drawable.ic_offer);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.my_order), R.drawable.ic_paper);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.market), R.drawable.ic_nav_cart);
 
-        binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
+        binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         binding.ahBottomNav.setDefaultBackgroundColor(ContextCompat.getColor(activity, R.color.white));
         binding.ahBottomNav.setTitleTextSizeInSp(14, 12);
         binding.ahBottomNav.setForceTint(true);
-        binding.ahBottomNav.setAccentColor(ContextCompat.getColor(activity, R.color.colorPrimary));
+        binding.ahBottomNav.setAccentColor(ContextCompat.getColor(activity, R.color.color_second));
         binding.ahBottomNav.setInactiveColor(ContextCompat.getColor(activity, R.color.gray5));
 
         binding.ahBottomNav.addItem(item1);
         binding.ahBottomNav.addItem(item2);
         binding.ahBottomNav.addItem(item3);
         binding.ahBottomNav.addItem(item4);
+        binding.ahBottomNav.addItem(item5);
 
-        binding.ahBottomNav.setCurrentItem(3);
-
-
+        binding.ahBottomNav.setCurrentItem(1);
 
 
     }
@@ -101,7 +103,6 @@ public class Fragment_Home extends Fragment {
 
         binding.ahBottomNav.setCurrentItem(pos, false);
     }
-
 
 
     public static Fragment_Home newInstance() {

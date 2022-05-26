@@ -46,13 +46,17 @@ public class ItemToUpload extends BaseObservable implements Serializable {
     private String coupon_serial;
     private String ar_service_type;
     private String en_service_type;
+    private String vehicleChar;
+    private String vehicleNumber;
+    private String car_plate_number;
     private ServiceDataModel.Level2 level2;
     private List<SubServiceModel> sub_services;
 
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
-
+    public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_plate_char_error = new ObservableField<>();
 
     public boolean isDataValidStep1(Context context) {
         if (service_id != 0 &&
@@ -60,7 +64,8 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 carSize_id != 0 &&
                 carType_id != 0 &&
                 brand_id != 0 &&
-
+                !vehicleChar.isEmpty() &&
+                !vehicleNumber.isEmpty() &&
                 !TextUtils.isEmpty(address) &&
                 order_time_id != 0 &&
                 !order_date.isEmpty() &&
@@ -71,7 +76,8 @@ public class ItemToUpload extends BaseObservable implements Serializable {
             address_error.set(null);
             time_error.set(null);
             date_error.set(null);
-
+            car_plate_number_error.set(null);
+            car_plate_char_error.set(null);
 
             return true;
         } else {
@@ -96,7 +102,16 @@ public class ItemToUpload extends BaseObservable implements Serializable {
                 address_error.set(null);
 
             }
-
+            if (vehicleNumber.isEmpty()) {
+                car_plate_number_error.set(context.getString(R.string.field_req));
+            } else {
+                car_plate_number_error.set(null);
+            }
+            if (vehicleChar.isEmpty()) {
+                car_plate_char_error.set(context.getString(R.string.field_req));
+            } else {
+                car_plate_char_error.set(null);
+            }
             if (order_time_id == 0) {
                 time_error.set(context.getString(R.string.field_req));
             } else {
@@ -178,6 +193,10 @@ public class ItemToUpload extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.en_brand_name);
         this.place_id = 0;
         notifyPropertyChanged(BR.place_id);
+        this.vehicleNumber = "";
+        notifyPropertyChanged(BR.vehicleNumber);
+        this.vehicleChar = "";
+        notifyPropertyChanged(BR.vehicleChar);
     }
 
     @Bindable
@@ -200,7 +219,15 @@ public class ItemToUpload extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.ar_car_type);
 
     }
+    @Bindable
+    public String getCar_plate_number() {
+        return car_plate_number;
+    }
 
+    public void setCar_plate_number(String car_plate_number) {
+        this.car_plate_number = car_plate_number;
+        notifyPropertyChanged(BR.car_plate_number);
+    }
     @Bindable
     public int getBrand_id() {
         return brand_id;
@@ -389,6 +416,25 @@ public class ItemToUpload extends BaseObservable implements Serializable {
         time_error.set(null);
         notifyPropertyChanged(BR.time);
 
+    }
+    @Bindable
+    public String getVehicleChar() {
+        return vehicleChar;
+    }
+
+    public void setVehicleChar(String vehicleChar) {
+        this.vehicleChar = vehicleChar;
+        notifyPropertyChanged(BR.vehicleChar);
+    }
+
+    @Bindable
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+        notifyPropertyChanged(BR.vehicleNumber);
     }
 
     @Bindable
