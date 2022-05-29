@@ -7,6 +7,9 @@
         <variable
             name="lang"
             type="String" />
+        <variable
+            name="model"
+            type="com.creative.share.apps.wash_squad.models.CategoryModel" />
 
     </data>
 
@@ -15,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@{model.selected?@color/white:@color/colorPrimary}"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:contentPadding="8dp">
@@ -29,7 +32,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="معطرات"
+                android:text='@{lang.equals("ar")?model.title_ar:model.title_en}'
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
