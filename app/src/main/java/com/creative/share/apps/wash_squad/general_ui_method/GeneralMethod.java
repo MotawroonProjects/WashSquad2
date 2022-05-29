@@ -60,6 +60,7 @@ public class GeneralMethod {
     @BindingAdapter("offerImage")
     public static void offerImage(RoundedImageView imageView, String endPoint)
     {
+        Log.e("Dldlldl",Tags.IMAGE_URL+endPoint);
         Picasso.get().load(Uri.parse(Tags.IMAGE_URL+endPoint)).fit().into(imageView);
     }
 

@@ -23,8 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service.ChooseServiceSentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_product_details.ProductDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_web_view.WebViewActivity;
 import com.creative.share.apps.wash_squad.adapters.CategoryAdapter;
 import com.creative.share.apps.wash_squad.adapters.MainServiceAdapter;
 import com.creative.share.apps.wash_squad.adapters.Product2Adapter;
@@ -115,6 +117,12 @@ public class Fragment_Market extends Fragment {
                             categoryModelList.clear();
                             categoryModelList.addAll(response.body().getData());
                             categoryAdapter.notifyDataSetChanged();
+                            if(categoryModelList.size()>0){
+                                binding.llNoItems.setVisibility(View.GONE);
+                            }
+                            else {
+                                binding.llNoItems.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             try {
 
@@ -156,6 +164,12 @@ public class Fragment_Market extends Fragment {
                             productModelList.clear();
                             productModelList.addAll(response.body().getData());
                             product2Adapter.notifyDataSetChanged();
+                            if(productModelList.size()>0){
+                                binding.llNoItems.setVisibility(View.GONE);
+                            }
+                            else {
+                                binding.llNoItems.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 
@@ -181,5 +195,19 @@ public class Fragment_Market extends Fragment {
 
     public void setItemCategory(CategoryModel model, int position) {
         getProducts(model.getId());
+    }
+
+    public void showProductDetials(String id) {
+        Intent intent=new Intent(activity, ProductDetailsActivity.class);
+        intent.putExtra("product_id",id);
+        startActivity(intent);
+    }
+
+    public void showLink(String linkk) {
+
+                Intent intent=new Intent(activity, WebViewActivity.class);
+                intent.putExtra("url",linkk);
+                startActivity(intent);
+
     }
 }

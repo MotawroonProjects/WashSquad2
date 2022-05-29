@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.OrderDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_web_view.WebViewActivity;
 import com.creative.share.apps.wash_squad.databinding.ActivityProductDetailsBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
@@ -59,6 +61,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
     private void initView() {
+        binding.tvOldPrice.setPaintFlags(binding.tvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
@@ -68,7 +71,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.btnSendOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProductDetailsActivity.this, WebViewActivity.class);
+                intent.putExtra("url",productModel.getData().getLinkk());
+                startActivity(intent);
+            }
+        });
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        getProductDetials();
     }
 
     private void getProductDetials() {
