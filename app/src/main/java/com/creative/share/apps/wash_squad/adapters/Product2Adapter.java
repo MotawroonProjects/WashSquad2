@@ -82,7 +82,7 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.MyHold
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
     public void clearSelection() {

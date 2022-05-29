@@ -155,8 +155,7 @@ public class Fragment_Market extends Fragment {
                             binding.progBarOffers.setVisibility(View.GONE);
                             productModelList.clear();
                             productModelList.addAll(response.body().getData());
-                            categoryAdapter.notifyDataSetChanged();
-
+                            product2Adapter.notifyDataSetChanged();
                         }
                     }
 

@@ -62,7 +62,7 @@
                    android:layout_marginTop="10dp"
                    android:layout_marginBottom="10dp"
                    android:gravity="center"
-                   android:text='@{model.price}'
+                   android:text='@{model.is_low_price.equals("yes")?((Double.parseDouble(model.price)+Double.parseDouble(model.low_price_value))+@string/sar):"0"}'
                    android:textColor="@color/colorPrimary"
                    android:textSize="14sp"
                    android:textStyle="bold" />
@@ -74,7 +74,7 @@
                    android:layout_marginStart="10dp"
                    android:layout_marginEnd="10dp"
                    android:gravity="center"
-                   android:text='@{"50 "+@string/sar}'
+                   android:text='@{model.price+@string/sar}'
                    android:textColor="@color/red"
                    android:textSize="14sp"
                    android:textStyle="bold" />
