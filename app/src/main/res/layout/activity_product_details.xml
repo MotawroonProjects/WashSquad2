@@ -7,6 +7,10 @@
         <variable
             name="lang"
             type="String" />
+        <variable
+            name="model"
+            type="com.creative.share.apps.wash_squad.models.ProductModel" />
+        <import type="android.text.Html"/>
     </data>
 
     <FrameLayout
@@ -14,8 +18,10 @@
         android:layout_height="match_parent"
         >
         <LinearLayout
+            android:id="@+id/llData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:orientation="vertical"
             >
             <androidx.appcompat.widget.Toolbar
@@ -53,7 +59,7 @@
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="معطرات"
+                        android:text='@{lang.equals("en")?model.category.title_en:model.category.title_ar}'
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:layout_marginStart="8dp"
@@ -94,6 +100,7 @@
                                android:layout_height="250dp"
                                android:src="@drawable/logo_only"
                                android:scaleType="fitXY"
+                               offerImage="@{model.image}"
                                app:riv_border_color="@color/colorAccent"
                                app:riv_border_width="1dp"
                                app:riv_corner_radius="10dp" />
@@ -104,7 +111,7 @@
                                android:layout_marginTop="15dp"
                                android:gravity="start"
                                android:maxLines="2"
-                               android:text="معطر سياره ايطالى"
+                               android:text='@{lang.equals("en")?model.title_en:model.title_ar}'
                                android:textColor="@color/colorPrimary"
                                android:textSize="15sp" />
 
@@ -119,7 +126,7 @@
                                    android:layout_marginTop="10dp"
                                    android:layout_marginBottom="10dp"
                                    android:gravity="center"
-                                   android:text='@{"150 "+@string/sar}'
+                                   android:text='@{model.is_low_price.equals("yes")?((Double.parseDouble(model.price)+Double.parseDouble(model.low_price_value))+@string/sar):"0"}'
                                    android:textColor="@color/colorPrimary"
                                    android:textSize="14sp"
                                    android:textStyle="bold" />
@@ -131,7 +138,7 @@
                                    android:layout_marginStart="10dp"
                                    android:layout_marginEnd="10dp"
                                    android:gravity="center"
-                                   android:text='@{"50 "+@string/sar}'
+                                   android:text='@{model.price+@string/sar}'
                                    android:textColor="@color/red"
                                    android:textSize="14sp"
                                    android:textStyle="bold" />
@@ -141,33 +148,10 @@
                                android:layout_height="wrap_content"
                                android:layout_marginTop="10dp"
                                android:gravity="start"
-                               android:text="سعر الزجاجة : 10"
+                               android:text='@{lang.equals("en")?Html.fromHtml(model.desc_en):Html.fromHtml(model.desc_ar)}'
                                android:textSize="14sp"
                                android:textColor="@color/colorPrimary"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginTop="5dp"
-                               android:gravity="start"
-                               android:text="الوزن الصافي : 0.4"
-                               android:textSize="14sp"
-                               android:textColor="@color/colorPrimary"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginTop="5dp"
-                               android:gravity="start"
-                               android:text="يعمل مع ميزة الشحن"
-                               android:textSize="14sp"
-                               android:textColor="@color/colorPrimary"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginTop="5dp"
-                               android:gravity="start"
-                               android:text="الاصدار المطور 2021"
-                               android:textSize="14sp"
-                               android:textColor="@color/colorPrimary"/>
+
                            <Button
                                android:id="@+id/btnSendOrder"
                                android:layout_width="match_parent"
@@ -193,5 +177,11 @@
             </ScrollView>
 
         </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
     </FrameLayout>
 </layout>

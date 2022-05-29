@@ -19,6 +19,7 @@ import com.creative.share.apps.wash_squad.models.SendServiceModel;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
 import com.creative.share.apps.wash_squad.models.SettingModel;
 import com.creative.share.apps.wash_squad.models.SingleOrderDataModel;
+import com.creative.share.apps.wash_squad.models.SingleProductModel;
 import com.creative.share.apps.wash_squad.models.SubscribtionDataModel;
 import com.creative.share.apps.wash_squad.models.TimeDataModel;
 import com.creative.share.apps.wash_squad.models.UserModel;
@@ -256,4 +257,6 @@ public interface Service {
     @POST("api/client/profile")
     Call<UserModel> getProfile(@Field("user_id") String user_id
     );
+    @GET("api/shop/productById")
+    Call<SingleProductModel> getProductDetials(@Query("product_id") String servproduct_idice_id);
 }
