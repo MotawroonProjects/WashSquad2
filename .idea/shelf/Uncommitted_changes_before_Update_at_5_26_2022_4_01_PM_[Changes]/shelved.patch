@@ -1,0 +1,327 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/btn_bg.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/btn_code_confirm.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/btn_discount.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/btn_send.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/circle_gray.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/circle_primary.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/custom_bg.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/dialog_window_bg.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/ic_calender.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rounded_white.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/rounded_white_strock_primary.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/select.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/select_time.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/selected_car_size_bg.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/shap1_select.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/drawable/shap2_select.xml\" value=\"0.25555555555555554\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_calendar.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_choose_service_sent.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_edit_profile.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_home.xml\" value=\"0.19074074074074074\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_payment.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_payment_subscribtion.xml\" value=\"0.11614583333333334\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_questions.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_category.xml\" value=\"0.20833333333333334\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml\" value=\"0.2509505703422053\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_sign_in.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml\" value=\"0.24010416666666667\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_time.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_alert.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_cash.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_forgetpassword.xml\" value=\"0.21296296296296297\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_home.xml\" value=\"0.19074074074074074\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_main.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_profile.xml\" value=\"0.10914855072463768\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml\" value=\"0.21296296296296297\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/main_service_row.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/AndroidProjects/WashSquad2/app/src/main/res/layout/time_row.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml\" value=\"0.18\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_subscription_service.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/additional_row.xml\" value=\"0.17083333333333334\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/additional_service_row.xml\" value=\"0.11574074074074074\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/category_row.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/category_service_row.xml\" value=\"0.15104166666666666\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_cart.xml\" value=\"0.17083333333333334\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_coupon.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_market.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_offers.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/product2_row.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/product_row.xml\" value=\"0.11574074074074074\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/question_row.xml\" value=\"0.15104166666666666\" />\r\n        <entry key=\"..\\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/wash_row.xml\" value=\"0.15104166666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/btn_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/btn_code_confirm.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/btn_discount.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/btn_gray.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/btn_send.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/circle_primary.xml\" value=\"0.275\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/correct.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/custom_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/dialog_window_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/edt_comment.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/edt_discount_code.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_car.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_car5.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_card.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_cart.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_close2.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_contact_us.xml\" value=\"0.275\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_nav_cart.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_phone.xml\" value=\"0.275\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_setting.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/ic_whatts.xml\" value=\"0.275\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/image_user_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/image_user_bg_color.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/item_selected2.xml\" value=\"0.2890625\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/profile_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/profile_detials_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/rb_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/rounded_white.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/selected_car_size_bg.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/shap1_select.xml\" value=\"0.15885416666666666\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/drawable/tab_order_indicator.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_choose_service_sent.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_edit_profile.xml\" value=\"0.21\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_help.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_home.xml\" value=\"0.1390625\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_intro_.xml\" value=\"0.1390625\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_login_option.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_new_password.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_order_details.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_payment.xml\" value=\"0.12149532710280374\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_payment_subscribtion.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_paypal.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_questions.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_service_details.xml\" value=\"0.21\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml\" value=\"0.21768707482993196\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_sign_in.xml\" value=\"0.25729166666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_subscribe_detials.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml\" value=\"0.309255079006772\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_subscription_service.xml\" value=\"0.16798732171156894\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_terms.xml\" value=\"0.1390625\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_time.xml\" value=\"0.1390625\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_wallet.xml\" value=\"0.28541666666666665\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/activity_webview.xml\" value=\"0.1906474820143885\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/additional_service_row.xml\" value=\"0.19427083333333334\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/area_row.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/dialog_language.xml\" value=\"0.22552083333333334\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_code_verification.xml\" value=\"0.20925925925925926\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_forgetpassword.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_home.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_main.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_newpassword.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_offer.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_offers.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_order_detials.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_order_detials_evaluation.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_product_details.xml\" value=\"0.13333333333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_profile.xml\" value=\"0.32503457814661135\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml\" value=\"0.14270833333333333\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/offer_row.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/order_row.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/size_row.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/time_row.xml\" value=\"0.27291666666666664\" />\r\n        <entry key=\"..\\:/WashSquad2/app/src/main/res/layout/wash_row.xml\" value=\"0.25\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 1dc594f73283d5e0705a5f13a83a6ea735333e09)
++++ b/.idea/misc.xml	(date 1653572818615)
+@@ -25,12 +25,14 @@
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_home.xml" value="0.19074074074074074" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.264" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_payment_subscribtion.xml" value="0.11614583333333334" />
++        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_product_details.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_questions.xml" value="0.264" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_category.xml" value="0.20833333333333334" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml" value="0.2509505703422053" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
++        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml" value="0.24010416666666667" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/activity_time.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/dialog_alert.xml" value="0.25416666666666665" />
+@@ -42,6 +44,8 @@
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml" value="0.21296296296296297" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/main_service_row.xml" value="0.2" />
++        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/product2_row.xml" value="0.25416666666666665" />
++        <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/product_row.xml" value="0.25416666666666665" />
+         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/time_row.xml" value="0.25416666666666665" />
+         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml" value="0.18" />
+         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml" value="0.25" />
+Index: app/src/main/res/layout/activity_product_details.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_product_details.xml b/app/src/main/res/layout/activity_product_details.xml
+new file mode 100644
+--- /dev/null	(date 1653573706421)
++++ b/app/src/main/res/layout/activity_product_details.xml	(date 1653573706421)
+@@ -0,0 +1,197 @@
++<?xml version="1.0" encoding="utf-8"?>
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <data>
++        <variable
++            name="lang"
++            type="String" />
++    </data>
++
++    <FrameLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        >
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            >
++            <androidx.appcompat.widget.Toolbar
++                android:id="@+id/toolbar"
++                android:layout_width="match_parent"
++                android:layout_height="56dp"
++                android:background="@color/colorPrimary"
++                app:contentInsetEnd="0dp"
++                app:contentInsetLeft="0dp"
++                app:contentInsetRight="0dp"
++                app:contentInsetStart="0dp"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent">
++
++                <androidx.constraintlayout.widget.ConstraintLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content">
++
++                    <ImageView
++                        android:id="@+id/llBack"
++                        android:layout_width="35dp"
++                        android:layout_height="35dp"
++                        android:clickable="false"
++                        android:longClickable="false"
++                        android:padding="8dp"
++                        android:rotation='@{lang.equals("ar")?180:0}'
++                        android:src="@drawable/ic_arrow_left"
++                        app:layout_constraintBottom_toBottomOf="parent"
++                        app:layout_constraintStart_toStartOf="parent"
++                        app:layout_constraintTop_toTopOf="parent"
++                        app:tint="@color/white" />
++
++                    <TextView
++                        android:id="@+id/textView"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="معطرات"
++                        android:textColor="@color/white"
++                        android:textSize="16sp"
++                        android:layout_marginStart="8dp"
++                        android:layout_marginEnd="8dp"
++                        app:layout_constraintBottom_toBottomOf="parent"
++                        app:layout_constraintEnd_toEndOf="parent"
++                        app:layout_constraintTop_toTopOf="parent" />
++
++                </androidx.constraintlayout.widget.ConstraintLayout>
++            </androidx.appcompat.widget.Toolbar>
++            <ScrollView
++                android:layout_width="match_parent"
++                android:layout_height="0dp"
++                android:layout_weight="1"
++                android:fillViewport="true">
++               <FrameLayout
++                   android:layout_width="match_parent"
++                   android:layout_height="wrap_content">
++                   <androidx.cardview.widget.CardView
++                       android:layout_width="match_parent"
++                       android:layout_height="wrap_content"
++                       android:layout_marginLeft="20dp"
++                       android:layout_marginTop="20dp"
++                       android:layout_marginRight="20dp"
++                       app:cardBackgroundColor="@color/white"
++                       app:cardCornerRadius="8dp"
++                       app:cardElevation="3dp"
++                       app:contentPadding="8dp">
++
++                       <LinearLayout
++                           android:layout_width="match_parent"
++                           android:layout_height="wrap_content"
++                           android:orientation="vertical">
++
++                           <com.makeramen.roundedimageview.RoundedImageView
++
++                               android:layout_width="match_parent"
++                               android:layout_height="250dp"
++                               android:src="@drawable/logo_only"
++                               android:scaleType="fitXY"
++                               app:riv_border_color="@color/colorAccent"
++                               app:riv_border_width="1dp"
++                               app:riv_corner_radius="10dp" />
++
++                           <TextView
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:layout_marginTop="15dp"
++                               android:gravity="start"
++                               android:maxLines="2"
++                               android:text="معطر سياره ايطالى"
++                               android:textColor="@color/colorPrimary"
++                               android:textSize="15sp" />
++
++                           <LinearLayout
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:orientation="horizontal">
++                               <TextView
++                                   android:id="@+id/tvOldPrice"
++                                   android:layout_width="wrap_content"
++                                   android:layout_height="wrap_content"
++                                   android:layout_marginTop="10dp"
++                                   android:layout_marginBottom="10dp"
++                                   android:gravity="center"
++                                   android:text='@{"150 "+@string/sar}'
++                                   android:textColor="@color/colorPrimary"
++                                   android:textSize="14sp"
++                                   android:textStyle="bold" />
++                               <TextView
++                                   android:layout_width="wrap_content"
++                                   android:layout_height="wrap_content"
++                                   android:layout_marginTop="10dp"
++                                   android:layout_marginBottom="10dp"
++                                   android:layout_marginStart="10dp"
++                                   android:layout_marginEnd="10dp"
++                                   android:gravity="center"
++                                   android:text='@{"50 "+@string/sar}'
++                                   android:textColor="@color/red"
++                                   android:textSize="14sp"
++                                   android:textStyle="bold" />
++                           </LinearLayout>
++                           <TextView
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:layout_marginTop="10dp"
++                               android:gravity="start"
++                               android:text="سعر الزجاجة : 10"
++                               android:textSize="14sp"
++                               android:textColor="@color/colorPrimary"/>
++                           <TextView
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:layout_marginTop="5dp"
++                               android:gravity="start"
++                               android:text="الوزن الصافي : 0.4"
++                               android:textSize="14sp"
++                               android:textColor="@color/colorPrimary"/>
++                           <TextView
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:layout_marginTop="5dp"
++                               android:gravity="start"
++                               android:text="يعمل مع ميزة الشحن"
++                               android:textSize="14sp"
++                               android:textColor="@color/colorPrimary"/>
++                           <TextView
++                               android:layout_width="wrap_content"
++                               android:layout_height="wrap_content"
++                               android:layout_marginTop="5dp"
++                               android:gravity="start"
++                               android:text="الاصدار المطور 2021"
++                               android:textSize="14sp"
++                               android:textColor="@color/colorPrimary"/>
++                           <Button
++                               android:id="@+id/btnSendOrder"
++                               android:layout_width="match_parent"
++                               android:layout_height="35dp"
++                               android:layout_gravity="center_horizontal"
++                               android:layout_marginTop="10dp"
++                               android:layout_marginBottom="10dp"
++                               android:layout_marginStart="15dp"
++                               android:layout_marginEnd="15dp"
++                               android:background="@drawable/btn_send"
++                               android:paddingLeft="50dp"
++                               android:paddingRight="50dp"
++                               android:text="@string/order_now"
++                               android:textAllCaps="false"
++                               android:textColor="@color/white"
++                               android:textSize="15sp" />
++
++                       </LinearLayout>
++                   </androidx.cardview.widget.CardView>
++
++               </FrameLayout>
++
++            </ScrollView>
++
++        </LinearLayout>
++    </FrameLayout>
++</layout>
+\ No newline at end of file
+Index: app/src/main/java/com/creative/share/apps/wash_squad/activities_fragments/activity_product_details/ProductDetailsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/creative/share/apps/wash_squad/activities_fragments/activity_product_details/ProductDetailsActivity.java b/app/src/main/java/com/creative/share/apps/wash_squad/activities_fragments/activity_product_details/ProductDetailsActivity.java
+new file mode 100644
+--- /dev/null	(date 1653572578653)
++++ b/app/src/main/java/com/creative/share/apps/wash_squad/activities_fragments/activity_product_details/ProductDetailsActivity.java	(date 1653572578653)
+@@ -0,0 +1,22 @@
++package com.creative.share.apps.wash_squad.activities_fragments.activity_product_details;
++
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.databinding.DataBindingUtil;
++
++import android.os.Bundle;
++
++import com.creative.share.apps.wash_squad.R;
++import com.creative.share.apps.wash_squad.databinding.ActivityProductDetailsBinding;
++
++public class ProductDetailsActivity extends AppCompatActivity {
++    private ActivityProductDetailsBinding binding;
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        binding= DataBindingUtil.setContentView(this,R.layout.activity_product_details);
++        initView();
++    }
++
++    private void initView() {
++    }
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    package=\"com.creative.share.apps.wash_squad\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.CALL_PHONE\"/>\r\n    <application\r\n        android:name=\".language.App\"\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\"\r\n        android:requestLegacyExternalStorage=\"true\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:ignore=\"GoogleAppIndexingWarning\"\r\n        tools:targetApi=\"m\">\r\n        <activity\r\n            android:name=\".activities_fragments.activity_payment.PaypalwebviewActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_choose_service.ChooseServiceSentActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_edit_profile.EditProfileActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activity_quick_order.QuickOrderActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_login_option.LoginOptionActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_order_details.OrderDetailsActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_change_password.PasswordActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n\r\n        <meta-data\r\n            android:name=\"com.google.android.geo.API_KEY\"\r\n            android:value=\"@string/map_api_key\" />\r\n        <meta-data\r\n            android:name=\"com.google.android.gms.version\"\r\n            android:value=\"@integer/google_play_services_version\" />\r\n\r\n        <activity\r\n            android:name=\".activities_fragments.activity_payment.PaymentActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_time.TimeActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_contact_us.ContactUsActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_terms_conditions.TermsActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.questions_activity.QuestionsActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_help.HelpActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.calendar_activity.CalendarActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_map.MapActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity android:name=\".activities_fragments.activity_service_details.ServiceDetailsActivity\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_service_category.ServiceCategoryActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_home.activity.HomeActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_sign_in.SignInActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_subscribtion.SubscribtionActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_wallet.WalletActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden|adjustResize\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_splash.SplashActivity\"\r\n            android:configChanges=\"orientation|screenSize|keyboardHidden\"\r\n            android:exported=\"true\"\r\n            android:windowSoftInputMode=\"stateHidden|adjustResize\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".activities_fragments.activity_subscribtion_payment.PaymentSubscribtionActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_intro.Intro_Activity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n        <activity\r\n            android:name=\".activities_fragments.activity_print.PrintActivity\"\r\n            android:configChanges=\"screenSize|orientation|keyboardHidden\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n        <service\r\n            android:name=\".notification.FireBaseMessaging\"\r\n            android:exported=\"false\">\r\n            <intent-filter>\r\n                <action android:name=\"com.google.firebase.MESSAGING_EVENT\" />\r\n            </intent-filter>\r\n        </service>\r\n        <service\r\n            android:name=\".services.ServiceDownload\"\r\n            android:enabled=\"true\"\r\n            android:stopWithTask=\"false\" />\r\n        <provider\r\n            android:name=\"androidx.core.content.FileProvider\"\r\n            android:authorities=\"${applicationId}.provider\"\r\n            android:exported=\"false\"\r\n            android:grantUriPermissions=\"true\">\r\n            <meta-data\r\n                android:name=\"android.support.FILE_PROVIDER_PATHS\"\r\n                android:resource=\"@xml/provider_path\" />\r\n        </provider>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 1dc594f73283d5e0705a5f13a83a6ea735333e09)
++++ b/app/src/main/AndroidManifest.xml	(date 1653572489466)
+@@ -11,19 +11,23 @@
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+-    <uses-permission android:name="android.permission.CALL_PHONE"/>
++    <uses-permission android:name="android.permission.CALL_PHONE" />
++
+     <application
+         android:name=".language.App"
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+         android:label="@string/app_name"
++        android:requestLegacyExternalStorage="true"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme"
+-        android:requestLegacyExternalStorage="true"
+         android:usesCleartextTraffic="true"
+         tools:ignore="GoogleAppIndexingWarning"
+         tools:targetApi="m">
++        <activity
++            android:name=".ProductDetailsActivity"
++            android:exported="false" />
+         <activity
+             android:name=".activities_fragments.activity_payment.PaypalwebviewActivity"
+             android:exported="false" />
+@@ -140,6 +144,7 @@
+             android:name=".activities_fragments.activity_print.PrintActivity"
+             android:configChanges="screenSize|orientation|keyboardHidden"
+             android:windowSoftInputMode="stateAlwaysHidden" />
++
+         <service
+             android:name=".notification.FireBaseMessaging"
+             android:exported="false">
+@@ -151,6 +156,7 @@
+             android:name=".services.ServiceDownload"
+             android:enabled="true"
+             android:stopWithTask="false" />
++
+         <provider
+             android:name="androidx.core.content.FileProvider"
+             android:authorities="${applicationId}.provider"
