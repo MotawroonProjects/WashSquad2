@@ -4,7 +4,7 @@
     <string name="map_api_key">AIzaSyDRH058OG79geHwTA1xw5hlOmomHIFbj94</string>
     <string name="log_in">تسجيل الدخول</string>
     <string name="email">البريد الالكترونى</string>
-    <string name="password">كلمة المرور</string>
+    <string name="password">رمز الدخول</string>
     <string name="login">تسجيل الدخول</string>
     <string name="signup">إنشاء حساب جديد</string>
     <string name="are_you_forgot_password">نسيت كلمة المرور؟</string>
@@ -60,7 +60,7 @@
     <string name="subject">الموضوع</string>
     <string name="message">الرسالة</string>
     <string name="inv_now">غير متاح الان</string>
-    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="forget_password">نسيت رمز الدخول؟</string>
     <string name="recov_msg">سنرسل لك رابطا على البريد الخاص بكم لتغيير كلمة المرور.</string>
     <string name="enter_code">أدخل الرمز</string>
     <string name="we_ll_never_share_or_sell_your_phone_number_your_privacy_is_100_guaranteed">بياناتك في الحفظ والصون لدينا، ماراح نشارك بياناتك مع اي احد ولأي سبب.</string>
