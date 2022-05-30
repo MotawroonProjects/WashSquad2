@@ -7,6 +7,7 @@
         <variable
             name="lang"
             type="String" />
+        <import type="android.view.View"/>
         <variable
             name="model"
             type="com.creative.share.apps.wash_squad.models.ProductModel" />
@@ -126,6 +127,7 @@
                                    android:layout_marginTop="10dp"
                                    android:layout_marginBottom="10dp"
                                    android:gravity="center"
+                                   android:visibility='@{model.is_low_price.equals("no")?View.GONE:View.VISIBLE,default=gone}'
                                    android:text='@{model.is_low_price.equals("yes")?((Double.parseDouble(model.price)+Double.parseDouble(model.low_price_value))+@string/sar):"0"}'
                                    android:textColor="@color/colorPrimary"
                                    android:textSize="14sp"
@@ -148,7 +150,7 @@
                                android:layout_height="wrap_content"
                                android:layout_marginTop="10dp"
                                android:gravity="start"
-                               android:text='@{lang.equals("en")?Html.fromHtml(model.desc_en):Html.fromHtml(model.desc_ar)}'
+                               android:text='@{lang.equals("en")?model.desc_en:model.desc_en}'
                                android:textSize="14sp"
                                android:textColor="@color/colorPrimary"/>
 

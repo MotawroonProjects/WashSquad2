@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.Fragment_Market;
 import com.creative.share.apps.wash_squad.databinding.CategoryRowBinding;
 import com.creative.share.apps.wash_squad.databinding.Product2RowBinding;
 import com.creative.share.apps.wash_squad.models.ProductModel;
@@ -48,35 +49,24 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.MyHold
         MyHolder myHolder = (MyHolder) holder;
         myHolder.timeRowBinding.setModel(list.get(position));
         myHolder.timeRowBinding.setLang(lang);
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                if (oldHolder != null) {
-//                    if(oldPos!=-1){
-//                      }
-//                }
-//                currentPos = holder.getAdapterPosition();
-//              notifyDataSetChanged();
-//
-//                oldHolder = holder;
-//                oldPos = currentPos;
-//
-//
-//            }
-//        });
-
-
-//if(currentPos==position){
-//    holder.timeRowBinding.card.setCardBackgroundColor(context.getResources().getColor(R.color.colorAccent));
-//    holder.timeRowBinding.tvTitle.setTextColor(context.getResources().getColor(R.color.white));
-//}
-//else{
-//    holder.timeRowBinding.card.setCardBackgroundColor(context.getResources().getColor(R.color.white));
-//    holder.timeRowBinding.tvTitle.setTextColor(context.getResources().getColor(R.color.colorAccent));
-//
-//}
-
+myHolder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        if(fragment instanceof Fragment_Market){
+            Fragment_Market fragment_market=(Fragment_Market) fragment;
+            fragment_market.showProductDetials(list.get(holder.getAdapterPosition()).getId())
+;        }
+    }
+});
+myHolder.timeRowBinding.btnSendOrder.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        if(fragment instanceof Fragment_Market){
+            Fragment_Market fragment_market=(Fragment_Market) fragment;
+            fragment_market.showLink(list.get(holder.getAdapterPosition()).getLinkk());
+        }
+    }
+});
 
     }
 
