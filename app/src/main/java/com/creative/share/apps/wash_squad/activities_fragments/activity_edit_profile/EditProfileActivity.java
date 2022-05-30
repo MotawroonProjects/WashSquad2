@@ -111,6 +111,9 @@ public class EditProfileActivity extends AppCompatActivity implements Listeners.
 
 //        }
 
+            if (userModel.getLogo()!=null){
+                binding.addPhoto.setVisibility(View.GONE);
+            }
             binding.image.setOnClickListener(view -> CreateImageAlertDialog());
             binding.llChange.setOnClickListener(view -> {
                 Intent intent = new Intent(this, PasswordActivity.class);
