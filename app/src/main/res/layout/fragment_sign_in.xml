@@ -75,22 +75,22 @@
 
                     >
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:contentPadding="5dp"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="3dp"
-                        app:cardBackgroundColor="@color/gray2"
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:background="@drawable/rounded_grey1_strock_grey8"
 
                         >
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="53dp"
                             >
                             <ImageView
                                 android:id="@+id/icon"
@@ -188,26 +188,26 @@
                                 />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:id="@+id/cardPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:contentPadding="5dp"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="3dp"
-                        app:cardBackgroundColor="@color/gray2"
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="3dp"
+                        android:background="@drawable/rounded_grey1_strock_grey8"
 
                         >
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="53dp"
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             >
@@ -256,14 +256,14 @@
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="0dp"
-                    android:layout_height="45dp"
+                    android:layout_height="53dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ll"
@@ -296,9 +296,20 @@
                     app:layout_constraintVertical_bias="0"
                     android:onClick="@{()->forgetlistener.forget()}"
                     android:padding="15dp"
-
-
                     />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginStart="25dp"
+                    android:rotation='@{lang.equals("en")?180:0}'
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="30dp"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

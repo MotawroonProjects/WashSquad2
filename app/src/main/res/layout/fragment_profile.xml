@@ -108,20 +108,52 @@
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:src="@drawable/user_profile"
-                        app:civ_border_color="@color/colorPrimary"
-                        app:civ_border_width="1px"
-                        profileImage="@{usermodel.logo}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="RtlCompat" />
+                        >
+
+                        <FrameLayout
+                            android:id="@+id/flImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/image"
+                                profileImage="@{usermodel.logo}"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/user_profile"
+                                app:civ_border_color="@color/colorPrimary"
+                                app:civ_border_width="1px"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="RtlCompat" />
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/llVIP"
+                            android:layout_width="45dp"
+                            android:layout_height="15dp"
+                            app:layout_constraintBottom_toBottomOf="@id/flImage"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/flImage">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_vip" />
+                        </FrameLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -156,13 +188,29 @@
 
                     </LinearLayout>
 
-                    <ImageView
+                    <LinearLayout
                         android:id="@+id/editUser"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_edit"
-                        app:tint="@color/colorPrimary" />
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/colorPrimary" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edit"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"/>
+                    </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -625,32 +673,26 @@
                             android:layout_width="12dp"
                             android:layout_height="0dp" />
 
-
-                        <LinearLayout
-                            android:id="@+id/llInstagram"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/circle_primary">
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_instgram"
+                                android:id="@+id/llInstagram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/ic_insta"
                                 android:padding="10dp"
                                 android:tint="@color/white"
                                 />
-                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="3dp"
-                        android:gravity="center"
-                        android:text="@string/share_and_connect_with_us"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="14sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginTop="3dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="@string/share_and_connect_with_us"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="14sp" />-->
                 </LinearLayout>
             </ScrollView>
 

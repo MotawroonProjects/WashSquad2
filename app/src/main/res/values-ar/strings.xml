@@ -112,6 +112,7 @@
     <string name="help">مساعدة</string>
     <string name="repeat_questions">أسئلة متكرره</string>
     <string name="save">حفظ التعديلات</string>
+    <string name="save_edit">حفظ وتعديل</string>
     <string name="inc_code">رمز التحقق غير صحيح</string>
     <string name="user_not_active">المستخدم غيري نشط</string>
     <string name="not_active_phone">لم يتم التحقق من رقم الجوال</string>

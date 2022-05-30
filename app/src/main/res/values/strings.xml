@@ -114,6 +114,7 @@
     <string name="help">Help</string>
     <string name="repeat_questions">Repeating questions</string>
     <string name="save">Save</string>
+    <string name="save_edit">Save And Edit</string>
     <string name="inc_code">Incorrect code</string>
     <string name="user_not_active">User not active</string>
     <string name="not_active_phone">Not activate phone number</string>

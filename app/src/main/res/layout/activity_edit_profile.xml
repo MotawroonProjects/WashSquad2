@@ -123,18 +123,71 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/image"
-                            profileImage="@{usermodel.logo}"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            app:civ_border_color="@color/colorPrimary"
-                            app:civ_border_width="1dp"
-                            app:civ_circle_background_color="@color/white" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <FrameLayout
+                                android:id="@+id/flImage"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                >
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/image"
+                                    profileImage="@{usermodel.logo}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:clickable="false"
+                                    android:longClickable="false"
+                                    app:civ_border_color="@color/colorPrimary"
+                                    app:civ_border_width="1dp"
+                                    app:civ_circle_background_color="@color/colorPrimary"
+                                    android:src="@drawable/user_profile"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/addPhoto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_add_photo"
+                                    android:layout_gravity="center"
+                                    android:tint="@color/colorPrimary"/>
+                            </FrameLayout>
+                            <FrameLayout
+                                android:id="@+id/llVIP"
+                                android:layout_width="45dp"
+                                android:layout_height="20dp"
+                                app:layout_constraintBottom_toBottomOf="@id/flImage"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/flImage">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_vip" />
+                            </FrameLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                            android:id="@+id/image"-->
+<!--                            profileImage="@{usermodel.logo}"-->
+<!--                            android:layout_width="90dp"-->
+<!--                            android:layout_height="90dp"-->
+<!--                            app:civ_border_color="@color/colorPrimary"-->
+<!--                            app:civ_border_width="1dp"-->
+<!--                            app:civ_circle_background_color="@color/white" />-->
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="53dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/rounded_white_strock_primary">
 
@@ -176,7 +229,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="53dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/rounded_white_strock_primary">
 
@@ -215,13 +268,75 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+                        <LinearLayout
+                            android:id="@+id/cardPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:contentPadding="5dp"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="3dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/rounded_white_strock_primary">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="53dp"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/ic_lock"
+                                    android:padding="5dp"
+                                    android:tint="@color/gray5"
+                                    />
+                                <View
+                                    android:layout_width="1px"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@color/gray4"/>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:passwordToggleTint="@color/gray5"
+                                    app:passwordToggleEnabled="true"
+                                    app:hintEnabled="false"
+                                    app:errorEnabled="false"
+                                    >
+                                    <EditText
+                                        android:id="@+id/edtPassword"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:singleLine="true"
+                                        android:background="@color/transparent"
+                                        android:inputType="textPassword"
+                                        android:textColor="@color/black"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        android:hint="@string/password"
+                                        android:textSize="14sp"
+                                        android:textColorHint="@color/gray4"
+
+                                        />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
 
                         <LinearLayout
                             android:id="@+id/ll_change"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:layout_marginBottom="25dp"
+                            android:layout_marginBottom="35dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -353,15 +468,14 @@
                         android:onClick="@{(v)->editprofilelistener.checkDataEditProfile(editprofilemodel.name)}"
                         android:paddingLeft="40dp"
                         android:paddingRight="40dp"
-                        android:text="@string/save"
+                        android:textAllCaps="false"
+                        android:text="@string/save_edit"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@id/ll"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ll"
-
-
                         />
 
 
