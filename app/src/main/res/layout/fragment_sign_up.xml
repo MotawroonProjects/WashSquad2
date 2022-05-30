@@ -29,59 +29,57 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         >
-
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/white"
+            android:layout_height="match_parent"
             android:fillViewport="true"
+            android:background="@color/white"
             android:fitsSystemWindows="true"
             android:scrollbars="none"
-
-            app:layout_constraintBottom_toTopOf="@+id/imageBack"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintTop_toTopOf="parent"
+            >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                >
                 <LinearLayout
                     android:id="@+id/llTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:orientation="horizontal"
                     android:layout_marginTop="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/order" />
-
+                        android:src="@drawable/order"
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/the_quick_order"
+                        android:textColor="@color/colorAccent"
                         android:layout_gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:text="@string/the_quick_order"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/llBack"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
 
@@ -89,23 +87,22 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/llTitle">
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="25dp"
                         android:layout_marginBottom="3dp"
-                        app:cardBackgroundColor="@color/gray2"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="3dp"
                         app:contentPadding="5dp"
-
+                        android:background="@drawable/rounded_grey1_strock_grey8"
                         >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp">
+                            android:layout_height="53dp">
 
                             <ImageView
                                 android:id="@+id/iconName"
@@ -113,15 +110,15 @@
                                 android:layout_height="30dp"
                                 android:padding="5dp"
                                 android:src="@drawable/ic_user"
+                                android:tint="@color/gray5"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:tint="@color/gray5" />
+                                />
 
 
                             <EditText
                                 android:id="@+id/edtName"
-                                error="@{signUpModel.error_name}"
                                 android:layout_width="0dp"
                                 android:layout_height="30dp"
                                 android:background="@color/transparent"
@@ -131,6 +128,7 @@
                                 android:paddingRight="5dp"
                                 android:singleLine="true"
                                 android:text="@={signUpModel.name}"
+                                error="@{signUpModel.error_name}"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray4"
                                 android:textSize="14sp"
@@ -140,65 +138,54 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="25dp"
                         android:layout_marginBottom="3dp"
-                        app:cardBackgroundColor="@color/gray2"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="3dp"
                         app:contentPadding="5dp"
-
+                        android:background="@drawable/rounded_grey1_strock_grey8"
                         >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            >
+                            android:layout_height="53dp">
+
                             <ImageView
                                 android:id="@+id/icon"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:src="@drawable/ic_phone_call"
                                 android:padding="5dp"
+                                android:src="@drawable/ic_phone_call"
+                                android:tint="@color/gray5"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:tint="@color/gray5" />
-                            <View
-                                android:id="@+id/view"
-                                android:layout_width="1px"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="5dp"
-                                android:background="@color/gray4"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/icon"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                />
+
+
                             <TextView
                                 android:id="@+id/tvCode"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                app:layout_constraintStart_toEndOf="@id/view"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:textColor="@color/black"
                                 android:gravity="center"
-                                android:textSize="14sp"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                error="@{signUpModel.error_phone_code}"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/icon"
+                                app:layout_constraintTop_toTopOf="parent"
 
                                 />
 
@@ -213,52 +200,20 @@
                                 android:paddingRight="5dp"
                                 android:singleLine="true"
                                 android:textColor="@color/black"
+                                android:text="@={signUpModel.phone}"
+                                error="@{signUpModel.error_phone}"
                                 android:textColorHint="@color/gray4"
                                 android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@id/view2"
-                                app:layout_constraintStart_toEndOf="@id/tvCode"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:text="@={signUpModel.phone}"
-                                error="@{signUpModel.error_phone}"
-
-
-
-                                />
-
-                            <View
-                                android:id="@+id/view2"
-                                android:layout_width="1px"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="5dp"
-                                android:background="@color/gray4"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@id/imageCode"
-
-                                />
-
-                            <ImageView
-                                android:id="@+id/imageCode"
-                                android:layout_width="35dp"
-                                android:layout_height="0dp"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:src="@drawable/ic_arrow_right"
-                                android:padding="11dp"
-                                android:rotation='@{lang.equals("ar")?180:0}'
-                                android:onClick="@{()->showCountryListener.showDialog()}"
+                                app:layout_constraintStart_toEndOf="@id/icon"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                app:tint="@color/gray5" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:id="@+id/cardPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -266,16 +221,15 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="25dp"
                         android:layout_marginBottom="3dp"
-                        app:cardBackgroundColor="@color/gray2"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="3dp"
                         app:contentPadding="5dp"
-
+                        android:background="@drawable/rounded_grey1_strock_grey8"
                         >
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="53dp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -284,7 +238,7 @@
                                 android:layout_height="30dp"
                                 android:padding="5dp"
                                 android:src="@drawable/ic_lock"
-                                app:tint="@color/gray5" />
+                                android:tint="@color/gray5" />
 
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -297,16 +251,16 @@
 
                                 <EditText
                                     android:id="@+id/edtPassword"
-                                    error="@{signUpModel.error_password}"
                                     android:layout_width="match_parent"
                                     android:layout_height="30dp"
                                     android:background="@color/transparent"
                                     android:hint="@string/password"
                                     android:inputType="textPassword"
                                     android:paddingLeft="5dp"
+                                    android:text="@={signUpModel.password}"
+                                    error="@{signUpModel.error_password}"
                                     android:paddingRight="5dp"
                                     android:singleLine="true"
-                                    android:text="@={signUpModel.password}"
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/gray4"
                                     android:textSize="14sp"
@@ -316,70 +270,68 @@
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
 
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="20dp"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/male"
-                            android:textColor="@color/gray4"
-                            android:textSize="15sp" />
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:padding="5dp"
-                            android:text="@string/female"
-                            android:textColor="@color/gray4"
-                            android:textSize="15sp" />
-                    </RadioGroup>
+                    <!--                            <RadioGroup-->
+                    <!--                                android:layout_width="wrap_content"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:orientation="horizontal"-->
+                    <!--                                android:layout_marginStart="20dp"-->
+                    <!--                                android:layout_marginEnd="20dp"-->
+                    <!--                                android:layout_marginTop="15dp"-->
+                    <!--                                >-->
+                    <!--                                <RadioButton-->
+                    <!--                                    android:layout_width="wrap_content"-->
+                    <!--                                    android:layout_height="wrap_content"-->
+                    <!--                                    android:text="@string/male"-->
+                    <!--                                    android:textSize="15sp"-->
+                    <!--                                    android:padding="5dp"-->
+                    <!--                                    android:textColor="@color/gray4"/>-->
+                    <!--                                <RadioButton-->
+                    <!--                                    android:layout_width="wrap_content"-->
+                    <!--                                    android:layout_height="wrap_content"-->
+                    <!--                                    android:layout_marginStart="20dp"-->
+                    <!--                                    android:layout_marginEnd="20dp"-->
+                    <!--                                    android:text="@string/female"-->
+                    <!--                                    android:padding="5dp"-->
+                    <!--                                    android:textColor="@color/gray4"-->
+                    <!--                                    android:textSize="15sp"/>-->
+                    <!--                            </RadioGroup>-->
 
 
                     <Button
                         android:id="@+id/btnLogin"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="25dp"
+                        android:layout_height="53dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll"
                         android:layout_marginTop="30dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:background="@drawable/btn_bg"
-                        android:onClick="@{()->signUpListener.checkDataSignUp(signUpModel.name,signUpModel.phone_code,signUpModel.phone,signUpModel.password)}"
-                        android:text="@string/Start"
-                        android:textAllCaps="false"
+                        app:layout_constraintVertical_bias="0"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll"
-                        app:layout_constraintVertical_bias="0" />
+                        android:textAllCaps="false"
+                        android:text="@string/Start"
+                        />
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/llBack"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginStart="25dp"
+                    android:rotation='@{lang.equals("en")?180:0}'
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="30dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-        <ImageView
-            android:id="@+id/imageBack"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:tint="@color/colorPrimary"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:rotation='@{lang.equals("en")?180:0}'
-            android:src="@drawable/ic_arrow_left"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

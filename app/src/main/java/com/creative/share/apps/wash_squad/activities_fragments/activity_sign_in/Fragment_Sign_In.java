@@ -75,8 +75,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         binding.setForgetlistener(this);
         binding.setShowCountryListener(this);
         createCountryDialog();
-
-
+        binding.llBack.setOnClickListener(view -> activity.back());
 
 
     }

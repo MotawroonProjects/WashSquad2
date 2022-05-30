@@ -70,16 +70,8 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
         binding.setSignUpListener(this);
         binding.setSignUpModel(signUpModel);
 
-binding.imageBack.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        activity.back();
-    }
-});
+binding.llBack.setOnClickListener(view -> activity.back());
         CreateCountryDialog();
-
-
-
     }
 
 
