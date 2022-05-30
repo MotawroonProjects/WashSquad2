@@ -70,9 +70,9 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private ActivitySubscriptionServiceBinding binding;
     private String lang;
     private SelectedLocation selectedLocation;
-    private ServiceDataModel.ServiceModel serviceModel;
+    private ServiceDataModel.Level2 serviceModel;
     private long date = 0;
-    private List<ServiceDataModel.Level2> level2List;
+    private List<ServiceDataModel.Level3> level2List;
     private List<CarTypeDataModel.CarTypeModel> carTypeModelList;
     private List<CarTypeDataModel.CarBrandModel> carBrandModelList;
     private List<CarSizeDataModel.CarSizeModel> carSizeModelList;
@@ -86,7 +86,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private LinearLayoutManager manager2;
     private TimeDataModel.TimeModel timeModel;
     private DayModel dayModel;
-    private ServiceDataModel.Level2 level2Model;
+    private ServiceDataModel.Level3 level2Model;
     private String d;
     private List<ServiceDataModel.Level3> additional_service;
     private ItemSubscribeToUpload itemToUpload;
@@ -126,7 +126,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            serviceModel = (ServiceDataModel.ServiceModel) intent.getSerializableExtra("data");
+            serviceModel = (ServiceDataModel.Level2) intent.getSerializableExtra("data");
             service_id = intent.getIntExtra("service_id", 0);
             service_name_ar = intent.getStringExtra("service_name_ar");
             service_name_en = intent.getStringExtra("service_name_en");
@@ -173,7 +173,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         // itemToUpload.setSub_serv_id(serviceModel.getId());
         additional_service = new ArrayList<>();
         level2List = new ArrayList<>();
-        level2List.addAll(serviceModel.getLevel2());
+        level2List.addAll(serviceModel.getLevel3());
         if (level2List.size() > 0) {
             level2Model = level2List.get(0);
 
@@ -578,25 +578,25 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     private void updatesubService() {
         //  first = 0;
 //        Log.e("suuuu", serviceModel.getLevel2().size() + " " + orderModel.getOrder_sub_services().size());
-        for (int i = 0; i < serviceModel.getLevel2().size(); i++) {
+        for (int i = 0; i < serviceModel.getLevel3().size(); i++) {
 
 
-            Log.e("kdkdkkd", serviceModel.getLevel2().get(i).getId() + " " + orderModel.getSub_service_id());
+            Log.e("kdkdkkd", serviceModel.getLevel3().get(i).getId() + " " + orderModel.getSub_service_id());
 
-            if (serviceModel.getLevel2().get(i).getId() == orderModel.getSub_service_id()) {
+            if (serviceModel.getLevel3().get(i).getId() == orderModel.getSub_service_id()) {
 
-                ServiceDataModel.Level2 serLevel2 = serviceModel.getLevel2().get(i);
+                ServiceDataModel.Level3 serLevel2 = serviceModel.getLevel3().get(i);
                 serLevel2.setSelected(true);
-                serviceModel.getLevel2().set(i, serLevel2);
+                serviceModel.getLevel3().set(i, serLevel2);
                 this.level2Model = serLevel2;
 
             } else {
-                ServiceDataModel.Level2 serLevel2 = serviceModel.getLevel2().get(i);
+                ServiceDataModel.Level3 serLevel2 = serviceModel.getLevel3().get(i);
                 serLevel2.setSelected(false);
-                serviceModel.getLevel2().set(i, serLevel2);
+                serviceModel.getLevel3().set(i, serLevel2);
             }
             itemToUpload.setSub_serv_id(orderModel.getSub_service_id());
-            bouquetAdapter.updatelist(serviceModel.getLevel2());
+            bouquetAdapter.updatelist(serviceModel.getLevel3());
         }
         // additionalServiceAdapter.updatelist(serviceModel.getLevel2());
         bouquetAdapter.notifyDataSetChanged();
@@ -743,13 +743,13 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             final_total = total * count;
                             binding.setTotal(final_total);
 
-                            level3.setPrice(response.body());
+                            level3.setPrice(response.body()+"");
                             additional_service.add(level3);
 
                             subServiceModelList.clear();
 
                             for (ServiceDataModel.Level3 level3 : additional_service) {
-                                ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(level3.getId(), level3.getPrice(), level3.getAr_title(), level3.getEn_title());
+                                ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(level3.getId(), Double.parseDouble(level3.getPrice()), level3.getAr_title(), level3.getEn_title());
                                 subServiceModelList.add(subServiceModel);
 
 
@@ -975,7 +975,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         additional_service.remove(getItemPos(m_level3));
         Log.e("vvvvvvv", m_level3.getPrice() + "__");
 
-        total = total - m_level3.getPrice();
+        total = total - Double.parseDouble(m_level3.getPrice());
 
         final_total = total * count;
 
@@ -985,7 +985,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
         List<ItemToUpload.SubServiceModel> subServiceModelList = new ArrayList<>();
         for (ServiceDataModel.Level3 level3 : additional_service) {
-            ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(level3.getId(), level3.getPrice(), level3.getAr_title(), level3.getEn_title());
+            ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(level3.getId(), Double.parseDouble(level3.getPrice()), level3.getAr_title(), level3.getEn_title());
             subServiceModelList.add(subServiceModel);
 
         }
@@ -1083,7 +1083,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         this.dayModel = model;
     }
 
-    public void setBouquetItem(ServiceDataModel.Level2 model) {
+    public void setBouquetItem(ServiceDataModel.Level3 model) {
         this.level2Model = model;
         itemToUpload.setSub_serv_id(model.getId());
         if (size_id != 0) {

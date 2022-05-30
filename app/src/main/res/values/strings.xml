@@ -261,7 +261,7 @@
     <string name="numbers">Number</string>
     <string name="characters">characters</string>
     <string name="date_not">Date Dont Match Day</string>
-    <string name="ch_area">Choose Area</string>
+    <string name="ch_area">Area</string>
     <string name="edit_order">Edit Order</string>
     <string name="cancel_order">Cancel Order</string>
     <string name="invoice">Invoice</string>

@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service.ChooseServiceSentActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.activity.HomeActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
 import com.creative.share.apps.wash_squad.adapters.OffersAdapter;
@@ -143,7 +144,7 @@ public class Fragment_Offers extends Fragment {
 
     public void show(OfferDataModel.OfferModel offerModel) {
         if (offerModel.getService_id() == 77) {
-            Intent intent = new Intent(activity, SubscriptionServiceActivity.class);
+            Intent intent = new Intent(activity, ServiceCategoryActivity.class);
             intent.putExtra("data", serviceModelList.get(2));
 
             startActivityForResult(intent, 1000);
@@ -159,7 +160,7 @@ public class Fragment_Offers extends Fragment {
                 }
             }
             if (pos != -1) {
-                Intent intent = new Intent(activity, ServiceDetailsActivity.class);
+                Intent intent = new Intent(activity, ServiceCategoryActivity.class);
                 intent.putExtra("data", serviceModelList.get(pos));
                 startActivityForResult(intent, 1000);
             }

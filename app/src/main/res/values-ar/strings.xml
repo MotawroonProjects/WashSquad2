@@ -116,7 +116,7 @@
     <string name="inc_code">رمز التحقق غير صحيح</string>
     <string name="user_not_active">المستخدم غيري نشط</string>
     <string name="not_active_phone">لم يتم التحقق من رقم الجوال</string>
-    <string name="additional_services">خدمات إضافية</string>
+    <string name="additional_services">الخدمات الإضافية</string>
     <string name="am">صباحا</string>
     <string name="pm">مساءا</string>
     <string name="car_type">نوع السيارة</string>

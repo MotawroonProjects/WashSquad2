@@ -29,7 +29,7 @@
 
         <variable
             name="level2"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.ServiceModel" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
 
         <variable
             name="sendServiceModel"
@@ -207,7 +207,7 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
@@ -241,7 +241,7 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView

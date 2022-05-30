@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity;
 import com.creative.share.apps.wash_squad.adapters.CategoryServiceAdapter;
 import com.creative.share.apps.wash_squad.databinding.ActivityServiceCategoryBinding;
 import com.creative.share.apps.wash_squad.interfaces.Listeners;
@@ -76,7 +78,18 @@ public class ServiceCategoryActivity extends AppCompatActivity implements Listen
 
     }
     public void setItemData(ServiceDataModel.Level2 serviceModel1) {
-        Intent intent = new Intent(this, ServiceDetailsActivity.class);
+
+        Intent intent;
+        if (serviceModel.getId() == 77) {
+            intent = new Intent(this, SubscriptionServiceActivity.class);
+
+        }
+       else if (serviceModel.getId() == 79) {
+        intent = new Intent(this, ServiceSentDetailsActivity.class);}
+       else{
+             intent = new Intent(this, ServiceDetailsActivity.class);
+
+        }
         intent.putExtra("data",serviceModel1);
         intent.putExtra("service_id",serviceModel.getId());
         intent.putExtra("service_name_ar",serviceModel.getAr_title());

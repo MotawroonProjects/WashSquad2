@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_details.ServiceSentDetailsActivity;
 import com.creative.share.apps.wash_squad.adapters.MainServiceAdapter;
@@ -134,7 +135,7 @@ public class ChooseServiceSentActivity extends AppCompatActivity {
 
 
     public void setItemData(ServiceDataModel.ServiceModel serviceModel1) {
-        Intent intent = new Intent(this, ServiceSentDetailsActivity.class);
+        Intent intent = new Intent(this, ServiceCategoryActivity.class);
         intent.putExtra("data", serviceModel1);
 
         startActivityForResult(intent, 4);

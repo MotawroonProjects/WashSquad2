@@ -25,7 +25,7 @@
 
         <variable
             name="level2"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.ServiceModel" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
 
         <variable
             name="price"
@@ -199,7 +199,7 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
@@ -208,7 +208,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:text="@string/price"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="15sp"
 
                                 />
@@ -221,7 +221,7 @@
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text='@{String.valueOf(price)+" "+@string/sar}'
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="13sp" />
 
                         </LinearLayout>
@@ -233,16 +233,18 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
-                                android:id="@+id/imageIncrease"
+                                android:id="@+id/imageDecrease"
+
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:background="@drawable/edt_comment"
                                 android:padding="12dp"
-                                android:src="@drawable/ic_add" />
+                                android:src="@drawable/ic_minus"
+                                android:tint="@color/colorAccent" />
 
                             <TextView
                                 android:id="@+id/tvCount"
@@ -253,17 +255,19 @@
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text="1"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="13sp" />
 
                             <ImageView
-                                android:id="@+id/imageDecrease"
-
+                                android:id="@+id/imageIncrease"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:background="@drawable/edt_comment"
                                 android:padding="12dp"
-                                android:src="@drawable/ic_minus" />
+                                android:src="@drawable/ic_add"
+                                android:tint="@color/colorAccent" />
+
+
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -312,22 +316,38 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp">
 
-                        <Spinner
-                            android:id="@+id/spinnerArea"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="33dp"
-                            android:layout_gravity="center_vertical"
-                            app:backgroundTint="@color/colorPrimary">
+                            android:layout_height="wrap_content">
 
-                        </Spinner>
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:clickable="false"
+                                android:longClickable="false"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_map"
+                                app:tint="@color/color_second" />
+
+                            <Spinner
+                                android:id="@+id/spinnerArea"
+                                android:layout_width="match_parent"
+                                android:layout_height="33dp"
+                                android:layout_gravity="center_vertical"
+                                app:backgroundTint="@color/colorPrimary">
+
+                            </Spinner>
+
+                        </LinearLayout>
                     </FrameLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
 
                         android:text="@string/car_plate_number"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="15sp" />
 
                     <LinearLayout
@@ -345,7 +365,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/characters"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="15sp" />
 
                             <com.chaos.view.PinView
@@ -360,7 +380,7 @@
                                 android:inputType="text"
                                 android:itemBackground="@drawable/item_selected2"
                                 android:text="@={itemModel.vehicleChar}"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="15sp"
                                 app:cursorColor="@color/color2"
                                 app:cursorWidth="2dp"
@@ -390,7 +410,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/numbers"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="15sp" />
 
                             <com.chaos.view.PinView
@@ -405,7 +425,7 @@
                                 android:inputType="number"
                                 android:itemBackground="@drawable/item_selected2"
                                 android:text="@={itemModel.vehicleNumber}"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="15sp"
                                 app:cursorColor="@color/color2"
                                 app:cursorWidth="2dp"
@@ -423,6 +443,7 @@
 
                         </LinearLayout>
                     </LinearLayout>
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/consMap"
                         android:layout_width="match_parent"
@@ -631,7 +652,7 @@
                             android:layout_gravity="center_vertical"
                             android:gravity="center_vertical"
                             android:text="@string/total"
-                            android:textColor="@color/black"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
 
                             />
@@ -645,7 +666,7 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             android:text="@{String.valueOf(total)}"
-                            android:textColor="@color/black"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="13sp" />
 
                     </LinearLayout>
@@ -774,8 +795,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="@string/done2"
                             android:minWidth="90dp"
+                            android:text="@string/done2"
                             android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             android:visibility="gone" />

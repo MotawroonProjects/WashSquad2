@@ -61,7 +61,7 @@ public class CarSizeAdapter extends RecyclerView.Adapter<CarSizeAdapter.MyHolder
             holder.sizeRowBinding.ll.setBackgroundResource(R.drawable.selected_car_size_bg);
         }else
             {
-                holder.sizeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.gray5));
+                holder.sizeRowBinding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.colorAccent));
                 holder.sizeRowBinding.ll.setBackgroundResource(R.drawable.expand_bg);
 
             }

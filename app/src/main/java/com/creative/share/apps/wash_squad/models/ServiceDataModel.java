@@ -209,8 +209,18 @@ public class ServiceDataModel implements Serializable {
         private String ar_des;
         private String en_des;
         private String image;
-        private double price;
+        private String price;
         private String parent_id;
+        private boolean isSelected = false;
+
+
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
 
         public int getId() {
             return id;
@@ -236,11 +246,11 @@ public class ServiceDataModel implements Serializable {
             return image;
         }
 
-        public double getPrice() {
+        public String getPrice() {
             return price;
         }
 
-        public void setPrice(double price) {
+        public void setPrice(String price) {
             this.price = price;
         }
 

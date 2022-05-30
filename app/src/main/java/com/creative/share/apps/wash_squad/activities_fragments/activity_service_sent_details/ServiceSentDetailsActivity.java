@@ -82,8 +82,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     private double total = 0.0, final_total = 0.0;
     private TimeAdapter timeAdapter;
     private String selected_date;
-    private ServiceDataModel.ServiceModel serviceModel;
-    private List<ServiceDataModel.Level2> additional_service;
+    private ServiceDataModel.Level2 serviceModel;
+    private List<ServiceDataModel.Level3> additional_service;
     private List<ItemToUpload.SubServiceModel> subServiceModelList;
     private List<TimeDataModel.TimeModel> timeModelList;
     private SpinnerAreaAdapter spinnerAreaAdapter;
@@ -107,7 +107,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     private void getDataFromIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            serviceModel = (ServiceDataModel.ServiceModel) intent.getSerializableExtra("data");
+            serviceModel = (ServiceDataModel.Level2) intent.getSerializableExtra("data");
             service_id = intent.getIntExtra("service_id", 0);
             service_name_ar = intent.getStringExtra("service_name_ar");
             service_name_en = intent.getStringExtra("service_name_en");
@@ -309,9 +309,9 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         manager2 = new LinearLayoutManager(this);
         binding.recViewService.setLayoutManager(manager2);
 
-        if (serviceModel.getLevel2().size() > 0) {
+        if (serviceModel.getLevel3().size() > 0) {
             binding.llAdditional.setVisibility(View.VISIBLE);
-            additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel2(), this);
+            additionalServiceAdapter = new AdditionalServiceAdapter(serviceModel.getLevel3(), this);
             binding.recViewService.setAdapter(additionalServiceAdapter);
 
         } else {
@@ -575,7 +575,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                 });
     }
 
-    private void getPriceForAdditionalService(ServiceDataModel.Level2 Level2, int size_id) {
+    private void getPriceForAdditionalService(ServiceDataModel.Level3 Level2, int size_id) {
 
         ProgressDialog dialog = Common.createProgressDialog(ServiceSentDetailsActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
@@ -599,7 +599,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
                             subServiceModelList.clear();
 
-                            for (ServiceDataModel.Level2 Level2 : additional_service) {
+                            for (ServiceDataModel.Level3 Level2 : additional_service) {
                                 ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(Level2.getId(), Double.parseDouble(Level2.getPrice()), Level2.getAr_title(), Level2.getEn_title());
                                 subServiceModelList.add(subServiceModel);
 
@@ -813,7 +813,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
     }
 
 
-    public void setItemAdditionService(ServiceDataModel.Level2 serviceModel) {
+    public void setItemAdditionService(ServiceDataModel.Level3 serviceModel) {
 
         if (!hasItem(serviceModel)) {
 
@@ -830,7 +830,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void removeAdditionalItem(ServiceDataModel.Level2 m_Level2) {
+    public void removeAdditionalItem(ServiceDataModel.Level3 m_Level2) {
         additional_service.remove(getItemPos(m_Level2));
         Log.e("vvvvvvv", m_Level2.getPrice() + "__");
 
@@ -843,7 +843,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         binding.setTotal(final_total);
 
         List<ItemToUpload.SubServiceModel> subServiceModelList = new ArrayList<>();
-        for (ServiceDataModel.Level2 Level2 : additional_service) {
+        for (ServiceDataModel.Level3 Level2 : additional_service) {
             ItemToUpload.SubServiceModel subServiceModel = new ItemToUpload.SubServiceModel(Level2.getId(), Double.parseDouble(Level2.getPrice()), Level2.getAr_title(), Level2.getEn_title());
             subServiceModelList.add(subServiceModel);
 
@@ -852,8 +852,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         sendServiceModel.setSub_services(subServiceModelList);
     }
 
-    private boolean hasItem(ServiceDataModel.Level2 serviceModel) {
-        for (ServiceDataModel.Level2 serviceModel2 : additional_service) {
+    private boolean hasItem(ServiceDataModel.Level3 serviceModel) {
+        for (ServiceDataModel.Level3 serviceModel2 : additional_service) {
             if (serviceModel.getId() == serviceModel2.getId()) {
                 return true;
             }
@@ -861,7 +861,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         return false;
     }
 
-    private int getItemPos(ServiceDataModel.Level2 Level2) {
+    private int getItemPos(ServiceDataModel.Level3 Level2) {
         for (int i = 0; i < additional_service.size(); i++) {
             if (Level2.getId() == additional_service.get(i).getId()) {
                 return i;

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 
 import com.creative.share.apps.wash_squad.R;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_login_option.LoginOptionActivity;
 import com.creative.share.apps.wash_squad.databinding.ActivitySignInBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
@@ -129,6 +130,8 @@ public class SignInActivity extends AppCompatActivity {
             fragment_count--;
             super.onBackPressed();
         } else {
+            Intent intent=new Intent(SignInActivity.this, LoginOptionActivity.class);
+            startActivity(intent);
             finish();
         }
     }
@@ -141,5 +144,6 @@ public class SignInActivity extends AppCompatActivity {
 
         }
     }
+
 
 }

@@ -20,7 +20,7 @@
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="130dp"
             android:gravity="center"
             android:orientation="vertical"
             android:background="@drawable/expand_bg"
@@ -29,7 +29,7 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 serviceImage="@{carSizeModel.image}"
 
                 />
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/gray5"
+                android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
                 android:maxLines="2"
                 android:ellipsize="end"

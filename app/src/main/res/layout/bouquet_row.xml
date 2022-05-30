@@ -8,7 +8,7 @@
             type="String" />
         <variable
             name="level2"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level3" />
     </data>
 
     <LinearLayout
