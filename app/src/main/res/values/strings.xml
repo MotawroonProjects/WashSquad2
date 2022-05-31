@@ -140,7 +140,7 @@
     <string name="ch_car_type">Choose car type</string>
     <string name="ch_payment">Choose payment</string>
     <string name="service_provider">service provider : </string>
-    <string name="your_rating_for_the_service">Your rating for the service</string>
+    <string name="your_rating_for_the_service">Your rating for the Provider</string>
     <string name="your_opinion_in_the_service">Your opinion in the service</string>
     <string name="order_not_finished">Order Not Finished</string>
     <string name="inv_coupon">Invalid coupon</string>
@@ -217,7 +217,8 @@
     <string name="edit">Edit</string>
     <string name="add_request_to_waiting_list">Add request to waiting list</string>
     <string name="date_time">Date</string>
-    <string name="date_time2">Date/Time</string>
+    <string name="date_time2">Time/Date</string>
+    <string name="date_time3">Time/Day</string>
 
     <string name="tax">Tax:</string>
     <string name="total2">Total:</string>
@@ -256,8 +257,8 @@
     <string name="not_avail_now">Not Available Now</string>
     <string name="payment_faild">Payment Faild</string>
     <string name="payment_suc">Payment Success</string>
-    <string name="apple_pay">Apple Pay</string>
-    <string name="pos">POS</string>
+    <string name="apple_pay">Viza</string>
+    <string name="pos">Network</string>
     <string name="numbers">Number</string>
     <string name="characters">characters</string>
     <string name="date_not">Date Dont Match Day</string>
@@ -271,5 +272,6 @@
     <string name="download">Downloading</string>
     <string name="market">Market</string>
     <string name="wait_us">Wait for us soon, sitting down, arranging awesome products for you But now if you have a plane, contact us and we will adjust it for you</string>
+    <string name="because_your_opinion_matters_to_us_to_evaluate_the_quality_of_service_provided_to_you">Because your opinion matters to us to evaluate the quality of service provided to you</string>
 
 </resources>

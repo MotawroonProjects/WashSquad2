@@ -172,7 +172,7 @@ public class Fragment_Main extends Fragment {
 
 
     public void setItemData3(ServiceDataModel.ServiceModel serviceModel1) {
-        Intent intent=new Intent(activity, ServiceCategoryActivity.class);
+        Intent intent=new Intent(activity, SubscriptionServiceActivity.class);
         intent.putExtra("data",serviceModel1);
         startActivityForResult(intent,1000);
     }

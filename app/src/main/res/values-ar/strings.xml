@@ -137,8 +137,8 @@
     <string name="ch_car_size">إختر حجم المركبة</string>
     <string name="ch_car_type">إختر نوع المركبة</string>
     <string name="ch_payment">إختر طريقة الدفع</string>
-    <string name="service_provider">مزود الخدمه : </string>
-    <string name="your_rating_for_the_service">تقيمك للخدمه</string>
+    <string name="service_provider">فنى الخدمه : </string>
+    <string name="your_rating_for_the_service">تقيمك للفنى</string>
     <string name="your_opinion_in_the_service">رايك فى الخدمه</string>
     <string name="order_not_finished">الطلب لم يتم انهاءه</string>
     <string name="inv_coupon">كوبون الخصم غير متاح</string>
@@ -213,7 +213,8 @@
     <string name="you_can_t_postpone">لا يمكنك التاجيل</string>
     <string name="each_customer_has_the_right_to_postpone_only_once">لكل عميل حق التاجيل مره واحده فقط</string>
     <string name="date_time">تاريخ</string>
-    <string name="date_time2">تاريخ/وقت</string>
+    <string name="date_time2">الوقت/التاريخ</string>
+    <string name="date_time3">الوقت/اليوم</string>
 
     <string name="tax">الضريبه:</string>
     <string name="total2">المجموع:</string>
@@ -254,8 +255,8 @@
     <string name="not_avail_now">غير متاح الان</string>
     <string name="payment_faild">فشل الدفع</string>
     <string name="payment_suc">تم الدفع بنجاح</string>
-    <string name="apple_pay">ابل باى</string>
-    <string name="pos">نقاط البيع</string>
+    <string name="apple_pay">فيزا</string>
+    <string name="pos">شبكه</string>
     <string name="numbers">ارقام</string>
     <string name="characters">حروف</string>
     <string name="date_not">التاريخ لا يساوى اليوم</string>
@@ -269,5 +270,6 @@
     <string name="download">تنزيل</string>
     <string name="market">المتجر</string>
     <string name="wait_us">انتظرنا قريبًا ، أجلس ، نرتب لك منتجات رائعة ولكن الآن إذا كان لديك طائرة ، فاتصل بنا وسنقوم بتعديلها لك</string>
+    <string name="because_your_opinion_matters_to_us_to_evaluate_the_quality_of_service_provided_to_you">لان رايك يهمنا قييم جودة الخدمة المقدمة لك</string>
 
 </resources>

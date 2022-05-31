@@ -135,7 +135,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         timeModelList = new ArrayList<>();
         timeAdapter = new TimeAdapter(timeModelList, this);
         carBrandModelList = new ArrayList<>();
-        carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
+         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+
+
         subServiceModelList = new ArrayList<>();
         areaModelList = new ArrayList<>();
         preferences = Preferences.newInstance();
@@ -371,6 +373,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     itemToUpload.setUser_name(userModel.getFull_name());
                     itemToUpload.setUser_phone(userModel.getPhone());
                     itemToUpload.setTotal_price(final_total);
+                    itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
+
                     Intent intent = new Intent(this, PaymentActivity.class);
                     intent.putExtra("item", itemToUpload);
                     if(orderModel!=null){

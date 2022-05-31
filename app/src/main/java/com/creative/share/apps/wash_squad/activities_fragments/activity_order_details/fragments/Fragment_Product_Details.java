@@ -1,5 +1,8 @@
 package com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.fragments;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.OrderDetailsActivity;
 import com.creative.share.apps.wash_squad.databinding.FragmentProductDetailsBinding;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
+import com.creative.share.apps.wash_squad.tags.Tags;
 
 import io.paperdb.Paper;
 
@@ -58,6 +62,26 @@ public class Fragment_Product_Details extends Fragment {
         {
             orderModel = (Order_Data_Model.OrderModel) bundle.getSerializable(tag);
         }
+        binding.llprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = Tags.base_url + "api/order/print/" + orderModel.getId();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setPackage("com.android.chrome");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    // Chrome browser presumably not installed so allow user to choose instead
+                    intent.setPackage(null);
+                    startActivity(intent);
+                }
+//                Intent intent = new Intent(OrderDetailsActivity.this, PrintActivity.class);
+//                intent.putExtra("url", );
+//                startActivity(intent);
+            }
+        });
+
     }
 
 

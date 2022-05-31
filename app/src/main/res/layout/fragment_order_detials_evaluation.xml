@@ -24,7 +24,21 @@
 
     </data>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="@string/because_your_opinion_matters_to_us_to_evaluate_the_quality_of_service_provided_to_you"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
 
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,33 +58,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="50dp"
-    android:gravity="center"
-
-    >
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
-                android:text='@{lang.equals("ar")?(OrderModel.service_ar_title+"-"??""):(OrderModel.service_en_title+"-"??"")}'
-                android:textColor="@color/white"
-                android:textSize="15sp"
 
-                />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text='@{lang.equals("ar")?(OrderModel.service_level2_ar_title??""):(OrderModel.service_level2_en_title??"")}'
-        android:textColor="@color/white"
-        android:textSize="15sp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text='@{lang.equals("ar")?(OrderModel.service_ar_title+"-"??""):(OrderModel.service_en_title+"-"??"")}'
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
 
-        />
-</LinearLayout>
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text='@{lang.equals("ar")?(OrderModel.service_level2_ar_title??""):(OrderModel.service_level2_en_title??"")}'
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+
+                    />
+            </LinearLayout>
             <TextView
                 date="@{OrderModel.order_date}"
                 workTime="@{OrderModel.work_time_choosen}"
@@ -87,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-               android:visibility="gone"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <TextView
@@ -139,18 +153,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-android:layout_gravity="center"
-                >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:visibility="gone"
                 android:layout_gravity="center"
-                android:text='@{lang.equals("ar")?OrderModel.carType__ar_title+"-":OrderModel.carType_en_title+"-"}'
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
 
-                />
+                    android:text='@{lang.equals("ar")?OrderModel.carType__ar_title+"-":OrderModel.carType_en_title+"-"}'
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,6 +183,7 @@ android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <TextView
@@ -222,6 +239,7 @@ android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/see_your_photo"
+                android:visibility="gone"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
 
@@ -272,4 +290,6 @@ android:layout_gravity="center"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
 </layout>

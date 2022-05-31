@@ -22,14 +22,14 @@ import java.util.Locale;
 import io.paperdb.Paper;
 
 public class BouquetAdapter extends RecyclerView.Adapter<BouquetAdapter.MyHolder> {
-    private List<ServiceDataModel.Level3> level2List;
+    private List<ServiceDataModel.Level2> level2List;
     private Context context;
     private String lang;
     private int currentPos = 0;
     private int oldPos = currentPos;
     private RecyclerView.ViewHolder oldHolder;
 
-    public BouquetAdapter(List<ServiceDataModel.Level3> level2List, Context context) {
+    public BouquetAdapter(List<ServiceDataModel.Level2> level2List, Context context) {
         this.level2List = level2List;
         this.context = context;
         Paper.init(context);
@@ -46,7 +46,7 @@ public class BouquetAdapter extends RecyclerView.Adapter<BouquetAdapter.MyHolder
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        ServiceDataModel.Level3 level2 = level2List.get(position);
+        ServiceDataModel.Level2 level2 = level2List.get(position);
         if (position == currentPos) {
             level2.setSelected(true);
             oldPos = currentPos;
@@ -69,14 +69,14 @@ public class BouquetAdapter extends RecyclerView.Adapter<BouquetAdapter.MyHolder
 
                 if (oldHolder != null) {
                     if(oldPos!=-1){
-                    ServiceDataModel.Level3 oldLevel = level2List.get(oldPos);
+                    ServiceDataModel.Level2 oldLevel = level2List.get(oldPos);
                     oldLevel.setSelected(false);
                     level2List.set(oldPos, oldLevel);
                     BouquetAdapter.MyHolder oHolder = (BouquetAdapter.MyHolder) oldHolder;
                     oHolder.bouquetRowBinding.setLevel2(oldLevel);}
                 }
                 currentPos = holder.getAdapterPosition();
-                ServiceDataModel.Level3 model = level2List.get(currentPos);
+                ServiceDataModel.Level2 model = level2List.get(currentPos);
                 model.setSelected(true);
 
                 level2List.set(currentPos, model);
@@ -99,7 +99,7 @@ public class BouquetAdapter extends RecyclerView.Adapter<BouquetAdapter.MyHolder
         return level2List.size();
     }
 
-    public void updatelist(List<ServiceDataModel.Level3> level2) {
+    public void updatelist(List<ServiceDataModel.Level2> level2) {
         this.level2List=level2;
         currentPos=-1;
         oldPos=-1;

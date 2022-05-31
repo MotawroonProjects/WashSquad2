@@ -31,6 +31,7 @@ public class ServiceCategoryActivity extends AppCompatActivity implements Listen
     private ServiceDataModel.ServiceModel serviceModel;
     private CategoryServiceAdapter adapter;
     private RecyclerView.LayoutManager manager;
+    private int type;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -51,7 +52,9 @@ public class ServiceCategoryActivity extends AppCompatActivity implements Listen
         if (intent!=null)
         {
             serviceModel = (ServiceDataModel.ServiceModel) intent.getSerializableExtra("data");
-
+if(intent.getStringExtra("type")!=null){
+    type=1;
+}
         }
     }
 
@@ -80,11 +83,7 @@ public class ServiceCategoryActivity extends AppCompatActivity implements Listen
     public void setItemData(ServiceDataModel.Level2 serviceModel1) {
 
         Intent intent;
-        if (serviceModel.getId() == 77) {
-            intent = new Intent(this, SubscriptionServiceActivity.class);
-
-        }
-       else if (serviceModel.getId() == 79) {
+      if (type==1) {
         intent = new Intent(this, ServiceSentDetailsActivity.class);}
        else{
              intent = new Intent(this, ServiceDetailsActivity.class);

@@ -137,14 +137,15 @@ public class ChooseServiceSentActivity extends AppCompatActivity {
     public void setItemData(ServiceDataModel.ServiceModel serviceModel1) {
         Intent intent = new Intent(this, ServiceCategoryActivity.class);
         intent.putExtra("data", serviceModel1);
-
+        intent.putExtra("type", "sent");
         startActivityForResult(intent, 4);
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == 4 && resultCode == RESULT_OK && data != null) {
             Intent intent = getIntent();
             if (intent != null) {
 

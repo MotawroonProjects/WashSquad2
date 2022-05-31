@@ -17,8 +17,8 @@
         android:gravity="center_vertical"
         android:textColor="@color/color_second"
         android:textSize="13sp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         android:text='@{lang.equals("ar")?areaModel.title_ar:areaModel.title_en}'
 
         />

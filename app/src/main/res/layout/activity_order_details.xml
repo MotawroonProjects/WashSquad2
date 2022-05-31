@@ -238,10 +238,23 @@
                                 android:text='@{lang.equals("ar")?model.service_ar_title:model.service_en_title}'
                                 android:textColor="@color/gray4"
                                 android:textSize="16sp"
-                                app:layout_constraintEnd_toStartOf="@id/tvTime"
+                                app:layout_constraintEnd_toStartOf="@id/tvNum"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv1" />
+                            <TextView
+                                android:id="@+id/tvNum"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="40dp"
+                                android:ellipsize="end"
 
+                                app:layout_constraintEnd_toStartOf="@id/tvTime"
+                                app:layout_constraintTop_toBottomOf="@id/tv1"
+                                app:layout_constraintStart_toEndOf="@id/tvName"
+                                android:gravity="center"
+                                android:text='@{@string/order_num +" : "+model.id}'
+                                android:textColor="@color/gray4"
+                                android:textSize="10sp" />
                             <TextView
                                 android:id="@+id/tvTime"
                                 date="@{model.order_date}"
@@ -253,7 +266,7 @@
                                 android:textColor="@color/gray4"
                                 android:textSize="10sp"
                                 app:layout_constraintEnd_toStartOf="@id/tvPrice"
-                                app:layout_constraintStart_toEndOf="@id/tvName"
+                                app:layout_constraintStart_toEndOf="@id/tvNum"
 
                                 app:layout_constraintTop_toBottomOf="@id/tv1" />
 
@@ -279,33 +292,6 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
-                   <LinearLayout
-                       android:id="@+id/llprint"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="10dp"
-                       android:gravity="end"
-                       android:orientation="horizontal">
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:paddingStart="8dp"
-                           android:paddingEnd="8dp"
-                           android:text="@string/a_copy_of_the_invoice"
-                           android:textColor="@color/colorPrimary"
-                           android:textSize="14sp" />
-
-                       <ImageView
-                           android:layout_width="30dp"
-                           android:layout_height="30dp"
-                           android:layout_gravity="center_vertical"
-                           android:padding="3dp"
-                           android:src="@drawable/ic_pdf" />
-
-
-                   </LinearLayout>
                    <com.google.android.material.tabs.TabLayout
                        android:id="@+id/tab"
                        android:layout_width="match_parent"

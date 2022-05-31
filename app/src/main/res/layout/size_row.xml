@@ -11,11 +11,12 @@
             name="carSizeModel"
             type="com.creative.share.apps.wash_squad.models.CarSizeDataModel.CarSizeModel" />
     </data>
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
         >
         <LinearLayout
             android:id="@+id/ll"
@@ -23,7 +24,6 @@
             android:layout_height="130dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@drawable/expand_bg"
 
             >
             <ImageView
@@ -45,6 +45,6 @@
                 android:text='@{lang.equals("ar")?carSizeModel.ar_title:carSizeModel.en_title}'
                 />
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

@@ -48,15 +48,19 @@
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/product_row.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/WashSquad2/app/src/main/res/layout/time_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/drawable/expand_bg.xml" value="0.1075" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/drawable/rounded_white_strock_primary.xml" value="0.11" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_help.xml" value="0.1" />
-        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.1" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_order_details.xml" value="0.1" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_payment.xml" value="0.25" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_payment_subscribtion.xml" value="0.29108910891089107" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_paypal.xml" value="0.25" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_product_details.xml" value="0.1" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_category.xml" value="0.11574074074074074" />
-        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml" value="0.2810625535561268" />
-        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_details.xml" value="0.22" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_details.xml" value="0.3244047619047619" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_service_sent_payment.xml" value="0.38992042440318303" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_subscription_detials.xml" value="0.1" />
-        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_subscription_service.xml" value="0.1" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_subscription_service.xml" value="0.22" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_wallet.xml" value="0.1" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_web_view.xml" value="0.1" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/activity_webview.xml" value="0.25" />
@@ -72,6 +76,12 @@
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_coupon.xml" value="0.1" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_market.xml" value="0.1" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_offers.xml" value="0.1" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_order_detials.xml" value="0.1" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_order_detials_evaluation.xml" value="0.2804878048780488" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_product_details.xml" value="0.22" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_sign_in.xml" value="0.22" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/order_row.xml" value="0.18" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/product2_row.xml" value="0.1927710843373494" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/product_row.xml" value="0.11574074074074074" />
         <entry key="..\:/Users/Arb Develpor/StudioProjects/WashSquad2/app/src/main/res/layout/question_row.xml" value="0.15104166666666666" />

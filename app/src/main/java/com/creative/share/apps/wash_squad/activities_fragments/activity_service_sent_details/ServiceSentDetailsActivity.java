@@ -123,7 +123,9 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         areaModelList = new ArrayList<>();
 
         carBrandModelList = new ArrayList<>();
-        carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
+         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+
+
         subServiceModelList = new ArrayList<>();
         preferences = Preferences.newInstance();
         binding.setPrice(0.0);
@@ -203,7 +205,9 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     sendServiceModel.setEn_car_type("");
                     sendServiceModel.setBrand_id(0);
                     binding.setSendServiceModel(sendServiceModel);
-                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
+                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+
+
                     carBrandAdapter.notifyDataSetChanged();
 
                     if (additionalServiceAdapter != null) {
@@ -220,7 +224,9 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                 } else {
                     additional_service.clear();
                     carBrandModelList.clear();
-                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("إختر الماركة", "Choose brand"));
+                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+
+
 
                     sendServiceModel.setCarType_id(carTypeModelList.get(i).getId());
                     sendServiceModel.setAr_car_type(carTypeModelList.get(i).getAr_title());
@@ -362,6 +368,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     sendServiceModel.setSender_phone(userModel.getPhone());
 
                     sendServiceModel.setTotal_price(final_total);
+                    sendServiceModel.setCar_plate_number(sendServiceModel.getVehicleNumber() + sendServiceModel.getVehicleChar());
+
                     Intent intent = new Intent(this, ServiceSentPaymentActivity.class);
                     intent.putExtra("item", sendServiceModel);
                     startActivityForResult(intent, 4);
@@ -440,7 +448,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                         if (response.isSuccessful() && response.body() != null) {
 
                             areaModelList.clear();
-                            areaModelList.add(new AreaModel("اختر المنطقه", "Choose Area"));
+                             areaModelList.add(new AreaModel("الحى", " Area"));
+
                             areaModelList.addAll(response.body().getData());
                             spinnerAreaAdapter.notifyDataSetChanged();
 

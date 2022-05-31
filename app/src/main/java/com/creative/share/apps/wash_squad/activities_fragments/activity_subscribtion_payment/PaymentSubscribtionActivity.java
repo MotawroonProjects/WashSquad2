@@ -26,6 +26,7 @@ import com.creative.share.apps.wash_squad.databinding.ActivityPaymentBinding;
 import com.creative.share.apps.wash_squad.databinding.ActivityPaymentSubscribtionBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.CouponModel;
+import com.creative.share.apps.wash_squad.models.DayModel;
 import com.creative.share.apps.wash_squad.models.ItemSubscribeToUpload;
 import com.creative.share.apps.wash_squad.models.ItemToUpload;
 import com.creative.share.apps.wash_squad.models.Order_Data_Model;
@@ -40,6 +41,7 @@ import com.creative.share.apps.wash_squad.tags.Tags;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,6 +57,9 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
     private SingleTon singleTon;
     private LinearLayoutManager manager;
     private AdditionalAdapter adapter;
+    private List<DayModel> dayModelList;
+
+    private ArrayList<String> dayModelList2;
     private double total = 0.0;
     private double coupon_value = 0;
     private CouponModel couponModel = null;
@@ -94,7 +99,9 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
 
     private void initView() {
-
+        dayModelList=new ArrayList<>();
+        dayModelList2=new ArrayList<>();
+        updateDay();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(this);
         singleTon = SingleTon.newInstance();
@@ -109,8 +116,10 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         // String m_date = dateFormat.format(new Date(itemToUpload.getOrder_date()*1000));
-        String m_date = itemToUpload.getOrder_date();
-        binding.tvDate.setText(String.format("%s %s %s", m_date, "  ", itemToUpload.getday()));
+        String m_date = itemToUpload.getTime();
+       String selected_day = dayModelList.get(dayModelList2.indexOf(itemToUpload.getday())).getDay_text();
+
+        binding.tvDate.setText(String.format("%s %s %s", m_date, "  ", selected_day));
         binding.tvPoliciesAndTerms.setOnClickListener(view -> {
             Intent intent = new Intent(this, TermsActivity.class);
             startActivity(intent);
@@ -165,25 +174,22 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         });
         binding.rb4.setOnClickListener(view -> {
 
-            if(orderModel!=null){
-                if(itemToUpload.getTotal_price()-orderModel.getTotal_price()<=wallet){
+            if (orderModel != null) {
+                if (itemToUpload.getTotal_price() - orderModel.getTotal_price() <= wallet) {
                     itemToUpload.setPayment_method(4);
                     binding.setItemModel(itemToUpload);
                     binding.tvPayment.setText(R.string.my_wallet_balance);
-                }
-                else{
+                } else {
                     binding.flMyWallet.setVisibility(View.VISIBLE);
 
                 }
 
-            }
-            else {
-                    if(itemToUpload.getTotal_price()<=wallet){
+            } else {
+                if (itemToUpload.getTotal_price() <= wallet) {
                     itemToUpload.setPayment_method(4);
                     binding.setItemModel(itemToUpload);
                     binding.tvPayment.setText(R.string.my_wallet_balance);
-                }
-                else{
+                } else {
                     binding.flMyWallet.setVisibility(View.VISIBLE);
 
                 }
@@ -251,6 +257,25 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
         if (orderModel != null) {
             updateData();
         }
+    }
+
+    private void updateDay() {
+        dayModelList.clear();
+        dayModelList.add(new DayModel(getString(R.string.Saturday)));
+        dayModelList.add(new DayModel(getString(R.string.sunday)));
+        dayModelList.add(new DayModel(getString(R.string.monday)));
+        dayModelList.add(new DayModel(getString(R.string.tuesday)));
+        dayModelList.add(new DayModel(getString(R.string.wendesday)));
+        dayModelList.add(new DayModel(getString(R.string.thursday)));
+        dayModelList.add(new DayModel(getString(R.string.friday)));
+        dayModelList2 = new ArrayList<>();
+        dayModelList2.add("Saturday");
+        dayModelList2.add("Sunday");
+        dayModelList2.add("Monday");
+        dayModelList2.add("Tuesday");
+        dayModelList2.add("Wednesday");
+        dayModelList2.add("Thursday");
+        dayModelList2.add("Friday");
     }
 
     private void updateData() {
@@ -565,6 +590,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void getProfile() {
         binding.progBar.setVisibility(View.VISIBLE);
 
@@ -579,7 +605,7 @@ public class PaymentSubscribtionActivity extends AppCompatActivity {
 
                             if (response.isSuccessful() && response.body() != null) {
                                 binding.progBar.setVisibility(View.GONE);
-                               wallet=response.body().getWallet();
+                                wallet = response.body().getWallet();
 
                             } else {
                                 try {

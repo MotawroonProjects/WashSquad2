@@ -284,6 +284,35 @@
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/car_plate_number"
+                                    android:textColor="@color/gray5"
+                                    android:textSize="15sp" />
+
+                                <androidx.legacy.widget.Space
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text='@{itemModel.car_plate_number}'
+                                    android:textColor="@color/gray5"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -576,18 +605,6 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
                                     <RadioButton
-                                        android:id="@+id/rb1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:button="@drawable/rb_bg4"
-                                        android:paddingLeft="8dp"
-                                        android:paddingRight="8dp"
-                                        android:text="@string/apple_pay"
-                                        android:textColor="@color/gray5"
-                                        android:textSize="15sp" />
-
-                                    <RadioButton
                                         android:id="@+id/rb2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -608,6 +625,19 @@
                                         android:text="@string/pos"
                                         android:textColor="@color/gray5"
                                         android:textSize="15sp" />
+
+                                    <RadioButton
+                                        android:id="@+id/rb1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:button="@drawable/rb_bg4"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:text="@string/apple_pay"
+                                        android:textColor="@color/gray5"
+                                        android:textSize="15sp" />
+
 
                                     <RadioButton
                                         android:id="@+id/rb4"
@@ -712,7 +742,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/circle_primary"
                             android:padding="10dp"
-                            android:src="@drawable/ic_time"
+                            android:src="@drawable/ic_calender"
                             app:layout_constraintEnd_toStartOf="@id/img3"
                             app:layout_constraintStart_toEndOf="@id/img1"
                             app:layout_constraintTop_toTopOf="parent"
@@ -731,7 +761,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:text="@string/date_time2"
+                                android:text="@string/date_time3"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="17sp"
                                 android:textStyle="bold" />
@@ -777,7 +807,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/circle_primary"
                             android:padding="10dp"
-                            android:src="@drawable/ic_time"
+                            android:src="@drawable/ic_map"
                             app:layout_constraintEnd_toStartOf="@id/img3"
                             app:layout_constraintStart_toEndOf="@id/img1"
                             app:layout_constraintTop_toTopOf="parent"

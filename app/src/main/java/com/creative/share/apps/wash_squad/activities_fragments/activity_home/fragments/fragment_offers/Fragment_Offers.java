@@ -144,7 +144,7 @@ public class Fragment_Offers extends Fragment {
 
     public void show(OfferDataModel.OfferModel offerModel) {
         if (offerModel.getService_id() == 77) {
-            Intent intent = new Intent(activity, ServiceCategoryActivity.class);
+            Intent intent = new Intent(activity, SubscriptionServiceActivity.class);
             intent.putExtra("data", serviceModelList.get(2));
 
             startActivityForResult(intent, 1000);

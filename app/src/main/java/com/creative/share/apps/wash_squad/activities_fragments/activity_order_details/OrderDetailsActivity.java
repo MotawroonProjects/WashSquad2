@@ -127,25 +127,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 cancelOrder();
             }
         });
-        binding.llprint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = Tags.base_url + "api/order/print/" + orderModel.getId();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setPackage("com.android.chrome");
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException ex) {
-                    // Chrome browser presumably not installed so allow user to choose instead
-                    intent.setPackage(null);
-                    startActivity(intent);
-                }
-//                Intent intent = new Intent(OrderDetailsActivity.this, PrintActivity.class);
-//                intent.putExtra("url", );
-//                startActivity(intent);
-            }
-        });
         getServices();
 
     }

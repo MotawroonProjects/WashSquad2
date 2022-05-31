@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,14 +9,17 @@
             type="String" />
         <variable
             name="level2"
-            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level3" />
+            type="com.creative.share.apps.wash_squad.models.ServiceDataModel.Level2" />
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
         >
         <LinearLayout
             android:id="@+id/ll"
@@ -23,7 +27,7 @@
             android:layout_height="180dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:background='@{level2.selected?@drawable/selected_car_size_bg:@drawable/expand_bg}'
+            android:background='@{level2.selected?@drawable/selected_car_size_bg:@drawable/rounded_white}'
             >
 
             <ImageView
@@ -46,5 +50,5 @@
                 android:text='@{lang.equals("ar")?level2.ar_title:level2.en_title}'
                 />
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
