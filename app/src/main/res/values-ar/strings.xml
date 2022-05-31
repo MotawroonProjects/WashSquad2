@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ووش سكواد</string>
     <string name="map_api_key">AIzaSyDRH058OG79geHwTA1xw5hlOmomHIFbj94</string>
-    <string name="log_in">تسجيل الدخول</string>
+    <string name="log_in">دخول</string>
     <string name="email">البريد الالكترونى</string>
     <string name="password">رمز الدخول</string>
     <string name="login">تسجيل الدخول</string>

@@ -941,7 +941,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     }
 
     public void removeAdditionalItem(ServiceDataModel.Level3 m_level3) {
-        additional_service.remove(getItemPos(m_level3));
+       if(additional_service.size()>0){
+        additional_service.remove(getItemPos(m_level3));}
         Log.e("vvvvvvv", m_level3.getPrice() + "__");
 
         total = total - Double.parseDouble(m_level3.getPrice());

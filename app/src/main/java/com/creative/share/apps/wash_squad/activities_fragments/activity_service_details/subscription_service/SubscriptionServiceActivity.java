@@ -157,7 +157,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         timeAdapter = new TimeAdapter(timeModelList, this);
         dayAdapter = new DayAdapter(dayModelList, this);
         carBrandModelList = new ArrayList<>();
-         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+        carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
         subServiceModelList = new ArrayList<>();
@@ -233,7 +233,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setEn_car_type("");
                     itemToUpload.setBrand_id(0);
                     binding.setItemModel(itemToUpload);
-                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
                     carBrandAdapter.notifyDataSetChanged();
@@ -252,8 +252,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                 } else {
                     additional_service.clear();
                     carBrandModelList.clear();
-                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
-
+                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
                     itemToUpload.setCarType_id(carTypeModelList.get(i).getId());
@@ -427,8 +426,8 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
                     Intent intent = new Intent(this, PaymentSubscribtionActivity.class);
                     intent.putExtra("item", itemToUpload);
-                    if(orderModel!=null){
-                        intent.putExtra("order",orderModel);
+                    if (orderModel != null) {
+                        intent.putExtra("order", orderModel);
                     }
                     startActivityForResult(intent, 4);
                 } else {
@@ -546,12 +545,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         itemToUpload.setTime(orderModel.getOrder_time());
         binding.tvTime.setText(orderModel.getOrder_time());
         if (orderModel.getCar_plate_number() != null) {
-           // Log.e(";llll",orderModel.getCar_plate_number());
+            // Log.e(";llll",orderModel.getCar_plate_number());
             try {
                 itemToUpload.setVehicleChar(orderModel.getCar_plate_number().substring(0, 3));
                 itemToUpload.setVehicleNumber(orderModel.getCar_plate_number().substring(3, 7));
-            }
-            catch (Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -750,7 +748,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                             final_total = total * count;
                             binding.setTotal(final_total);
 
-                            Level2.setPrice(response.body()+"");
+                            Level2.setPrice(response.body() + "");
                             additional_service.add(Level2);
 
                             subServiceModelList.clear();
@@ -979,7 +977,10 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
     }
 
     public void removeAdditionalItem(ServiceDataModel.Level2 m_Level2) {
-        additional_service.remove(getItemPos(m_Level2));
+        if (additional_service.size() > 0) {
+
+            additional_service.remove(getItemPos(m_Level2));
+        }
         Log.e("vvvvvvv", m_Level2.getPrice() + "__");
 
         total = total - Double.parseDouble(m_Level2.getPrice());
@@ -1112,7 +1113,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                         if (response.isSuccessful() && response.body() != null) {
 
                             areaModelList.clear();
-                             areaModelList.add(new AreaModel("الحى", " Area"));
+                            areaModelList.add(new AreaModel("الحى", " Area"));
 
                             areaModelList.addAll(response.body().getData());
                             spinnerAreaAdapter.notifyDataSetChanged();
@@ -1250,7 +1251,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
         }
         Log.e("data", dayModelList.size() + "");
         dayAdapter.notifyDataSetChanged();
-        if (orderModel != null&&orderModel.getDay()!=null) {
+        if (orderModel != null && orderModel.getDay() != null) {
             for (int i = 0; i < dayModelList2.size(); i++) {
                 if (orderModel.getDay().toUpperCase().equals(dayModelList2.get(i).toUpperCase())) {
                     binding.tvDay.setText(dayModelList.get(i).getDay_text());

@@ -88,16 +88,21 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
-                            android:text='@{@string/order_num +" : "+model.id}'
+                            android:text='@{@string/order_num +" : #"+model.id}'
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
                         <TextView
                             startTime="@{model.start_time_work}"
                             timechose="@{model.work_time_choosen}"
                             type='@{lang.equals("ar")?model.work_time_ar_title:model.work_time_en_title}'
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
@@ -106,14 +111,14 @@
 
                         <TextView
                             orderDate="@{model.order_date}"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
                             android:lines="1"
                             android:textColor="@color/gray5"
                             android:textSize="12sp" />
+                    </LinearLayout>
 
                         <TextView
                             android:layout_width="0dp"
