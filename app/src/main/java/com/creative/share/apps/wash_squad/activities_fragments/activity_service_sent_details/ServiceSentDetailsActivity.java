@@ -142,6 +142,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         }
         sendServiceModel.setSub_services(subServiceModelList);
         sendServiceModel.setService_id(serviceModel.getId());
+        Log.e("D'd''d",sendServiceModel.getService_id()+"");
         sendServiceModel.setAr_service_type(serviceModel.getAr_title());
         sendServiceModel.setEn_service_type(serviceModel.getEn_title());
         // itemToUpload.setLevel2(serviceModel.getLevel2());
@@ -362,6 +363,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         binding.btnSendOrder.setOnClickListener(view -> {
             if (sendServiceModel.isDataValidStep1(this)) {
+                Log.e("Ssllsl","Slsllsl");
                 if (userModel != null) {
                     sendServiceModel.setUser_id(userModel.getId());
                     sendServiceModel.setSender_name(userModel.getFull_name());
@@ -379,7 +381,10 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
 
             }
+else{
+                Log.e("Ssllsl","Sl888sllsl");
 
+            }
         });
 
         binding.imageIncrease.setOnClickListener(view -> {

@@ -107,6 +107,8 @@ public class Fragment_Market extends Fragment {
     }
 
     private void getCategories() {
+        binding.progBarCategory.setVisibility(View.VISIBLE);
+
         Api.getService(Tags.base_url)
                 .getCategories()
                 .enqueue(new Callback<CategoryDataModel>() {
@@ -154,6 +156,8 @@ public class Fragment_Market extends Fragment {
 
 
     private void getProducts(String category_id) {
+        binding.progBarOffers.setVisibility(View.VISIBLE);
+
         Api.getService(Tags.base_url)
                 .getProducts(category_id)
                 .enqueue(new Callback<ProductDataModel>() {

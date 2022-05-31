@@ -2,6 +2,7 @@ package com.creative.share.apps.wash_squad.models;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -64,6 +65,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public ObservableField<String> car_plate_number_error = new ObservableField<>();
     public ObservableField<String> car_plate_char_error = new ObservableField<>();
     public boolean isDataValidStep1(Context context) {
+        Log.e("dddkkdk",service_id+" "+carSize_id+" "+carType_id+" "+brand_id+" "+address+" "+sender_name+" "+sender_phone+" "+receiver_name+" "+receiver_phone+" "+time+" "+order_time_id+" "+order_date+" "+car_plate_number+" "+vehicleChar+" "+place_id);
         if (service_id != 0 &&
                 //   sub_serv_id != 0 &&
                 carSize_id != 0 &&
@@ -77,7 +79,8 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 !time.isEmpty() &&
                 order_time_id != 0 &&
                 !order_date.isEmpty() &&
-                place_id != 0  &&!vehicleChar.isEmpty() &&
+                place_id != 0
+                &&!vehicleChar.isEmpty() &&
                 !vehicleNumber.isEmpty()
 
 

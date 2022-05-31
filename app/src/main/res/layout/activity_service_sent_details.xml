@@ -419,7 +419,7 @@
                             <com.chaos.view.PinView
                                 android:id="@+id/edtCharacters"
                                 style="@style/PinWidget.PinView"
-                                error="@{itemModel.car_plate_char_error}"
+                                error="@{sendServiceModel.car_plate_char_error}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -427,7 +427,7 @@
                                 android:cursorVisible="true"
                                 android:inputType="text"
                                 android:itemBackground="@drawable/item_selected2"
-                                android:text="@={itemModel.vehicleChar}"
+                                android:text="@={sendServiceModel.vehicleChar}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:cursorColor="@color/color2"
@@ -464,7 +464,7 @@
                             <com.chaos.view.PinView
                                 android:id="@+id/edtCode"
                                 style="@style/PinWidget.PinView"
-                                error="@{itemModel.car_plate_number_error}"
+                                error="@{sendServiceModel.car_plate_number_error}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -472,7 +472,7 @@
                                 android:cursorVisible="true"
                                 android:inputType="number"
                                 android:itemBackground="@drawable/item_selected2"
-                                android:text="@={itemModel.vehicleNumber}"
+                                android:text="@={sendServiceModel.vehicleNumber}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:cursorColor="@color/color2"
@@ -806,7 +806,7 @@
                                 app:tint="@color/color_second" />
 
                             <TextView
-                                error="@{itemModel.address_error}"
+                                error="@{sendServiceModel.address_error}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:clickable="false"
@@ -871,7 +871,7 @@
 
                             <TextView
                                 android:id="@+id/tvDate"
-                                error="@{itemModel.date_error}"
+                                error="@{sendServiceModel.date_error}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -938,7 +938,7 @@
 
                             <TextView
                                 android:id="@+id/tvTime"
-                                error="@{itemModel.time_error}"
+                                error="@{sendServiceModel.time_error}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:clickable="false"
