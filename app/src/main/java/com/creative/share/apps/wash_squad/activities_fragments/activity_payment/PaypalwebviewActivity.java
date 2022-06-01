@@ -81,7 +81,7 @@ public class PaypalwebviewActivity extends AppCompatActivity implements Listener
 
                                                  }
                                                  else{
-                                                     Toast.makeText(PaypalwebviewActivity.this, getString(R.string.payment_faild), Toast.LENGTH_SHORT).show();
+                                                    // Toast.makeText(PaypalwebviewActivity.this, getString(R.string.payment_faild), Toast.LENGTH_SHORT).show();
 
                                                  }
                                              }
