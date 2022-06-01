@@ -146,7 +146,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         userModel = preferences.getUserData(this);
         itemToUpload = new ItemToUpload();
         itemToUpload.setSub_services(subServiceModelList);
-        itemToUpload.setService_id(serviceModel.getId());
+        itemToUpload.setService_id(service_id);
+        itemToUpload.setSub_serv_id(serviceModel.getId());
         itemToUpload.setAr_service_type(serviceModel.getAr_title());
         itemToUpload.setEn_service_type(serviceModel.getEn_title());
 

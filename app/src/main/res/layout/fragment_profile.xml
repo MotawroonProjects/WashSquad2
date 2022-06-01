@@ -393,7 +393,7 @@
                             android:gravity="center"
                             android:text="@string/subscription_details"
                             android:textColor="@color/white"
-                            android:textSize="10sp"
+                            android:textSize="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/fl"
                             app:layout_constraintEnd_toStartOf="@+id/btnSubscribe"
                             app:layout_constraintTop_toBottomOf="@+id/fl" />
@@ -402,16 +402,16 @@
                             android:id="@+id/btnSubscribe"
                             android:layout_width="wrap_content"
                             android:layout_height="33dp"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="30dp"
-                            android:layout_marginRight="7dp"
+                            android:layout_marginRight="5dp"
                             android:background='@{model==null||model.time_dealy&lt;settingmodel.delay_order_sub_limit?@drawable/btn_bg:@drawable/btn_gray}'
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:gravity="center"
                             android:text="@string/subscription_request"
                             android:textColor="@color/white"
-                            android:textSize="10sp"
+                            android:textSize="8sp"
                             android:enabled='@{model==null||(model.time_dealy&lt;settingmodel.delay_order_sub_limit)?true:false}'
                             app:layout_constraintBottom_toBottomOf="@+id/fl"
                             app:layout_constraintEnd_toEndOf="@+id/fl"

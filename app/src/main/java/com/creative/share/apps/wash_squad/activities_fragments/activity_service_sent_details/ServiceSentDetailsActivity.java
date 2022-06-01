@@ -141,7 +141,8 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
             sendServiceModel.setPhone_code("00966");
         }
         sendServiceModel.setSub_services(subServiceModelList);
-        sendServiceModel.setService_id(serviceModel.getId());
+        sendServiceModel.setService_id(service_id);
+        sendServiceModel.setSub_serv_id(serviceModel.getId());
         Log.e("D'd''d",sendServiceModel.getService_id()+"");
         sendServiceModel.setAr_service_type(serviceModel.getAr_title());
         sendServiceModel.setEn_service_type(serviceModel.getEn_title());

@@ -469,7 +469,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text='@{((sendServiceModel.total_price+coupon-tax)-sendServiceModel.service_price)+@string/sar}'
+                                    android:text='@{(Math.round(((sendServiceModel.total_price+coupon-tax)-sendServiceModel.service_price)))+@string/sar}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>
