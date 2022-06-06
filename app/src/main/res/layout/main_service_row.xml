@@ -30,9 +30,9 @@
             >
             <ImageView
 
+                android:id="@+id/img_service"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                serviceImage="@{serviceModel.image}"
 
                 />
 

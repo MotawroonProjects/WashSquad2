@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity;
@@ -123,7 +124,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         areaModelList = new ArrayList<>();
 
         carBrandModelList = new ArrayList<>();
-         carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+        carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
         subServiceModelList = new ArrayList<>();
@@ -134,16 +135,15 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
         sendServiceModel = new SendServiceModel();
         if (userModel != null) {
             sendServiceModel.setSender_name(userModel.getFull_name());
-            sendServiceModel.setSender_phone(userModel.getPhone().replaceFirst(userModel.getPhone_code(),""));
+            sendServiceModel.setSender_phone(userModel.getPhone().replaceFirst(userModel.getPhone_code(), ""));
             sendServiceModel.setPhone_code(userModel.getPhone_code());
-        }
-        else{
+        } else {
             sendServiceModel.setPhone_code("00966");
         }
         sendServiceModel.setSub_services(subServiceModelList);
         sendServiceModel.setService_id(service_id);
         sendServiceModel.setSub_serv_id(serviceModel.getId());
-        Log.e("D'd''d",sendServiceModel.getService_id()+"");
+        Log.e("D'd''d", sendServiceModel.getService_id() + "");
         sendServiceModel.setAr_service_type(serviceModel.getAr_title());
         sendServiceModel.setEn_service_type(serviceModel.getEn_title());
         // itemToUpload.setLevel2(serviceModel.getLevel2());
@@ -207,7 +207,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     sendServiceModel.setEn_car_type("");
                     sendServiceModel.setBrand_id(0);
                     binding.setSendServiceModel(sendServiceModel);
-                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
+                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
                     carBrandAdapter.notifyDataSetChanged();
@@ -226,8 +226,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                 } else {
                     additional_service.clear();
                     carBrandModelList.clear();
-                     carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
-
+                    carBrandModelList.add(new CarTypeDataModel.CarBrandModel("ماركة السيارة", "Car brand"));
 
 
                     sendServiceModel.setCarType_id(carTypeModelList.get(i).getId());
@@ -364,7 +363,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
 
         binding.btnSendOrder.setOnClickListener(view -> {
             if (sendServiceModel.isDataValidStep1(this)) {
-                Log.e("Ssllsl","Slsllsl");
+                Log.e("Ssllsl", "Slsllsl");
                 if (userModel != null) {
                     sendServiceModel.setUser_id(userModel.getId());
                     sendServiceModel.setSender_name(userModel.getFull_name());
@@ -381,15 +380,14 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                 }
 
 
-            }
-else{
-                Log.e("Ssllsl","Sl888sllsl");
+            } else {
+                Log.e("Ssllsl", "Sl888sllsl");
 
             }
         });
 
         binding.imageIncrease.setOnClickListener(view -> {
-            double service_price=sendServiceModel.getService_price()/count;
+            double service_price = sendServiceModel.getService_price() / count;
 
             count++;
             sendServiceModel.setAmount(count);
@@ -397,19 +395,19 @@ else{
             final_total = total * count;
 
             binding.setTotal(final_total);
-            sendServiceModel.setService_price(service_price*count);
+            sendServiceModel.setService_price(service_price * count);
 
         });
 
         binding.imageDecrease.setOnClickListener(view -> {
             if (count > 1) {
-                double service_price=sendServiceModel.getService_price()/count;
+                double service_price = sendServiceModel.getService_price() / count;
                 count--;
                 sendServiceModel.setAmount(count);
 
                 final_total = total * count;
                 binding.setTotal(final_total);
-                sendServiceModel.setService_price(service_price*count);
+                sendServiceModel.setService_price(service_price * count);
 
                 // binding.setTotal(total);
                 binding.tvCount.setText(String.valueOf(count));
@@ -433,13 +431,18 @@ else{
 
             }
         });
-        getArea();
+        SvgLoader.pluck()
+                .with(this)
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL + serviceModel.getImage(), binding.image);
 
+        getArea();
         getCarSize();
         getCarType();
 
 
     }
+
     private void getArea() {
         ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
@@ -454,7 +457,7 @@ else{
                         if (response.isSuccessful() && response.body() != null) {
 
                             areaModelList.clear();
-                             areaModelList.add(new AreaModel("الحى", " Area"));
+                            areaModelList.add(new AreaModel("الحى", " Area"));
 
                             areaModelList.addAll(response.body().getData());
                             spinnerAreaAdapter.notifyDataSetChanged();
@@ -548,7 +551,7 @@ else{
                             binding.setPrice(response.body());
                             total = total + response.body();
                             final_total = total * count;
-                            sendServiceModel.setService_price(response.body()*count);
+                            sendServiceModel.setService_price(response.body() * count);
                             binding.setTotal(final_total);
 
                         } else {
@@ -846,9 +849,10 @@ else{
     }
 
     public void removeAdditionalItem(ServiceDataModel.Level3 m_Level2) {
-        if(additional_service.size()>0){
+        if (additional_service.size() > 0) {
 
-            additional_service.remove(getItemPos(m_Level2));}
+            additional_service.remove(getItemPos(m_Level2));
+        }
         Log.e("vvvvvvv", m_Level2.getPrice() + "__");
 
         total = total - Double.parseDouble(m_Level2.getPrice());
@@ -947,6 +951,7 @@ else{
                     }
                 });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

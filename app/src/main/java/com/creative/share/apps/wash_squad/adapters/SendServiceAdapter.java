@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_choose_service.ChooseServiceSentActivity;
 import com.creative.share.apps.wash_squad.databinding.MainServiceRowBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.tags.Tags;
 
 import java.util.List;
 import java.util.Locale;
@@ -48,6 +50,13 @@ public class SendServiceAdapter extends RecyclerView.Adapter<SendServiceAdapter.
             activity.setItemData(serviceModel1);
 
         });
+        ChooseServiceSentActivity activity=(ChooseServiceSentActivity) context;
+
+        SvgLoader.pluck()
+                .with(activity)
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL+serviceModelList.get(position).getImage(),holder.serviceRowBinding.imgService);
+
     }
 
     @Override

@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
@@ -437,6 +438,11 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
             }
         });
+        SvgLoader.pluck()
+                .with(this)
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL+serviceModel.getImage(),binding.image);
+
         getCarSize();
         getCarType();
         getArea();

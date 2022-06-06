@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.databinding.CategoryServiceRowBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.tags.Tags;
 
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +52,10 @@ public class CategoryServiceAdapter extends RecyclerView.Adapter<CategoryService
             ServiceDataModel.Level2 serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
             activity.setItemData(serviceModel1);
         });
+        SvgLoader.pluck()
+                .with(activity)
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL+serviceModelList.get(position).getImage(),holder.categoryServiceRowBinding.image);
 
     }
 

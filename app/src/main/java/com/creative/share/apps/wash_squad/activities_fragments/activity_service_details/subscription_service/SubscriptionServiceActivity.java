@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_map.MapActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaymentActivity;
@@ -131,6 +132,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             service_id = intent.getIntExtra("service_id", 0);
             service_name_ar = intent.getStringExtra("service_name_ar");
             service_name_en = intent.getStringExtra("service_name_en");
+
             if (intent.getSerializableExtra("order") != null) {
                 orderModel = (Order_Data_Model.OrderModel) intent.getSerializableExtra("order");
 
@@ -467,6 +469,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
             }
 
         });
+        SvgLoader.pluck()
+                .with(this)
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL+serviceModel.getImage(),binding.image);
+
         getCarSize();
         getCarType();
         getArea();

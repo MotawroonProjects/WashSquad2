@@ -2,6 +2,8 @@ package com.creative.share.apps.wash_squad.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,10 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.creative.share.apps.wash_squad.databinding.MainServiceRowBinding;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
+import com.creative.share.apps.wash_squad.tags.Tags;
 
 import java.util.List;
 import java.util.Locale;
@@ -39,6 +43,7 @@ public class MainServiceAdapter extends RecyclerView.Adapter<MainServiceAdapter.
     public ServiceHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         MainServiceRowBinding serviceRowBinding = DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.main_service_row,parent,false);
         return new ServiceHolder(serviceRowBinding);
+
     }
 
     @Override
@@ -47,7 +52,7 @@ public class MainServiceAdapter extends RecyclerView.Adapter<MainServiceAdapter.
         ServiceDataModel.ServiceModel serviceModel = serviceModelList.get(position);
         holder.serviceRowBinding.setLang(lang);
         holder.serviceRowBinding.setServiceModel(serviceModel);
-        holder.itemView.setOnClickListener(view -> {
+            holder.itemView.setOnClickListener(view -> {
             ServiceDataModel.ServiceModel serviceModel1 = serviceModelList.get(holder.getAdapterPosition());
 
             if (holder.getAdapterPosition()==2){
@@ -61,6 +66,14 @@ public class MainServiceAdapter extends RecyclerView.Adapter<MainServiceAdapter.
 
 
         });
+        Log.e("path",Tags.IMAGE_URL+serviceModelList.get(position).getImage());
+
+        SvgLoader.pluck()
+                .with(fragment.getActivity())
+                .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+                .load(Tags.IMAGE_URL+serviceModelList.get(position).getImage(),holder.serviceRowBinding.imgService);
+
+        SvgLoader.pluck().close();
     }
 
     @Override

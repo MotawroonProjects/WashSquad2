@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.creative.share.apps.wash_squad.R;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_login_option.LoginOptionActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_terms_conditions.TermsActivity;
 import com.creative.share.apps.wash_squad.databinding.ActivitySignInBinding;
 import com.creative.share.apps.wash_squad.language.LanguageHelper;
 import com.creative.share.apps.wash_squad.models.ServiceDataModel;
@@ -135,7 +136,12 @@ public class SignInActivity extends AppCompatActivity {
             finish();
         }
     }
+    public void terms() {
 
+            Intent intent=new Intent(SignInActivity.this, TermsActivity.class);
+            startActivity(intent);
+
+    }
     public void getDatafromintent() {
         Intent intent = getIntent();
         if (intent != null && intent.getStringExtra("data") != null) {

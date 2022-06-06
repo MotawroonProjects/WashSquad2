@@ -35,7 +35,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="8dp"
-                serviceImage="@{level2.image}"
 
                 />
             <TextView

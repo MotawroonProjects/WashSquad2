@@ -157,67 +157,68 @@
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_grey1_strock_grey8"
-                        android:padding="5dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="53dp">
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_grey1_strock_grey8"
+                            android:padding="5dp">
 
-                            <ImageView
-                                android:id="@+id/icon"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="5dp"
-                                android:src="@drawable/ic_phone_call"
-                                android:tint="@color/gray5"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="53dp">
+
+                                <ImageView
+                                    android:id="@+id/icon"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:padding="5dp"
+                                    android:src="@drawable/ic_phone_call"
+                                    android:tint="@color/gray5"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                            <TextView
-                                android:id="@+id/tvCode"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:paddingLeft="5dp"
-                                android:paddingRight="5dp"
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/icon"
-                                app:layout_constraintTop_toTopOf="parent"
+                                <TextView
+                                    android:id="@+id/tvCode"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/icon"
+                                    app:layout_constraintTop_toTopOf="parent"
 
-                                />
+                                    />
 
-                            <EditText
-                                android:id="@+id/edtPhone"
-                                error="@{signUpModel.error_phone}"
-                                android:layout_width="0dp"
-                                android:layout_height="30dp"
-                                android:background="@color/transparent"
-                                android:hint="@string/phone"
-                                android:inputType="phone"
-                                android:paddingLeft="5dp"
-                                android:paddingRight="5dp"
-                                android:singleLine="true"
-                                android:text="@={signUpModel.phone}"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/gray4"
-                                android:textSize="14sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tvCode"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                <EditText
+                                    android:id="@+id/edtPhone"
+                                    error="@{signUpModel.error_phone}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="30dp"
+                                    android:background="@color/transparent"
+                                    android:hint="@string/phone"
+                                    android:inputType="phone"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:singleLine="true"
+                                    android:text="@={signUpModel.phone}"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/gray4"
+                                    android:textSize="14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/tvCode"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
+                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -228,58 +229,58 @@
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp">
-                    <LinearLayout
-                        android:id="@+id/cardPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                      android:padding="5dp"
-                        android:background="@drawable/rounded_grey1_strock_grey8"
-                       >
 
                         <LinearLayout
+                            android:id="@+id/cardPassword"
                             android:layout_width="match_parent"
-                            android:layout_height="53dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_grey1_strock_grey8"
+                            android:padding="5dp">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="5dp"
-                                android:src="@drawable/ic_lock"
-                                android:tint="@color/gray5" />
-
-
-                            <com.google.android.material.textfield.TextInputLayout
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:errorEnabled="false"
-                                app:hintEnabled="false"
-                                app:passwordToggleEnabled="true"
-                                app:passwordToggleTint="@color/gray5">
+                                android:layout_height="53dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                                <EditText
-                                    android:id="@+id/edtPassword"
-                                    error="@{signUpModel.error_password}"
-                                    android:layout_width="match_parent"
+                                <ImageView
+                                    android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:background="@color/transparent"
-                                    android:hint="@string/password"
-                                    android:inputType="textPassword"
-                                    android:paddingLeft="5dp"
-                                    android:paddingRight="5dp"
-                                    android:singleLine="true"
-                                    android:text="@={signUpModel.password}"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray4"
-                                    android:textSize="14sp"
+                                    android:padding="5dp"
+                                    android:src="@drawable/ic_lock"
+                                    android:tint="@color/gray5" />
 
-                                    />
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:errorEnabled="false"
+                                    app:hintEnabled="false"
+                                    app:passwordToggleEnabled="true"
+                                    app:passwordToggleTint="@color/gray5">
+
+                                    <EditText
+                                        android:id="@+id/edtPassword"
+                                        error="@{signUpModel.error_password}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:background="@color/transparent"
+                                        android:hint="@string/password"
+                                        android:inputType="textPassword"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        android:singleLine="true"
+                                        android:text="@={signUpModel.password}"
+                                        android:textColor="@color/black"
+                                        android:textColorHint="@color/gray4"
+                                        android:textSize="14sp"
+
+                                        />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
                         </LinearLayout>
-
-                    </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 
@@ -308,7 +309,35 @@
                     <!--                                    android:textColor="@color/gray4"-->
                     <!--                                    android:textSize="15sp"/>-->
                     <!--                            </RadioGroup>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:orientation="horizontal">
 
+                        <CheckBox
+                            android:id="@+id/checkbox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1"
+                            android:button="@drawable/rb_bg2"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/tvPoliciesAndTerms"
+                            android:layout_width="0dp"
+                            android:layout_weight=".9"
+                            android:layout_height="wrap_content"
+                            android:text="@string/policies_and_terms_of_service"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/btnLogin"
