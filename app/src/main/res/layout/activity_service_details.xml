@@ -892,17 +892,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1" />
 
-                        <TextView
-                            android:id="@+id/tvDone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:minWidth="90dp"
-                            android:text="@string/done2"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp"
-                            android:visibility="gone" />
+
 
 
                     </LinearLayout>
@@ -971,7 +961,17 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/tvDone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="center"
+                        android:minWidth="90dp"
+                        android:text="@string/done2"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

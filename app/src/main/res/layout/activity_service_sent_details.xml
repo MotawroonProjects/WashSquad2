@@ -620,6 +620,7 @@
                                     android:paddingLeft="5dp"
                                     android:paddingRight="5dp"
                                     android:singleLine="true"
+                                    android:maxLength="10"
                                     android:text="@={sendServiceModel.sender_phone}"
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/gray4"
@@ -767,6 +768,7 @@
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/gray4"
                                     android:textSize="14sp"
+                                    android:maxLength="10"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@id/tvCode2"
@@ -1187,17 +1189,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1" />
 
-                        <TextView
-                            android:id="@+id/tvDone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:minWidth="90dp"
-                            android:text="@string/done2"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp"
-                            android:visibility="gone" />
+
 
 
                     </LinearLayout>
@@ -1266,7 +1258,17 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/tvDone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="center"
+                        android:minWidth="90dp"
+                        android:text="@string/done2"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

@@ -25,6 +25,7 @@ import com.creative.share.apps.wash_squad.activities_fragments.activity_order_de
 import com.creative.share.apps.wash_squad.activities_fragments.activity_order_details.fragments.Fragment_Order_Products;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_payment.PaypalwebviewActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_print.PrintActivity;
+import com.creative.share.apps.wash_squad.activities_fragments.activity_service_category.ServiceCategoryActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.ServiceDetailsActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_details.subscription_service.SubscriptionServiceActivity;
 import com.creative.share.apps.wash_squad.activities_fragments.activity_service_sent_payment.ServiceSentPaymentActivity;
@@ -270,12 +271,23 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 }
             }
             if (pos != -1) {
+                int pos2=-1;
+                for(int i=0;i<serviceModelList.get(pos).getLevel2().size();i++){
+                    if(serviceModelList.get(pos).getLevel2().get(i).getId()==orderModel.getSub_service_id()){
+                        pos2=i;
+                        break;
+                    }
+                }
+                if(pos2!=-1){
                 Intent intent = new Intent(this, ServiceDetailsActivity.class);
-                intent.putExtra("data", serviceModelList.get(pos));
+                intent.putExtra("data", serviceModelList.get(pos).getLevel2().get(pos2));
+                    intent.putExtra("service_id", serviceModelList.get(pos).getId());
+                    intent.putExtra("service_name_ar", serviceModelList.get(pos).getAr_title());
+                    intent.putExtra("service_name_en", serviceModelList.get(pos).getEn_title());
                 intent.putExtra("order", orderModel);
                 startActivityForResult(intent, 1000);
             }
-        }
+        }}
     }
 
     private void getServices() {

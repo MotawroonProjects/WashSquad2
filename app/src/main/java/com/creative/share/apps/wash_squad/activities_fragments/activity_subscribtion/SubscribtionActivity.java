@@ -47,7 +47,7 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
     private Preferences preferences;
     private UserModel userModel;
     private WashAdapter washAdapter;
-    private int count, status;
+    private int count, status=0;
     private ArrayList<DayModel> dayModelList;
     private ArrayList<String> dayModelList2;
     private SubscribtionDataModel.WashSub model;
@@ -197,7 +197,8 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                     @Override
                     public void onResponse(Call<SubscribtionDataModel> call, Response<SubscribtionDataModel> response) {
                         binding.progBar.setVisibility(View.GONE);
-                        if (response.isSuccessful() && response.body() != null) {
+                      Log.e("ssllsl",response.code()+"");
+                       if (response.isSuccessful() && response.body() != null) {
                             updateui(response.body());
 
                         } else {
@@ -231,8 +232,12 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                     public void onFailure(Call<SubscribtionDataModel> call, Throwable t) {
                         try {
                             // binding.swipeRefresh.setRefreshing(false);
-
+                            binding.cardView.setVisibility(View.GONE);
+                            binding.llData.setVisibility(View.GONE);
+                            binding.tvNoDetails.setVisibility(View.VISIBLE);
                             binding.progBar.setVisibility(View.GONE);
+                            binding.btnSubscribe.setText(getResources().getString(R.string.subscription_request));
+
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
@@ -255,7 +260,12 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
         binding.llData.setVisibility(View.VISIBLE);
         binding.tvNoDetails.setVisibility(View.GONE);
         count = 0;
+        if(washSubList.size()==0){
+            binding.btnSubscribe.setText(getResources().getString(R.string.subscription_request));
+        }
+
         washAdapter.notifyDataSetChanged();
+        if(washSubList.size()>0){
         for (int i = 0; i < washSubList.size(); i++) {
             if (washSubList.get(i).getStatus().equals("done")) {
                 count += 1;
@@ -265,7 +275,8 @@ public class SubscribtionActivity extends AppCompatActivity implements Listeners
                 binding.setDay(dayModelList.get(dayModelList2.indexOf(washSubList.get(i).getDay().toUpperCase())).getDay_text());
                 status = 1;
             }
-        }
+        }}
+        Log.e("dldlldl",status+" ");
         if (status == 1) {
             binding.btnSubscribe.setText(getResources().getString(R.string.postpone_an_appointment));
         } else {
