@@ -389,6 +389,10 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
 
             }
+            else{
+                Toast.makeText(this,getResources().getString(R.string.complete_info),Toast.LENGTH_LONG).show();
+
+            }
         });
 
         binding.imageIncrease.setOnClickListener(view -> {

@@ -159,6 +159,7 @@
                                     android:paddingLeft="5dp"
                                     android:paddingRight="5dp"
                                     android:singleLine="true"
+                                    android:maxLength="9"
                                     android:text="@={loginModel.phone}"
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/gray4"
