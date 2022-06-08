@@ -93,7 +93,7 @@
                     android:layout_marginTop="10dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text='@{lang.equals("ar")?Html.fromHtml(terms.ar_content).toString():Html.fromHtml(terms.en_content).toString()}'
+                    android:text='@{lang.equals("ar")?terms.ar_content.toString():terms.en_content.toString()}'
                     android:textColor="@color/black"
                     android:textSize="14sp"
 
