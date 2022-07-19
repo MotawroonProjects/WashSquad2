@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ووش سكواد</string>
-    <string name="map_api_key">AIzaSyDRH058OG79geHwTA1xw5hlOmomHIFbj94</string>
+    <string name="map_api_key">AIzaSyDAQEYH3Kls289y-RODAqzcBfmIeEpJ1Gg</string>
     <string name="log_in">دخول</string>
     <string name="email">البريد الالكترونى</string>
     <string name="password">رمز الدخول</string>
