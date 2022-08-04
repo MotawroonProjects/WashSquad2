@@ -34,7 +34,9 @@ import com.creative.share.apps.wash_squad.tags.Tags;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +49,7 @@ public class Fragment_Offers extends Fragment {
     private LinearLayoutManager manager;
     private OffersAdapter adapter;
     private List<ServiceDataModel.ServiceModel> serviceModelList;
+    private String lang;
 
     public static Fragment_Offers newInstance() {
         return new Fragment_Offers();
@@ -61,13 +64,16 @@ public class Fragment_Offers extends Fragment {
     }
 
     private void initView() {
+
         offerModelList = new ArrayList<>();
         serviceModelList = new ArrayList<>();
         activity = (HomeActivity) getActivity();
+        Paper.init(activity);
+        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         manager = new LinearLayoutManager(activity);
         binding.recView.setLayoutManager(manager);
-        adapter = new OffersAdapter(offerModelList, activity, this);
+        adapter = new OffersAdapter(offerModelList, activity, this,lang);
         binding.recView.setAdapter(adapter);
 
         binding.swipeRefresh.setOnRefreshListener(this::getOffers);

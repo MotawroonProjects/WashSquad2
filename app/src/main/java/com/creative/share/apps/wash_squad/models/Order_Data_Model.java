@@ -86,7 +86,7 @@ public class Order_Data_Model implements Serializable {
         private String brand__ar_title;
         private List<Products> order_sub_services;
         private String day;
-        private String car_plate_number;
+        private String car_blade_number;
         private CouponModel coupon;
 
         public int getId() {
@@ -377,8 +377,8 @@ public class Order_Data_Model implements Serializable {
             return day;
         }
 
-        public String getCar_plate_number() {
-            return car_plate_number;
+        public String getCar_blade_number() {
+            return car_blade_number;
         }
 
         public CouponModel getCoupon() {

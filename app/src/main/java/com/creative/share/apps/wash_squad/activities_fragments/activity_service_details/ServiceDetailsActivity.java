@@ -375,7 +375,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     itemToUpload.setUser_name(userModel.getFull_name());
                     itemToUpload.setUser_phone(userModel.getPhone());
                     itemToUpload.setTotal_price(final_total);
-                    itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
+                    itemToUpload.setCar_blade_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
 
                     Intent intent = new Intent(this, PaymentActivity.class);
                     intent.putExtra("item", itemToUpload);
@@ -455,8 +455,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
     private void updatesubService() {
         first=0;
-        Log.e("suuuu",serviceModel.getLevel3().size()+" "+orderModel.getOrder_sub_services().size());
-        for (int i = 0; i < serviceModel.getLevel3().size(); i++) {
+      //  Log.e("suuuu",serviceModel.getLevel3().size()+" "+orderModel.getOrder_sub_services().size());
+      if(orderModel.getOrder_sub_services()!=null){
+       for (int i = 0; i < serviceModel.getLevel3().size(); i++) {
 
             for (int j = 0; j < orderModel.getOrder_sub_services().size(); j++) {
                 Log.e("kdkdkkd", serviceModel.getLevel3().get(i).getId() + " " + orderModel.getOrder_sub_services().get(j).getSub_service_id());
@@ -469,7 +470,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                     setItemAdditionService(serLevel2);
                 }
             }
-        }
+        }}
         additionalServiceAdapter.updatelist(serviceModel.getLevel3());
         additionalServiceAdapter.notifyDataSetChanged();
     }
@@ -497,6 +498,17 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         if (orderModel.getPlace_id() != null) {
             itemToUpload.setPlace_id(Integer.parseInt(orderModel.getPlace_id()));
         }
+        if (orderModel.getCar_blade_number() != null) {
+            // Log.e(";llll",orderModel.getcar_blade_number());
+            try {
+                itemToUpload.setVehicleChar(orderModel.getCar_blade_number().substring(0, 3));
+                itemToUpload.setVehicleNumber(orderModel.getCar_blade_number().substring(3, 7));
+            } catch (Exception e) {
+
+            }
+
+        }
+
         itemToUpload.setAddress(orderModel.getAddress());
         itemToUpload.setLatitude(orderModel.getLatitude() + "");
         itemToUpload.setLongitude(orderModel.getLongitude() + "");

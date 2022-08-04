@@ -19,7 +19,7 @@
         android:textSize="13sp"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
-        android:text='@{lang.equals("ar")?areaModel.title_ar:areaModel.title_en}'
+        android:text='@{lang.equals("ar")?areaModel.ar_name:areaModel.en_name}'
 
         />
 </layout>

@@ -296,7 +296,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="@string/car_plate_number"
+                                    android:text="@string/car_blade_number"
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
 
@@ -309,7 +309,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text='@{itemModel.car_plate_number}'
+                                    android:text='@{itemModel.car_blade_number}'
                                     android:textColor="@color/gray5"
                                     android:textSize="15sp" />
                             </LinearLayout>

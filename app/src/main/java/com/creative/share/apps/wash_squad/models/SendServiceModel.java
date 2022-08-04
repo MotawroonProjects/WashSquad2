@@ -51,7 +51,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     private double total_tax;
     private String vehicleChar;
     private String vehicleNumber;
-    private String car_plate_number;
+    private String car_blade_number;
     private ServiceDataModel.Level2 level2;
     private List<ItemToUpload.SubServiceModel> sub_services;
     private String phone_code;
@@ -62,10 +62,10 @@ public class SendServiceModel extends BaseObservable implements Serializable {
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
-    public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_blade_number_error = new ObservableField<>();
     public ObservableField<String> car_plate_char_error = new ObservableField<>();
     public boolean isDataValidStep1(Context context) {
-        Log.e("dddkkdk",service_id+" "+carSize_id+" "+carType_id+" "+brand_id+" "+address+" "+sender_name+" "+sender_phone+" "+receiver_name+" "+receiver_phone+" "+time+" "+order_time_id+" "+order_date+" "+car_plate_number+" "+vehicleChar+" "+place_id);
+        Log.e("dddkkdk",service_id+" "+carSize_id+" "+carType_id+" "+brand_id+" "+address+" "+sender_name+" "+sender_phone+" "+receiver_name+" "+receiver_phone+" "+time+" "+order_time_id+" "+order_date+" "+car_blade_number+" "+vehicleChar+" "+place_id);
         if (service_id != 0 &&
                 //   sub_serv_id != 0 &&
                 carSize_id != 0 &&
@@ -92,7 +92,7 @@ public class SendServiceModel extends BaseObservable implements Serializable {
             receiver_phone_error.set(null);
             date_error.set(null);
             time_error.set(null);
-            car_plate_number_error.set(null);
+            car_blade_number_error.set(null);
             car_plate_char_error.set(null);
             return true;
         } else {
@@ -104,9 +104,9 @@ public class SendServiceModel extends BaseObservable implements Serializable {
                 Toast.makeText(context, R.string.ch_car_type, Toast.LENGTH_SHORT).show();
             }
             if (vehicleNumber.isEmpty()) {
-                car_plate_number_error.set(context.getString(R.string.field_req));
+                car_blade_number_error.set(context.getString(R.string.field_req));
             } else {
-                car_plate_number_error.set(null);
+                car_blade_number_error.set(null);
             }
             if (vehicleChar.isEmpty()) {
                 car_plate_char_error.set(context.getString(R.string.field_req));
@@ -566,14 +566,17 @@ public class SendServiceModel extends BaseObservable implements Serializable {
         this.phone_code = phone_code;
     }
     @Bindable
-    public String getCar_plate_number() {
-        return car_plate_number;
+    public String getCar_blade_number() {
+        return car_blade_number;
     }
 
-    public void setCar_plate_number(String car_plate_number) {
-        this.car_plate_number = car_plate_number;
-        notifyPropertyChanged(BR.car_plate_number);
+    public void setCar_blade_number(String car_blade_number) {
+        this.car_blade_number = car_blade_number;
+        notifyPropertyChanged(BR.car_blade_number);
     }
+
+
+
     @Bindable
     public String getVehicleChar() {
         return vehicleChar;

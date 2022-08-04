@@ -4,26 +4,26 @@ import java.io.Serializable;
 
 public class AreaModel implements Serializable {
     private int id;
-    private String title_ar;
-    private String title_en;
+    private String ar_name;
+    private String en_name;
     private String created_at;
     private String updated_at;
 
-    public AreaModel(String title_ar, String title_en) {
-        this.title_ar = title_ar;
-        this.title_en = title_en;
+    public AreaModel(String title_ar, String en_name) {
+        this.ar_name = title_ar;
+        this.en_name = en_name;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTitle_ar() {
-        return title_ar;
+    public String getAr_name() {
+        return ar_name;
     }
 
-    public String getTitle_en() {
-        return title_en;
+    public String getEn_name() {
+        return en_name;
     }
 
     public String getCreated_at() {

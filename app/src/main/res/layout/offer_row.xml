@@ -5,6 +5,9 @@
     >
     <data>
         <variable
+            name="lang"
+            type="String" />
+        <variable
             name="offerModel"
             type="com.creative.share.apps.wash_squad.models.OfferDataModel.OfferModel" />
     </data>
@@ -18,6 +21,6 @@
         app:riv_border_color="@color/colorPrimary"
         app:riv_border_width="1dp"
         app:riv_corner_radius="10dp"
-        offerImage="@{offerModel.image}"
+        offerImage='@{lang.equals("ar")?offerModel.ar_image:offerModel.en_image}'
         />
 </layout>

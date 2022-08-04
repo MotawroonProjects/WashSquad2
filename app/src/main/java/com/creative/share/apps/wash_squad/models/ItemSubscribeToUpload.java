@@ -47,7 +47,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
     private String en_service_type;
     private String vehicleChar;
     private String vehicleNumber;
-    private String car_plate_number;
+    private String car_blade_number;
     private String time;
     private String time_type;
 
@@ -56,7 +56,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> day_error = new ObservableField<>();
-    public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_blade_number_error = new ObservableField<>();
     public ObservableField<String> car_plate_char_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
@@ -79,7 +79,7 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         ) {
             address_error.set(null);
             day_error.set(null);
-            car_plate_number_error.set(null);
+            car_blade_number_error.set(null);
             car_plate_char_error.set(null);
             time_error.set(null);
             date_error.set(null);
@@ -115,9 +115,9 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
 
             }
             if (vehicleNumber.isEmpty()) {
-                car_plate_number_error.set(context.getString(R.string.field_req));
+                car_blade_number_error.set(context.getString(R.string.field_req));
             } else {
-                car_plate_number_error.set(null);
+                car_blade_number_error.set(null);
             }
             if (vehicleChar.isEmpty()) {
                 car_plate_char_error.set(context.getString(R.string.field_req));
@@ -227,16 +227,18 @@ public class ItemSubscribeToUpload extends BaseObservable implements Serializabl
         this.place_id = place_id;
         notifyPropertyChanged(BR.place_id);
     }
+@Bindable
+    public String getCar_blade_number() {
+        return car_blade_number;
+    }
+
+    public void setCar_blade_number(String car_blade_number) {
+        this.car_blade_number = car_blade_number;
+        notifyPropertyChanged(BR.car_blade_number);
+    }
 
     @Bindable
-    public String getCar_plate_number() {
-        return car_plate_number;
-    }
 
-    public void setCar_plate_number(String car_plate_number) {
-        this.car_plate_number = car_plate_number;
-        notifyPropertyChanged(BR.car_plate_number);
-    }
 
     public String getOrder_date() {
         return order_date;

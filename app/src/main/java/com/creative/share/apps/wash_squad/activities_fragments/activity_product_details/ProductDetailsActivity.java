@@ -75,7 +75,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProductDetailsActivity.this, WebViewActivity.class);
-                intent.putExtra("url",productModel.getData().getLinkk());
+                intent.putExtra("url",productModel.getData().getLink());
                 startActivity(intent);
             }
         });

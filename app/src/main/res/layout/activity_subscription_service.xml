@@ -341,7 +341,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/car_plate_number"
+                        android:text="@string/car_blade_number"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -410,7 +410,7 @@
                             <com.chaos.view.PinView
                                 android:id="@+id/edtCode"
                                 style="@style/PinWidget.PinView"
-                                error="@{itemModel.car_plate_number_error}"
+                                error="@{itemModel.car_blade_number_error}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"

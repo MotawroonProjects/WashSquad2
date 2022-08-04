@@ -48,14 +48,14 @@ public class ItemToUpload extends BaseObservable implements Serializable {
     private String en_service_type;
     private String vehicleChar;
     private String vehicleNumber;
-    private String car_plate_number;
+    private String car_blade_number;
     private ServiceDataModel.Level2 level2;
     private List<SubServiceModel> sub_services;
 
     public ObservableField<String> address_error = new ObservableField<>();
     public ObservableField<String> date_error = new ObservableField<>();
     public ObservableField<String> time_error = new ObservableField<>();
-    public ObservableField<String> car_plate_number_error = new ObservableField<>();
+    public ObservableField<String> car_blade_number_error = new ObservableField<>();
     public ObservableField<String> car_plate_char_error = new ObservableField<>();
 
     public boolean isDataValidStep1(Context context) {
@@ -76,7 +76,7 @@ public class ItemToUpload extends BaseObservable implements Serializable {
             address_error.set(null);
             time_error.set(null);
             date_error.set(null);
-            car_plate_number_error.set(null);
+            car_blade_number_error.set(null);
             car_plate_char_error.set(null);
 
             return true;
@@ -103,9 +103,9 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
             }
             if (vehicleNumber.isEmpty()) {
-                car_plate_number_error.set(context.getString(R.string.field_req));
+                car_blade_number_error.set(context.getString(R.string.field_req));
             } else {
-                car_plate_number_error.set(null);
+                car_blade_number_error.set(null);
             }
             if (vehicleChar.isEmpty()) {
                 car_plate_char_error.set(context.getString(R.string.field_req));
@@ -220,14 +220,16 @@ public class ItemToUpload extends BaseObservable implements Serializable {
 
     }
     @Bindable
-    public String getCar_plate_number() {
-        return car_plate_number;
+    public String getCar_blade_number() {
+        return car_blade_number;
     }
 
-    public void setCar_plate_number(String car_plate_number) {
-        this.car_plate_number = car_plate_number;
-        notifyPropertyChanged(BR.car_plate_number);
+    public void setCar_blade_number(String car_blade_number) {
+        this.car_blade_number = car_blade_number;
+        notifyPropertyChanged(BR.car_blade_number);
+
     }
+
     @Bindable
     public int getBrand_id() {
         return brand_id;

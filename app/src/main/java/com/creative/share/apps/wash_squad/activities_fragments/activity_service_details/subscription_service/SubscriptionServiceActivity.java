@@ -425,7 +425,7 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
                     itemToUpload.setUser_name(userModel.getFull_name());
                     itemToUpload.setUser_phone(userModel.getPhone());
                     itemToUpload.setTotal_price(final_total);
-                    itemToUpload.setCar_plate_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
+                    itemToUpload.setCar_blade_number(itemToUpload.getVehicleNumber() + itemToUpload.getVehicleChar());
                     Intent intent = new Intent(this, PaymentSubscribtionActivity.class);
                     intent.putExtra("item", itemToUpload);
                     if (orderModel != null) {
@@ -555,11 +555,11 @@ public class SubscriptionServiceActivity extends AppCompatActivity {
 
         itemToUpload.setTime(orderModel.getOrder_time());
         binding.tvTime.setText(orderModel.getOrder_time());
-        if (orderModel.getCar_plate_number() != null) {
-            // Log.e(";llll",orderModel.getCar_plate_number());
+        if (orderModel.getCar_blade_number() != null) {
+            // Log.e(";llll",orderModel.getcar_blade_number());
             try {
-                itemToUpload.setVehicleChar(orderModel.getCar_plate_number().substring(0, 3));
-                itemToUpload.setVehicleNumber(orderModel.getCar_plate_number().substring(3, 7));
+                itemToUpload.setVehicleChar(orderModel.getCar_blade_number().substring(0, 3));
+                itemToUpload.setVehicleNumber(orderModel.getCar_blade_number().substring(3, 7));
             } catch (Exception e) {
 
             }

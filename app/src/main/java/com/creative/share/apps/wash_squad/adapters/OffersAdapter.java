@@ -19,15 +19,16 @@ import java.util.List;
 
 public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyHolder> {
 
+    private  String lang;
     private List<OfferDataModel.OfferModel> offerModelList;
     private Context context;
     private Fragment fragment;
 
-    public OffersAdapter(List<OfferDataModel.OfferModel> offerModelList, Context context,Fragment fragment) {
+    public OffersAdapter(List<OfferDataModel.OfferModel> offerModelList, Context context,Fragment fragment,String lang) {
         this.offerModelList = offerModelList;
         this.context = context;
         this.fragment=fragment;
-
+this.lang=lang;
     }
 
     @NonNull
@@ -42,6 +43,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyHolder> 
 
 
         OfferDataModel.OfferModel offerModel = offerModelList.get(position);
+       holder.offerRowBinding.setLang(lang);
         holder.offerRowBinding.setOfferModel(offerModel);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

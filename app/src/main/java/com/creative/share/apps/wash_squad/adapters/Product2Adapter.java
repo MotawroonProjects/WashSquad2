@@ -63,7 +63,7 @@ myHolder.timeRowBinding.btnSendOrder.setOnClickListener(new View.OnClickListener
     public void onClick(View view) {
         if(fragment instanceof Fragment_Market){
             Fragment_Market fragment_market=(Fragment_Market) fragment;
-            fragment_market.showLink(list.get(holder.getAdapterPosition()).getLinkk());
+            fragment_market.showLink(list.get(holder.getAdapterPosition()).getLink());
         }
     }
 });

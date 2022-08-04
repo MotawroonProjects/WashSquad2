@@ -13,7 +13,7 @@ public class ProductModel implements Serializable {
     private String low_price_value;
     private String desc_ar;
     private String desc_en;
-    private String linkk;
+    private String link;
     private String created_at;
     private String updated_at;
     private CategoryModel category;
@@ -58,8 +58,8 @@ public class ProductModel implements Serializable {
         return desc_en;
     }
 
-    public String getLinkk() {
-        return linkk;
+    public String getLink() {
+        return link;
     }
 
     public String getCreated_at() {

@@ -370,7 +370,7 @@ public class ServiceSentDetailsActivity extends AppCompatActivity {
                     sendServiceModel.setSender_phone(userModel.getPhone());
 
                     sendServiceModel.setTotal_price(final_total);
-                    sendServiceModel.setCar_plate_number(sendServiceModel.getVehicleNumber() + sendServiceModel.getVehicleChar());
+                    sendServiceModel.setCar_blade_number(sendServiceModel.getVehicleNumber() + sendServiceModel.getVehicleChar());
 
                     Intent intent = new Intent(this, ServiceSentPaymentActivity.class);
                     intent.putExtra("item", sendServiceModel);
