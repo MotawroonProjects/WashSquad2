@@ -1,35 +1,41 @@
 {
   "project_info": {
-    "project_number": "14155728106",
-    "firebase_url": "https://washsquad-58f13.firebaseio.com",
-    "project_id": "washsquad-58f13",
-    "storage_bucket": "washsquad-58f13.appspot.com"
+    "project_number": "751746754398",
+    "project_id": "washsqad",
+    "storage_bucket": "washsqad.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14155728106:android:fb80f7ace0c6f18a5c4393",
+        "mobilesdk_app_id": "1:751746754398:android:3036a71ff91c7f99c0d1cf",
         "android_client_info": {
           "package_name": "com.creative.share.apps.wash_squad"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+          "client_id": "751746754398-t3t5q25nqipokajpl8apf551s7427ebg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBQuMsygViK2qgTKgnvhj9tEyXpkDj0zu0"
+          "current_key": "AIzaSyA8k7MEJJvIg5X-0cZNxcME99vrx9TKClM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+              "client_id": "751746754398-t3t5q25nqipokajpl8apf551s7427ebg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "751746754398-shfcfto78i384denp3irqf2ptflrdh49.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.CreativeShare.WashSquad"
+              }
             }
           ]
         }
@@ -37,28 +43,43 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14155728106:android:8ce26e80af86a9b75c4393",
+        "mobilesdk_app_id": "1:751746754398:android:5308dafac3c82365c0d1cf",
         "android_client_info": {
           "package_name": "com.creative.share.apps.wash_squad_driver"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+          "client_id": "751746754398-rhtu9ehe4ghov7r12uag6l7m02tjdl06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.creative.share.apps.wash_squad_driver",
+            "certificate_hash": "6d39e57f3c880ad5ec12fe731d3e4a908fca8758"
+          }
+        },
+        {
+          "client_id": "751746754398-t3t5q25nqipokajpl8apf551s7427ebg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBQuMsygViK2qgTKgnvhj9tEyXpkDj0zu0"
+          "current_key": "AIzaSyA8k7MEJJvIg5X-0cZNxcME99vrx9TKClM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "14155728106-dlhgdjfhsirhsleehlgalpsmfvfg19h2.apps.googleusercontent.com",
+              "client_id": "751746754398-t3t5q25nqipokajpl8apf551s7427ebg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "751746754398-shfcfto78i384denp3irqf2ptflrdh49.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.CreativeShare.WashSquad"
+              }
             }
           ]
         }
