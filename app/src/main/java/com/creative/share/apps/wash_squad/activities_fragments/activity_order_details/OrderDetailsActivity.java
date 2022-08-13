@@ -219,7 +219,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             binding.btnCancel.setVisibility(View.VISIBLE);
 
 
-        } else if (orderModel.getStatus() == 1) {
+        } else if (orderModel.getStatus() == 11||orderModel.getStatus() == 12) {
             binding.img1.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img2.setBackground(getResources().getDrawable(R.drawable.circle_primary));
             binding.img3.setBackground(getResources().getDrawable(R.drawable.circle_gray));

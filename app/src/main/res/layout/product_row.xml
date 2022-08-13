@@ -32,7 +32,7 @@
 
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                serviceImage="@{model.sub_service_image}"
+                serviceImage='@{lang.equals("ar")?model.sub_service_image:model.en_image}'
 
                 />
             <TextView

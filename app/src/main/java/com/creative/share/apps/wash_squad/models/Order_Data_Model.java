@@ -84,7 +84,7 @@ public class Order_Data_Model implements Serializable {
         private String service_level2_ar_title;
         private String brand_en_title;
         private String brand__ar_title;
-        private List<Products> order_sub_services;
+        private List<Products> sub_services;
         private String day;
         private String car_blade_number;
         private CouponModel coupon;
@@ -304,7 +304,7 @@ public class Order_Data_Model implements Serializable {
         }
 
         public List<Products> getOrder_sub_services() {
-            return order_sub_services;
+            return sub_services;
         }
 
         private List<order_images> order_images;
@@ -414,9 +414,10 @@ public class Order_Data_Model implements Serializable {
         private int order_id;
         private int sub_service_id;
         private double price;
-        private String sub_service_en_title;
-        private String sub_service_ar_title;
-        private String sub_service_image;
+        private String en_title;
+        private String ar_title;
+        private String ar_image;
+        private String en_image;
         private int sub_service_price;
         private int sub_service_parent_id;
         private int sub_service_level;
@@ -438,15 +439,19 @@ public class Order_Data_Model implements Serializable {
         }
 
         public String getSub_service_en_title() {
-            return sub_service_en_title;
+            return en_title;
         }
 
         public String getSub_service_ar_title() {
-            return sub_service_ar_title;
+            return ar_title;
         }
 
         public String getSub_service_image() {
-            return sub_service_image;
+            return ar_image;
+        }
+
+        public String getEn_image() {
+            return en_image;
         }
 
         public int getSub_service_price() {
